@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Trade Fee Calculator — WorldFirst</title>
+<style>
+  :root {
+    --wf-red: #E31937;
+    --wf-dark: #1A1A2E;
+    --wf-white: #FFFFFF;
+    --wf-gray-50: #F8F9FA;
+    --wf-gray-100: #F0F1F3;
+    --wf-gray-200: #E2E4E8;
+    --wf-gray-400: #9CA3AF;
+    --wf-gray-600: #6B7280;
+    --wf-gray-800: #374151;
+    --wf-green: #059669;
+    --wf-green-light: #ECFDF5;
+    --wf-red-light: #FEF2F2;
+    --radius: 12px;
+    --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.04);
+    --shadow-lg: 0 4px 24px rgba(0,0,0,0.1);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--wf-gray-50);
+    color: var(--wf-gray-800);
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container {
+    max-width: 520px;
+    margin: 0 auto;
+    padding: 24px 16px 48px;
+  }
+
+  /* Header */
+  .header {
+    text-align: center;
+    margin-bottom: 32px;
+  }
+  .header .logo {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--wf-red);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .header h1 {
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--wf-dark);
+    line-height: 1.2;
+    margin-bottom: 8px;
+  }
+  .header p {
+    font-size: 15px;
+    color: var(--wf-gray-600);
+    line-height: 1.5;
+  }
+
+  /* Card */
+  .card {
+    background: var(--wf-white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 24px;
+    margin-bottom: 16px;
+  }
+
+  /* Form */
+  .form-group {
+    margin-bottom: 20px;
+  }
+  .form-group:last-child {
+    margin-bottom: 0;
+  }
+  .form-label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--wf-gray-600);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+  }
+
+  /* Amount input */
+  .amount-wrapper {
+    position: relative;
+  }
+  .amount-wrapper .currency-symbol {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--wf-gray-400);
+    pointer-events: none;
+    transition: color 0.2s;
+  }
+  .amount-wrapper input {
+    width: 100%;
+    padding: 16px 16px 16px 36px;
+    font-size: 28px;
+    font-weight: 700;
+    border: 2px solid var(--wf-gray-200);
+    border-radius: var(--radius);
+    outline: none;
+    transition: border-color 0.2s;
+    color: var(--wf-dark);
+    background: var(--wf-white);
+  }
+  .amount-wrapper input:focus {
+    border-color: var(--wf-red);
+  }
+  .amount-wrapper input:focus + .currency-symbol-after {
+    color: var(--wf-red);
+  }
+  .amount-wrapper input::placeholder {
+    color: var(--wf-gray-400);
+    font-weight: 400;
+  }
+
+  /* Custom select */
+  .custom-select {
+    position: relative;
+  }
+  .custom-select select {
+    width: 100%;
+    padding: 14px 40px 14px 16px;
+    font-size: 16px;
+    font-weight: 500;
+    border: 2px solid var(--wf-gray-200);
+    border-radius: var(--radius);
+    outline: none;
+    appearance: none;
+    -webkit-appearance: none;
+    background: var(--wf-white);
+    color: var(--wf-dark);
+    cursor: pointer;
+    transition: border-color 0.2s;
+  }
+  .custom-select select:focus {
+    border-color: var(--wf-red);
+  }
+  .custom-select::after {
+    content: '';
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid var(--wf-gray-400);
+    pointer-events: none;
+  }
+
+  /* Region pills */
+  .region-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+  .region-pill {
+    padding: 12px 8px;
+    text-align: center;
+    border: 2px solid var(--wf-gray-200);
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: all 0.2s;
+    background: var(--wf-white);
+    user-select: none;
+    -webkit-user-select: none;
+  }
+  .region-pill:hover {
+    border-color: var(--wf-gray-400);
+  }
+  .region-pill.active {
+    border-color: var(--wf-red);
+    background: var(--wf-red-light);
+  }
+  .region-pill .flag {
+    font-size: 24px;
+    display: block;
+    margin-bottom: 4px;
+  }
+  .region-pill .name {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--wf-gray-600);
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+  }
+  .region-pill.active .name {
+    color: var(--wf-red);
+  }
+
+  /* Calculate button */
+  .btn-calculate {
+    width: 100%;
+    padding: 16px;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--wf-white);
+    background: var(--wf-red);
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 24px;
+    letter-spacing: 0.3px;
+  }
+  .btn-calculate:hover {
+    background: #C7152F;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(227,25,55,0.3);
+  }
+  .btn-calculate:active {
+    transform: translateY(0);
+  }
+  .btn-calculate:disabled {
+    background: var(--wf-gray-200);
+    color: var(--wf-gray-400);
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+
+  /* Results */
+  .results {
+    display: none;
+    animation: slideUp 0.4s ease;
+  }
+  .results.visible {
+    display: block;
+  }
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Receipt */
+  .receipt {
+    background: var(--wf-white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+  }
+  .receipt-header {
+    background: var(--wf-dark);
+    color: var(--wf-white);
+    padding: 20px 24px;
+    text-align: center;
+  }
+  .receipt-header h2 {
+    font-size: 16px;
+    font-weight: 600;
+    opacity: 0.8;
+    margin-bottom: 4px;
+  }
+  .receipt-header .bank-name {
+    font-size: 22px;
+    font-weight: 800;
+  }
+  .receipt-body {
+    padding: 24px;
+  }
+
+  .receipt-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--wf-gray-100);
+  }
+  .receipt-row:last-child {
+    border-bottom: none;
+  }
+  .receipt-row .label {
+    font-size: 14px;
+    color: var(--wf-gray-600);
+  }
+  .receipt-row .value {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--wf-dark);
+    text-align: right;
+  }
+  .receipt-row.highlight {
+    background: var(--wf-red-light);
+    margin: 12px -24px;
+    padding: 14px 24px;
+    border-bottom: none;
+  }
+  .receipt-row.highlight .label {
+    color: var(--wf-red);
+    font-weight: 700;
+    font-size: 14px;
+  }
+  .receipt-row.highlight .value {
+    color: var(--wf-red);
+    font-size: 20px;
+  }
+
+  /* Comparison bars */
+  .comparison {
+    margin: 20px 0;
+  }
+  .comparison-bar {
+    margin-bottom: 12px;
+  }
+  .comparison-bar .bar-label {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 6px;
+    font-size: 13px;
+  }
+  .comparison-bar .bar-label .name {
+    font-weight: 600;
+    color: var(--wf-gray-800);
+  }
+  .comparison-bar .bar-label .amount {
+    font-weight: 700;
+    color: var(--wf-gray-800);
+  }
+  .comparison-bar .bar-track {
+    height: 32px;
+    background: var(--wf-gray-100);
+    border-radius: 6px;
+    overflow: hidden;
+    position: relative;
+  }
+  .comparison-bar .bar-fill {
+    height: 100%;
+    border-radius: 6px;
+    transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    padding-left: 12px;
+  }
+  .comparison-bar .bar-fill.bank {
+    background: var(--wf-gray-400);
+  }
+  .comparison-bar .bar-fill.wf {
+    background: var(--wf-green);
+  }
+  .comparison-bar .bar-percent {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--wf-white);
+  }
+
+  /* Gap callout */
+  .gap-callout {
+    text-align: center;
+    padding: 24px;
+    margin: 0 -24px;
+    background: var(--wf-green-light);
+    border-top: 2px solid var(--wf-green);
+  }
+  .gap-callout .save-amount {
+    font-size: 36px;
+    font-weight: 800;
+    color: var(--wf-green);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .gap-callout .save-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--wf-green);
+    margin-bottom: 16px;
+  }
+  .gap-callout .annual {
+    font-size: 15px;
+    color: var(--wf-gray-800);
+    line-height: 1.6;
+  }
+  .gap-callout .annual strong {
+    color: var(--wf-dark);
+  }
+
+  /* High value lead callout */
+  .high-value-callout {
+    text-align: center;
+    padding: 20px 24px;
+    margin: 16px 0 0;
+    background: linear-gradient(135deg, var(--wf-dark) 0%, #2D2D4E 100%);
+    border-radius: var(--radius);
+    color: var(--wf-white);
+  }
+  .high-value-callout p {
+    font-size: 15px;
+    line-height: 1.5;
+    margin-bottom: 8px;
+  }
+  .high-value-callout .cta {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--wf-red);
+  }
+
+  /* Region note */
+  .region-note {
+    font-size: 13px;
+    color: var(--wf-gray-600);
+    line-height: 1.5;
+    padding: 12px 16px;
+    background: var(--wf-gray-50);
+    border-radius: 8px;
+    margin-top: 16px;
+    border-left: 3px solid var(--wf-gray-400);
+  }
+
+  /* Methodology */
+  .methodology-toggle {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--wf-gray-600);
+    background: none;
+    border: 1px solid var(--wf-gray-200);
+    border-radius: var(--radius);
+    cursor: pointer;
+    text-align: center;
+    margin-top: 16px;
+    transition: all 0.2s;
+  }
+  .methodology-toggle:hover {
+    border-color: var(--wf-gray-400);
+    color: var(--wf-gray-800);
+  }
+  .methodology-content {
+    display: none;
+    padding: 20px;
+    background: var(--wf-white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    margin-top: 12px;
+    font-size: 13px;
+    color: var(--wf-gray-600);
+    line-height: 1.7;
+  }
+  .methodology-content.visible {
+    display: block;
+  }
+  .methodology-content h3 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--wf-dark);
+    margin-bottom: 8px;
+    margin-top: 16px;
+  }
+  .methodology-content h3:first-child {
+    margin-top: 0;
+  }
+  .methodology-content ul {
+    padding-left: 18px;
+    margin: 8px 0;
+  }
+  .methodology-content li {
+    margin-bottom: 4px;
+  }
+  .confidence-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+  }
+  .confidence-badge.published {
+    background: var(--wf-green-light);
+    color: var(--wf-green);
+  }
+  .confidence-badge.estimated {
+    background: #FEF3C7;
+    color: #92400E;
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding: 24px 0;
+    font-size: 12px;
+    color: var(--wf-gray-400);
+    line-height: 1.6;
+  }
+  .footer a {
+    color: var(--wf-red);
+    text-decoration: none;
+  }
+
+  /* Responsive - iPad landscape is primary */
+  @media (min-width: 768px) {
+    .container {
+      padding: 40px 24px 60px;
+    }
+    .header h1 {
+      font-size: 36px;
+    }
+    .region-grid {
+      grid-template-columns: repeat(6, 1fr);
+    }
+  }
+
+  /* Landscape iPad */
+  @media (min-width: 1024px) {
+    .container {
+      max-width: 600px;
+    }
+  }
+
+  /* Annual volume input */
+  .annual-volume {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid var(--wf-gray-100);
+  }
+  .annual-volume .volume-label {
+    font-size: 13px;
+    color: var(--wf-gray-600);
+    margin-bottom: 8px;
+  }
+  .volume-pills {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .volume-pill {
+    padding: 8px 14px;
+    font-size: 13px;
+    font-weight: 600;
+    border: 2px solid var(--wf-gray-200);
+    border-radius: 8px;
+    cursor: pointer;
+    background: var(--wf-white);
+    color: var(--wf-gray-600);
+    transition: all 0.2s;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+  .volume-pill:hover {
+    border-color: var(--wf-gray-400);
+  }
+  .volume-pill.active {
+    border-color: var(--wf-dark);
+    background: var(--wf-dark);
+    color: var(--wf-white);
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <!-- Header -->
+  <div class="header">
+    <div class="logo">WorldFirst</div>
+    <h1>Save money on every trade.</h1>
+    <p>See how much your bank charges vs. what you could pay.</p>
+  </div>
+
+  <!-- Input Card -->
+  <div class="card">
+    <!-- Region -->
+    <div class="form-group">
+      <label class="form-label">Where are you based?</label>
+      <div class="region-grid" id="regionGrid">
+        <div class="region-pill" data-region="GB" tabindex="0">
+          <span class="flag">&#127468;&#127463;</span>
+          <span class="name">UK</span>
+        </div>
+        <div class="region-pill" data-region="NG" tabindex="0">
+          <span class="flag">&#127475;&#127468;</span>
+          <span class="name">Nigeria</span>
+        </div>
+        <div class="region-pill" data-region="PK" tabindex="0">
+          <span class="flag">&#127477;&#127472;</span>
+          <span class="name">Pakistan</span>
+        </div>
+        <div class="region-pill" data-region="VN" tabindex="0">
+          <span class="flag">&#127483;&#127475;</span>
+          <span class="name">Vietnam</span>
+        </div>
+        <div class="region-pill" data-region="TR" tabindex="0">
+          <span class="flag">&#127481;&#127479;</span>
+          <span class="name">Turkey</span>
+        </div>
+        <div class="region-pill" data-region="BD" tabindex="0">
+          <span class="flag">&#127463;&#127465;</span>
+          <span class="name">Bangladesh</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bank -->
+    <div class="form-group" id="bankGroup" style="display:none;">
+      <label class="form-label">Your bank or payment service</label>
+      <div class="custom-select">
+        <select id="bankSelect">
+          <option value="">Select your bank</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Amount -->
+    <div class="form-group">
+      <label class="form-label">How much do you send per order?</label>
+      <div class="amount-wrapper">
+        <span class="currency-symbol" id="currencySymbol">$</span>
+        <input type="text" inputmode="numeric" id="amountInput" placeholder="10,000" autocomplete="off">
+      </div>
+    </div>
+
+    <!-- Annual volume -->
+    <div class="annual-volume">
+      <div class="volume-label">Roughly how much do you send per year?</div>
+      <div class="volume-pills" id="volumePills">
+        <div class="volume-pill" data-multiplier="5" tabindex="0">~5 orders</div>
+        <div class="volume-pill active" data-multiplier="10" tabindex="0">~10 orders</div>
+        <div class="volume-pill" data-multiplier="20" tabindex="0">~20 orders</div>
+        <div class="volume-pill" data-multiplier="50" tabindex="0">~50 orders</div>
+        <div class="volume-pill" data-multiplier="100" tabindex="0">100+</div>
+      </div>
+    </div>
+
+    <!-- Calculate -->
+    <button class="btn-calculate" id="calcBtn" disabled>Compare fees</button>
+  </div>
+
+  <!-- Results -->
+  <div class="results" id="results">
+    <!-- Receipt -->
+    <div class="receipt">
+      <div class="receipt-header">
+        <h2>Sending via</h2>
+        <div class="bank-name" id="resultBankName">—</div>
+      </div>
+      <div class="receipt-body">
+        <div class="receipt-row">
+          <span class="label">You send</span>
+          <span class="value" id="resultSendAmount">—</span>
+        </div>
+        <div class="receipt-row">
+          <span class="label">FX markup <span id="resultBankMarkup"></span></span>
+          <span class="value" id="resultBankFxCost">—</span>
+        </div>
+        <div class="receipt-row">
+          <span class="label">Wire / transfer fee</span>
+          <span class="value" id="resultBankWireFee">—</span>
+        </div>
+        <div class="receipt-row highlight">
+          <span class="label">Total cost with your bank</span>
+          <span class="value" id="resultBankTotal">—</span>
+        </div>
+
+        <!-- Comparison bars -->
+        <div class="comparison">
+          <div class="comparison-bar">
+            <div class="bar-label">
+              <span class="name" id="barBankName">Your bank</span>
+              <span class="amount" id="barBankDelivered">—</span>
+            </div>
+            <div class="bar-track">
+              <div class="bar-fill bank" id="barBank" style="width: 0%">
+                <span class="bar-percent" id="barBankPct"></span>
+              </div>
+            </div>
+          </div>
+          <div class="comparison-bar">
+            <div class="bar-label">
+              <span class="name">WorldFirst</span>
+              <span class="amount" id="barWfDelivered">—</span>
+            </div>
+            <div class="bar-track">
+              <div class="bar-fill wf" id="barWf" style="width: 0%">
+                <span class="bar-percent" id="barWfPct"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Savings callout -->
+        <div class="gap-callout">
+          <div class="save-amount" id="resultSaving">—</div>
+          <div class="save-label">saved on this order</div>
+          <div class="annual" id="resultAnnual"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Region note -->
+    <div class="region-note" id="regionNote" style="display:none;"></div>
+
+    <!-- High value callout -->
+    <div class="high-value-callout" id="highValueCallout" style="display:none;">
+      <p>At your volume, WorldFirst offers custom rates below 0.6%.</p>
+      <span class="cta">Talk to our team for a custom quote.</span>
+    </div>
+
+    <!-- Methodology -->
+    <button class="methodology-toggle" id="methodologyToggle">How we calculated this</button>
+    <div class="methodology-content" id="methodologyContent">
+      <h3>Exchange rate markup</h3>
+      <p>Bank FX markups are estimated by comparing published bank exchange rates against the mid-market rate (the midpoint between buy and sell rates on global currency markets). The ranges shown represent typical retail/SME rates — corporate accounts with negotiated pricing may receive tighter spreads.</p>
+
+      <h3>WorldFirst rate</h3>
+      <p>WorldFirst charges a maximum of 0.6% FX markup on major currency pairs. Local-to-local transfers (e.g. CNY to CNY) carry no wire fee. The actual rate may be lower depending on currency pair and volume.</p>
+
+      <h3>Wire fees</h3>
+      <p>Bank wire fees shown are typical SWIFT international transfer charges including the bank's own fee plus standard SWIFT network charges. Receiving bank charges (if any) are not included for either provider.</p>
+
+      <h3>Data confidence</h3>
+      <p>
+        <span class="confidence-badge published">Published</span> Rate data derived from bank-published exchange rates<br>
+        <span class="confidence-badge estimated">Estimated</span> Based on typical rates for the institution — your actual rate may vary
+      </p>
+
+      <h3>Source date</h3>
+      <p id="methodologyDate">Rate data last reviewed: March 2026. Bank rates change daily. This calculator uses typical markup ranges, not live rates.</p>
+
+      <h3>Important</h3>
+      <p>This tool shows estimated costs for comparison purposes. Your actual fees depend on your account type, relationship, transaction size, and market conditions. Always confirm exact rates with your provider before transacting.</p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <p>Rates are estimates for comparison. Not financial advice.</p>
+    <p>&copy; WorldFirst 2026</p>
+  </div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════
+// RATE DATA — All Tier 1 regions
+// Last updated: March 2026
+// ═══════════════════════════════════════════════════
+
+const RATE_DATA = {
+  GB: {
+    currency: "GBP",
+    currencySymbol: "£",
+    specialNote: null,
+    banks: [
+      { name: "HSBC", fxMarkupMin: 1.5, fxMarkupMax: 3.0, wireFee: 9, wireFeeCurrency: "GBP", confidence: "estimated" },
+      { name: "Barclays", fxMarkupMin: 2.5, fxMarkupMax: 3.5, wireFee: 5, wireFeeCurrency: "GBP", confidence: "estimated" },
+      { name: "NatWest", fxMarkupMin: 2.0, fxMarkupMax: 3.0, wireFee: 15, wireFeeCurrency: "GBP", confidence: "estimated" },
+      { name: "Lloyds", fxMarkupMin: 2.5, fxMarkupMax: 3.5, wireFee: 10, wireFeeCurrency: "GBP", confidence: "estimated" },
+      { name: "Santander UK", fxMarkupMin: 2.0, fxMarkupMax: 3.0, wireFee: 15, wireFeeCurrency: "GBP", confidence: "estimated" },
+      { name: "Metro Bank", fxMarkupMin: 2.0, fxMarkupMax: 3.0, wireFee: 12, wireFeeCurrency: "GBP", confidence: "estimated" },
+      { name: "Wise", fxMarkupMin: 0.33, fxMarkupMax: 0.6, wireFee: 0, wireFeeCurrency: "GBP", confidence: "published" },
+      { name: "Halifax", fxMarkupMin: 2.5, fxMarkupMax: 3.5, wireFee: 10, wireFeeCurrency: "GBP", confidence: "estimated" }
+    ]
+  },
+  NG: {
+    currency: "NGN",
+    currencySymbol: "₦",
+    specialNote: "Nigeria has FX access constraints. Bank rates shown are typical markups above the NAFEM rate. Actual costs may be higher during periods of limited FX availability.",
+    banks: [
+      { name: "First Bank", fxMarkupMin: 2.0, fxMarkupMax: 5.0, wireFee: 35, wireFeeCurrency: "USD", confidence: "estimated" },
+      { name: "Zenith Bank", fxMarkupMin: 1.5, fxMarkupMax: 4.0, wireFee: 35, wireFeeCurrency: "USD", confidence: "estimated" },
+      { name: "GTBank", fxMarkupMin: 2.0, fxMarkupMax: 4.5, wireFee: 30, wireFeeCurrency: "USD", confidence: "estimated" },
+      { name: "Access Bank", fxMarkupMin: 2.0, fxMarkupMax: 5.0, wireFee: 35, wireFeeCurrency: "USD", confidence: "estimated" },
+      { name: "UBA", fxMarkupMin: 2.0, fxMarkupMax: 5.0, wireFee: 35, wireFeeCurrency: "USD", confidence: "estimated" },
+      { name: "Stanbic IBTC", fxMarkupMin: 1.5, fxMarkupMax: 3.5, wireFee: 40, wireFeeCurrency: "USD", confidence: "estimated" },
+      { name: "Fidelity Bank", fxMarkupMin: 2.5, fxMarkupMax: 5.0, wireFee: 30, wireFeeCurrency: "USD", confidence: "estimated" },
+      { name: "Ecobank", fxMarkupMin: 2.0, fxMarkupMax: 4.5, wireFee: 35, wireFeeCurrency: "USD", confidence: "estimated" }
+    ]
+  },
+  PK: {
+    currency: "PKR",
+    currencySymbol: "Rs",
+    specialNote: "Pakistan requires trade documentation (Form E) for import payments. Letter of Credit charges of 0.5\u20131.5% may apply on top of the fees shown.",
+    banks: [
+      { name: "HBL", fxMarkupMin: 1.5, fxMarkupMax: 3.0, wireFee: 25, wireFeeCurrency: "USD", confidence: "estimated" },
+      { name: "MCB Bank", fxMarkupMin: 1.5, fxMarkupMax: 2.5, wireFee: 25, wireFeeCurrency: "USD", confidence: "estimated" },
+      { name: "UBL", fxMarkupMin: 1.5, fxMarkupMax: 3.0, wireFee: 25, wireFeeCurrency: "USD", confidence: "estimated" },
+      { name: "Allied Bank", fxMarkupMin: 2.0, fxMarkupMax: 3.5, wireFee: 25, wireFeeCurrency: "USD", confidence: "estimated" },
+      { name: "Bank Alfalah", fxMarkupMin: 1.5, fxMarkupMax: 2.5, wireFee: 25, wireFeeCurrency: "USD", confidence: "estimated" },
+      { name: "Meezan Bank", fxMarkupMin: 2.0, fxMarkupMax: 3.5, wireFee: 25, wireFeeCurrency: "USD", confidence: "estimated" },
+      { name: "National Bank", fxMarkupMin: 1.5, fxMarkupMax: 3.0, wireFee: 20, wireFeeCurrency: "USD", confidence: "estimated" },
+      { name: "Standard Chartered", fxMarkupMin: 1.0, fxMarkupMax: 2.5, wireFee: 30, wireFeeCurrency: "USD", confidence: "estimated" }
+    ]
+  },
+  VN: {
+    currency: "VND",
+    currencySymbol: "₫",
+    specialNote: "Vietnamese banks publish daily FX rates as required by the State Bank of Vietnam. Wire fees are typically 0.15\u20130.2% of the transfer amount.",
+    banks: [
+      { name: "Vietcombank", fxMarkupMin: 0.5, fxMarkupMax: 1.5, wireFee: 20, wireFeeCurrency: "USD", confidence: "published" },
+      { name: "BIDV", fxMarkupMin: 0.5, fxMarkupMax: 1.5, wireFee: 18, wireFeeCurrency: "USD", confidence: "published" },
+      { name: "VietinBank", fxMarkupMin: 0.5, fxMarkupMax: 1.5, wireFee: 20, wireFeeCurrency: "USD", confidence: "published" },
+      { name: "Techcombank", fxMarkupMin: 0.8, fxMarkupMax: 2.0, wireFee: 25, wireFeeCurrency: "USD", confidence: "estimated" },
+      { name: "MB Bank", fxMarkupMin: 0.8, fxMarkupMax: 2.0, wireFee: 20, wireFeeCurrency: "USD", confidence: "estimated" },
+      { name: "ACB", fxMarkupMin: 1.0, fxMarkupMax: 2.0, wireFee: 22, wireFeeCurrency: "USD", confidence: "estimated" },
+      { name: "Sacombank", fxMarkupMin: 1.0, fxMarkupMax: 2.5, wireFee: 20, wireFeeCurrency: "USD", confidence: "estimated" },
+      { name: "TPBank", fxMarkupMin: 1.0, fxMarkupMax: 2.0, wireFee: 18, wireFeeCurrency: "USD", confidence: "estimated" }
+    ]
+  },
+  TR: {
+    currency: "TRY",
+    currencySymbol: "₺",
+    specialNote: "Turkish bank FX rates can widen during periods of lira volatility. Rates shown are typical markups under normal market conditions.",
+    banks: [
+      { name: "Garanti BBVA", fxMarkupMin: 1.0, fxMarkupMax: 2.5, wireFee: 30, wireFeeCurrency: "USD", confidence: "estimated" },
+      { name: "\u0130\u015F Bankas\u0131", fxMarkupMin: 1.0, fxMarkupMax: 2.5, wireFee: 30, wireFeeCurrency: "USD", confidence: "estimated" },
+      { name: "Ziraat Bankas\u0131", fxMarkupMin: 1.0, fxMarkupMax: 2.0, wireFee: 25, wireFeeCurrency: "USD", confidence: "estimated" },
+      { name: "Akbank", fxMarkupMin: 1.0, fxMarkupMax: 2.5, wireFee: 30, wireFeeCurrency: "USD", confidence: "estimated" },
+      { name: "Yap\u0131 Kredi", fxMarkupMin: 1.0, fxMarkupMax: 2.5, wireFee: 30, wireFeeCurrency: "USD", confidence: "estimated" },
+      { name: "Halkbank", fxMarkupMin: 1.0, fxMarkupMax: 2.5, wireFee: 25, wireFeeCurrency: "USD", confidence: "estimated" },
+      { name: "Vak\u0131fbank", fxMarkupMin: 1.0, fxMarkupMax: 2.5, wireFee: 25, wireFeeCurrency: "USD", confidence: "estimated" },
+      { name: "DenizBank", fxMarkupMin: 1.0, fxMarkupMax: 2.5, wireFee: 30, wireFeeCurrency: "USD", confidence: "estimated" }
+    ]
+  },
+  BD: {
+    currency: "BDT",
+    currencySymbol: "৳",
+    specialNote: "Bangladesh requires Letters of Credit for most imports, adding 0.5\u20131.5% to total cost. Figures shown do not include LC charges.",
+    banks: [
+      { name: "Sonali Bank", fxMarkupMin: 1.5, fxMarkupMax: 3.0, wireFee: 30, wireFeeCurrency: "USD", confidence: "estimated" },
+      { name: "Janata Bank", fxMarkupMin: 1.5, fxMarkupMax: 3.0, wireFee: 30, wireFeeCurrency: "USD", confidence: "estimated" },
+      { name: "Agrani Bank", fxMarkupMin: 1.5, fxMarkupMax: 3.0, wireFee: 30, wireFeeCurrency: "USD", confidence: "estimated" },
+      { name: "BRAC Bank", fxMarkupMin: 1.0, fxMarkupMax: 2.5, wireFee: 35, wireFeeCurrency: "USD", confidence: "estimated" },
+      { name: "Dutch-Bangla Bank", fxMarkupMin: 1.0, fxMarkupMax: 2.5, wireFee: 35, wireFeeCurrency: "USD", confidence: "estimated" },
+      { name: "Eastern Bank", fxMarkupMin: 1.0, fxMarkupMax: 2.5, wireFee: 35, wireFeeCurrency: "USD", confidence: "estimated" },
+      { name: "City Bank", fxMarkupMin: 1.0, fxMarkupMax: 2.5, wireFee: 35, wireFeeCurrency: "USD", confidence: "estimated" },
+      { name: "Standard Chartered", fxMarkupMin: 0.8, fxMarkupMax: 2.0, wireFee: 45, wireFeeCurrency: "USD", confidence: "estimated" }
+    ]
+  }
+};
+
+// WorldFirst rates
+const WF = {
+  fxMarkup: 0.6, // 0.6% cap
+  wireFee: 0      // $0 for L2L
+};
+
+// ═══════════════════════════════════════════════════
+// STATE
+// ═══════════════════════════════════════════════════
+let state = {
+  region: null,
+  bank: null,
+  amount: null,
+  multiplier: 10
+};
+
+// ═══════════════════════════════════════════════════
+// DOM REFERENCES
+// ═══════════════════════════════════════════════════
+const regionGrid = document.getElementById('regionGrid');
+const bankGroup = document.getElementById('bankGroup');
+const bankSelect = document.getElementById('bankSelect');
+const amountInput = document.getElementById('amountInput');
+const currencySymbol = document.getElementById('currencySymbol');
+const calcBtn = document.getElementById('calcBtn');
+const results = document.getElementById('results');
+const volumePills = document.getElementById('volumePills');
+const methodologyToggle = document.getElementById('methodologyToggle');
+const methodologyContent = document.getElementById('methodologyContent');
+
+// ═══════════════════════════════════════════════════
+// REGION SELECTION
+// ═══════════════════════════════════════════════════
+regionGrid.addEventListener('click', (e) => {
+  const pill = e.target.closest('.region-pill');
+  if (!pill) return;
+
+  document.querySelectorAll('.region-pill').forEach(p => p.classList.remove('active'));
+  pill.classList.add('active');
+
+  state.region = pill.dataset.region;
+  const regionData = RATE_DATA[state.region];
+
+  // Update currency symbol
+  currencySymbol.textContent = regionData.currencySymbol;
+
+  // Populate bank dropdown
+  bankSelect.innerHTML = '<option value="">Select your bank</option>';
+  regionData.banks.forEach((bank, i) => {
+    const opt = document.createElement('option');
+    opt.value = i;
+    opt.textContent = bank.name;
+    bankSelect.appendChild(opt);
+  });
+
+  bankGroup.style.display = 'block';
+  state.bank = null;
+  bankSelect.value = '';
+  updateCalcBtn();
+});
+
+// ═══════════════════════════════════════════════════
+// BANK SELECTION
+// ═══════════════════════════════════════════════════
+bankSelect.addEventListener('change', () => {
+  if (bankSelect.value === '') {
+    state.bank = null;
+  } else {
+    state.bank = RATE_DATA[state.region].banks[parseInt(bankSelect.value)];
+  }
+  updateCalcBtn();
+});
+
+// ═══════════════════════════════════════════════════
+// AMOUNT INPUT — format as you type
+// ═══════════════════════════════════════════════════
+amountInput.addEventListener('input', () => {
+  let raw = amountInput.value.replace(/[^0-9]/g, '');
+  if (raw === '') {
+    amountInput.value = '';
+    state.amount = null;
+  } else {
+    let num = parseInt(raw, 10);
+    state.amount = num;
+    amountInput.value = num.toLocaleString('en-US');
+  }
+  updateCalcBtn();
+});
+
+// ═══════════════════════════════════════════════════
+// VOLUME PILLS
+// ═══════════════════════════════════════════════════
+volumePills.addEventListener('click', (e) => {
+  const pill = e.target.closest('.volume-pill');
+  if (!pill) return;
+
+  document.querySelectorAll('.volume-pill').forEach(p => p.classList.remove('active'));
+  pill.classList.add('active');
+  state.multiplier = parseInt(pill.dataset.multiplier);
+});
+
+// ═══════════════════════════════════════════════════
+// BUTTON STATE
+// ═══════════════════════════════════════════════════
+function updateCalcBtn() {
+  calcBtn.disabled = !(state.region && state.bank && state.amount && state.amount > 0);
+}
+
+// ═══════════════════════════════════════════════════
+// CALCULATE
+// ═══════════════════════════════════════════════════
+calcBtn.addEventListener('click', calculate);
+
+function calculate() {
+  if (!state.region || !state.bank || !state.amount) return;
+
+  const amount = state.amount;
+  const bank = state.bank;
+  const region = RATE_DATA[state.region];
+
+  // Use midpoint of bank's markup range
+  const bankMarkup = (bank.fxMarkupMin + bank.fxMarkupMax) / 2;
+  const bankFxCost = amount * (bankMarkup / 100);
+
+  // Wire fee — convert if needed
+  let bankWireFee = bank.wireFee;
+  // Wire fees are already in the display currency context, keep as-is for USD-denominated
+
+  const bankTotalCost = bankFxCost + bankWireFee;
+  const bankDelivered = amount - bankTotalCost;
+
+  // WorldFirst
+  const wfFxCost = amount * (WF.fxMarkup / 100);
+  const wfTotalCost = wfFxCost + WF.wireFee;
+  const wfDelivered = amount - wfTotalCost;
+
+  // Savings
+  const saving = bankTotalCost - wfTotalCost;
+  const annualSaving = saving * state.multiplier;
+  const annualVolume = amount * state.multiplier;
+
+  // Format helper
+  const fmt = (n) => '$' + Math.round(n).toLocaleString('en-US');
+  const fmtDecimal = (n) => '$' + n.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
+  // Populate receipt
+  document.getElementById('resultBankName').textContent = bank.name;
+  document.getElementById('resultSendAmount').textContent = fmt(amount);
+  document.getElementById('resultBankMarkup').textContent = `(~${bankMarkup.toFixed(1)}%)`;
+  document.getElementById('resultBankFxCost').textContent = '-' + fmt(bankFxCost);
+  document.getElementById('resultBankWireFee').textContent = '-' + fmt(bankWireFee);
+  document.getElementById('resultBankTotal').textContent = '-' + fmt(bankTotalCost);
+
+  // Comparison bars
+  const maxDelivered = amount; // 100% = full amount
+  const bankPct = (bankDelivered / maxDelivered) * 100;
+  const wfPct = (wfDelivered / maxDelivered) * 100;
+
+  document.getElementById('barBankName').textContent = bank.name;
+  document.getElementById('barBankDelivered').textContent = 'Delivers ' + fmt(bankDelivered);
+  document.getElementById('barWfDelivered').textContent = 'Delivers ' + fmt(wfDelivered);
+
+  // Animate bars
+  setTimeout(() => {
+    document.getElementById('barBank').style.width = bankPct + '%';
+    document.getElementById('barWf').style.width = wfPct + '%';
+    document.getElementById('barBankPct').textContent = (100 - bankPct).toFixed(1) + '% lost';
+    document.getElementById('barWfPct').textContent = (100 - wfPct).toFixed(1) + '% lost';
+  }, 100);
+
+  // Savings
+  document.getElementById('resultSaving').textContent = fmt(saving);
+
+  // Annual projection
+  let annualText = '';
+  if (state.multiplier <= 1) {
+    annualText = `That's ${fmt(saving)} your supplier didn't receive.`;
+  } else {
+    annualText = `Over ${state.multiplier} orders, that's <strong>${fmt(annualSaving)}</strong> saved per year.`;
+  }
+  document.getElementById('resultAnnual').innerHTML = annualText;
+
+  // Region note
+  const regionNote = document.getElementById('regionNote');
+  if (region.specialNote) {
+    regionNote.textContent = region.specialNote;
+    regionNote.style.display = 'block';
+  } else {
+    regionNote.style.display = 'none';
+  }
+
+  // High value callout
+  const highValue = document.getElementById('highValueCallout');
+  if (annualVolume > 500000) {
+    highValue.style.display = 'block';
+    if (annualVolume > 2000000) {
+      highValue.querySelector('p').textContent = 'At your volume, WorldFirst offers custom rates well below 0.6%. Let\'s talk.';
+    } else {
+      highValue.querySelector('p').textContent = 'At your volume, WorldFirst offers custom rates below 0.6%.';
+    }
+  } else {
+    highValue.style.display = 'none';
+  }
+
+  // Show results
+  results.classList.add('visible');
+
+  // Reset bars for animation
+  document.getElementById('barBank').style.width = '0%';
+  document.getElementById('barWf').style.width = '0%';
+  setTimeout(() => {
+    document.getElementById('barBank').style.width = bankPct + '%';
+    document.getElementById('barWf').style.width = wfPct + '%';
+  }, 50);
+
+  // Scroll to results
+  setTimeout(() => {
+    results.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 100);
+}
+
+// ═══════════════════════════════════════════════════
+// METHODOLOGY TOGGLE
+// ═══════════════════════════════════════════════════
+methodologyToggle.addEventListener('click', () => {
+  methodologyContent.classList.toggle('visible');
+  methodologyToggle.textContent = methodologyContent.classList.contains('visible')
+    ? 'Hide methodology'
+    : 'How we calculated this';
+});
+
+// ═══════════════════════════════════════════════════
+// KEYBOARD SUPPORT
+// ═══════════════════════════════════════════════════
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter' && !calcBtn.disabled) {
+    calculate();
+  }
+});
+
+// Region pills keyboard
+document.querySelectorAll('.region-pill').forEach(pill => {
+  pill.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      pill.click();
+    }
+  });
+});
+
+// Volume pills keyboard
+document.querySelectorAll('.volume-pill').forEach(pill => {
+  pill.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      pill.click();
+    }
+  });
+});
+</script>
+
+</body>
+</html>
