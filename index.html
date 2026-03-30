@@ -662,6 +662,10 @@
           <span class="label">Wire / transfer fee</span>
           <span class="value" id="resultBankWireFee">—</span>
         </div>
+        <div class="receipt-row" id="lcChargeRow" style="display:none;">
+          <span class="label">LC commission (est.) <span id="resultLcPct"></span></span>
+          <span class="value" id="resultLcCharge">—</span>
+        </div>
         <div class="receipt-row highlight">
           <span class="label">Total cost with your bank</span>
           <span class="value" id="resultBankTotal">—</span>
@@ -756,29 +760,29 @@ const RATE_DATA = {
     currencySymbol: "£",
     specialNote: null,
     banks: [
-      { name: "HSBC", fxMarkupMin: 1.5, fxMarkupMax: 3.0, wireFee: 9, wireFeeCurrency: "GBP", confidence: "estimated" },
-      { name: "Barclays", fxMarkupMin: 2.5, fxMarkupMax: 3.5, wireFee: 5, wireFeeCurrency: "GBP", confidence: "estimated" },
-      { name: "NatWest", fxMarkupMin: 2.0, fxMarkupMax: 3.0, wireFee: 15, wireFeeCurrency: "GBP", confidence: "estimated" },
-      { name: "Lloyds", fxMarkupMin: 2.5, fxMarkupMax: 3.5, wireFee: 10, wireFeeCurrency: "GBP", confidence: "estimated" },
-      { name: "Santander UK", fxMarkupMin: 2.0, fxMarkupMax: 3.0, wireFee: 15, wireFeeCurrency: "GBP", confidence: "estimated" },
-      { name: "Metro Bank", fxMarkupMin: 2.0, fxMarkupMax: 3.0, wireFee: 12, wireFeeCurrency: "GBP", confidence: "estimated" },
-      { name: "Wise", fxMarkupMin: 0.33, fxMarkupMax: 0.6, wireFee: 0, wireFeeCurrency: "GBP", confidence: "published" },
-      { name: "Halifax", fxMarkupMin: 2.5, fxMarkupMax: 3.5, wireFee: 10, wireFeeCurrency: "GBP", confidence: "estimated" }
+      { name: "HSBC", fxMarkupMin: 1.5, fxMarkupMax: 3.1, wireFee: 5, wireFeeCurrency: "GBP", confidence: "estimated" },
+      { name: "Barclays", fxMarkupMin: 2.5, fxMarkupMax: 4.0, wireFee: 0, wireFeeCurrency: "GBP", confidence: "estimated" },
+      { name: "NatWest", fxMarkupMin: 3.0, fxMarkupMax: 5.0, wireFee: 0, wireFeeCurrency: "GBP", confidence: "estimated" },
+      { name: "Lloyds", fxMarkupMin: 3.5, fxMarkupMax: 3.6, wireFee: 0, wireFeeCurrency: "GBP", confidence: "estimated" },
+      { name: "Santander UK", fxMarkupMin: 2.0, fxMarkupMax: 4.0, wireFee: 25, wireFeeCurrency: "GBP", confidence: "estimated" },
+      { name: "Metro Bank", fxMarkupMin: 4.0, fxMarkupMax: 7.0, wireFee: 25, wireFeeCurrency: "GBP", confidence: "estimated" },
+      { name: "Wise", fxMarkupMin: 0.33, fxMarkupMax: 0.5, wireFee: 0, wireFeeCurrency: "GBP", confidence: "published" },
+      { name: "Halifax", fxMarkupMin: 3.5, fxMarkupMax: 3.6, wireFee: 10, wireFeeCurrency: "GBP", confidence: "estimated" }
     ]
   },
   NG: {
     currency: "NGN",
     currencySymbol: "₦",
-    specialNote: "Nigeria has FX access constraints. Bank rates shown are typical markups above the NAFEM rate. Actual costs may be higher during periods of limited FX availability.",
+    specialNote: "Nigeria has FX access constraints. Bank rates shown are typical markups above the NAFEM rate. Actual costs may be higher during periods of limited FX availability. Most banks route NGN\u2192USD\u2192CNY, adding double conversion cost.",
     banks: [
-      { name: "First Bank", fxMarkupMin: 2.0, fxMarkupMax: 5.0, wireFee: 35, wireFeeCurrency: "USD", confidence: "estimated" },
-      { name: "Zenith Bank", fxMarkupMin: 1.5, fxMarkupMax: 4.0, wireFee: 35, wireFeeCurrency: "USD", confidence: "estimated" },
-      { name: "GTBank", fxMarkupMin: 2.0, fxMarkupMax: 4.5, wireFee: 30, wireFeeCurrency: "USD", confidence: "estimated" },
-      { name: "Access Bank", fxMarkupMin: 2.0, fxMarkupMax: 5.0, wireFee: 35, wireFeeCurrency: "USD", confidence: "estimated" },
-      { name: "UBA", fxMarkupMin: 2.0, fxMarkupMax: 5.0, wireFee: 35, wireFeeCurrency: "USD", confidence: "estimated" },
-      { name: "Stanbic IBTC", fxMarkupMin: 1.5, fxMarkupMax: 3.5, wireFee: 40, wireFeeCurrency: "USD", confidence: "estimated" },
-      { name: "Fidelity Bank", fxMarkupMin: 2.5, fxMarkupMax: 5.0, wireFee: 30, wireFeeCurrency: "USD", confidence: "estimated" },
-      { name: "Ecobank", fxMarkupMin: 2.0, fxMarkupMax: 4.5, wireFee: 35, wireFeeCurrency: "USD", confidence: "estimated" }
+      { name: "First Bank", fxMarkupMin: 2.0, fxMarkupMax: 4.0, wireFee: 35, wireFeeCurrency: "USD", confidence: "estimated" },
+      { name: "Zenith Bank", fxMarkupMin: 1.5, fxMarkupMax: 3.5, wireFee: 35, wireFeeCurrency: "USD", confidence: "estimated" },
+      { name: "GTBank", fxMarkupMin: 1.5, fxMarkupMax: 3.0, wireFee: 25, wireFeeCurrency: "USD", confidence: "estimated" },
+      { name: "Access Bank", fxMarkupMin: 2.0, fxMarkupMax: 4.0, wireFee: 35, wireFeeCurrency: "USD", confidence: "estimated" },
+      { name: "UBA", fxMarkupMin: 2.0, fxMarkupMax: 4.0, wireFee: 30, wireFeeCurrency: "USD", confidence: "estimated" },
+      { name: "Stanbic IBTC", fxMarkupMin: 1.5, fxMarkupMax: 3.0, wireFee: 40, wireFeeCurrency: "USD", confidence: "estimated" },
+      { name: "Fidelity Bank", fxMarkupMin: 2.5, fxMarkupMax: 4.5, wireFee: 30, wireFeeCurrency: "USD", confidence: "estimated" },
+      { name: "Ecobank", fxMarkupMin: 2.0, fxMarkupMax: 4.0, wireFee: 35, wireFeeCurrency: "USD", confidence: "estimated" }
     ]
   },
   PK: {
@@ -816,29 +820,30 @@ const RATE_DATA = {
     currencySymbol: "₺",
     specialNote: "Turkish bank FX rates can widen during periods of lira volatility. Rates shown are typical markups under normal market conditions.",
     banks: [
-      { name: "Garanti BBVA", fxMarkupMin: 1.0, fxMarkupMax: 2.5, wireFee: 30, wireFeeCurrency: "USD", confidence: "estimated" },
-      { name: "\u0130\u015F Bankas\u0131", fxMarkupMin: 1.0, fxMarkupMax: 2.5, wireFee: 30, wireFeeCurrency: "USD", confidence: "estimated" },
-      { name: "Ziraat Bankas\u0131", fxMarkupMin: 1.0, fxMarkupMax: 2.0, wireFee: 25, wireFeeCurrency: "USD", confidence: "estimated" },
-      { name: "Akbank", fxMarkupMin: 1.0, fxMarkupMax: 2.5, wireFee: 30, wireFeeCurrency: "USD", confidence: "estimated" },
-      { name: "Yap\u0131 Kredi", fxMarkupMin: 1.0, fxMarkupMax: 2.5, wireFee: 30, wireFeeCurrency: "USD", confidence: "estimated" },
+      { name: "Garanti BBVA", fxMarkupMin: 1.5, fxMarkupMax: 3.0, wireFee: 30, wireFeeCurrency: "USD", confidence: "estimated" },
+      { name: "\u0130\u015F Bankas\u0131", fxMarkupMin: 1.5, fxMarkupMax: 3.5, wireFee: 30, wireFeeCurrency: "USD", confidence: "estimated" },
+      { name: "Ziraat Bankas\u0131", fxMarkupMin: 1.0, fxMarkupMax: 2.5, wireFee: 25, wireFeeCurrency: "USD", confidence: "estimated" },
+      { name: "Akbank", fxMarkupMin: 1.5, fxMarkupMax: 3.0, wireFee: 30, wireFeeCurrency: "USD", confidence: "estimated" },
+      { name: "Yap\u0131 Kredi", fxMarkupMin: 1.5, fxMarkupMax: 3.0, wireFee: 30, wireFeeCurrency: "USD", confidence: "estimated" },
       { name: "Halkbank", fxMarkupMin: 1.0, fxMarkupMax: 2.5, wireFee: 25, wireFeeCurrency: "USD", confidence: "estimated" },
       { name: "Vak\u0131fbank", fxMarkupMin: 1.0, fxMarkupMax: 2.5, wireFee: 25, wireFeeCurrency: "USD", confidence: "estimated" },
-      { name: "DenizBank", fxMarkupMin: 1.0, fxMarkupMax: 2.5, wireFee: 30, wireFeeCurrency: "USD", confidence: "estimated" }
+      { name: "DenizBank", fxMarkupMin: 1.5, fxMarkupMax: 3.5, wireFee: 35, wireFeeCurrency: "USD", confidence: "estimated" }
     ]
   },
   BD: {
     currency: "BDT",
     currencySymbol: "৳",
-    specialNote: "Bangladesh requires Letters of Credit for most imports, adding 0.5\u20131.5% to total cost. Figures shown do not include LC charges.",
+    lcCharge: 0.4,
+    specialNote: "Bangladesh requires Letters of Credit for most imports. LC commission (~0.4%) and 15% VAT on all bank fees are included in the estimate above.",
     banks: [
-      { name: "Sonali Bank", fxMarkupMin: 1.5, fxMarkupMax: 3.0, wireFee: 30, wireFeeCurrency: "USD", confidence: "estimated" },
-      { name: "Janata Bank", fxMarkupMin: 1.5, fxMarkupMax: 3.0, wireFee: 30, wireFeeCurrency: "USD", confidence: "estimated" },
-      { name: "Agrani Bank", fxMarkupMin: 1.5, fxMarkupMax: 3.0, wireFee: 30, wireFeeCurrency: "USD", confidence: "estimated" },
-      { name: "BRAC Bank", fxMarkupMin: 1.0, fxMarkupMax: 2.5, wireFee: 35, wireFeeCurrency: "USD", confidence: "estimated" },
-      { name: "Dutch-Bangla Bank", fxMarkupMin: 1.0, fxMarkupMax: 2.5, wireFee: 35, wireFeeCurrency: "USD", confidence: "estimated" },
-      { name: "Eastern Bank", fxMarkupMin: 1.0, fxMarkupMax: 2.5, wireFee: 35, wireFeeCurrency: "USD", confidence: "estimated" },
-      { name: "City Bank", fxMarkupMin: 1.0, fxMarkupMax: 2.5, wireFee: 35, wireFeeCurrency: "USD", confidence: "estimated" },
-      { name: "Standard Chartered", fxMarkupMin: 0.8, fxMarkupMax: 2.0, wireFee: 45, wireFeeCurrency: "USD", confidence: "estimated" }
+      { name: "Sonali Bank", fxMarkupMin: 0.3, fxMarkupMax: 0.5, wireFee: 25, wireFeeCurrency: "USD", confidence: "estimated" },
+      { name: "Janata Bank", fxMarkupMin: 0.3, fxMarkupMax: 0.5, wireFee: 25, wireFeeCurrency: "USD", confidence: "estimated" },
+      { name: "Agrani Bank", fxMarkupMin: 0.2, fxMarkupMax: 0.4, wireFee: 25, wireFeeCurrency: "USD", confidence: "published" },
+      { name: "BRAC Bank", fxMarkupMin: 0.4, fxMarkupMax: 0.8, wireFee: 30, wireFeeCurrency: "USD", confidence: "estimated" },
+      { name: "Dutch-Bangla Bank", fxMarkupMin: 0.4, fxMarkupMax: 0.8, wireFee: 25, wireFeeCurrency: "USD", confidence: "published" },
+      { name: "Eastern Bank", fxMarkupMin: 0.3, fxMarkupMax: 0.8, wireFee: 30, wireFeeCurrency: "USD", confidence: "published" },
+      { name: "City Bank", fxMarkupMin: 0.4, fxMarkupMax: 0.8, wireFee: 30, wireFeeCurrency: "USD", confidence: "estimated" },
+      { name: "Standard Chartered", fxMarkupMin: 0.4, fxMarkupMax: 1.0, wireFee: 40, wireFeeCurrency: "USD", confidence: "estimated" }
     ]
   }
 };
@@ -967,11 +972,14 @@ function calculate() {
   const bankMarkup = (bank.fxMarkupMin + bank.fxMarkupMax) / 2;
   const bankFxCost = amount * (bankMarkup / 100);
 
-  // Wire fee — convert if needed
+  // Wire fee
   let bankWireFee = bank.wireFee;
-  // Wire fees are already in the display currency context, keep as-is for USD-denominated
 
-  const bankTotalCost = bankFxCost + bankWireFee;
+  // LC charges (Bangladesh, Pakistan)
+  const lcRate = region.lcCharge || 0;
+  const lcCost = amount * (lcRate / 100);
+
+  const bankTotalCost = bankFxCost + bankWireFee + lcCost;
   const bankDelivered = amount - bankTotalCost;
 
   // WorldFirst
@@ -986,7 +994,6 @@ function calculate() {
 
   // Format helper
   const fmt = (n) => '$' + Math.round(n).toLocaleString('en-US');
-  const fmtDecimal = (n) => '$' + n.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
   // Populate receipt
   document.getElementById('resultBankName').textContent = bank.name;
@@ -994,6 +1001,17 @@ function calculate() {
   document.getElementById('resultBankMarkup').textContent = `(~${bankMarkup.toFixed(1)}%)`;
   document.getElementById('resultBankFxCost').textContent = '-' + fmt(bankFxCost);
   document.getElementById('resultBankWireFee').textContent = '-' + fmt(bankWireFee);
+
+  // LC charge row
+  const lcRow = document.getElementById('lcChargeRow');
+  if (lcRate > 0) {
+    lcRow.style.display = 'flex';
+    document.getElementById('resultLcPct').textContent = `(~${lcRate}%)`;
+    document.getElementById('resultLcCharge').textContent = '-' + fmt(lcCost);
+  } else {
+    lcRow.style.display = 'none';
+  }
+
   document.getElementById('resultBankTotal').textContent = '-' + fmt(bankTotalCost);
 
   // Comparison bars
@@ -1014,16 +1032,32 @@ function calculate() {
   }, 100);
 
   // Savings
-  document.getElementById('resultSaving').textContent = fmt(saving);
+  const gapCallout = document.querySelector('.gap-callout');
+  if (saving > 0) {
+    document.getElementById('resultSaving').textContent = fmt(saving);
+    document.querySelector('.save-label').textContent = 'saved on this order';
+    gapCallout.style.background = 'var(--wf-green-light)';
+    gapCallout.style.borderTopColor = 'var(--wf-green)';
+    document.getElementById('resultSaving').style.color = 'var(--wf-green)';
+    document.querySelector('.save-label').style.color = 'var(--wf-green)';
 
-  // Annual projection
-  let annualText = '';
-  if (state.multiplier <= 1) {
-    annualText = `That's ${fmt(saving)} your supplier didn't receive.`;
+    let annualText = '';
+    if (state.multiplier <= 1) {
+      annualText = `That's ${fmt(saving)} your supplier didn't receive.`;
+    } else {
+      annualText = `Over ${state.multiplier} orders, that's <strong>${fmt(annualSaving)}</strong> saved per year.`;
+    }
+    document.getElementById('resultAnnual').innerHTML = annualText;
   } else {
-    annualText = `Over ${state.multiplier} orders, that's <strong>${fmt(annualSaving)}</strong> saved per year.`;
+    // Honest: bank is comparable or cheaper for this corridor
+    document.getElementById('resultSaving').textContent = 'Similar cost';
+    document.querySelector('.save-label').textContent = 'Your bank is competitive on this corridor';
+    gapCallout.style.background = 'var(--wf-gray-50)';
+    gapCallout.style.borderTopColor = 'var(--wf-gray-400)';
+    document.getElementById('resultSaving').style.color = 'var(--wf-gray-600)';
+    document.querySelector('.save-label').style.color = 'var(--wf-gray-600)';
+    document.getElementById('resultAnnual').innerHTML = 'WorldFirst may still offer advantages in speed, transparency, and multi-currency accounts.';
   }
-  document.getElementById('resultAnnual').innerHTML = annualText;
 
   // Region note
   const regionNote = document.getElementById('regionNote');
