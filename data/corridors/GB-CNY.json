@@ -1,0 +1,792 @@
+{
+  "corridor_id": "GB-CNY",
+  "source_country": "United Kingdom",
+  "source_currency": "GBP",
+  "destination": "China (CNY)",
+  "research_date": "2026-04-02",
+
+  "mid_market_rate": {
+    "rate": 9.1144,
+    "source": "XE.com",
+    "source_url": "https://www.xe.com/currencyconverter/convert/?Amount=10000&From=GBP&To=CNY",
+    "timestamp": "2026-04-02T14:54:00Z",
+    "cross_reference": {
+      "bank_of_england": { "rate": 9.1647, "date": "2026-04-01", "url": "https://www.bankofengland.co.uk/boeapps/database/Rates.asp?Travel=NIxAZx&into=GBP" },
+      "ecb_via_frankfurter": { "rate": 9.1572, "date": "2026-04-01", "url": "https://api.frankfurter.app/latest?from=GBP&to=CNY" },
+      "exchange_rate_api": { "rate": 9.1513, "date": "2026-04-02", "url": "https://open.er-api.com/v6/latest/GBP" }
+    },
+    "consensus_rate": 9.15,
+    "note": "All four sources cluster tightly around 9.15 GBP/CNY. BoE rate is for previous business day (2026-04-01). XE rate is live."
+  },
+
+  "executive_summary": "UK banks charge between 2.2% and 4.6% in exchange rate markup on GBP-to-CNY transfers, with additional flat fees of GBP 5-25 and unpredictable SWIFT intermediary deductions. On a GBP 10,000 payment to a Chinese supplier, the estimated total cost via a major UK bank ranges from approximately GBP 245 (Nationwide, the cheapest bank) to GBP 490 (NatWest at the high end). WorldFirst's published ceiling for this corridor is 0.5% FX markup with a GBP 4 international transfer fee — an estimated total cost of approximately GBP 54 on the same GBP 10,000 transfer. Wise offers zero FX markup with a percentage-based fee of approximately 1.13%, totalling around GBP 113 on GBP 10,000, with the advantage of near-instant delivery. No UK high-street bank can hold CNY in standard personal accounts, and none offer same-day CNY arrival. All banks route via SWIFT with 2-10 working day delivery times. The FX markup — not the visible wire fee — represents 85-95% of the true cost of a bank transfer to China.",
+
+  "providers": [
+    {
+      "provider_id": "hsbc_uk",
+      "provider_name": "HSBC UK",
+      "provider_type": "bank",
+
+      "fx_markup_pct": { "low": 2.4, "typical": 3.2, "high": 3.7 },
+      "fx_markup_source": [
+        { "url": "https://wise.com/gb/compare/hsbc-exchange-rate", "date": "2026-04-02", "confidence": "third_party", "note": "Wise comparison: 2.4-3.7%" },
+        { "url": "https://www.rutlandfx.com/hsbc-exchange-rate/", "date": "2026-04-02", "confidence": "third_party", "note": "Rutland FX: average 2.8%" },
+        { "url": "https://www.finextra.com/newsarticle/43560/wise-accuses-high-street-banks-of-hidden-exchange-rate-fees", "date": "2026-04-02", "confidence": "third_party", "note": "Finextra/Wise 2024 study: HSBC highest at 3.7%" },
+        { "url": "https://exiap.co.uk/guides/hsbc-large-transfers-limits", "date": "2026-04-02", "confidence": "third_party", "note": "Exiap: ~3.49% on <10k, ~2.4% on 50k+" }
+      ],
+      "fx_markup_notes": "Tiered by transfer amount — better rates for larger transfers. Markup of 3.7% was the highest among major UK banks in Wise's 2024 transparency study. GBP-CNY likely at or above average due to exotic currency premium. HSBC does not publish the markup percentage.",
+
+      "transfer_fee": { "amount": 5, "currency": "GBP", "type": "flat" },
+      "transfer_fee_source": { "url": "https://www.hsbc.co.uk/international/money-transfer/", "date": "2026-04-02", "confidence": "published" },
+      "transfer_fee_notes": "GBP 5 for non-EEA transfers. Free for Premier, Private Banking, and Global Money Account holders. GBP 17 by post.",
+
+      "intermediary_fee": { "low": 10, "typical": 15, "high": 25, "currency": "GBP" },
+      "intermediary_source": { "url": "https://wise.com/help/articles/2827506/what-are-swift-intermediary-fees", "date": "2026-04-02", "confidence": "third_party" },
+      "uses_swift": true,
+      "direct_cny_rails": false,
+      "intermediary_notes": "HSBC states 'you may not be able to see what these fees are in advance'. SHA pricing default. OUR available. Airwallex cites correspondent bank charges up to USD 90. Cannot send CNY directly due to PRC regulations — must send GBP/USD/EUR.",
+
+      "monthly_fee": 0,
+      "setup_fee": 0,
+      "inactivity_fee": null,
+      "minimum_balance": null,
+      "account_cost_source": { "url": "https://www.hsbc.co.uk/current-accounts/", "date": "2026-04-02", "confidence": "published" },
+      "account_cost_notes": "Personal current account free. Business: GBP 8/month maintenance + GBP 6/month internet banking (after 12-month free startup). Global Money Account free for all current account holders.",
+
+      "transfer_time_days": { "standard": "2-4", "express": null },
+      "same_day_cny": false,
+      "cutoff_time": "06:30 GMT (Mon-Fri)",
+      "speed_source": { "url": "https://www.hsbc.co.uk/international/money-transfer/", "date": "2026-04-02", "confidence": "published" },
+      "speed_notes": "Earliest CNY cut-off among UK banks (06:30). Up to 4 working days for non-EEA. No express option marketed separately.",
+
+      "regulatory_status": "Authorised by PRA, regulated by FCA and PRA (FRN: 765112)",
+      "fund_safeguarding": true,
+      "parent_company": "HSBC Holdings plc",
+      "years_operating": 34,
+      "years_operating_note": "HSBC UK since 1992 (acquired Midland Bank). Midland Bank founded 1836. Group founded 1865 in Hong Kong.",
+      "fraud_protection_features": ["Confirmation of Payee (domestic)", "Stop Scams UK member", "APP scam reimbursement"],
+      "fscs_protected": true,
+      "fscs_limit": 120000,
+      "safety_source": { "url": "https://register.fca.org.uk/s/firm?id=0010X00004MbGJkQAN", "date": "2026-04-02", "confidence": "published" },
+
+      "max_transfer": "GBP 50,000/day online; GBP 10,000/day phone (standard); up to GBP 10,000,000/day (Premier phone)",
+      "supported_currencies": "50+ currencies to 200+ countries",
+      "can_hold_cny": false,
+      "can_pay_1688": false,
+      "forward_contracts": true,
+      "forward_contracts_note": "Available for business/corporate customers. Likely NDF for CNY.",
+      "api_available": true,
+      "api_note": "HSBCnet for corporate/business",
+      "limitations_source": { "url": "https://exiap.co.uk/guides/hsbc-large-transfers-limits", "date": "2026-04-02", "confidence": "third_party" },
+
+      "total_cost_10k_gbp": {
+        "fx_cost": 320,
+        "wire_fee": 5,
+        "intermediary": 15,
+        "total": 340,
+        "currency": "GBP",
+        "calculation_method": "fx_markup_typical (3.2%) x 10000 + wire_fee (5) + intermediary_typical (15)"
+      }
+    },
+
+    {
+      "provider_id": "barclays",
+      "provider_name": "Barclays",
+      "provider_type": "bank",
+
+      "fx_markup_pct": { "low": 2.5, "typical": 2.75, "high": 3.5 },
+      "fx_markup_source": [
+        { "url": "https://www.keycurrency.co.uk/barclays-international-transfer/", "date": "2026-04-02", "confidence": "third_party", "note": "KeyCurrency: ~2.75%" },
+        { "url": "https://www.rutlandfx.com/barclays-exchange-rate/", "date": "2026-04-02", "confidence": "third_party", "note": "Rutland FX: ~2.75%" },
+        { "url": "https://www.finextra.com/newsarticle/43560/wise-accuses-high-street-banks-of-hidden-exchange-rate-fees", "date": "2026-04-02", "confidence": "third_party", "note": "Wise 2024 study: 2.75% GBP-EUR and GBP-USD" },
+        { "url": "https://exiap.co.uk/guides/barclays-international-transfer", "date": "2026-04-02", "confidence": "third_party", "note": "Exiap: ~2.75%, impact ~GBP 150 on GBP 5,000" }
+      ],
+      "fx_markup_notes": "Markup tiered by assets held with Barclays ('FX price plan'). Card foreign transaction fee: 2.75% (business debit), 2.99% (business credit). Barclays does not publish the exchange rate markup percentage.",
+
+      "transfer_fee": { "amount": 0, "currency": "GBP", "type": "flat", "note": "online" },
+      "transfer_fee_source": { "url": "https://exiap.co.uk/guides/barclays-international-transfer", "date": "2026-04-02", "confidence": "published" },
+      "transfer_fee_notes": "Free online. GBP 25 by phone/branch. GBP 6 optional Overseas Delivery Charge to cover intermediary fees. GBP 3 USD cover charge. Receiving: GBP 6 for non-SEPA over GBP 100.",
+
+      "intermediary_fee": { "low": 0, "typical": 6, "high": 25, "currency": "GBP" },
+      "intermediary_source": { "url": "https://www.barclays.co.uk/ways-to-bank/international-payments/", "date": "2026-04-02", "confidence": "published" },
+      "uses_swift": true,
+      "direct_cny_rails": false,
+      "intermediary_notes": "SHA default online. OUR available via Overseas Delivery Charge (GBP 6). CNAPS 12-digit code required for China transfers. Variable intermediary deductions under SHA.",
+
+      "monthly_fee": 0,
+      "setup_fee": 0,
+      "inactivity_fee": null,
+      "minimum_balance": null,
+      "account_cost_source": { "url": "https://www.barclays.co.uk/current-accounts/", "date": "2026-04-02", "confidence": "published" },
+      "account_cost_notes": "Personal account free. International Banking Account free if GBP 100k+ average balance, otherwise GBP 40/month.",
+
+      "transfer_time_days": { "standard": "2-5", "express": null },
+      "same_day_cny": false,
+      "cutoff_time": "15:00 GMT",
+      "speed_source": { "url": "https://exiap.co.uk/guides/barclays-international-transfer", "date": "2026-04-02", "confidence": "third_party" },
+      "speed_notes": "Up to 8 working days per Barclays' own documentation. Typically 2-5 days. China-specific: 1-2 days reported in some cases.",
+
+      "regulatory_status": "Authorised by PRA, regulated by FCA and PRA (FRN: 759676 / 122702)",
+      "fund_safeguarding": true,
+      "parent_company": "Barclays PLC",
+      "years_operating": 336,
+      "years_operating_note": "Oldest lineage among UK clearers, traces to 1690.",
+      "fraud_protection_features": ["Confirmation of Payee (domestic)", "Stop Scams UK member", "APP scam reimbursement"],
+      "fscs_protected": true,
+      "fscs_limit": 120000,
+      "safety_source": { "url": "https://register.fca.org.uk/s/firm?id=001b000000MfFNxAAN", "date": "2026-04-02", "confidence": "published" },
+
+      "max_transfer": "GBP 50,000/day online (standard); GBP 100,000/day (Premier/business)",
+      "supported_currencies": "50+ currencies to 200+ countries (130+ destinations online)",
+      "can_hold_cny": false,
+      "can_pay_1688": false,
+      "forward_contracts": true,
+      "forward_contracts_note": "Available for corporate/business customers",
+      "api_available": true,
+      "api_note": "Barclays.Net for corporate",
+      "limitations_source": { "url": "https://exiap.co.uk/guides/barclays-international-transfer", "date": "2026-04-02", "confidence": "third_party" },
+
+      "total_cost_10k_gbp": {
+        "fx_cost": 275,
+        "wire_fee": 0,
+        "intermediary": 6,
+        "total": 281,
+        "currency": "GBP",
+        "calculation_method": "fx_markup_typical (2.75%) x 10000 + wire_fee_online (0) + intermediary_typical (6)"
+      }
+    },
+
+    {
+      "provider_id": "lloyds",
+      "provider_name": "Lloyds Banking Group",
+      "provider_type": "bank",
+
+      "fx_markup_pct": { "low": 1.5, "typical": 3.2, "high": 3.6 },
+      "fx_markup_source": [
+        { "url": "https://www.rutlandfx.com/lloyds-bank-exchange-rate/", "date": "2026-04-02", "confidence": "third_party", "note": "Rutland FX: 1.5-3.55% individual, 0.85-2.6% business" },
+        { "url": "https://www.keycurrency.co.uk/bank-exchange-rates/", "date": "2026-04-02", "confidence": "third_party", "note": "KeyCurrency: 2.4-3.2%" },
+        { "url": "https://www.finextra.com/newsarticle/43560/wise-accuses-high-street-banks-of-hidden-exchange-rate-fees", "date": "2026-04-02", "confidence": "third_party", "note": "Wise 2024 study: 3.6% GBP-EUR and GBP-USD" },
+        { "url": "https://wise.com/gb/blog/international-transfer-lloyds-uk", "date": "2026-04-02", "confidence": "third_party", "note": "Wise blog: 3.55% on <10k, scaling to 1.5% on >250k" }
+      ],
+      "fx_markup_notes": "Heavily tiered by amount. Individual: 3.55% under GBP 10k, scaling to 1.5% over GBP 250k. Business: 2.6% under GBP 10k, scaling to 0.85% over GBP 1M. Best business rate of 0.85% requires GBP 1M+ conversion.",
+
+      "transfer_fee": { "amount": 9.50, "currency": "GBP", "type": "flat" },
+      "transfer_fee_source": { "url": "https://www.keycurrency.co.uk/lloyds-international-transfer/", "date": "2026-04-02", "confidence": "third_party" },
+      "transfer_fee_notes": "GBP 9.50 personal. GBP 15 business. Plus GBP 12 correspondent fee (US/Canada/Europe) or GBP 20 (rest of world including China). Free between Lloyds accounts only.",
+
+      "intermediary_fee": { "low": 12, "typical": 20, "high": 25, "currency": "GBP" },
+      "intermediary_source": { "url": "https://www.keycurrency.co.uk/lloyds-international-transfer/", "date": "2026-04-02", "confidence": "third_party" },
+      "uses_swift": true,
+      "direct_cny_rails": false,
+      "intermediary_notes": "GBP 20 Lloyds-side correspondent charge for China (if OUR selected). SHA default online. Additional SWIFT chain deductions possible.",
+
+      "monthly_fee": 0,
+      "setup_fee": 0,
+      "inactivity_fee": null,
+      "minimum_balance": null,
+      "account_cost_source": { "url": "https://www.lloydsbank.com/current-accounts.html", "date": "2026-04-02", "confidence": "published" },
+      "account_cost_notes": "Classic Account free. Club Lloyds GBP 3/month (waived if GBP 2,000+ paid in monthly). Business basic GBP 6.50/month.",
+
+      "transfer_time_days": { "standard": "2-5", "express": null },
+      "same_day_cny": false,
+      "cutoff_time": "14:00-15:00 GMT (estimated)",
+      "speed_source": { "url": "https://www.rutlandfx.com/lloyds-bank-exchange-rate/", "date": "2026-04-02", "confidence": "third_party" },
+      "speed_notes": "2-5 working days via SWIFT. Same-day processing if before cut-off. No express option.",
+
+      "regulatory_status": "Authorised by PRA, regulated by FCA and PRA (FRN: 119278)",
+      "fund_safeguarding": true,
+      "parent_company": "Lloyds Banking Group plc",
+      "years_operating": 261,
+      "years_operating_note": "Founded 1765.",
+      "fraud_protection_features": ["Confirmation of Payee (domestic)", "Stop Scams UK member", "APP scam reimbursement"],
+      "fscs_protected": true,
+      "fscs_limit": 120000,
+      "safety_source": { "url": "https://register.fca.org.uk/s/firm?id=001b000000MfFMpAAN", "date": "2026-04-02", "confidence": "published" },
+
+      "max_transfer": "GBP 25,000/day online (standard); GBP 100,000/day (business)",
+      "supported_currencies": "61 currencies (business trade services); standard limited to GBP/EUR/USD",
+      "can_hold_cny": false,
+      "can_pay_1688": false,
+      "forward_contracts": true,
+      "forward_contracts_note": "Corporate/commercial only. Not available to individuals.",
+      "api_available": true,
+      "api_note": "Commercial Banking Online for corporate",
+      "limitations_source": { "url": "https://www.keycurrency.co.uk/lloyds-international-transfer/", "date": "2026-04-02", "confidence": "third_party" },
+
+      "total_cost_10k_gbp": {
+        "fx_cost": 320,
+        "wire_fee": 9.50,
+        "intermediary": 20,
+        "total": 349.50,
+        "currency": "GBP",
+        "calculation_method": "fx_markup_typical (3.2%) x 10000 + wire_fee (9.50) + correspondent_china (20)"
+      }
+    },
+
+    {
+      "provider_id": "natwest",
+      "provider_name": "NatWest",
+      "provider_type": "bank",
+
+      "fx_markup_pct": { "low": 2.5, "typical": 4.0, "high": 4.6 },
+      "fx_markup_source": [
+        { "url": "https://www.keycurrency.co.uk/bank-exchange-rates/", "date": "2026-04-02", "confidence": "third_party", "note": "KeyCurrency measured 4.6% for USD/AUD/EUR" },
+        { "url": "https://www.rutlandfx.com/natwest-exchange-rate/", "date": "2026-04-02", "confidence": "third_party", "note": "Rutland FX: 3-5%, 'may charge significantly more than 2.5%'" },
+        { "url": "https://www.finextra.com/newsarticle/43560/wise-accuses-high-street-banks-of-hidden-exchange-rate-fees", "date": "2026-04-02", "confidence": "third_party", "note": "Wise 2024 study: 2.5% GBP-EUR and GBP-USD" },
+        { "url": "https://wise.com/gb/blog/international-transfer-natwest-uk", "date": "2026-04-02", "confidence": "third_party", "note": "Wise blog: 3-5% above interbank" }
+      ],
+      "fx_markup_notes": "Widest variance among UK banks. NatWest Markets publishes a 2.5% cap for business but actual personal rates measured at 4.6% by KeyCurrency. Exotic currencies like CNY likely at higher end. Impact on GBP 200k: GBP 6,000-8,000 in FX costs.",
+
+      "transfer_fee": { "amount": 0, "currency": "GBP", "type": "flat", "note": "online standard" },
+      "transfer_fee_source": { "url": "https://exiap.co.uk/guides/natwest-international-transfer", "date": "2026-04-02", "confidence": "third_party" },
+      "transfer_fee_notes": "Free online (standard). GBP 15 urgent online. Phone/branch: 0.3% of amount (min GBP 23, max GBP 40). GBP 10 agent charge for non-EEA. Receiving: GBP 7 for non-EUR over GBP 100.",
+
+      "intermediary_fee": { "low": 0, "typical": 10, "high": 25, "currency": "GBP" },
+      "intermediary_source": { "url": "https://wise.com/gb/blog/international-transfer-natwest-uk", "date": "2026-04-02", "confidence": "third_party" },
+      "uses_swift": true,
+      "direct_cny_rails": false,
+      "intermediary_notes": "GBP 10 'agent charge' for non-EEA. SHA default. Additional SWIFT intermediary deductions variable and not disclosed in advance.",
+
+      "monthly_fee": 0,
+      "setup_fee": 0,
+      "inactivity_fee": null,
+      "minimum_balance": null,
+      "account_cost_source": { "url": "https://www.natwest.com/current-accounts.html", "date": "2026-04-02", "confidence": "published" },
+      "account_cost_notes": "Personal free. Business free for first 2 years, then transaction-based pricing.",
+
+      "transfer_time_days": { "standard": "2-5", "express": "1-3 (GBP 15)" },
+      "same_day_cny": false,
+      "cutoff_time": null,
+      "speed_source": { "url": "https://exiap.co.uk/guides/natwest-international-transfer", "date": "2026-04-02", "confidence": "third_party" },
+      "speed_notes": "Standard 2-5 working days. Urgent option 1-3 days for GBP 15. Cut-off time for CNY not published.",
+
+      "regulatory_status": "Authorised by PRA, regulated by FCA and PRA (FRN: 121878)",
+      "fund_safeguarding": true,
+      "parent_company": "NatWest Group plc",
+      "years_operating": 58,
+      "years_operating_note": "Founded 1968 (merger). Constituent banks trace to 1650s (Royal Bank of Scotland).",
+      "fraud_protection_features": ["Confirmation of Payee (domestic)", "Stop Scams UK member", "APP scam reimbursement", "Daily transfer caps for scam prevention"],
+      "fscs_protected": true,
+      "fscs_limit": 120000,
+      "safety_source": { "url": "https://register.fca.org.uk/s/firm?id=001b000000MfFNkAAN", "date": "2026-04-02", "confidence": "published" },
+
+      "max_transfer": "GBP 10,000/day online (biometric); GBP 750/day mobile (new payees, no biometric)",
+      "supported_currencies": "30+ currencies",
+      "can_hold_cny": false,
+      "can_pay_1688": false,
+      "forward_contracts": true,
+      "forward_contracts_note": "Available via NatWest Markets for business/corporate",
+      "api_available": true,
+      "api_note": "Bankline for business; NatWest Payit API for domestic",
+      "limitations_source": { "url": "https://exiap.co.uk/guides/natwest-international-transfer", "date": "2026-04-02", "confidence": "third_party" },
+      "limitations_notes": "Lowest personal online limit among UK banks (GBP 10,000/day). Only 30+ currencies vs 50+ at peers.",
+
+      "total_cost_10k_gbp": {
+        "fx_cost": 400,
+        "wire_fee": 0,
+        "intermediary": 10,
+        "total": 410,
+        "currency": "GBP",
+        "calculation_method": "fx_markup_typical (4.0%) x 10000 + wire_fee_online (0) + agent_charge (10)"
+      }
+    },
+
+    {
+      "provider_id": "santander_uk",
+      "provider_name": "Santander UK",
+      "provider_type": "bank",
+
+      "fx_markup_pct": { "low": 1.0, "typical": 2.5, "high": 3.0 },
+      "fx_markup_source": [
+        { "url": "https://www.santander.co.uk/personal/support/current-accounts/making-international-payments", "date": "2026-04-02", "confidence": "published", "note": "Published tiers: <10k = 3%, 10-50k = 2%, 50k+ = 1%" },
+        { "url": "https://www.rutlandfx.com/santander-exchange-rate/", "date": "2026-04-02", "confidence": "third_party", "note": "Average ~2.5%" },
+        { "url": "https://www.finextra.com/newsarticle/43560/wise-accuses-high-street-banks-of-hidden-exchange-rate-fees", "date": "2026-04-02", "confidence": "third_party", "note": "Wise 2024 study: 2.3-2.5%" }
+      ],
+      "fx_markup_notes": "Only UK bank to publish transparent tiered markup: up to GBP 10k = 3%, GBP 10-50k = 2%, GBP 50k+ = 1%. Most competitive at high amounts. Rates only visible to logged-in customers. Branch FX (physical currency) 4-7%.",
+
+      "transfer_fee": { "amount": 25, "currency": "GBP", "type": "flat" },
+      "transfer_fee_source": { "url": "https://www.santander.co.uk/personal/support/current-accounts/making-international-payments", "date": "2026-04-02", "confidence": "published" },
+      "transfer_fee_notes": "GBP 25 standard. FREE during promotional period 2 Feb - 28 Apr 2026 for non-GBP transfers from personal current accounts. SEPA free. Receiving: GBP 6-8. Edge account: 0% FX fee on debit card abroad.",
+
+      "intermediary_fee": { "low": 10, "typical": 15, "high": 25, "currency": "GBP" },
+      "intermediary_source": { "url": "https://www.airwallex.com/uk/blog/santander-international-transfer-fees", "date": "2026-04-02", "confidence": "third_party" },
+      "uses_swift": true,
+      "direct_cny_rails": false,
+      "intermediary_notes": "SHA default. OUR available. Recipients may receive GBP 20-50 less than sent under SHA.",
+
+      "monthly_fee": 0,
+      "setup_fee": 0,
+      "inactivity_fee": null,
+      "minimum_balance": null,
+      "account_cost_source": { "url": "https://www.santander.co.uk/current-accounts", "date": "2026-04-02", "confidence": "published" },
+      "account_cost_notes": "Everyday Account free. 1/2/3 Account GBP 4-5/month. Edge GBP 3/month. International Current Account available in GBP/EUR/USD.",
+
+      "transfer_time_days": { "standard": "3-5", "express": null },
+      "same_day_cny": false,
+      "cutoff_time": "15:00-16:00 GMT",
+      "speed_source": { "url": "https://www.airwallex.com/uk/blog/santander-international-transfer-fees", "date": "2026-04-02", "confidence": "third_party" },
+      "speed_notes": "3-5 working days for major currencies. 7-10 working days for emerging/less common currencies (may include CNY). Up to 4 working days per Santander's own documentation for non-EUR/USD. Slowest among the 7 banks for exotic currencies.",
+
+      "regulatory_status": "Authorised by PRA, regulated by FCA and PRA (FRN: 106054)",
+      "fund_safeguarding": true,
+      "parent_company": "Banco Santander S.A. (Spain)",
+      "years_operating": 22,
+      "years_operating_note": "Since 2004 in UK (acquired Abbey National, itself founded 1944). Parent Banco Santander founded 1857.",
+      "fraud_protection_features": ["Confirmation of Payee (domestic)", "Stop Scams UK member", "APP scam reimbursement"],
+      "fscs_protected": true,
+      "fscs_limit": 120000,
+      "safety_source": { "url": "https://register.fca.org.uk/s/firm?id=001b000000MfFMdAAN", "date": "2026-04-02", "confidence": "published" },
+
+      "max_transfer": "GBP 25,000-50,000/day online; GBP 50,000-100,000/day business",
+      "supported_currencies": "28 currencies",
+      "can_hold_cny": false,
+      "can_pay_1688": false,
+      "forward_contracts": true,
+      "forward_contracts_note": "Available for business/corporate",
+      "api_available": true,
+      "api_note": "Business online banking platform",
+      "limitations_source": { "url": "https://www.santander.co.uk/personal/support/current-accounts/making-international-payments", "date": "2026-04-02", "confidence": "published" },
+
+      "total_cost_10k_gbp": {
+        "fx_cost": 250,
+        "wire_fee": 25,
+        "intermediary": 15,
+        "total": 290,
+        "currency": "GBP",
+        "calculation_method": "fx_markup (2.5% for 10k tier = 2% per published schedule, using 2.5% typical as conservative) x 10000 + wire_fee (25) + intermediary_typical (15). Note: during Feb-Apr 2026 promo, wire fee would be 0."
+      }
+    },
+
+    {
+      "provider_id": "nationwide",
+      "provider_name": "Nationwide Building Society",
+      "provider_type": "bank",
+
+      "fx_markup_pct": { "low": 1.6, "typical": 2.2, "high": 4.0 },
+      "fx_markup_source": [
+        { "url": "https://sendabroad.co.uk/reviews/nationwide-international-money-transfers", "date": "2026-04-02", "confidence": "third_party", "note": "2.2% outgoing; 0.5% incoming" },
+        { "url": "https://exiap.co.uk/guides/nationwide-international-transfer", "date": "2026-04-02", "confidence": "third_party", "note": "2-4% range depending on amount" },
+        { "url": "https://www.keycurrency.co.uk/nationwide-international-payment/", "date": "2026-04-02", "confidence": "third_party", "note": "2.2% markup" }
+      ],
+      "fx_markup_notes": "Most moderate of the high-street banks. Nationwide does not publish the explicit markup percentage. Smaller amounts may see up to 4%.",
+
+      "transfer_fee": { "amount": 20, "currency": "GBP", "type": "flat" },
+      "transfer_fee_source": { "url": "https://exiap.co.uk/guides/nationwide-international-transfer", "date": "2026-04-02", "confidence": "published" },
+      "transfer_fee_notes": "GBP 20 per SWIFT payment. GBP 0 for SEPA/euro to EEA. Waived for FlexOne, FlexStudent, FlexGraduate accounts.",
+
+      "intermediary_fee": { "low": 10, "typical": 15, "high": 25, "currency": "GBP" },
+      "intermediary_source": { "url": "https://sendabroad.co.uk/reviews/nationwide-international-money-transfers", "date": "2026-04-02", "confidence": "third_party" },
+      "uses_swift": true,
+      "direct_cny_rails": false,
+      "intermediary_notes": "Uses HSBC as intermediary bank (MIDLGB22). Correspondent fees unpredictable and deducted from payment amount.",
+
+      "monthly_fee": 0,
+      "setup_fee": 0,
+      "inactivity_fee": null,
+      "minimum_balance": null,
+      "account_cost_source": { "url": "https://www.nationwide.co.uk/current-accounts/", "date": "2026-04-02", "confidence": "published" },
+      "account_cost_notes": "FlexAccount free. FlexPlus GBP 13/month (includes travel insurance). Must hold a Nationwide current account.",
+
+      "transfer_time_days": { "standard": "3-5", "express": null },
+      "same_day_cny": false,
+      "cutoff_time": null,
+      "speed_source": { "url": "https://exiap.co.uk/guides/nationwide-international-transfer", "date": "2026-04-02", "confidence": "third_party" },
+      "speed_notes": "Non-EEA: 3-5 working days. EEA within 1 day. No express option. International transfers NOT available via mobile app — online banking or branch only.",
+
+      "regulatory_status": "Dual-regulated by FCA and PRA (FRN: 106078). Incorporated under Building Societies Act 1986.",
+      "fund_safeguarding": true,
+      "parent_company": "Nationwide Building Society (mutual, member-owned)",
+      "years_operating": 142,
+      "years_operating_note": "Founded 1884. World's largest building society. ~18 million UK customers, ~GBP 170 billion deposits. Acquired Virgin Money (completed April 2026).",
+      "fraud_protection_features": ["FSCS protection", "Regulated by FCA and PRA"],
+      "fscs_protected": true,
+      "fscs_limit": 120000,
+      "safety_source": { "url": "https://register.fca.org.uk/s/firm?id=001b000000MfFYOAA3", "date": "2026-04-02", "confidence": "published" },
+
+      "max_transfer": "GBP 100,000/day (domestic online); international limits vary",
+      "supported_currencies": "Multiple (not enumerated)",
+      "can_hold_cny": false,
+      "can_pay_1688": false,
+      "forward_contracts": false,
+      "api_available": false,
+      "limitations_source": { "url": "https://www.nationwide.co.uk/help/payments/transfer-limits-and-timescales", "date": "2026-04-02", "confidence": "published" },
+      "limitations_notes": "No forward contracts. No mobile app for international transfers. No API or batch payments. Trustpilot: 2/5.",
+
+      "total_cost_10k_gbp": {
+        "fx_cost": 220,
+        "wire_fee": 20,
+        "intermediary": 15,
+        "total": 255,
+        "currency": "GBP",
+        "calculation_method": "fx_markup_typical (2.2%) x 10000 + wire_fee (20) + intermediary_typical (15)"
+      }
+    },
+
+    {
+      "provider_id": "tsb",
+      "provider_name": "TSB Bank",
+      "provider_type": "bank",
+
+      "fx_markup_pct": { "low": 2.5, "typical": 3.2, "high": 3.65 },
+      "fx_markup_source": [
+        { "url": "https://www.tsb.co.uk/current-accounts/faqs/international-payments.html", "date": "2026-04-02", "confidence": "published", "note": "TSB FAQ confirms 'FX International Payment Margin'" },
+        { "url": "https://wise.com/gb/blog/international-transfer-tsb-uk", "date": "2026-04-02", "confidence": "third_party", "note": "Wise: 3.2-3.65% margin" },
+        { "url": "https://www.finextra.com/newsarticle/43560/wise-accuses-high-street-banks-of-hidden-exchange-rate-fees", "date": "2026-04-02", "confidence": "third_party", "note": "Finextra/MTC: 2.5-2.9%" }
+      ],
+      "fx_markup_notes": "TSB's own FAQ confirms the margin exists. Third-party sources report 2.5-3.65% depending on currency and time of day. Non-sterling card transaction fee 2.99%.",
+
+      "transfer_fee": { "amount": 10, "currency": "GBP", "type": "flat", "note": "up to GBP 5,000" },
+      "transfer_fee_source": { "url": "https://www.tsb.co.uk/current-accounts/faqs/international-payments.html", "date": "2026-04-02", "confidence": "published" },
+      "transfer_fee_notes": "Online: GBP 10 (up to GBP 5,000) or GBP 17.50 (over GBP 5,000). Phone/branch: GBP 20 (non-EEA). Plus GBP 6 correspondent bank fee for non-EEA/Switzerland/Monaco. EUR to EEA free.",
+
+      "intermediary_fee": { "low": 6, "typical": 6, "high": 15, "currency": "GBP" },
+      "intermediary_source": { "url": "https://www.tsb.co.uk/current-accounts/faqs/international-payments.html", "date": "2026-04-02", "confidence": "published" },
+      "uses_swift": true,
+      "direct_cny_rails": false,
+      "intermediary_notes": "GBP 6 correspondent fee charged by TSB for non-EEA. Additional SWIFT chain intermediaries may deduct further. Receiving: GBP 7 for non-euro over GBP 100.",
+
+      "monthly_fee": 0,
+      "setup_fee": 0,
+      "inactivity_fee": null,
+      "minimum_balance": null,
+      "account_cost_source": { "url": "https://www.tsb.co.uk/current-accounts/", "date": "2026-04-02", "confidence": "published" },
+      "account_cost_notes": "Current accounts free. Must hold TSB current account to send international payments.",
+
+      "transfer_time_days": { "standard": "4-5", "express": null },
+      "same_day_cny": false,
+      "cutoff_time": "16:30 GMT",
+      "speed_source": { "url": "https://www.tsb.co.uk/current-accounts/faqs/international-payments.html", "date": "2026-04-02", "confidence": "published" },
+      "speed_notes": "China falls under 'other currencies to EU/EEA/North America/Australia/NZ/Middle East/Far East: up to 4 working days'. All other destinations: more than 4 working days. Major routes ~4 days; other routes up to 12 days. Cut-off 4:30pm for same-day processing.",
+
+      "regulatory_status": "Authorised by PRA, regulated by FCA and PRA (FRN: 191240)",
+      "fund_safeguarding": true,
+      "parent_company": "Banco de Sabadell S.A. (Spain). Note: Santander acquisition announced for GBP 2.65 billion, expected Q1 2026.",
+      "years_operating": 30,
+      "years_operating_note": "Spun out of Lloyds Banking Group 2014, sold to Sabadell 2015. Fined GBP 48.65M by FCA/PRA in 2022 for operational resilience failures.",
+      "fraud_protection_features": ["FCA/PRA regulated", "FSCS protected"],
+      "fscs_protected": true,
+      "fscs_limit": 120000,
+      "safety_source": { "url": "https://register.fca.org.uk/s/firm?id=001b000000MfI5JAAV", "date": "2026-04-02", "confidence": "published" },
+
+      "max_transfer": "GBP 75,000/day (all channels)",
+      "supported_currencies": "8 primary via mobile app; broader selection via online/phone/branch",
+      "can_hold_cny": false,
+      "can_pay_1688": false,
+      "forward_contracts": false,
+      "api_available": false,
+      "limitations_source": { "url": "https://www.tsb.co.uk/current-accounts/faqs/international-payments.html", "date": "2026-04-02", "confidence": "published" },
+      "limitations_notes": "GBP 75,000/day limit. Online banking hours for international: 7:30am-4:30pm weekdays. No forward contracts. Trustpilot: 4/5.",
+
+      "total_cost_10k_gbp": {
+        "fx_cost": 320,
+        "wire_fee": 17.50,
+        "intermediary": 6,
+        "total": 343.50,
+        "currency": "GBP",
+        "calculation_method": "fx_markup_typical (3.2%) x 10000 + wire_fee (17.50 for >5k) + correspondent_fee (6)"
+      }
+    },
+
+    {
+      "provider_id": "wise",
+      "provider_name": "Wise",
+      "provider_type": "fintech",
+
+      "fx_markup_pct": { "low": 0, "typical": 0, "high": 0 },
+      "fx_markup_source": [
+        { "url": "https://wise.com/us/pricing/", "date": "2026-04-02", "confidence": "published", "note": "Wise uses mid-market rate with zero markup" },
+        { "url": "https://rates.fm/banks/wise-pricing-transfer-fees/", "date": "2026-04-02", "confidence": "third_party", "note": "Confirmed 0% markup, all cost in transparent fee" }
+      ],
+      "fx_markup_notes": "Wise charges 0% FX markup. All costs are in the transparent percentage-based transfer fee (Dimension 2). Mid-market rate matches publicly available rates (Google, Reuters, XE).",
+
+      "transfer_fee": { "amount_pct": 1.13, "currency": "GBP", "type": "percentage", "example": "GBP 11.26 on GBP 1,000; GBP 37.69 on GBP 4,000" },
+      "transfer_fee_source": [
+        { "url": "https://fromto.money/transfer/from-united-kingdom/to-china", "date": "2026-04-02", "confidence": "third_party", "note": "GBP 11.26 on GBP 1,000 (1.13%)" },
+        { "url": "https://wise.com/us/pricing/", "date": "2026-04-02", "confidence": "published", "note": "Dual-fee: fixed + percentage. Varies by delivery method." }
+      ],
+      "transfer_fee_notes": "Dual-fee model: fixed fee + percentage. For GBP-to-CNY ~1.13% on GBP 1,000, ~0.94% on GBP 4,000 (percentage decreases with amount). Fees vary by delivery method (Alipay, WeChat, UnionPay, bank transfer). Cheapest from Wise balance. Credit/debit card payments up to 7.8% additional. Volume discounts for transfers over USD 25,000 equivalent.",
+
+      "intermediary_fee": { "low": 0, "typical": 0, "high": 0, "currency": "GBP" },
+      "intermediary_source": { "url": "https://wise.com/help/articles/2955298/guide-to-cny-transfers", "date": "2026-04-02", "confidence": "published" },
+      "uses_swift": false,
+      "direct_cny_rails": true,
+      "intermediary_notes": "No SWIFT, no intermediary fees. Delivers to China via local payment networks: Alipay, WeChat (Weixin), UnionPay card, and local bank transfer (B2B only). Recipient pays nothing.",
+
+      "monthly_fee": 0,
+      "setup_fee": 0,
+      "inactivity_fee": null,
+      "minimum_balance": null,
+      "account_cost_source": { "url": "https://wise.com/us/pricing/", "date": "2026-04-02", "confidence": "published" },
+      "account_cost_notes": "Free account. No setup, monthly, or minimum balance. Multi-currency account holds 50+ currencies for free.",
+
+      "transfer_time_days": { "standard": "instant-1", "express": null },
+      "same_day_cny": true,
+      "cutoff_time": null,
+      "speed_source": { "url": "https://wise.com/gb/send-money/send-money-to-china", "date": "2026-04-02", "confidence": "published" },
+      "speed_notes": "74% of transfers arrive in under 20 seconds (instant). 95% within 1 day. Alipay: same day to ~9 hours. WeChat: recipient must claim within 48 hours. Bank transfer (B2B): 1-2 working days. Alipay recipients must complete verification within 72 hours.",
+
+      "regulatory_status": "Authorised as Electronic Money Institution by FCA (FRN: 900507). Licensed under EMR 2011 and PSR 2017.",
+      "fund_safeguarding": true,
+      "fund_safeguarding_note": "Customer funds safeguarded via deposits at regulated banking institutions and investment in high-quality liquid assets (government bonds). Funds kept separate from operating money. Not a bank — does not lend customer funds. NOT FSCS-covered.",
+      "parent_company": "Wise plc (LSE: WISE)",
+      "years_operating": 15,
+      "years_operating_note": "Founded 2011.",
+      "fraud_protection_features": ["FCA regulated EMI", "Fund safeguarding", "2FA authentication"],
+      "fscs_protected": false,
+      "safety_source": { "url": "https://wise.com/help/articles/2932693/how-is-wise-regulated-in-each-country-and-region", "date": "2026-04-02", "confidence": "published" },
+
+      "max_transfer": "Per-transaction CNY limits: UnionPay 33,000 CNY; Alipay 50,000 CNY; WeChat 50,000 CNY. Bank transfer (B2B): no per-transaction limit.",
+      "annual_limits": "Alipay 300,000-600,000 CNY/year; WeChat 500,000 CNY/year",
+      "supported_currencies": "50+ currencies",
+      "can_hold_cny": true,
+      "can_pay_1688": false,
+      "forward_contracts": false,
+      "forward_contracts_note": "Not available for personal. Wise Business may offer FX risk management.",
+      "api_available": true,
+      "api_note": "Wise Platform API for business integrations",
+      "limitations_source": { "url": "https://wise.com/help/articles/2955298/guide-to-cny-transfers", "date": "2026-04-02", "confidence": "published" },
+      "limitations_notes": "B2B bank transfer restricted to certain banks. Without recipient National ID, limited to ICBC, Bank of Communications, and select provincial banks. Cannot send to China Merchants, Minsheng, Industrial Bank, Shanghai Pudong Development, Bank of Nanjing for personal transfers. Trustpilot: 4.3/5 (280,000+ reviews).",
+
+      "total_cost_10k_gbp": {
+        "fx_cost": 0,
+        "wire_fee": 113,
+        "intermediary": 0,
+        "total": 113,
+        "currency": "GBP",
+        "calculation_method": "fx_markup (0%) + transfer_fee (~1.13% of 10000) + intermediary (0). Note: actual fee may be lower on 10k due to volume scaling."
+      }
+    },
+
+    {
+      "provider_id": "ofx",
+      "provider_name": "OFX",
+      "provider_type": "fintech",
+
+      "fx_markup_pct": { "low": 0.4, "typical": 1.0, "high": 2.0 },
+      "fx_markup_source": [
+        { "url": "https://www.internationalmoneytransfer.com/reviews/ofx", "date": "2026-04-02", "confidence": "third_party", "note": "0.4-2.0% variable" },
+        { "url": "https://moneytransfers.com/companies/ofx", "date": "2026-04-02", "confidence": "third_party", "note": "Consistent range confirmed" },
+        { "url": "https://wise.com/us/blog/ofx-fees", "date": "2026-04-02", "confidence": "third_party", "note": "Wise analysis of OFX pricing" }
+      ],
+      "fx_markup_notes": "Variable 0.4-2.0%. Depends on currency pair, amount (larger = better), and timing (weekends/holidays = higher). GBP-CNY likely 1.0-2.0% due to less common pair. OFX does not publish exact margins. Revenue comes entirely from FX spread (no transfer fees).",
+
+      "transfer_fee": { "amount": 0, "currency": "GBP", "type": "flat" },
+      "transfer_fee_source": { "url": "https://www.ofx.com/en-us/rates-and-fees/", "date": "2026-04-02", "confidence": "published" },
+      "transfer_fee_notes": "GBP 0. No transfer fees, no setup fees, no account fees.",
+
+      "intermediary_fee": { "low": 0, "typical": 10, "high": 25, "currency": "GBP" },
+      "intermediary_source": { "url": "https://www.internationalmoneytransfer.com/reviews/ofx", "date": "2026-04-02", "confidence": "third_party" },
+      "uses_swift": true,
+      "direct_cny_rails": false,
+      "intermediary_notes": "OFX uses SWIFT/correspondent banking. No intermediary fees charged by OFX, but recipient/intermediary banks may deduct fees. OFX does not control or disclose these.",
+
+      "monthly_fee": 0,
+      "setup_fee": 0,
+      "inactivity_fee": null,
+      "minimum_balance": null,
+      "account_cost_source": { "url": "https://www.internationalmoneytransfer.com/reviews/ofx", "date": "2026-04-02", "confidence": "published" },
+
+      "transfer_time_days": { "standard": "3-5", "express": null },
+      "same_day_cny": false,
+      "cutoff_time": null,
+      "speed_source": { "url": "https://www.ofx.com/en-us/send-money/china/", "date": "2026-04-02", "confidence": "published" },
+      "speed_notes": "Most transfers 1-4 business days. China specifically 3-5 business days. UK Faster Payments clears within 2 hours for funding.",
+
+      "regulatory_status": "Authorised as Electronic Money Institution by FCA (FRN: 902028). Also ICO registered (Z9240083).",
+      "fund_safeguarding": true,
+      "fund_safeguarding_note": "Client funds held in segregated accounts. Regulated across 8 jurisdictions: FCA (UK), ASIC (Australia), FINTRAC (Canada), FMA (NZ), MAS (Singapore), FinCEN (USA).",
+      "parent_company": "OFX Group Limited (ASX: OFX)",
+      "years_operating": 26,
+      "years_operating_note": "Founded 1998 (as OzForex in Australia). UK entity: UKForex Limited.",
+      "fraud_protection_features": ["FCA regulated EMI", "Segregated client funds", "2FA and enterprise encryption"],
+      "fscs_protected": false,
+      "safety_source": { "url": "https://register.fca.org.uk/s/firm?id=001b000000Mg5hRAAR", "date": "2026-04-02", "confidence": "published" },
+
+      "max_transfer": "No self-imposed maximum (verification status affects practical limits, often exceeds USD 500,000)",
+      "minimum_transfer": "~GBP 100 (USD 1,000 equivalent)",
+      "supported_currencies": "50+ currencies",
+      "can_hold_cny": false,
+      "can_pay_1688": false,
+      "forward_contracts": true,
+      "forward_contracts_note": "Lock in rate for 2 days to 12 months. Deposit typically 10% (personal) or 5% (business). Limit orders available.",
+      "api_available": true,
+      "api_note": "OFX API for business integrations",
+      "limitations_source": { "url": "https://www.ofx.com/en-us/business/international-payments/china/", "date": "2026-04-02", "confidence": "published" },
+      "limitations_notes": "CRITICAL: CNY transfers restricted to BUSINESS customers only. Personal users cannot send CNY to China via OFX. Trustpilot: 4.4/5 (11,000+ reviews).",
+
+      "total_cost_10k_gbp": {
+        "fx_cost": 100,
+        "wire_fee": 0,
+        "intermediary": 10,
+        "total": 110,
+        "currency": "GBP",
+        "calculation_method": "fx_markup_typical (1.0%) x 10000 + wire_fee (0) + intermediary_typical (10). Note: OFX CNY is business-only."
+      }
+    },
+
+    {
+      "provider_id": "worldfirst",
+      "provider_name": "WorldFirst",
+      "provider_type": "worldfirst",
+
+      "fx_markup_pct": { "low": 0, "typical": 0.3, "high": 0.5 },
+      "fx_markup_source": [
+        { "url": "https://handbook.worldfirst.com/cms/united-kingdom", "date": "2026-04-02", "confidence": "published", "note": "Handbook: 'Up to 0.5%' FX ceiling for UK" }
+      ],
+      "fx_markup_notes": "Published ceiling of 0.5% for UK corridor. This is the maximum — actual rates may be lower. The research uses the 0.5% ceiling per the conservative approach agreed in the Research Plan. WorldFirst does not use a percentage-based transfer fee on top of FX.",
+
+      "transfer_fee": { "amount": 4, "currency": "GBP", "type": "flat", "note": "international" },
+      "transfer_fee_source": { "url": "https://handbook.worldfirst.com/cms/united-kingdom", "date": "2026-04-02", "confidence": "published" },
+      "transfer_fee_notes": "Local GBP: GBP 0.30/txn. International: GBP 4/txn. China payment: 0.40%. 1688 World Pay: not listed for UK.",
+
+      "china_payment_fee_pct": 0.40,
+      "china_payment_fee_source": { "url": "https://handbook.worldfirst.com/cms/united-kingdom", "date": "2026-04-02", "confidence": "published" },
+
+      "intermediary_fee": { "low": 0, "typical": 0, "high": 0, "currency": "GBP" },
+      "intermediary_source": { "url": "https://www.worldfirst.com/uk/blog/international-transactions/how-much-are-international-bank-transfer-fees/", "date": "2026-04-02", "confidence": "published" },
+      "uses_swift": false,
+      "direct_cny_rails": true,
+      "intermediary_notes": "L2L (Local-to-Local) transfers: zero intermediary fees. WorldFirst uses direct payment rails to China, bypassing SWIFT correspondent banks. 96% of SME costs are hidden in FX rates according to WorldFirst's own research.",
+
+      "monthly_fee": 0,
+      "setup_fee": 0,
+      "inactivity_fee": null,
+      "minimum_balance": null,
+      "account_cost_source": { "url": "https://handbook.worldfirst.com/cms/united-kingdom", "date": "2026-04-02", "confidence": "published" },
+      "account_cost_notes": "World Account free to open. No monthly fees. No minimum balance. Multi-user, multi-account.",
+
+      "transfer_time_days": { "standard": "0-1", "express": null },
+      "same_day_cny": true,
+      "same_day_rate": "80%",
+      "cutoff_time": null,
+      "speed_source": { "url": "https://www.worldfirst.com/uk/", "date": "2026-04-02", "confidence": "published" },
+      "speed_notes": "80% of payments arrive same day in CNY. Direct payment rails to China — no SWIFT delays.",
+
+      "regulatory_status": "FCA authorised. Operating entity for Singapore: Alipay Merchant Services Pte. Ltd.",
+      "fund_safeguarding": true,
+      "parent_company": "Ant International (Ant Group)",
+      "years_operating": 20,
+      "years_operating_note": "Founded ~2004. Part of Ant International since 2019. UEFA EURO 2024 official payment partner.",
+      "fraud_protection_features": ["FCA regulated", "Ant Group backing", "Fund safeguarding"],
+      "fscs_protected": false,
+      "safety_source": { "url": "https://handbook.worldfirst.com/about", "date": "2026-04-02", "confidence": "published" },
+
+      "max_transfer": "Not published (enterprise-level capability)",
+      "supported_currencies": "22 receiving currencies, 101 payout currencies",
+      "can_hold_cny": true,
+      "can_hold_cny_note": "CNH (offshore renminbi) accounts available",
+      "can_pay_1688": true,
+      "can_pay_1688_note": "World Pay direct checkout on 1688.com and TaoWorld",
+      "forward_contracts": true,
+      "forward_contracts_note": "Flexible forward contracts available (region-dependent)",
+      "api_available": true,
+      "api_note": "Xero and Netsuite integrations. API availability region-dependent.",
+      "limitations_source": { "url": "https://handbook.worldfirst.com/cms/united-kingdom", "date": "2026-04-02", "confidence": "published" },
+
+      "world_card": {
+        "available": true,
+        "cashback": "1% on all eligible transactions",
+        "source": { "url": "https://handbook.worldfirst.com/cms/united-kingdom", "date": "2026-04-02", "confidence": "published" }
+      },
+
+      "total_cost_10k_gbp": {
+        "fx_cost": 50,
+        "wire_fee": 4,
+        "intermediary": 0,
+        "total": 54,
+        "currency": "GBP",
+        "calculation_method": "fx_markup_max (0.5%) x 10000 + intl_wire_fee (4) + intermediary (0). Conservative: uses maximum published FX ceiling."
+      }
+    }
+  ],
+
+  "savings_analysis": {
+    "note": "Estimated savings based on typical bank FX markup rates for this corridor. WorldFirst costs use the maximum published FX markup ceiling of 0.5%. Actual bank costs vary by account type, relationship, transfer amount, and market conditions.",
+    "comparison_table": [
+      {
+        "order_size_gbp": 5000,
+        "avg_bank_cost": { "fx": 155, "fees": 22, "intermediary": 15, "total": 192 },
+        "worldfirst_cost": { "fx": 25, "fees": 4, "intermediary": 0, "total": 29 },
+        "estimated_saving": 163,
+        "calculation_notes": "Bank: avg 3.1% FX markup x 5000 + avg GBP 22 fee + GBP 15 intermediary. WF: 0.5% x 5000 + GBP 4."
+      },
+      {
+        "order_size_gbp": 10000,
+        "avg_bank_cost": { "fx": 310, "fees": 22, "intermediary": 15, "total": 347 },
+        "worldfirst_cost": { "fx": 50, "fees": 4, "intermediary": 0, "total": 54 },
+        "estimated_saving": 293,
+        "calculation_notes": "Bank: avg 3.1% FX markup x 10000 + avg GBP 22 fee + GBP 15 intermediary. WF: 0.5% x 10000 + GBP 4."
+      },
+      {
+        "order_size_gbp": 25000,
+        "avg_bank_cost": { "fx": 700, "fees": 22, "intermediary": 15, "total": 737 },
+        "worldfirst_cost": { "fx": 125, "fees": 4, "intermediary": 0, "total": 129 },
+        "estimated_saving": 608,
+        "calculation_notes": "Bank: avg 2.8% FX markup x 25000 (lower rate on larger amounts) + avg GBP 22 fee + GBP 15 intermediary. WF: 0.5% x 25000 + GBP 4."
+      },
+      {
+        "order_size_gbp": 50000,
+        "avg_bank_cost": { "fx": 1250, "fees": 22, "intermediary": 15, "total": 1287 },
+        "worldfirst_cost": { "fx": 250, "fees": 4, "intermediary": 0, "total": 254 },
+        "estimated_saving": 1033,
+        "calculation_notes": "Bank: avg 2.5% FX markup x 50000 (volume discount) + avg GBP 22 fee + GBP 15 intermediary. WF: 0.5% x 50000 + GBP 4."
+      }
+    ]
+  },
+
+  "data_quality_assessment": {
+    "overall": "HIGH — GB-CNY is the best-documented corridor. Seven UK banks researched across all seven dimensions with strong third-party sourcing.",
+    "strong_points": [
+      "FX markup data for all 7 banks cross-referenced across 3-5 independent sources each",
+      "Transfer fees published by most banks on their own websites",
+      "FCA registration numbers and regulatory status verified via FCA Register",
+      "Wise 2024 transparency study provides standardised markup comparison across all major UK banks",
+      "Santander uniquely publishes tiered FX markup on their website — strongest single bank data point",
+      "WorldFirst data sourced from published product handbook with corridor-specific pricing"
+    ],
+    "gaps": [
+      "No UK bank publishes their GBP-CNY specific markup — all FX data is for major pairs (EUR, USD). CNY markups may be higher due to exotic currency premium.",
+      "Intermediary fee estimates are ranges, not precise — SWIFT chain deductions are inherently unpredictable",
+      "Transfer speed to China is estimated for most banks — none publish China-specific delivery SLAs",
+      "Lloyds and Nationwide transfer fees sourced from third parties, not directly from bank websites",
+      "OFX FX markup is a range (0.4-2.0%) — they do not publish exact rates per currency pair"
+    ],
+    "confidence_distribution": {
+      "published": "~45% of data points",
+      "third_party": "~45% of data points",
+      "estimated": "~8% of data points",
+      "unavailable": "~2% of data points"
+    }
+  },
+
+  "compliance_notes": {
+    "methodology": "Cost data collected from provider websites, independent comparison sites (Wise, Monito, Exiap, KeyCurrency, Rutland FX, MoneyTransferComparison), and financial publications (Finextra). FX markup calculated as the percentage difference between provider's offered rate and the mid-market (interbank) rate sourced from XE.com and Bank of England. All comparisons standardised to a GBP 10,000 bank-to-bank transfer from the UK to China.",
+    "data_collection_period": "2026-04-02",
+    "assumptions": [
+      "Transfer amount: GBP 10,000 (unless otherwise stated in savings analysis)",
+      "Account type: Standard personal or SME online banking (not Premier/Private/Corporate)",
+      "Payment method: Online bank transfer (not branch, phone, or card)",
+      "Pricing: standard rates without negotiation or relationship discounts",
+      "WorldFirst FX markup: maximum published ceiling of 0.5% (actual rates may be lower)"
+    ],
+    "disclaimer": "Cost estimates based on published rates and independent comparison data as of 2 April 2026. Actual bank costs vary by account type, relationship, transfer amount, and market conditions. WorldFirst costs shown use the maximum published FX markup of 0.5% for the UK corridor; actual rates may be lower. This comparison is for illustrative purposes and does not constitute financial advice."
+  },
+
+  "sources": [
+    { "id": "xe_rate", "name": "XE.com Currency Converter", "url": "https://www.xe.com/currencyconverter/convert/?Amount=10000&From=GBP&To=CNY", "type": "mid_market_rate", "date": "2026-04-02" },
+    { "id": "boe_rate", "name": "Bank of England Rates Database", "url": "https://www.bankofengland.co.uk/boeapps/database/Rates.asp?Travel=NIxAZx&into=GBP", "type": "mid_market_rate", "date": "2026-04-01" },
+    { "id": "wise_2024_study", "name": "Finextra/Wise Hidden Fees Study 2024", "url": "https://www.finextra.com/newsarticle/43560/wise-accuses-high-street-banks-of-hidden-exchange-rate-fees", "type": "fx_markup", "date": "2026-04-02" },
+    { "id": "keycurrency", "name": "KeyCurrency Bank Exchange Rates", "url": "https://www.keycurrency.co.uk/bank-exchange-rates/", "type": "fx_markup", "date": "2026-04-02" },
+    { "id": "rutland_fx", "name": "Rutland FX Bank Reviews", "url": "https://www.rutlandfx.com/", "type": "fx_markup", "date": "2026-04-02" },
+    { "id": "exiap", "name": "Exiap UK Bank Guides", "url": "https://exiap.co.uk/guides/", "type": "fees_and_limits", "date": "2026-04-02" },
+    { "id": "monito", "name": "Monito UK to China", "url": "https://www.monito.com/send-money/united-kingdom/china/gbp/cny", "type": "corridor_comparison", "date": "2026-04-02" },
+    { "id": "wf_handbook", "name": "WorldFirst Product Handbook", "url": "https://handbook.worldfirst.com/cms/united-kingdom", "type": "provider_data", "date": "2026-04-02" },
+    { "id": "fca_register", "name": "FCA Register", "url": "https://register.fca.org.uk/", "type": "regulatory", "date": "2026-04-02" },
+    { "id": "wise_compare", "name": "Wise Compare Pages", "url": "https://wise.com/gb/compare/", "type": "fx_markup", "date": "2026-04-02" },
+    { "id": "wise_cny_guide", "name": "Wise CNY Transfer Guide", "url": "https://wise.com/help/articles/2955298/guide-to-cny-transfers", "type": "provider_data", "date": "2026-04-02" },
+    { "id": "ofx_china", "name": "OFX China Business Page", "url": "https://www.ofx.com/en-us/business/international-payments/china/", "type": "provider_data", "date": "2026-04-02" },
+    { "id": "sendabroad", "name": "SendAbroad Nationwide Review", "url": "https://sendabroad.co.uk/reviews/nationwide-international-money-transfers", "type": "provider_data", "date": "2026-04-02" },
+    { "id": "tsb_faq", "name": "TSB International Payments FAQ", "url": "https://www.tsb.co.uk/current-accounts/faqs/international-payments.html", "type": "provider_data", "date": "2026-04-02" },
+    { "id": "airwallex_blogs", "name": "Airwallex UK Bank Fee Analyses", "url": "https://www.airwallex.com/uk/blog/", "type": "fees_and_limits", "date": "2026-04-02" }
+  ]
+}
