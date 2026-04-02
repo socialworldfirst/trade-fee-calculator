@@ -1,6 +1,6 @@
 # Research Plan — Cross-Border Payment Cost Research
 
-> **Status:** DRAFT — Awaiting Steven's approval before data collection begins
+> **Status:** APPROVED — Decisions confirmed 2026-04-02
 > **Date:** 2026-04-02
 > **Project:** socialworldfirst/trade-fee-calculator (research branch)
 
@@ -8,11 +8,17 @@
 
 ## 0. Executive Summary
 
-This plan covers the systematic research of cross-border payment costs across 9 corridors into China, comparing WorldFirst against domestic banks and fintech providers across 7 cost dimensions. The research produces structured JSON data files and human-readable summaries that feed the trade fee calculator, brochures, SEO pages, and social content.
+This plan covers the systematic research of cross-border payment costs across 8 corridors into China (US deferred), comparing WorldFirst against domestic banks and fintech providers across 7 cost dimensions. The research produces structured JSON data files and human-readable summaries that feed the trade fee calculator, brochures, SEO pages, and social content.
 
-**Total scope:** 9 corridors × ~8 providers each × 7 dimensions = ~504 individual data points to collect, source, and confidence-rate.
+**Total scope:** 8 corridors × ~8 providers each × 7 dimensions = ~448 individual data points to collect, source, and confidence-rate.
 
-**Recommended approach:** Complete Tier 1 corridors (UK, US) first — they have the strongest data and establish the research pattern. Then Tier 2 (AU, EU), then Tier 3 emerging markets. GB-CNY is the proving ground.
+**Recommended approach:** Complete GB-CNY first (strongest data, proves the pattern). Then AU, EU split by country (DE, FR, NL), then Tier 3 emerging markets. US corridor deferred pending product clarification.
+
+### Confirmed Decisions (2026-04-02)
+1. **WF FX rates:** Use handbook corridor-specific ceilings (0.5% UK, 0.67% AU, 0.75% EU, etc.) — not the 0.6% blanket figure
+2. **US corridor:** Deferred — do not include until WF's US→China product availability is clarified
+3. **UK banks:** Include Nationwide and TSB alongside Big 5 (7 banks total)
+4. **EU corridor:** Split by country (Germany, France, Netherlands as separate corridor entries)
 
 ---
 
@@ -23,9 +29,11 @@ This plan covers the systematic research of cross-border payment costs across 9 
 | Priority | Corridor | Currency Pair | Rationale | Data Availability |
 |----------|----------|--------------|-----------|-------------------|
 | **Tier 1** | UK → China | GBP → CNY | Canton Fair priority, strongest existing data | **High** — 7 UK banks with published comparison data already sourced |
-| **Tier 1** | US → China | USD → CNY | Largest corridor globally | **High** — major US banks well-documented |
+| ~~Tier 1~~ | ~~US → China~~ | ~~USD → CNY~~ | ~~Deferred — WF US product unclear~~ | ~~High~~ |
 | **Tier 2** | Australia → China | AUD → CNY | Strong WF market, free local payments | **Medium-High** — Big 4 banks documented, comparison sites cover corridor |
-| **Tier 2** | EU → China | EUR → CNY | Large trade corridor | **Medium-High** — will focus on Germany/France/Netherlands as proxy |
+| **Tier 2** | Germany → China | EUR → CNY | Largest EU economy, major trade corridor | **Medium-High** — Deutsche Bank, Commerzbank well-documented |
+| **Tier 2** | France → China | EUR → CNY | Second EU economy, BNP Paribas HQ | **Medium** — BNP, Société Générale, Crédit Agricole |
+| **Tier 2** | Netherlands → China | EUR → CNY | Major trade hub, ING/ABN AMRO HQ | **Medium-High** — ING, ABN AMRO, Rabobank |
 | **Tier 3** | Turkey → China | TRY → CNY | Highest cost corridor, strong story | **Medium** — Monito corridor data, limited direct bank data |
 | **Tier 3** | Nigeria → China | NGN → CNY | Emerging market, big savings gap | **Low-Medium** — mostly industry estimates, World Bank remittance data |
 | **Tier 3** | Pakistan → China | PKR → CNY | Growing trade corridor | **Low** — limited published data, will rely on SBP rates + estimates |
@@ -46,28 +54,19 @@ This plan covers the systematic research of cross-border payment costs across 9 
 6. Wise (rate calculator available, strong comparison data)
 7. OFX (UK-regulated, China corridor covered)
 
-**Category C — WorldFirst:**
-8. WorldFirst (handbook: 0.5% FX ceiling, £0.30 local / £4 intl, 0.40% China payment)
-
-*Optional additions flagged for review:* Nationwide (1.6–2.2%), TSB (2.5–2.9%) — include or skip?
-
-#### US-CNY (United States)
-**Category A — Banks:**
-1. JPMorgan Chase
-2. Bank of America
-3. Wells Fargo (documented case: 8%+ on $38K transfer)
-4. Citibank
-5. HSBC US
+**Category A+ — Additional Banks:**
+6. Nationwide (existing data: 1.6–2.2%)
+7. TSB (existing data: 2.5–2.9%)
 
 **Category B — Fintech:**
-6. Wise
-7. Remitly (if they cover B2B to China)
-8. OFX
+8. Wise (rate calculator available, strong comparison data)
+9. OFX (UK-regulated, China corridor covered)
 
 **Category C — WorldFirst:**
-9. WorldFirst (handbook: 0.75% FX ceiling, from $1 payment fee. Note: no China-specific pricing listed, US market most restricted)
+10. WorldFirst (handbook: 0.5% FX ceiling, £0.30 local / £4 intl, 0.40% China payment)
 
-*Flag for Steven:* The WF handbook shows no China payment pricing for US users and limited currency access. This may need internal clarification before the US corridor can be completed accurately.
+#### US-CNY (United States) — DEFERRED
+US corridor deferred until WF's US→China product availability is clarified internally. Do not research or publish.
 
 #### AU-CNY (Australia)
 **Category A — Banks:**
@@ -83,21 +82,44 @@ This plan covers the systematic research of cross-border payment costs across 9 
 **Category C — WorldFirst:**
 7. WorldFirst (handbook: 0.67% FX ceiling, free local, 0.4% capped AUD 15 intl, 0.40% China)
 
-#### EU-CNY (Eurozone)
-**Category A — Banks (Germany/France/Netherlands as proxy):**
+#### DE-CNY (Germany)
+**Category A — Banks:**
 1. Deutsche Bank
-2. BNP Paribas
-3. ING
-4. Commerzbank
+2. Commerzbank
+3. DZ Bank (cooperative sector, largest by assets after Deutsche)
 
 **Category B — Fintech:**
-5. Wise
-6. Airwallex (strong in EU B2B)
+4. Wise
+5. Airwallex
 
 **Category C — WorldFirst:**
-7. WorldFirst (handbook: 0.75% FX, €0.30/txn, 0.40% China, 0.80% 1688)
+6. WorldFirst (handbook EEA tier: 0.75% FX, €0.30/txn, 0.40% China, 0.80% 1688, 1% World Card cashback)
 
-*Flag for Steven:* EU is not one country — should we present this as a single "Eurozone" corridor or split into DE/FR/NL? Recommend single corridor since WF's EEA tier pricing is uniform across 29 countries.
+#### FR-CNY (France)
+**Category A — Banks:**
+1. BNP Paribas
+2. Société Générale
+3. Crédit Agricole
+
+**Category B — Fintech:**
+4. Wise
+5. Airwallex
+
+**Category C — WorldFirst:**
+6. WorldFirst (handbook EEA tier: 0.75% FX, €0.30/txn, 0.40% China, 0.80% 1688, 1% World Card cashback)
+
+#### NL-CNY (Netherlands)
+**Category A — Banks:**
+1. ING
+2. ABN AMRO
+3. Rabobank
+
+**Category B — Fintech:**
+4. Wise
+5. Airwallex
+
+**Category C — WorldFirst:**
+6. WorldFirst (handbook EEA tier: 0.75% FX, €0.30/txn, 0.40% China, 0.80% 1688, 1% World Card cashback)
 
 #### TR-CNY (Turkey)
 **Category A — Banks:**
@@ -178,32 +200,36 @@ This plan covers the systematic research of cross-border payment costs across 9 
 
 | Corridor | Banks | Fintech | WF | Total |
 |----------|-------|---------|-----|-------|
-| GB-CNY | 5 | 2 | 1 | 8 |
-| US-CNY | 5 | 3 | 1 | 9 |
+| GB-CNY | 7 | 2 | 1 | 10 |
 | AU-CNY | 4 | 2 | 1 | 7 |
-| EU-CNY | 4 | 2 | 1 | 7 |
+| DE-CNY | 3 | 2 | 1 | 6 |
+| FR-CNY | 3 | 2 | 1 | 6 |
+| NL-CNY | 3 | 2 | 1 | 6 |
 | TR-CNY | 3 | 2 | 1 | 6 |
 | NG-CNY | 4 | 2 | 1 | 7 |
 | PK-CNY | 3 | 2 | 1 | 6 |
 | VN-CNY | 3 | 2 | 1 | 6 |
 | BD-CNY | 3 | 1 | 1 | 5 |
-| **Total** | **34** | **18** | **9** | **61** |
+| **Total** | **36** | **19** | **10** | **65** |
+
+*(US-CNY deferred — not included in totals)*
 
 ### 2.2 Data Points
 
-- 61 providers × 7 dimensions = **427 primary data points**
+- 65 providers × 7 dimensions = **455 primary data points**
 - Each data point needs: value, source URL, access date, confidence rating
 - Plus per-corridor: mid-market rate benchmark, executive summary, savings analysis, compliance notes
-- **Estimated total discrete data points: ~500+**
+- **Estimated total discrete data points: ~550+**
 
 ### 2.3 Research Effort per Corridor
 
 | Corridor | Est. Web Searches | Est. Page Fetches | Relative Effort |
 |----------|------------------|-------------------|-----------------|
-| GB-CNY | 15–20 | 25–35 | Medium (strong existing data) |
-| US-CNY | 20–25 | 30–40 | Medium-High |
+| GB-CNY | 15–20 | 25–35 | Medium (strong existing data, 7 banks + 2 fintech) |
 | AU-CNY | 15–20 | 20–30 | Medium |
-| EU-CNY | 15–20 | 25–35 | Medium |
+| DE-CNY | 10–15 | 15–25 | Medium |
+| FR-CNY | 10–15 | 15–25 | Medium |
+| NL-CNY | 10–15 | 15–25 | Medium |
 | TR-CNY | 15–20 | 15–25 | Medium (Monito data helps) |
 | NG-CNY | 20–25 | 15–25 | High effort, low yield |
 | PK-CNY | 15–20 | 10–20 | High effort, low yield |
@@ -213,18 +239,18 @@ This plan covers the systematic research of cross-border payment costs across 9 
 ### 2.4 Recommended Phasing
 
 **Phase 1 — Pattern Establishment (GB-CNY)**
-Research GB-CNY fully. This corridor has the richest existing data and will validate the methodology, output schema, and workflow. Produce the complete JSON + markdown output. Steven reviews.
+Research GB-CNY fully. 7 banks + 2 fintechs + WF. This corridor has the richest existing data and will validate the methodology, output schema, and workflow. Produce the complete JSON + markdown output. Steven reviews.
 
-**Phase 2 — Tier 1 Completion (US-CNY)**
-Apply the proven pattern to the US corridor. Flag any US-specific complications (WF product restrictions, different bank landscape).
+**Phase 2 — Tier 2 (AU-CNY, DE-CNY, FR-CNY, NL-CNY)**
+Apply the proven pattern to Australia and EU countries. Good data availability. EU split produces three separate corridor files sharing the same WF EEA pricing but different bank landscapes.
 
-**Phase 3 — Tier 2 (AU-CNY, EU-CNY)**
-These corridors have good data availability and establish the pattern for non-UK/US markets.
-
-**Phase 4 — Tier 3 Emerging Markets (TR, NG, PK, VN, BD)**
+**Phase 3 — Tier 3 Emerging Markets (TR, NG, PK, VN, BD)**
 These corridors will have more gaps. The value here is in documenting the cost landscape honestly — even with estimated data — because the savings gap vs. banks is largest in these markets.
 
-**Review gates:** Steven reviews after Phase 1 (methodology validation) and after Phase 2 (before scaling to remaining corridors).
+**Phase 4 — Master Outputs**
+Methodology doc, source registry, data quality report, master summary JSON.
+
+**Review gates:** Steven reviews after Phase 1 (methodology validation) and after Phase 2 (before scaling to emerging markets).
 
 ---
 
@@ -235,9 +261,10 @@ These corridors will have more gaps. The value here is in documenting the cost l
 | Corridor | Primary Source | Secondary Source |
 |----------|---------------|-----------------|
 | GB-CNY | XE.com GBP/CNY | Bank of England daily spot |
-| US-CNY | XE.com USD/CNY | Federal Reserve H.10 |
 | AU-CNY | XE.com AUD/CNY | RBA daily rate |
-| EU-CNY | XE.com EUR/CNY | ECB reference rate |
+| DE-CNY | XE.com EUR/CNY | ECB reference rate |
+| FR-CNY | XE.com EUR/CNY | ECB reference rate |
+| NL-CNY | XE.com EUR/CNY | ECB reference rate |
 | TR-CNY | XE.com TRY/CNY | TCMB (Turkish Central Bank) |
 | NG-CNY | XE.com NGN/CNY | CBN (Central Bank of Nigeria) official rate |
 | PK-CNY | XE.com PKR/CNY | SBP (State Bank of Pakistan) |
@@ -278,16 +305,17 @@ Per the brief: use maximum published rates for defensibility.
 | Corridor | FX Ceiling (Handbook) | Research Value to Use | Rationale |
 |----------|----------------------|----------------------|-----------|
 | GB-CNY | 0.5% | 0.5% | Published on handbook, corridor-specific |
-| US-CNY | 0.75% | 0.75% | Published on handbook |
 | AU-CNY | 0.67% | 0.67% | Published on handbook |
-| EU-CNY | 0.75% | 0.75% | Published on handbook |
-| TR-CNY | 0.75% (majors) | 0.75% | Handbook says "up to 3%, 0.75% for major currencies" — CNY is a major currency for WF |
+| DE-CNY | 0.75% | 0.75% | Published on handbook (EEA tier) |
+| FR-CNY | 0.75% | 0.75% | Published on handbook (EEA tier) |
+| NL-CNY | 0.75% | 0.75% | Published on handbook (EEA tier) |
+| TR-CNY | 0.75% (majors) | 0.75% | Handbook: "up to 3%, 0.75% for major currencies" — CNY is major for WF |
 | NG-CNY | 1.5% (majors) | 1.5% | Handbook ceiling for major currencies in P1 tier |
 | PK-CNY | 1.5% (majors) | 1.5% | Same P1 tier |
 | VN-CNY | 1.5% | 1.5% | Handbook corridor-specific rate |
 | BD-CNY | 1.5% (majors) | 1.5% | Same P1 tier |
 
-**Decision needed from Steven:** The brief says to use 0.6% as the blanket maximum for major currencies. The handbook shows corridor-specific ceilings that differ (0.5% UK, 0.67% AU, 0.75% US/EU, 1.5% EM). **Recommend using the handbook's corridor-specific ceilings** since they are published and more precise. The 0.6% figure in the brief may be a general marketing number that predates the handbook's granular pricing. Please confirm.
+**DECIDED:** Use handbook corridor-specific ceilings, not the 0.6% blanket figure. These are published, precise, and more defensible.
 
 ### 3.5 Compliance Framework Confirmation
 
@@ -312,14 +340,14 @@ Confirmed understanding of all six BPR conditions plus FCA COBS 4 requirements:
 | Nigerian multi-rate currency system | NG-CNY | Document CBN vs. parallel rate; use CBN as benchmark with caveat |
 | Emerging market bank websites often don't publish fee schedules | PK, BD, VN, NG | Rely on World Bank data + regional estimates; flag confidence as "estimated" |
 | Comparison site data may be stale (sampled months ago) | All | Record access dates; cross-reference where possible; note staleness risk |
-| US market WF product restrictions | US-CNY | Need Steven to clarify: does WF actually serve US→China payments? Handbook shows no China-specific pricing for US |
+| US market WF product restrictions | US-CNY (deferred) | Corridor deferred until WF US→China product availability clarified |
 
 ### 4.2 Dependencies on Steven / Internal
 
 | Dependency | Impact | When Needed |
 |-----------|--------|-------------|
-| Confirm WF FX rate approach (0.6% blanket vs. handbook corridor-specific) | Affects all corridors | Before Phase 1 |
-| Clarify US market WF product availability for China payments | Blocks US-CNY completion | Before Phase 2 |
+| ~~Confirm WF FX rate approach~~ | ~~Affects all corridors~~ | **RESOLVED** — using handbook corridor-specific ceilings |
+| ~~Clarify US market WF product availability~~ | ~~Blocks US-CNY~~ | **RESOLVED** — US corridor deferred |
 | Internal WF data for L2L transfer speeds, same-day CNY rates | Enriches speed dimension | Can be added later |
 | Compliance team review of disclaimer template | Required before downstream content | After Phase 1 |
 
@@ -359,20 +387,12 @@ data/master-summary.json            — All corridors, key metrics only
 
 Here is what I propose to research, in this order, using these sources, producing these outputs:
 
-1. **Phase 1 — GB-CNY** using existing UK bank data + Wise/Monito/MTC + XE mid-market rate + handbook WF data. Produces complete JSON + markdown + discovery log. Steven reviews methodology and output quality.
+1. **Phase 1 — GB-CNY** using existing UK bank data (7 banks incl. Nationwide + TSB) + Wise/Monito/MTC + XE mid-market rate + handbook WF data (0.5% ceiling). Produces complete JSON + markdown + discovery log. Steven reviews methodology and output quality.
 
-2. **Phase 2 — US-CNY** using major US bank websites + Wise comparison + World Bank + handbook WF data (pending US market clarification). Steven reviews.
+2. **Phase 2 — AU-CNY, DE-CNY, FR-CNY, NL-CNY** in sequence. Good data availability. EU produces three separate corridor files with country-specific bank landscapes.
 
-3. **Phase 3 — AU-CNY + EU-CNY** in sequence. Both have good data availability.
+3. **Phase 3 — TR-CNY, NG-CNY, PK-CNY, VN-CNY, BD-CNY** in sequence. Expect more gaps, more estimates, but the savings story is strongest here.
 
-4. **Phase 4 — TR-CNY, NG-CNY, PK-CNY, VN-CNY, BD-CNY** in sequence. Expect more gaps, more estimates, but the savings story is strongest here.
+4. **Phase 4 — Master outputs** (methodology doc, source registry, data quality report, master summary JSON).
 
-5. **Phase 5 — Master outputs** (methodology doc, source registry, data quality report, master summary JSON).
-
-**Before proceeding, I need answers on:**
-1. WF FX rate: use 0.6% blanket or handbook corridor-specific ceilings?
-2. US corridor: does WF serve US→China payments? Handbook shows no China pricing for US.
-3. UK corridor: include Nationwide (1.6–2.2%) and TSB (2.5–2.9%) or stick to Big 5?
-4. EU corridor: present as single "Eurozone" corridor or split by country?
-
-**Approve to proceed with Phase 1 (GB-CNY), or redirect.**
+**All decisions resolved. Proceeding with Phase 1 (GB-CNY).**
