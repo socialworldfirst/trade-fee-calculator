@@ -87,9 +87,101 @@ The exchange rate markup — not the visible wire fee — represents **85-95% of
 
 ---
 
+## The USD Trade Payment Problem
+
+Most Chinese suppliers invoice in USD. This means the typical UK buyer doesn't convert GBP→CNY at all — they convert GBP→USD at their bank, wire USD to China, and the supplier's Chinese bank converts USD→CNY. This creates a **double conversion** with three hidden cost layers.
+
+### The Three Layers of Hidden Cost
+
+**Layer 1 — UK bank GBP→USD markup (buyer pays)**
+
+GBP→USD is a major pair, so bank markups are tighter than GBP→CNY — but not by much:
+
+| Bank | GBP→USD Markup | vs General Markup |
+|------|---------------|-------------------|
+| Nationwide | 2.2% (fixed) | Same |
+| Barclays | 2.75% (capped) | Same |
+| HSBC | 2.8% avg | Slightly tighter |
+| TSB | 3.20% (published) | Tighter (3.65% for exotic) |
+| Lloyds | 3.55% (<GBP 10k) | Same |
+| NatWest | 3-5% personal | Same |
+| Santander | 3-4% typical | Same |
+
+*TSB is the only bank publishing currency-specific margins: USD 3.20% vs CZK/TRY 3.65%. The major-pair discount is real but small (~0.3-0.5%).*
+
+**Layer 2 — Chinese bank USD→CNY conversion (supplier pays)**
+
+When the supplier receives USD, their bank converts it to CNY at a spread above the PBOC reference rate:
+
+| Supplier Size | Typical Spread | Cost on $10,000 |
+|--------------|---------------|-----------------|
+| Large corporate | 0.1-0.3% | $10-30 |
+| Typical SME exporter | 0.3-0.5% | $30-50 |
+| Small business | 0.5-1.0% | $50-100 |
+
+*Bank of China published spread: ~0.14% from mid-rate (currency buying rate 6.8781 vs mid 6.8880 on 2 April 2026). Real SME rates wider.*
+
+Plus receiving fees: $20-50 in intermediary bank deductions + RMB 0-150 receiving fee.
+
+**Layer 3 — The FX risk buffer (buyer pays, invisibly)**
+
+Chinese suppliers bake a **2-5% buffer** into USD-quoted prices to protect against exchange rate movements between quoting and payment. Multiple sourcing industry sources confirm this. Some report buffers as high as 8%.
+
+This is the biggest hidden cost — and it's invisible because it's embedded in the product price, not the payment.
+
+### Total Cost: USD Route vs CNY Direct
+
+| Cost Component | USD Route (bank) | USD Route (fintech) | CNY Direct (WorldFirst) |
+|---------------|-----------------|--------------------|-----------------------|
+| **Buyer's FX conversion** | GBP 280-400 (2.8-4% GBP→USD) | GBP 50-70 (0.5-0.7% GBP→USD) | GBP 50 (0.5% GBP→CNY) |
+| **Wire/transfer fee** | GBP 5-25 | GBP 0-20 | GBP 4 |
+| **Intermediary fees** | GBP 15-25 | GBP 0-10 | GBP 0 |
+| **Supplier's USD→CNY conversion** | GBP 25-80 (0.3-1.0%) | GBP 25-80 (0.3-1.0%) | **GBP 0** (receives CNY) |
+| **FX risk buffer in price** | GBP 200-500 (2-5%) | GBP 200-500 (2-5%) | **GBP 0-100** (reduced/eliminated) |
+| **Total real cost on GBP 10k** | **GBP 525-1,030** | **GBP 275-680** | **GBP 54-154** |
+
+*The risk buffer row is the most variable and hardest to quantify, but sourcing industry sources consistently report 2-5% USD price inflation.*
+
+### Why CNY Direct Wins
+
+When a buyer pays in CNY instead of USD:
+
+1. **The supplier's conversion cost disappears** — they receive CNY directly, no bank spread
+2. **The FX risk buffer shrinks or disappears** — the supplier has no currency risk, so they can offer better pricing. Trade professionals report **1-3% price reductions** when buyers switch from USD to CNY
+3. **SWIFT intermediary fees disappear** — local CNY rails bypass correspondent banks entirely
+4. **Speed improves** — same-day CNY vs 3-5 day SWIFT
+
+### Fintech Options for USD to China
+
+| Provider | GBP→USD Cost | Can Send USD to China? | Total Buyer Cost (GBP 10k) |
+|----------|-------------|----------------------|---------------------------|
+| **Airwallex** | 0.5% (GBP 50) | Yes (SWIFT, GBP 10-20) | ~GBP 60-70 + supplier conversion |
+| **WorldFirst** | 0.5% (GBP 50) | Yes + 0.40% China fee | ~GBP 94 + supplier conversion |
+| **XE** | ~1.0% (GBP 100) | Likely CNY only | ~GBP 105 + supplier conversion |
+| **OFX** | ~1.5% (GBP 150) | Likely CNY only (B2B) | ~GBP 160 + supplier conversion |
+| **Wise** | 0.35% (GBP 35) | **No** — CNY delivery only | Cannot complete USD route |
+
+*Note: Wise can convert GBP→USD cheaply (~0.35%) but cannot deliver USD to a Chinese bank account. They only deliver CNY.*
+
+### The Bottom Line
+
+For a UK buyer sending GBP 10,000 to a Chinese supplier:
+
+| Route | Buyer Pays | Supplier Pays | Combined Real Cost |
+|-------|-----------|--------------|-------------------|
+| **Bank USD wire** | ~GBP 320 (FX + fees) | ~GBP 50-80 (conversion) + 2-5% price buffer | **GBP 570-820** |
+| **Fintech USD wire** | ~GBP 65 (Airwallex) | ~GBP 50-80 (conversion) + 2-5% price buffer | **GBP 315-645** |
+| **WorldFirst CNY direct** | ~GBP 54 | GBP 0 + reduced/no price buffer | **GBP 54-154** |
+
+The USD route's visible cost (GBP 65-320) is just the tip. The supplier-side conversion and price buffer can add GBP 250-500 that the buyer never sees but ultimately pays through higher product prices.
+
+---
+
 ## Key Findings
 
-1. **No UK high-street bank holds CNY** in standard personal accounts. None offer same-day CNY arrival. All route via SWIFT with 2-10 working day delivery.
+1. **The USD route has three hidden cost layers, not one.** Most buyers only see their bank's GBP→USD markup. They don't see the supplier's USD→CNY conversion (0.3-1.0%) or the 2-5% FX risk buffer baked into USD-quoted prices. Direct CNY payment eliminates both hidden layers.
+
+2. **No UK high-street bank holds CNY** in standard personal accounts. None offer same-day CNY arrival. All route via SWIFT with 2-10 working day delivery.
 
 2. **The FX markup is the hidden cost.** On GBP 10,000, the markup alone costs GBP 220-460 depending on the bank. The visible wire fee (GBP 0-25) is a fraction of the true cost.
 
