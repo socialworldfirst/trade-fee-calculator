@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TR-CNY Corridor — Cross-Border Payment Cost Research</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'SF Mono', 'Consolas', 'Menlo', monospace; color: #111; background: #fff; line-height: 1.65; font-size: 13px; -webkit-font-smoothing: antialiased; }
+  .page { max-width: 860px; margin: 0 auto; padding: 48px 28px 100px; }
+  .report-header { border-bottom: 3px double #111; padding-bottom: 16px; margin-bottom: 32px; }
+  .report-header h1 { font-size: 18px; font-weight: 700; letter-spacing: 0.02em; text-transform: uppercase; }
+  .report-header .subtitle { font-size: 13px; color: #666; margin-top: 4px; }
+  .report-meta { display: flex; gap: 20px; margin-top: 10px; font-size: 11px; color: #888; text-transform: uppercase; letter-spacing: 0.05em; flex-wrap: wrap; }
+  h2 { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin: 40px 0 16px; padding-bottom: 6px; border-bottom: 1px solid #111; }
+  h3 { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #444; margin: 28px 0 10px; }
+  p { margin-bottom: 12px; color: #333; }
+  table { width: 100%; border-collapse: collapse; margin: 12px 0 20px; font-size: 12px; }
+  th { text-align: left; padding: 8px 10px; font-weight: 700; font-size: 10px; text-transform: uppercase; letter-spacing: 0.06em; color: #666; border-bottom: 2px solid #111; background: #fafafa; }
+  td { padding: 7px 10px; border-bottom: 1px solid #e5e5e5; vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  .num { font-variant-numeric: tabular-nums; text-align: right; }
+  .em { font-weight: 700; }
+  .currency-nav { display: flex; gap: 0; margin: 20px 0 28px; border: 1px solid #111; width: fit-content; }
+  .currency-nav button { padding: 8px 24px; font-family: inherit; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; border: none; background: #fff; color: #888; cursor: pointer; border-right: 1px solid #111; transition: all 0.1s; }
+  .currency-nav button:last-child { border-right: none; }
+  .currency-nav button.active { background: #111; color: #fff; }
+  .currency-nav button:hover:not(.active) { background: #f5f5f5; color: #111; }
+  .route-panel { display: none; }
+  .route-panel.active { display: block; }
+  .note { font-size: 11px; color: #888; margin: 8px 0 16px; }
+  .kpi-row { display: flex; gap: 1px; margin: 16px 0 28px; background: #e5e5e5; }
+  .kpi { flex: 1; background: #fff; padding: 16px 14px; }
+  .kpi-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.06em; color: #888; margin-bottom: 4px; }
+  .kpi-value { font-size: 22px; font-weight: 700; letter-spacing: -0.02em; }
+  .kpi-sub { font-size: 10px; color: #888; margin-top: 2px; }
+  .comp-bar { display: flex; height: 28px; margin: 8px 0 4px; border: 1px solid #ddd; }
+  .comp-seg { display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; letter-spacing: 0.03em; }
+  .comp-seg-usd { background: #111; color: #fff; }
+  .comp-seg-cny { background: #888; color: #fff; }
+  .comp-seg-other { background: #ddd; color: #666; }
+  .comp-legend { display: flex; gap: 16px; font-size: 10px; color: #666; margin-bottom: 20px; flex-wrap: wrap; }
+  .comp-legend span::before { content: ''; display: inline-block; width: 10px; height: 10px; margin-right: 4px; vertical-align: middle; }
+  .comp-legend .leg-usd::before { background: #111; }
+  .comp-legend .leg-cny::before { background: #888; }
+  .comp-legend .leg-other::before { background: #ddd; }
+  .provider { border-top: 1px solid #e5e5e5; padding: 12px 0; }
+  .provider:first-child { border-top: none; }
+  .provider-name { font-weight: 700; font-size: 12px; }
+  .provider-detail { font-size: 12px; color: #555; margin-top: 2px; }
+  .layer-row { display: flex; align-items: baseline; padding: 8px 0; border-bottom: 1px solid #e5e5e5; font-size: 12px; }
+  .layer-row:last-child { border-bottom: none; }
+  .layer-num { width: 24px; font-weight: 700; color: #888; flex-shrink: 0; }
+  .layer-desc { flex: 1; }
+  .layer-who { font-size: 10px; color: #888; text-transform: uppercase; letter-spacing: 0.04em; text-align: right; width: 100px; flex-shrink: 0; }
+  .finding { padding: 10px 0; border-bottom: 1px solid #e5e5e5; font-size: 12px; }
+  .finding:last-child { border-bottom: none; }
+  .finding-num { display: inline-block; width: 20px; font-weight: 700; color: #888; }
+  .disclaimer { margin-top: 48px; padding-top: 16px; border-top: 3px double #111; font-size: 10px; color: #999; line-height: 1.5; }
+  @media (max-width: 640px) { .page { padding: 24px 14px 60px; } .kpi-row { flex-direction: column; } .currency-nav { width: 100%; } .currency-nav button { flex: 1; } }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="report-header">
+    <h1>TR-CNY Corridor</h1>
+    <div class="subtitle">Cross-Border Payment Cost Research &mdash; Turkey to China</div>
+    <div class="report-meta">
+      <span>3 April 2026</span>
+      <span>Mid-market: 1 TRY = 0.1548 CNY</span>
+      <span>1 USD = 44.45 TRY</span>
+      <span>10 Providers</span>
+    </div>
+  </div>
+
+  <!-- Headline -->
+  <div style="border:2px solid #111; padding:20px; margin-bottom:32px;">
+    <div style="font-size:10px; text-transform:uppercase; letter-spacing:0.08em; color:#888; margin-bottom:8px;">Headline</div>
+    <div style="font-size:16px; font-weight:700; margin-bottom:8px;">The most expensive corridor researched. Average bank cost: 10.4% of transfer amount.</div>
+    <p style="margin:0;">Turkish banks cannot execute direct TRY&rarr;CNY conversion. The standard route is TRY&rarr;USD&rarr;CNY &mdash; two FX markups of 3&ndash;5% each, plus SWIFT fees and intermediary deductions. Only 3&ndash;4 providers can deliver CNY directly from Turkey. Most global fintechs (Remitly, WorldRemit, XE, OFX) do not operate outbound from Turkey.</p>
+  </div>
+
+  <!-- Currency Composition -->
+  <h2>Settlement Currency Composition</h2>
+  <p>China is Turkey's #1 import source ($42.9B bilateral trade, 2024). Settlement is overwhelmingly USD. RMB infrastructure launched late 2025 (ICBC Turkey clearing bank) but SME adoption is near zero. The lira is not accepted by Chinese suppliers.</p>
+
+  <div class="comp-bar">
+    <div class="comp-seg comp-seg-usd" style="width:87%;">USD ~85-90%</div>
+    <div class="comp-seg comp-seg-cny" style="width:8%;">CNY ~5-10%</div>
+    <div class="comp-seg comp-seg-other" style="width:5%;">EUR/Other</div>
+  </div>
+  <div class="comp-legend">
+    <span class="leg-usd">USD &mdash; Default. Chinese exporters quote FOB in USD. TRY unacceptable.</span>
+    <span class="leg-cny">CNY &mdash; RMB clearing bank live Nov 2025. Growing from near zero.</span>
+    <span class="leg-other">EUR &mdash; Minor. TRY &mdash; Effectively zero.</span>
+  </div>
+  <p class="note">ICBC Turkey RMB settlement: 7.1B RMB in 2023 (+113% YoY) vs $42.9B bilateral trade = ~2-3%. Clearing bank + renewed CNY 35B swap line (June 2025) are catalysts. First TRY→CNY import payment was June 2020. Sources: ICBC Turkey Annual Report, PBOC, Xinhua.</p>
+
+  <!-- Route Toggle -->
+  <h2>Cost Analysis by Currency Route</h2>
+
+  <div class="currency-nav">
+    <button class="active" onclick="showRoute('usd')">USD Route</button>
+    <button onclick="showRoute('cny')">CNY Direct</button>
+    <button onclick="showRoute('compare')">Side by Side</button>
+  </div>
+
+  <!-- USD ROUTE -->
+  <div id="route-usd" class="route-panel active">
+    <p>The default and often only option via Turkish domestic banks. Banks convert TRY&rarr;USD (first markup), send USD via SWIFT, supplier's Chinese bank converts USD&rarr;CNY (second markup). Double conversion is structural &mdash; Turkish banks do not list CNY as a tradeable pair.</p>
+
+    <div class="kpi-row">
+      <div class="kpi">
+        <div class="kpi-label">Bank Route Total Cost</div>
+        <div class="kpi-value">8&ndash;12%</div>
+        <div class="kpi-sub">of transfer amount &middot; Monito avg: 10.4%</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Transfer Amount Context</div>
+        <div class="kpi-value">TRY 444,550</div>
+        <div class="kpi-sub">= ~$10,000 USD at current rates</div>
+      </div>
+    </div>
+
+    <h3>Layer 1 &mdash; Turkish Bank TRY&rarr;USD Markup</h3>
+    <table>
+      <thead><tr><th>Bank</th><th>FX Spread (measured)</th><th>Transfer Fee</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Halkbank</td><td>~3% + 0.7% non-USD surcharge</td><td>0.3% min $10 + $5 SWIFT</td><td>Cheapest explicit fees. US sanctions history.</td></tr>
+        <tr><td>Ziraat Bankası</td><td>~3&ndash;5% (est.)</td><td>0.5% min $30 max $500</td><td>State bank, largest by assets. SWIFT Go for small amounts.</td></tr>
+        <tr><td>İş Bankası</td><td>2.72% (measured retail spread)</td><td>0.5% min $15 max 900 TL</td><td>Most transparent. Live rates published. CNY not listed.</td></tr>
+        <tr><td>Garanti BBVA</td><td>~3&ndash;5% (est.)</td><td>1,050&ndash;2,950 TL digital</td><td>BBVA subsidiary. Highest flat fees for small transfers.</td></tr>
+        <tr><td>Yapı Kredi</td><td>~3&ndash;5% (est.)</td><td>1,548&ndash;3,033 TL digital</td><td>UniCredit-Koç. 0.7% max. TRY abroad: up to 5%.</td></tr>
+      </tbody>
+    </table>
+    <p class="note">İşbank is the only bank publishing live FX rates. CNY is NOT listed as a tradeable pair on any domestic bank's rate page &mdash; confirming double conversion is mandatory. TCMB does publish a CNY/TRY reference rate (6.4064 buy / 6.4902 sell on April 2, 2026).</p>
+
+    <h3>Layer 2 &mdash; Chinese Bank USD&rarr;CNY (Supplier Pays)</h3>
+    <p>Same as other corridors: 0.3&ndash;1.0% at supplier's bank, plus $20&ndash;50 intermediary deductions. Turkish bank transfers route through 1&ndash;2 correspondent banks.</p>
+
+    <h3>Layer 3 &mdash; FX Risk Buffer + Lira Volatility Premium</h3>
+    <p>Standard 2&ndash;5% buffer applies. Additionally, Chinese suppliers dealing with Turkish buyers may add an extra volatility premium given the lira's history (lost ~80% of value 2018&ndash;2023). The effective buffer for Turkey-origin orders may be higher than the global average.</p>
+
+    <h3>Regulatory Constraints</h3>
+    <table>
+      <thead><tr><th>Threshold</th><th>Requirement</th></tr></thead>
+      <tbody>
+        <tr><td>&gt;$5,000 outbound</td><td>Pre-notification to MASAK within 1 business day</td></tr>
+        <tr><td>&gt;TRY 15,000 electronic</td><td>Full sender/beneficiary data in transfer message</td></tr>
+        <tr><td>&gt;TRY 200,000</td><td>Statement of purpose required</td></tr>
+        <tr><td>&gt;TRY 2,000,000</td><td>Cash Transaction Declaration mandatory</td></tr>
+        <tr><td>Export proceeds</td><td>40% must be converted to TRY</td></tr>
+      </tbody>
+    </table>
+    <p class="note">No outright ban on sending money to China. Standard MASAK/AML compliance. Decree No. 32 governs FX transactions. Cash carry limit: 185,000 TRY / EUR 10,000 without declaration. Sources: MASAK, Decree No. 32 (March 2025 amendment).</p>
+  </div>
+
+  <!-- CNY DIRECT -->
+  <div id="route-cny" class="route-panel">
+    <p>Only 3&ndash;4 providers can deliver CNY directly from Turkey: ICBC Turkey (CHINEX), Wise (restricted), Paysend, and WorldFirst. Most global fintechs do not serve Turkey as a sending country. This is the thinnest fintech market of any corridor researched.</p>
+
+    <div class="kpi-row">
+      <div class="kpi">
+        <div class="kpi-label">WorldFirst Cost</div>
+        <div class="kpi-value">~1.45%</div>
+        <div class="kpi-sub">0.75% FX (majors) + 0.7% payment fee</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">ICBC Turkey CHINEX</div>
+        <div class="kpi-value">59 TRY flat</div>
+        <div class="kpi-sub">~$1.33 &middot; same-day &middot; no correspondent fees</div>
+      </div>
+    </div>
+
+    <h3>Provider Comparison &mdash; CNY Direct</h3>
+    <table>
+      <thead><tr><th>Provider</th><th>FX Cost</th><th>Transfer Fee</th><th>Speed</th><th>Segment</th><th class="num">Est. Total %</th></tr></thead>
+      <tbody>
+        <tr><td class="em">WorldFirst</td><td>0.75% (majors)</td><td>0.7% payment</td><td>80% same-day</td><td>B2B + personal</td><td class="num em">~1.45%</td></tr>
+        <tr><td class="em">ICBC Turkey CHINEX</td><td>Unknown (sets own rate)</td><td>59 TRY flat (~$1.33)</td><td>Same-day (by 10am)</td><td>Both</td><td class="num">~3&ndash;6%*</td></tr>
+        <tr><td>Wise</td><td>~0% (mid-market)</td><td>~1.5% on larger amounts</td><td>74% instant</td><td>Personal (restricted)</td><td class="num">~7.6%**</td></tr>
+        <tr><td>Paysend</td><td>Unknown</td><td>$1.99 flat</td><td>Minutes</td><td>Personal</td><td class="num">Unknown</td></tr>
+        <tr><td colspan="6" style="border-top:2px solid #111; padding-top:6px;"></td></tr>
+        <tr><td>Western Union</td><td>3&ndash;6% (TRY&rarr;USD&rarr;CNY)</td><td>TRY 65</td><td>Minutes&ndash;6 days</td><td>Personal</td><td class="num">~9&ndash;12%</td></tr>
+        <tr><td>MoneyGram</td><td>3&ndash;5% (TRY&rarr;USD&rarr;CNY)</td><td>$10&ndash;40</td><td>Minutes&ndash;hours</td><td>In-person only</td><td class="num">~8&ndash;12%</td></tr>
+        <tr><td colspan="6" style="border-top:2px solid #111; padding-top:6px;"></td></tr>
+        <tr><td>Ziraat / İş / Garanti / YK / Halk</td><td>3&ndash;5% per conversion (x2)</td><td>0.3&ndash;0.7% + SWIFT</td><td>2&ndash;5 days</td><td>Bank</td><td class="num">~8&ndash;12%</td></tr>
+      </tbody>
+    </table>
+    <p class="note">*ICBC CHINEX: 59 TRY flat fee + zero correspondent charges is confirmed, but FX markup on TRY→CNY conversion is not published. As a Chinese state bank it likely offers competitive CNY rates, but the effective total could be 3-6% depending on the spread. **Wise 7.6% figure is Monito's measured total cost for the corridor, not just Wise's fee — the high % reflects the thin, expensive nature of this corridor vs Wise's typical performance on mature corridors.</p>
+
+    <h3>Not Available from Turkey (Outbound)</h3>
+    <table>
+      <thead><tr><th>Provider</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td>Remitly</td><td>Turkey not a sending country</td></tr>
+        <tr><td>WorldRemit</td><td>Turkey not a sending country</td></tr>
+        <tr><td>XE</td><td>Turkey likely not supported for registration</td></tr>
+        <tr><td>OFX</td><td>Turkey likely not supported outbound</td></tr>
+        <tr><td>Airwallex</td><td>No Turkey operations confirmed</td></tr>
+        <tr><td>TransferGo</td><td>"Transfers from Turkiye paused" &mdash; unreliable</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- SIDE BY SIDE -->
+  <div id="route-compare" class="route-panel">
+    <p>Turkey has the widest cost gap between bank and fintech routes of any corridor researched. The structural double conversion (TRY&rarr;USD&rarr;CNY) via banks cannot be solved without direct TRY&rarr;CNY rails that only ICBC Turkey and WorldFirst provide.</p>
+
+    <h3>Full Chain Cost ($10,000 USD Equivalent = ~TRY 444,550)</h3>
+    <table>
+      <thead><tr><th>Cost Layer</th><th>Bank (SWIFT)</th><th>WU/MoneyGram</th><th>ICBC CHINEX</th><th>WorldFirst</th></tr></thead>
+      <tbody>
+        <tr><td>FX conversion</td><td>6&ndash;10% (double)</td><td>6&ndash;10% (double)</td><td>~3&ndash;5% (single, est.)</td><td class="em">0.75%</td></tr>
+        <tr><td>Transfer/payment fee</td><td>0.3&ndash;0.7%</td><td>TRY 65 / $10&ndash;40</td><td>59 TRY (~$1.33)</td><td class="em">0.7%</td></tr>
+        <tr><td>Intermediary fees</td><td>$15&ndash;50</td><td>$0&ndash;15</td><td>$0</td><td class="em">$0</td></tr>
+        <tr><td>Supplier USD&rarr;CNY</td><td>0.3&ndash;1.0%</td><td>0.3&ndash;1.0%</td><td>$0 (receives CNY)</td><td class="em">$0</td></tr>
+        <tr><td>FX risk buffer</td><td>2&ndash;5%+ (lira premium)</td><td>2&ndash;5%+</td><td>Reduced</td><td class="em">Reduced/eliminated</td></tr>
+        <tr style="border-top:2px solid #111;"><td class="em">Total</td><td class="em">~10&ndash;16%</td><td class="em">~9&ndash;16%</td><td class="em">~3&ndash;6%</td><td class="em">~1.45%</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Why This Corridor Has the Largest Spread</h3>
+    <div style="margin:12px 0 20px;">
+      <div class="layer-row"><div class="layer-num">1</div><div class="layer-desc">Double conversion is structural &mdash; Turkish banks don't list CNY. TRY&rarr;USD&rarr;CNY = two markups.</div><div class="layer-who">+3&ndash;5% extra</div></div>
+      <div class="layer-row"><div class="layer-num">2</div><div class="layer-desc">Lira volatility premium &mdash; suppliers add extra buffer for TRY-origin orders beyond standard 2&ndash;5%.</div><div class="layer-who">+1&ndash;3% extra</div></div>
+      <div class="layer-row"><div class="layer-num">3</div><div class="layer-desc">Thin fintech market &mdash; most global providers don't serve Turkey outbound. Less competition = higher prices.</div><div class="layer-who">Structural</div></div>
+      <div class="layer-row"><div class="layer-num">4</div><div class="layer-desc">Regulatory friction &mdash; MASAK reporting, Decree 32 controls, 40% export-proceeds conversion. All add compliance cost.</div><div class="layer-who">Indirect cost</div></div>
+    </div>
+  </div>
+
+  <!-- Provider Notes -->
+  <h2>Provider Notes</h2>
+
+  <h3>Banks (5)</h3>
+  <div class="provider"><span class="provider-name">Ziraat Bankası</span> <span class="provider-detail">&mdash; State bank, largest by assets. 0.5% min $30 max $500. SWIFT Go for EUR 10-10k. No direct CNY. BDDK/TMSF. Implicit sovereign guarantee.</span></div>
+  <div class="provider"><span class="provider-name">İş Bankası</span> <span class="provider-detail">&mdash; Largest private bank. 2.72% measured retail spread (USD/TRY). 0.5% min $15 max 900 TL. CNY not listed on rate page. Founded 1924. BDDK/TMSF.</span></div>
+  <div class="provider"><span class="provider-name">Garanti BBVA</span> <span class="provider-detail">&mdash; BBVA subsidiary (~86%). 1,050-2,950 TL digital, 2,486-13,457 TL branch. 4% airport rate. International FAST and Visa channels available. BDDK/TMSF.</span></div>
+  <div class="provider"><span class="provider-name">Yapı Kredi</span> <span class="provider-detail">&mdash; UniCredit-Koç. 1,548-3,033 TL digital same-day. 0.7% max. TRY abroad up to 5% commission. BDDK/TMSF.</span></div>
+  <div class="provider"><span class="provider-name">Halkbank</span> <span class="provider-detail">&mdash; State bank. Lowest explicit fees: 0.3% min $10 + $5 SWIFT. 0.7% surcharge on non-USD/EUR. Under US sanctions scrutiny (Iran case). BDDK/TMSF.</span></div>
+
+  <h3>Fintechs / Specialists (4 that serve this corridor)</h3>
+  <div class="provider"><span class="provider-name">Wise</span> <span class="provider-detail">&mdash; OPERATES but SEVERELY RESTRICTED since May 2023. Cannot top up from TRY, open balances, receive, or hold TRY. Can still send outbound TRY→CNY via Alipay/WeChat/UnionPay. 0% markup + ~1.5% fee. 74% instant. Monito measured 7.6% total corridor cost. Personal only for CNY.</span></div>
+  <div class="provider"><span class="provider-name">ICBC Turkey CHINEX</span> <span class="provider-detail">&mdash; Dedicated Turkey→China product. 59 TRY flat fee. Zero correspondent fees. Same-day by 10am. Any Chinese bank. CNY/USD/EUR/GBP/CHF. 50% student discount. Branch + internet + mobile. FX spread unknown but competitive as Chinese state bank. Launched 2018.</span></div>
+  <div class="provider"><span class="provider-name">Paysend</span> <span class="provider-detail">&mdash; Turkey confirmed as 1 of 49 sending countries. $1.99 flat. Delivers via Alipay/WeChat. Fast (minutes). FX markup unknown. Worth investigating.</span></div>
+  <div class="provider"><span class="provider-name">Western Union</span> <span class="provider-detail">&mdash; Operational via İşbank agents + online. TRY 65 fee. 3-6% FX. TRY→USD→CNY double conversion. $2,500 max online. Minutes (cash) to 6 days (bank). Expensive but reliable.</span></div>
+
+  <h3>WorldFirst</h3>
+  <div class="provider"><span class="provider-name">WorldFirst</span> <span class="provider-detail">&mdash; P0 Longtail tier. FX: up to 3% (0.75% for major currencies including CNY). Payment: 0.7%. 1688 World Pay: 0.7%. Free card. 80% same-day CNY. L2L zero intermediary. Direct CNY rails via Ant Group. World Account free. Ant International. Est. total cost ~1.45% on major currencies.</span></div>
+
+  <!-- Key Findings -->
+  <h2>Key Findings</h2>
+  <div class="finding"><span class="finding-num">1</span> <strong>Most expensive corridor researched.</strong> Monito average bank cost: 10.4%. Double conversion (TRY→USD→CNY) is structural — Turkish banks don't list CNY as a tradeable pair. Each conversion adds 3–5% markup.</div>
+  <div class="finding"><span class="finding-num">2</span> <strong>Thinnest fintech market of any corridor.</strong> Most global providers (Remitly, WorldRemit, XE, OFX, Airwallex) do NOT serve Turkey outbound. Only Wise (restricted), ICBC CHINEX, Paysend, and WU/MoneyGram confirmed operational. Turkey's KVKK data localization and CBRT regulations have locked out most fintechs.</div>
+  <div class="finding"><span class="finding-num">3</span> <strong>ICBC Turkey CHINEX is a hidden gem.</strong> Purpose-built Turkey→China product: 59 TRY flat (~$1.33), zero correspondent fees, same-day by 10am, direct to any Chinese bank. The only dedicated corridor product found. FX markup unknown — key gap.</div>
+  <div class="finding"><span class="finding-num">4</span> <strong>WorldFirst has the strongest theoretical cost position</strong> at ~1.45% (0.75% FX + 0.7% payment) vs 10.4% bank average = ~7x advantage. However, ICBC CHINEX may compete on the China-delivery leg. The key differentiator is whether Turkish buyers can practically access WorldFirst vs the in-country ICBC option.</div>
+  <div class="finding"><span class="finding-num">5</span> <strong>RMB infrastructure launched November 2025</strong> (ICBC Turkey clearing bank) but has not yet reached domestic bank retail offerings. Ziraat, İş, Garanti, Yapı Kredi, and Halkbank still route via USD. This will change — the question is speed of adoption.</div>
+  <div class="finding"><span class="finding-num">6</span> <strong>Turkish lira volatility adds a structural premium.</strong> Chinese suppliers add extra buffer for Turkey-origin orders beyond the standard 2–5% USD buffer. The lira lost ~80% of value 2018–2023. This makes the case for CNY direct payment even stronger — removing lira risk from the supplier's perspective.</div>
+  <div class="finding"><span class="finding-num">7</span> <strong>Wise operates under severe Turkey restrictions since May 2023.</strong> Cannot top up from TRY, open new currency balances, receive incoming, or hold TRY. Can still send outbound to China. Business CNY transfers may be blocked. Measured 7.6% total corridor cost by Monito — high relative to Wise's performance on mature corridors.</div>
+  <div class="finding"><span class="finding-num">8</span> <strong>Heavy regulatory environment.</strong> MASAK requires pre-notification for outbound transfers >$5,000. Decree No. 32 governs all FX. Exporters must convert 40% of proceeds to TRY. No outright ban on China transfers but compliance burden is high.</div>
+
+  <!-- Data Quality -->
+  <h2>Data Quality</h2>
+  <p>Overall confidence: MEDIUM. Bank transfer fees are well-documented (published fee schedules in Turkish). FX markup data is limited — only İşbank publishes live rates, and CNY is not listed on any domestic bank. ICBC CHINEX fee is confirmed but FX spread is unknown. Monito provides reliable corridor-level aggregate. Currency composition triangulated from ICBC Turkey annual report, PBOC swap data, and academic invoicing research.</p>
+  <p>Key gaps: No bank publishes TRY→CNY specific markup (pair not tradeable at domestic banks). ICBC CHINEX FX rate unknown. Paysend corridor-specific pricing unknown. Wise Turkey restrictions create uncertainty about actual availability. Garanti BBVA and Yapı Kredi FX markups are estimated from sector norms, not directly measured.</p>
+
+  <div class="disclaimer">
+    Cost estimates based on published rates, fee schedules, and independent comparison data as of 3 April 2026. Actual costs vary by bank, account type, transfer amount, and market conditions. WorldFirst costs shown use the maximum published FX markup of 0.75% for major currencies on the Turkey corridor; actual rates may be lower. Turkish regulatory requirements (MASAK, Decree No. 32) apply to all outbound transfers. This comparison is for illustrative purposes and does not constitute financial advice.
+  </div>
+
+</div>
+
+<script>
+function showRoute(route) {
+  document.querySelectorAll('.route-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.currency-nav button').forEach(b => b.classList.remove('active'));
+  document.getElementById('route-' + route).classList.add('active');
+  event.target.classList.add('active');
+}
+</script>
+</body>
+</html>
