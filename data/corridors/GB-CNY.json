@@ -19,7 +19,7 @@
     "note": "All four sources cluster tightly around 9.15 GBP/CNY. BoE rate is for previous business day (2026-04-01). XE rate is live."
   },
 
-  "executive_summary": "UK banks charge between 2.2% and 4.6% in exchange rate markup on GBP-to-CNY transfers, with additional flat fees of GBP 5-25 and unpredictable SWIFT intermediary deductions. On a GBP 10,000 payment to a Chinese supplier, the estimated total cost via a major UK bank ranges from approximately GBP 245 (Nationwide, the cheapest bank) to GBP 490 (NatWest at the high end). WorldFirst's published ceiling for this corridor is 0.5% FX markup with a GBP 4 international transfer fee — an estimated total cost of approximately GBP 54 on the same GBP 10,000 transfer. Wise offers zero FX markup with a percentage-based fee of approximately 1.13%, totalling around GBP 113 on GBP 10,000, with the advantage of near-instant delivery. No UK high-street bank can hold CNY in standard personal accounts, and none offer same-day CNY arrival. All banks route via SWIFT with 2-10 working day delivery times. The FX markup — not the visible wire fee — represents 85-95% of the true cost of a bank transfer to China.",
+  "executive_summary": "UK banks charge between 2.2% and 4.6% in exchange rate markup on GBP-to-CNY transfers, with additional flat fees of GBP 5-25 and unpredictable SWIFT intermediary deductions. On a GBP 10,000 payment to a Chinese supplier, the estimated total cost via a major UK bank ranges from approximately GBP 255 (Nationwide) to GBP 410 (NatWest). The fintech landscape offers significantly lower costs: WorldFirst (GBP 54 at 0.5% max FX ceiling), Airwallex (GBP 50 at 0.5% FX, business only with eligibility restrictions), Wise (GBP 91 at 0.91% effective cost via Alipay), and XE (GBP 105 estimated at ~1% opaque markup). Wise's '0% FX markup' model charges a transparent percentage fee that is economically equivalent to a 0.91% markup on GBP 10k — the distinction is transparency of presentation, not economics. The fintech market splits clearly: Airwallex and WorldFirst compete head-to-head for B2B supplier payments with local CNY rails and same-day delivery; Wise, Remitly, and WorldRemit serve personal remittances with CNY caps; OFX is business-only; XE serves both. No UK high-street bank holds CNY or offers same-day arrival. The FX markup represents 85-95% of the true cost of a bank transfer.",
 
   "providers": [
     {
@@ -494,17 +494,54 @@
 
       "fx_markup_pct": { "low": 0, "typical": 0, "high": 0 },
       "fx_markup_source": [
-        { "url": "https://wise.com/us/pricing/", "date": "2026-04-02", "confidence": "published", "note": "Wise uses mid-market rate with zero markup" },
-        { "url": "https://rates.fm/banks/wise-pricing-transfer-fees/", "date": "2026-04-02", "confidence": "third_party", "note": "Confirmed 0% markup, all cost in transparent fee" }
+        { "url": "https://wise.com/us/pricing/", "date": "2026-04-02", "confidence": "published", "note": "Wise uses mid-market rate with zero markup. ecbMarkupPercent = 0.0%." }
       ],
-      "fx_markup_notes": "Wise charges 0% FX markup. All costs are in the transparent percentage-based transfer fee (Dimension 2). Mid-market rate matches publicly available rates (Google, Reuters, XE).",
+      "fx_markup_notes": "Wise charges 0% FX markup — the mid-market rate is passed through exactly. However, all cost is embedded in the transparent percentage-based transfer fee (Dimension 2). For comparison purposes, Wise's effective total cost on GBP-to-CNY is 0.83-1.37% depending on amount and delivery method — economically equivalent to a 0.83-1.37% FX markup with zero fees. The distinction is presentation (fee shown upfront), not economics (same CNY arrives).",
 
-      "transfer_fee": { "amount_pct": 1.13, "currency": "GBP", "type": "percentage", "example": "GBP 11.26 on GBP 1,000; GBP 37.69 on GBP 4,000" },
-      "transfer_fee_source": [
-        { "url": "https://fromto.money/transfer/from-united-kingdom/to-china", "date": "2026-04-02", "confidence": "third_party", "note": "GBP 11.26 on GBP 1,000 (1.13%)" },
-        { "url": "https://wise.com/us/pricing/", "date": "2026-04-02", "confidence": "published", "note": "Dual-fee: fixed + percentage. Varies by delivery method." }
+      "effective_total_cost_pct": {
+        "note": "Wise's fee expressed as an equivalent FX markup for like-for-like comparison",
+        "at_500_gbp": 1.37,
+        "at_1000_gbp": 1.13,
+        "at_5000_gbp": 0.93,
+        "at_10000_gbp": 0.91,
+        "at_25000_gbp": 0.87,
+        "at_50000_gbp": 0.83
+      },
+
+      "transfer_fee": { "type": "dual_component", "currency": "GBP" },
+      "transfer_fee_components": {
+        "fixed_fee_gbp": 2.45,
+        "variable_fee_pct": 0.89,
+        "note": "Fixed + variable. Both vary by delivery method. Figures shown are for Alipay (most common CNY route)."
+      },
+      "transfer_fee_by_amount": [
+        { "send_gbp": 500, "total_fee_gbp": 6.86, "effective_pct": 1.37 },
+        { "send_gbp": 1000, "total_fee_gbp": 11.27, "effective_pct": 1.13 },
+        { "send_gbp": 5000, "total_fee_gbp": 46.56, "effective_pct": 0.93 },
+        { "send_gbp": 10000, "total_fee_gbp": 90.66, "effective_pct": 0.91 },
+        { "send_gbp": 25000, "total_fee_gbp": 216.96, "effective_pct": 0.87 },
+        { "send_gbp": 50000, "total_fee_gbp": 412.92, "effective_pct": 0.83 }
       ],
-      "transfer_fee_notes": "Dual-fee model: fixed fee + percentage. For GBP-to-CNY ~1.13% on GBP 1,000, ~0.94% on GBP 4,000 (percentage decreases with amount). Fees vary by delivery method (Alipay, WeChat, UnionPay, bank transfer). Cheapest from Wise balance. Credit/debit card payments up to 7.8% additional. Volume discounts for transfers over USD 25,000 equivalent.",
+      "transfer_fee_by_delivery_method_10k": [
+        { "method": "Wise Balance (hold CNY)", "fee_gbp": 35.87, "effective_pct": 0.36 },
+        { "method": "WeChat Pay", "fee_gbp": 66.23, "effective_pct": 0.66 },
+        { "method": "SWIFT", "fee_gbp": 66.63, "effective_pct": 0.67 },
+        { "method": "Alipay", "fee_gbp": 90.66, "effective_pct": 0.91 },
+        { "method": "Bank Transfer (UnionPay)", "fee_gbp": 90.66, "effective_pct": 0.91 },
+        { "method": "Bank of Shanghai", "fee_gbp": 113.37, "effective_pct": 1.13 },
+        { "method": "Card delivery", "fee_gbp": 187.89, "effective_pct": 1.88 }
+      ],
+      "transfer_fee_by_funding_method_1k": [
+        { "method": "Wise Balance", "total_fee_gbp": 11.10, "effective_pct": 1.11 },
+        { "method": "Bank Transfer", "total_fee_gbp": 11.27, "effective_pct": 1.13 },
+        { "method": "Debit Card", "total_fee_gbp": 14.43, "effective_pct": 1.44 },
+        { "method": "Credit Card", "total_fee_gbp": 33.37, "effective_pct": 3.34 }
+      ],
+      "transfer_fee_source": [
+        { "url": "https://wise.com/gb/pricing/send-money?source=GBP&target=CNY", "date": "2026-04-02", "confidence": "published", "note": "Wise GBP-CNY pricing page with live quotes" },
+        { "url": "https://wise.com/us/pricing/", "date": "2026-04-02", "confidence": "published", "note": "General pricing structure" }
+      ],
+      "transfer_fee_notes": "Dual-fee model: fixed (GBP 2.45 for Alipay) + variable (0.89% for Alipay). Fee decreases at higher amounts due to flat fee dilution and volume discount tiers (kick in at GBP 20k+/month). Delivery method matters enormously: holding in Wise Balance costs 0.36% vs 0.91% via Alipay vs 1.88% via card. Credit card funding adds ~2.2% on top. Business and personal pricing is identical.",
 
       "intermediary_fee": { "low": 0, "typical": 0, "high": 0, "currency": "GBP" },
       "intermediary_source": { "url": "https://wise.com/help/articles/2955298/guide-to-cny-transfers", "date": "2026-04-02", "confidence": "published" },
@@ -549,11 +586,12 @@
 
       "total_cost_10k_gbp": {
         "fx_cost": 0,
-        "wire_fee": 113,
+        "wire_fee": 90.66,
         "intermediary": 0,
-        "total": 113,
+        "total": 90.66,
         "currency": "GBP",
-        "calculation_method": "fx_markup (0%) + transfer_fee (~1.13% of 10000) + intermediary (0). Note: actual fee may be lower on 10k due to volume scaling."
+        "calculation_method": "fx_markup (0%) + Wise fee on GBP 10k via Alipay (GBP 90.66 = 0.91%) + intermediary (0). Via WeChat would be GBP 66.23 (0.66%). Via Wise Balance would be GBP 35.87 (0.36%).",
+        "effective_markup_equivalent": "0.91% (Alipay) / 0.66% (WeChat) / 0.36% (Wise Balance)"
       }
     },
 
@@ -621,6 +659,195 @@
         "total": 110,
         "currency": "GBP",
         "calculation_method": "fx_markup_typical (1.0%) x 10000 + wire_fee (0) + intermediary_typical (10). Note: OFX CNY is business-only."
+      }
+    },
+
+    {
+      "provider_id": "airwallex",
+      "provider_name": "Airwallex",
+      "provider_type": "fintech",
+
+      "fx_markup_pct": { "low": 0.4, "typical": 0.5, "high": 0.6 },
+      "fx_markup_source": [
+        { "url": "https://www.airwallex.com/uk/business-account/transfers/send-money-to-china", "date": "2026-04-02", "confidence": "published", "note": "0.5% above interbank for major currencies including CNY" },
+        { "url": "https://www.wearefounders.uk/airwallex-pricing-2026-every-plan-fee-and-hidden-cost-explained/", "date": "2026-04-02", "confidence": "third_party", "note": "0.4-0.6% depending on volume" }
+      ],
+      "fx_markup_notes": "Direct WorldFirst competitor at identical price point (0.5% FX). Claims 'over 80% cheaper than UK high street banks'. Local CNY rails bypass SWIFT entirely. BUSINESS ONLY.",
+
+      "transfer_fee": { "amount": 0, "currency": "GBP", "type": "flat", "note": "local CNY" },
+      "transfer_fee_source": { "url": "https://www.wearefounders.uk/airwallex-pricing-2026-every-plan-fee-and-hidden-cost-explained/", "date": "2026-04-02", "confidence": "third_party" },
+      "transfer_fee_notes": "Local CNY transfers: FREE. SWIFT transfers: GBP 10-20. Receiving from non-owner accounts: 0.3%. Account tiers: Explore free (or GBP 19/mo if <GBP 10k balance), Grow GBP 49/mo, Accelerate from GBP 999/mo.",
+
+      "intermediary_fee": { "low": 0, "typical": 0, "high": 0, "currency": "GBP" },
+      "intermediary_source": { "url": "https://help.airwallex.com/hc/en-gb/articles/4633986370447-Guide-to-making-payments-to-China", "date": "2026-04-02", "confidence": "published" },
+      "uses_swift": false,
+      "direct_cny_rails": true,
+      "intermediary_notes": "Local CNY rails: no SWIFT, no intermediary fees. SWIFT route also available but carries GBP 10-20 fee and intermediary risk.",
+
+      "monthly_fee": 0,
+      "monthly_fee_note": "Explore plan free if GBP 10k+ balance/deposits; otherwise GBP 19/mo",
+      "setup_fee": 0,
+      "inactivity_fee": null,
+      "minimum_balance": null,
+      "account_cost_source": { "url": "https://www.wearefounders.uk/airwallex-pricing-2026-every-plan-fee-and-hidden-cost-explained/", "date": "2026-04-02", "confidence": "third_party" },
+
+      "transfer_time_days": { "standard": "0-1", "express": null },
+      "same_day_cny": true,
+      "cutoff_time": null,
+      "speed_source": { "url": "https://www.airwallex.com/uk/business-account/transfers/send-money-to-china", "date": "2026-04-02", "confidence": "published" },
+      "speed_notes": "Local CNY: same-day or next business day. SWIFT: 2-5 days. Local CNY declaration review: 0-2 business days additional.",
+
+      "regulatory_status": "FCA-authorised EMI (FRN: 900876). Regulated in multiple jurisdictions.",
+      "fund_safeguarding": true,
+      "parent_company": "Airwallex Pty Ltd (Australia)",
+      "years_operating": 11,
+      "years_operating_note": "Founded 2015 in Melbourne.",
+      "fraud_protection_features": ["FCA regulated EMI", "Fund safeguarding", "Multi-jurisdiction licensing"],
+      "fscs_protected": false,
+      "safety_source": { "url": "https://help.airwallex.com/hc/en-gb/articles/900001757106-How-is-Airwallex-licensed-and-regulated", "date": "2026-04-02", "confidence": "published" },
+
+      "max_transfer": "Not publicly stated",
+      "supported_currencies": "60+ currencies",
+      "can_hold_cny": false,
+      "can_pay_1688": false,
+      "forward_contracts": false,
+      "api_available": true,
+      "api_note": "Full API for business integrations, batch payments",
+      "limitations_source": { "url": "https://help.airwallex.com/hc/en-gb/articles/4633986370447-Guide-to-making-payments-to-China", "date": "2026-04-02", "confidence": "published" },
+      "limitations_notes": "BUSINESS ONLY — no personal transfers. Local CNY eligibility restricted: (1) businesses registered in mainland China with Chinese national legal rep/UBO, (2) foreign reps with passport + Chinese bank card, (3) e-commerce/retail sellers exporting from China. All local CNY transfers require declaration documentation. SWIFT universally available without restrictions.",
+
+      "total_cost_10k_gbp": {
+        "fx_cost": 50,
+        "wire_fee": 0,
+        "intermediary": 0,
+        "total": 50,
+        "currency": "GBP",
+        "calculation_method": "fx_markup_typical (0.5%) x 10000 + local_transfer_fee (0) + intermediary (0). Note: business only, local CNY eligibility restrictions apply."
+      }
+    },
+
+    {
+      "provider_id": "remitly",
+      "provider_name": "Remitly",
+      "provider_type": "fintech",
+
+      "fx_markup_pct": { "low": 1.0, "typical": 2.0, "high": 3.7 },
+      "fx_markup_source": [
+        { "url": "https://moneytransfers.com/companies/remitly", "date": "2026-04-02", "confidence": "third_party", "note": "1-3.7% above mid-market" },
+        { "url": "https://www.remitly.com/gb/en/china", "date": "2026-04-02", "confidence": "published", "note": "Markup embedded in rate, not separately disclosed" }
+      ],
+      "fx_markup_notes": "Markup embedded in exchange rate, not shown separately. Ranges from ~1% (large economy transfers) to 3.7% (small express transfers). First GBP 750 gets a promotional rate. Express delivery has worse rates than economy.",
+
+      "transfer_fee": { "amount": 1.49, "currency": "GBP", "type": "flat" },
+      "transfer_fee_source": { "url": "https://www.remitly.com/gb/en/china", "date": "2026-04-02", "confidence": "published" },
+      "transfer_fee_notes": "GBP 1.49 flat fee. First transfer free. Does not vary by amount.",
+
+      "intermediary_fee": { "low": 0, "typical": 0, "high": 0, "currency": "GBP" },
+      "intermediary_source": { "url": "https://www.remitly.com/gb/en/china", "date": "2026-04-02", "confidence": "published" },
+      "uses_swift": false,
+      "direct_cny_rails": true,
+      "intermediary_notes": "Local delivery via Alipay, WeChat Pay, or UnionPay bank deposit. No SWIFT, no intermediary deductions.",
+
+      "monthly_fee": 0,
+      "setup_fee": 0,
+      "inactivity_fee": null,
+      "minimum_balance": null,
+      "account_cost_source": { "url": "https://www.remitly.com/", "date": "2026-04-02", "confidence": "published" },
+
+      "transfer_time_days": { "standard": "0-1 (express) / 3-5 (economy)", "express": "minutes" },
+      "same_day_cny": true,
+      "cutoff_time": null,
+      "speed_source": { "url": "https://www.remitly.com/gb/en/china", "date": "2026-04-02", "confidence": "published" },
+      "speed_notes": "Express: minutes to hours (Alipay/WeChat). Economy: 3-5 business days (bank deposit). Express costs more in exchange rate markup.",
+
+      "regulatory_status": "FCA-authorised payment institution (FRN: 728639). HMRC registered MSB.",
+      "fund_safeguarding": true,
+      "parent_company": "Remitly Inc. (NASDAQ: RELY)",
+      "years_operating": 15,
+      "years_operating_note": "Founded 2011 in Seattle.",
+      "fraud_protection_features": ["FCA regulated", "Fund safeguarding"],
+      "fscs_protected": false,
+      "safety_source": { "url": "https://register.fca.org.uk/s/firm?id=001b000002e8cY1AAI", "date": "2026-04-02", "confidence": "published" },
+
+      "max_transfer": "GBP 75,000 per single transaction",
+      "supported_currencies": "Multiple corridors",
+      "can_hold_cny": false,
+      "can_pay_1688": false,
+      "forward_contracts": false,
+      "api_available": false,
+      "limitations_source": { "url": "https://www.remitly.com/gb/en/landing/send-limits", "date": "2026-04-02", "confidence": "published" },
+      "limitations_notes": "PERSONAL REMITTANCE ONLY — not designed for B2B supplier payments. Delivery to Alipay/WeChat requires recipient's registered account. Express delivery has worse FX rates than economy.",
+
+      "total_cost_10k_gbp": {
+        "fx_cost": 200,
+        "wire_fee": 1.49,
+        "intermediary": 0,
+        "total": 201.49,
+        "currency": "GBP",
+        "calculation_method": "fx_markup_typical (2.0%) x 10000 + flat_fee (1.49) + intermediary (0). Note: personal only, actual markup varies by delivery speed."
+      }
+    },
+
+    {
+      "provider_id": "xe",
+      "provider_name": "XE Money Transfer",
+      "provider_type": "fintech",
+
+      "fx_markup_pct": { "low": 0.5, "typical": 1.0, "high": 2.0 },
+      "fx_markup_source": [
+        { "url": "https://wise.com/us/blog/xe-money-transfer-review", "date": "2026-04-02", "confidence": "third_party", "note": "0.5-2% above mid-market" },
+        { "url": "https://help.xe.com/hc/en-gb/articles/360019467737-What-is-the-mid-market-rate", "date": "2026-04-02", "confidence": "published", "note": "XE acknowledges markup exists but does not publish %" }
+      ],
+      "fx_markup_notes": "XE shows mid-market rate on their converter but applies a markup on actual send rate. Not transparent — markup varies by amount (larger = lower), currency pair, and market conditions. XE deliberately does not publish exact percentages.",
+
+      "transfer_fee": { "amount": 0, "currency": "GBP", "type": "flat", "note": "bank transfer funding" },
+      "transfer_fee_source": { "url": "https://www.xe.com/money-transfer-fees/", "date": "2026-04-02", "confidence": "published" },
+      "transfer_fee_notes": "Often GBP 0 for bank transfer funding. Card payments carry a small fee (amount not published). 'Some transfers to China come with a small fee.'",
+
+      "intermediary_fee": { "low": 0, "typical": 5, "high": 15, "currency": "GBP" },
+      "intermediary_source": { "url": "https://www.xe.com/en-gb/send-money/send-money-to-china/", "date": "2026-04-02", "confidence": "estimated" },
+      "uses_swift": true,
+      "direct_cny_rails": true,
+      "intermediary_notes": "Mix of local rails and SWIFT depending on amount/route. Bank deposits can arrive in minutes (suggesting local rails for some transfers). No specific intermediary fee disclosure.",
+
+      "monthly_fee": 0,
+      "setup_fee": 0,
+      "inactivity_fee": null,
+      "minimum_balance": null,
+      "account_cost_source": { "url": "https://www.xe.com/", "date": "2026-04-02", "confidence": "published" },
+
+      "transfer_time_days": { "standard": "1-4", "express": null },
+      "same_day_cny": true,
+      "cutoff_time": null,
+      "speed_source": { "url": "https://www.xe.com/en-gb/send-money/send-money-to-china/", "date": "2026-04-02", "confidence": "published" },
+      "speed_notes": "1-4 working days standard. Many transfers same-day or instant once funds received.",
+
+      "regulatory_status": "FCA-regulated. Owned by Euronet Worldwide (NASDAQ: EEFT).",
+      "fund_safeguarding": true,
+      "parent_company": "Euronet Worldwide Inc. (NASDAQ: EEFT)",
+      "years_operating": 33,
+      "years_operating_note": "XE founded 1993. Acquired by Euronet/HiFX.",
+      "fraud_protection_features": ["FCA regulated", "Euronet corporate backing"],
+      "fscs_protected": false,
+      "safety_source": { "url": "https://www.xe.com/en-gb/send-money/send-money-to-china/", "date": "2026-04-02", "confidence": "published" },
+
+      "max_transfer": "$535,000 USD equivalent per online transfer. Contact team for larger.",
+      "supported_currencies": "130+ currencies",
+      "can_hold_cny": false,
+      "can_pay_1688": false,
+      "forward_contracts": true,
+      "forward_contracts_note": "Available for some customers",
+      "api_available": true,
+      "limitations_source": { "url": "https://www.xe.com/en-gb/send-money/send-money-to-china/", "date": "2026-04-02", "confidence": "published" },
+      "limitations_notes": "Both personal and business. High limits ($535k). Forward contracts may be available. Pricing is opaque. Cash pickup available at 500k+ locations worldwide.",
+
+      "total_cost_10k_gbp": {
+        "fx_cost": 100,
+        "wire_fee": 0,
+        "intermediary": 5,
+        "total": 105,
+        "currency": "GBP",
+        "calculation_method": "fx_markup_typical (1.0%) x 10000 + transfer_fee (0) + intermediary_estimated (5). Pricing opaque — actual cost may vary significantly."
       }
     },
 

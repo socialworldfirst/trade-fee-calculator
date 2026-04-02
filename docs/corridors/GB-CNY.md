@@ -2,7 +2,7 @@
 
 > **Research date:** 2 April 2026
 > **Mid-market rate:** 1 GBP = ~9.15 CNY (XE.com, Bank of England, ECB consensus)
-> **Providers researched:** 7 banks, 2 fintechs, WorldFirst
+> **Providers researched:** 7 banks, 5 fintechs, WorldFirst (13 total)
 
 ---
 
@@ -16,18 +16,21 @@ The exchange rate markup — not the visible wire fee — represents **85-95% of
 
 ## Cost Comparison at a Glance
 
-| Provider | FX Markup | Wire Fee | Intermediary | Total Cost (GBP 10k) |
-|----------|----------|----------|-------------|---------------------|
-| **WorldFirst** | 0.5% (max) | GBP 4 | GBP 0 | **~GBP 54** |
-| **Wise** | 0% | ~1.13% | GBP 0 | **~GBP 113** |
-| **OFX** | ~1.0% | GBP 0 | ~GBP 10 | **~GBP 110** (business only) |
-| Nationwide | 2.2% | GBP 20 | ~GBP 15 | **~GBP 255** |
-| Barclays | 2.75% | GBP 0 (online) | ~GBP 6 | **~GBP 281** |
-| Santander | 2.5% | GBP 25 | ~GBP 15 | **~GBP 290** |
-| HSBC | 3.2% | GBP 5 | ~GBP 15 | **~GBP 340** |
-| TSB | 3.2% | GBP 17.50 | GBP 6 | **~GBP 344** |
-| Lloyds | 3.2% | GBP 9.50 | GBP 20 | **~GBP 350** |
-| NatWest | 4.0% | GBP 0 (online) | GBP 10 | **~GBP 410** |
+| Provider | Effective Cost % | Wire Fee | Intermediary | Total Cost (GBP 10k) | Segment |
+|----------|-----------------|----------|-------------|---------------------|---------|
+| **Airwallex** | 0.5% markup | GBP 0 (local) | GBP 0 | **~GBP 50** | B2B only (eligibility restrictions) |
+| **WorldFirst** | 0.5% markup (max) | GBP 4 | GBP 0 | **~GBP 54** | B2B + personal |
+| **Wise** | 0.91% fee | GBP 0 | GBP 0 | **~GBP 91** | Personal + B2B (CNY caps) |
+| **XE** | ~1.0% markup | GBP 0 | ~GBP 5 | **~GBP 105** | Personal + business |
+| **OFX** | ~1.0% markup | GBP 0 | ~GBP 10 | **~GBP 110** | B2B only (CNY) |
+| **Remitly** | ~2.0% markup | GBP 1.49 | GBP 0 | **~GBP 201** | Personal only |
+| Nationwide | 2.2% markup | GBP 20 | ~GBP 15 | **~GBP 255** | Bank |
+| Barclays | 2.75% markup | GBP 0 (online) | ~GBP 6 | **~GBP 281** | Bank |
+| Santander | 2.5% markup | GBP 25 | ~GBP 15 | **~GBP 290** | Bank |
+| HSBC | 3.2% markup | GBP 5 | ~GBP 15 | **~GBP 340** | Bank |
+| TSB | 3.2% markup | GBP 17.50 | GBP 6 | **~GBP 344** | Bank |
+| Lloyds | 3.2% markup | GBP 9.50 | GBP 20 | **~GBP 350** | Bank |
+| NatWest | 4.0% markup | GBP 0 (online) | GBP 10 | **~GBP 410** | Bank |
 
 *Costs are estimates based on published rates and independent comparison data. Actual costs vary by account type, relationship, and market conditions.*
 
@@ -66,9 +69,17 @@ The exchange rate markup — not the visible wire fee — represents **85-95% of
 
 ### Fintechs
 
-**Wise** — Zero FX markup (uses mid-market rate). All cost in transparent fee (~1.13% on GBP 1,000, ~0.94% on GBP 4,000). No SWIFT — delivers via Alipay, WeChat, UnionPay, or local bank transfer (B2B). 74% of transfers arrive in under 20 seconds. Per-transaction CNY limits: 33,000-50,000 CNY depending on method. Annual limits: 300,000-600,000 CNY. Not FSCS-protected (fund safeguarding instead). FCA FRN: 900507.
+**Wise** — Claims "0% FX markup" but charges a transparent percentage-based fee that is economically identical to a markup. On GBP 10,000 via Alipay: GBP 90.66 fee = 0.91% effective cost. The fee has two components: fixed (GBP 2.45) + variable (0.89%). The effective rate scales down with amount: 1.37% at GBP 500, 0.91% at GBP 10k, 0.83% at GBP 50k. Delivery method matters: holding in Wise Balance costs just 0.36%, WeChat 0.66%, Alipay/UnionPay 0.91%. Credit card funding adds ~2.2% on top — avoid. Delivers via Alipay, WeChat, UnionPay, or bank transfer (B2B). 74% of transfers arrive in under 20 seconds. Per-transaction CNY limits: 33-50k CNY. Annual limits: 300-600k CNY. Personal and business pricing is identical. Not FSCS-protected. FCA FRN: 900507.
 
-**OFX** — FX markup of approximately 0.4-2.0% (GBP-CNY likely 1.0-2.0%). Zero transfer fees. Uses SWIFT. 3-5 business days to China. Forward contracts available (2 days to 12 months). **Critical limitation: CNY transfers restricted to business customers only.** FCA FRN: 902028.
+**Airwallex** — WorldFirst's most direct B2B competitor. 0.5% FX markup (identical to WF) with free local CNY transfers. Same-day delivery via local rails. Business only. Key difference from WorldFirst: Airwallex's local CNY rail has strict eligibility — the recipient business must be registered in mainland China with a Chinese national as legal rep/UBO, or be an e-commerce seller exporting from China. SWIFT universally available as fallback (GBP 10-20). Account tiers: Explore free (GBP 19/mo if <GBP 10k balance), Grow GBP 49/mo. FCA FRN: 900876.
+
+**XE Money Transfer** — Serves both personal and business. Opaque pricing (0.5-2% markup embedded in rate, not published). Often zero transfer fee for bank-funded transfers. Highest single-transfer limit ($535,000). Forward contracts available. 1-4 working days. Owned by Euronet Worldwide (NASDAQ: EEFT). The sleeper competitor — flexible on both segments with high limits but lacks pricing transparency. FCA regulated.
+
+**OFX** — FX markup of approximately 0.4-2.0% (GBP-CNY likely 1.0-2.0%). Zero transfer fees. Uses SWIFT. 3-5 business days to China. Forward contracts available (2 days to 12 months). **CNY transfers restricted to business customers only.** Minimum ~GBP 100. FCA FRN: 902028.
+
+**Remitly** — Personal remittance with low flat fee (GBP 1.49) but meaningful FX markup (~1-3.7%) embedded in the exchange rate. Express delivery (Alipay/WeChat) arrives in minutes but at worse rates than economy. Max GBP 75,000 per transaction. Not suitable for B2B supplier payments. First transfer free. FCA FRN: 728639.
+
+*Also researched but less relevant:* **Revolut** serves this corridor only via Alipay partnership (July 2025), personal only, capped at CNY 50,000 — not a B2B option. **Payoneer** is a receive-and-withdraw platform, not a direct send-to-China service. **WorldRemit** offers personal remittances similar to Remitly with 0.9-3% embedded markup.
 
 ### WorldFirst
 
@@ -82,17 +93,19 @@ The exchange rate markup — not the visible wire fee — represents **85-95% of
 
 2. **The FX markup is the hidden cost.** On GBP 10,000, the markup alone costs GBP 220-460 depending on the bank. The visible wire fee (GBP 0-25) is a fraction of the true cost.
 
-3. **Santander is the most transparent bank** — the only one publishing explicit FX tiers. At GBP 50k+, their 1% markup is the best bank rate.
+3. **Wise's "0% markup" is marketing framing, not economic reality.** Their transparent fee of 0.91% on GBP 10k via Alipay is functionally identical to a 0.91% FX markup — the customer receives the same CNY either way. The difference is Wise shows the cost upfront. For honest comparison, Wise's effective cost is ~0.91% (Alipay) or as low as 0.36% (Wise Balance).
 
-4. **NatWest is the most expensive** — 4.0% typical markup, widest variance, and the lowest personal online limit (GBP 10,000/day).
+4. **Airwallex is WorldFirst's direct B2B competitor** at an identical 0.5% FX rate with free local CNY rails. However, Airwallex's local CNY has strict eligibility restrictions tied to Chinese regulatory requirements (recipient must be China-registered entity). WorldFirst's advantage is broader eligibility via Ant Group infrastructure.
 
-5. **Wise is the fastest** — 74% instant delivery — but has per-transaction CNY limits (33-50k CNY) and annual caps (300-600k CNY) that may constrain regular supplier payments.
+5. **The fintech market splits into B2B and personal segments.** For supplier payments: WorldFirst and Airwallex (0.5% FX, local rails, same-day). For personal remittance: Wise, Remitly, WorldRemit (higher effective cost but instant delivery). XE bridges both.
 
-6. **OFX is business-only for CNY** — personal users cannot send to China.
+6. **Santander is the most transparent bank** — the only one publishing explicit FX tiers. At GBP 50k+, their 1% markup is the best bank rate.
 
-7. **WorldFirst's cost advantage is largest on this corridor** — the published 0.5% FX ceiling vs. 2.2-4.6% bank markups represents a 4-9x difference in FX costs.
+7. **NatWest is the most expensive** — 4.0% typical markup, widest variance, and the lowest personal online limit (GBP 10,000/day).
 
-8. **All 7 banks and both fintechs are FCA-regulated.** Banks offer FSCS deposit protection (GBP 120,000); fintechs offer fund safeguarding (different protection model).
+8. **WorldFirst's cost advantage over banks is 4-9x on FX** — 0.5% ceiling vs. 2.2-4.6% bank markups. Against fintechs, WF is competitive with Airwallex and cheaper than Wise/XE/OFX on this corridor.
+
+9. **All providers are FCA-regulated.** Banks offer FSCS deposit protection (GBP 120,000); fintechs offer fund safeguarding (different model — segregated funds, not government-backed insurance).
 
 ---
 
