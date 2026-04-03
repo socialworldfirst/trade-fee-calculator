@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cross-Border Payment Cost Research — Corridor Index</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'SF Mono', 'Consolas', 'Menlo', monospace; color: #111; background: #fff; line-height: 1.65; font-size: 13px; -webkit-font-smoothing: antialiased; }
+  .page { max-width: 860px; margin: 0 auto; padding: 48px 28px 100px; }
+  .report-header { border-bottom: 3px double #111; padding-bottom: 16px; margin-bottom: 32px; }
+  .report-header h1 { font-size: 18px; font-weight: 700; letter-spacing: 0.02em; text-transform: uppercase; }
+  .report-header .subtitle { font-size: 13px; color: #666; margin-top: 4px; }
+  .report-meta { display: flex; gap: 20px; margin-top: 10px; font-size: 11px; color: #888; text-transform: uppercase; letter-spacing: 0.05em; }
+  h2 { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin: 40px 0 16px; padding-bottom: 6px; border-bottom: 1px solid #111; }
+  p { margin-bottom: 12px; color: #333; }
+  .note { font-size: 11px; color: #888; margin: 8px 0 16px; }
+  table { width: 100%; border-collapse: collapse; margin: 12px 0 20px; font-size: 12px; }
+  th { text-align: left; padding: 8px 10px; font-weight: 700; font-size: 10px; text-transform: uppercase; letter-spacing: 0.06em; color: #666; border-bottom: 2px solid #111; background: #fafafa; }
+  td { padding: 10px 10px; border-bottom: 1px solid #e5e5e5; }
+  tr:last-child td { border-bottom: none; }
+  .num { font-variant-numeric: tabular-nums; text-align: right; }
+  .em { font-weight: 700; }
+  a { color: #111; }
+  a:hover { background: #111; color: #fff; text-decoration: none; padding: 1px 4px; margin: -1px -4px; }
+  .corridor-card { border: 1px solid #e5e5e5; padding: 20px; margin-bottom: 12px; transition: border-color 0.1s; }
+  .corridor-card:hover { border-color: #111; }
+  .corridor-card h3 { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+  .corridor-card .meta { font-size: 11px; color: #888; margin-bottom: 8px; }
+  .corridor-card .stat { font-size: 12px; }
+  .corridor-card .stat strong { font-size: 16px; }
+  .pending { opacity: 0.35; pointer-events: none; }
+  .pending .corridor-card { border-style: dashed; }
+  .disclaimer { margin-top: 48px; padding-top: 16px; border-top: 3px double #111; font-size: 10px; color: #999; line-height: 1.5; }
+</style>
+</head>
+<body>
+<nav style="background:#111; padding:10px 28px; font-size:11px; letter-spacing:0.06em; text-transform:uppercase; display:flex; gap:20px; align-items:center; flex-wrap:wrap;">
+  <a href="../corridors/" style="color:#fff; text-decoration:none; font-weight:700; border-bottom:1px solid #fff;">Research</a>
+  <a href="GB-CNY.html" style="color:#666; text-decoration:none;">UK</a>
+  <a href="AU-CNY.html" style="color:#666; text-decoration:none;">Australia</a>
+  <a href="TR-CNY.html" style="color:#666; text-decoration:none;">Turkey</a>
+  <span style="color:#333;">Vietnam</span>
+  <span style="color:#333;">Nigeria</span>
+  <span style="color:#333;">Pakistan</span>
+  <span style="color:#333;">Germany</span>
+  <span style="color:#333;">Bangladesh</span>
+  <span style="color:#333;">France</span>
+  <span style="color:#333;">Netherlands</span>
+</nav>
+<div class="page">
+
+  <div class="report-header">
+    <h1>Cross-Border Payment Cost Research</h1>
+    <div class="subtitle">Corridor-by-corridor analysis of the true cost of paying Chinese suppliers</div>
+    <div class="report-meta">
+      <span>April 2026</span>
+      <span>3 of 10 Corridors Complete</span>
+      <span>35 Providers Researched</span>
+    </div>
+  </div>
+
+  <!-- Cross-corridor summary -->
+  <h2>Cross-Corridor Comparison</h2>
+  <table>
+    <thead><tr><th>Corridor</th><th>Avg Bank Cost</th><th>WorldFirst Cost</th><th>Bank vs WF Spread</th><th class="num">Providers</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><a href="GB-CNY.html"><strong>UK &rarr; China</strong></a></td>
+        <td>&pound;255&ndash;410 / &pound;10k</td>
+        <td>&pound;54</td>
+        <td>4&ndash;9x</td>
+        <td class="num">13</td>
+        <td>Complete</td>
+      </tr>
+      <tr>
+        <td><a href="AU-CNY.html"><strong>Australia &rarr; China</strong></a></td>
+        <td>AUD 384&ndash;1,040 / AUD 10k</td>
+        <td>AUD 82</td>
+        <td>5&ndash;13x</td>
+        <td class="num">12</td>
+        <td>Complete</td>
+      </tr>
+      <tr>
+        <td><a href="TR-CNY.html"><strong>Turkey &rarr; China</strong></a></td>
+        <td>~10.4% of transfer</td>
+        <td>~1.45%</td>
+        <td>~7x</td>
+        <td class="num">10</td>
+        <td>Complete</td>
+      </tr>
+      <tr style="color:#888;"><td>Vietnam &rarr; China</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td class="num">&mdash;</td><td>Queued</td></tr>
+      <tr style="color:#888;"><td>Nigeria &rarr; China</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td class="num">&mdash;</td><td>Queued</td></tr>
+      <tr style="color:#888;"><td>Pakistan &rarr; China</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td class="num">&mdash;</td><td>Queued</td></tr>
+      <tr style="color:#888;"><td>Germany &rarr; China</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td class="num">&mdash;</td><td>Queued</td></tr>
+      <tr style="color:#888;"><td>Bangladesh &rarr; China</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td class="num">&mdash;</td><td>Queued</td></tr>
+      <tr style="color:#888;"><td>France &rarr; China</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td class="num">&mdash;</td><td>Queued</td></tr>
+      <tr style="color:#888;"><td>Netherlands &rarr; China</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td class="num">&mdash;</td><td>Queued</td></tr>
+    </tbody>
+  </table>
+
+  <!-- Completed corridors -->
+  <h2>Completed Corridors</h2>
+
+  <a href="GB-CNY.html" style="text-decoration:none; color:inherit;">
+    <div class="corridor-card">
+      <h3>GB-CNY &mdash; United Kingdom to China</h3>
+      <div class="meta">13 providers &middot; 7 banks, 5 fintechs, WorldFirst &middot; April 2026</div>
+      <div class="stat">Bank cost: <strong>&pound;255&ndash;410</strong> per &pound;10k &nbsp;&nbsp;|&nbsp;&nbsp; WorldFirst: <strong>&pound;54</strong> &nbsp;&nbsp;|&nbsp;&nbsp; Currency mix: USD ~75% / CNY ~25%</div>
+      <p style="margin-top:8px; margin-bottom:0; font-size:11px; color:#555;">FX markup is 85-95% of true cost. NatWest most expensive (4.0%). Santander only bank publishing tiered markup. Wise 0.91% effective (not 0%). Airwallex matches WF at 0.5% but with CNY eligibility restrictions. Full USD trade payment analysis with three-layer cost model.</p>
+    </div>
+  </a>
+
+  <a href="AU-CNY.html" style="text-decoration:none; color:inherit;">
+    <div class="corridor-card">
+      <h3>AU-CNY &mdash; Australia to China</h3>
+      <div class="meta">12 providers &middot; 4 banks, 7 fintechs, WorldFirst &middot; April 2026</div>
+      <div class="stat">Bank cost: <strong>AUD 384&ndash;1,040</strong> per AUD 10k &nbsp;&nbsp;|&nbsp;&nbsp; WorldFirst: <strong>AUD 82</strong> &nbsp;&nbsp;|&nbsp;&nbsp; Currency mix: USD ~78% / CNY ~3%</div>
+      <p style="margin-top:8px; margin-bottom:0; font-size:11px; color:#555;">AU banks charge 2-4x more for CNY than USD (NAB: 2.54% USD vs 10.4% CNY). Westpac blocks personal CNY entirely. ANZ is only Big 4 on CIPS. Largest bank-fintech spread found: 13-15x. TorFX strong local competitor at 0.88%.</p>
+    </div>
+  </a>
+
+  <a href="TR-CNY.html" style="text-decoration:none; color:inherit;">
+    <div class="corridor-card">
+      <h3>TR-CNY &mdash; Turkey to China</h3>
+      <div class="meta">10 providers &middot; 5 banks, 4 fintechs, WorldFirst &middot; April 2026</div>
+      <div class="stat">Bank cost: <strong>~10.4%</strong> of transfer &nbsp;&nbsp;|&nbsp;&nbsp; WorldFirst: <strong>~1.45%</strong> &nbsp;&nbsp;|&nbsp;&nbsp; Currency mix: USD ~87% / CNY ~7%</div>
+      <p style="margin-top:8px; margin-bottom:0; font-size:11px; color:#555;">Most expensive corridor. Double conversion structural (TRY&rarr;USD&rarr;CNY). Thinnest fintech market — Remitly, WorldRemit, XE, OFX don't serve Turkey outbound. ICBC Turkey CHINEX is the hidden gem (59 TRY flat, same-day). RMB clearing bank launched Nov 2025.</p>
+    </div>
+  </a>
+
+  <!-- Methodology -->
+  <h2>Methodology</h2>
+  <p>Each corridor is researched across 7 cost dimensions: FX markup, transfer fees, intermediary/receiving fees, account costs, speed, safety/regulation, and limitations. Providers include domestic banks (top 3-5 by market share), fintechs (Wise, Airwallex, OFX, XE, Remitly, plus regional specialists), and WorldFirst.</p>
+  <p>WorldFirst costs use the maximum published FX ceiling from the WorldFirst Product Handbook — not typical or negotiated rates. Bank costs use standard retail/SME online banking rates. All data points are sourced with URLs and access dates.</p>
+  <p>Currency composition is researched per corridor to determine the payment route split (USD vs CNY vs local currency). Each report includes a USD Route and CNY Direct comparison where both currencies exceed 20% settlement share.</p>
+  <p class="note">Full methodology: <a href="../RESEARCH-PLAN.md">Research Plan</a></p>
+
+  <div class="disclaimer">
+    Cost estimates based on published rates and independent comparison data as of April 2026. Actual costs vary by provider, account type, relationship, transfer amount, and market conditions. WorldFirst costs use maximum published FX ceilings per corridor. This research is for illustrative purposes and does not constitute financial advice.
+  </div>
+
+</div>
+</body>
+</html>
