@@ -1,0 +1,47 @@
+[
+  {
+    "question": "How much does it cost to send VND 250,000,000 from Vietnam to China?",
+    "answer": "Vietnamese banks charge an estimated total cost of 2-5% on VND-to-CNY transfers, combining FX markups of 1.5-4% with SWIFT fees of VND 300,000-600,000 and potential intermediary deductions. WorldFirst offers an estimated total cost of approximately 1.9%. On VND 250,000,000 (approximately USD 10,000), the estimated saving from using WorldFirst over a typical Vietnamese bank ranges from VND 2.5 million to VND 7.5 million per transaction.",
+    "sources": ["WorldFirst Vietnam corridor pricing", "Vietcombank and BIDV international transfer fee schedules", "State Bank of Vietnam published exchange rate bands"]
+  },
+  {
+    "question": "What is the cheapest way to pay a Chinese supplier from Vietnam?",
+    "answer": "WorldFirst (approximately 1.9% total cost) is the primary fintech option, as Vietnam is effectively a fintech desert for outbound cross-border payments. No domestic Vietnamese fintech offers direct CNY delivery to China. Wise does not support outbound VND transfers. The only alternatives are Vietnamese banks (2-5%) or informal channels, which carry significant legal and counterparty risk. For Vietnam's USD 254 billion annual trade with China, this limited competition translates directly into higher costs for importers.",
+    "sources": ["WorldFirst Vietnam pricing", "Wise supported currency routes for VND", "State Bank of Vietnam licensed payment intermediaries", "Vietnam General Department of Customs bilateral trade data"]
+  },
+  {
+    "question": "Can I pay my Chinese supplier directly in CNY from Vietnam?",
+    "answer": "Vietnamese banks cannot send CNY directly. All transfers route through USD via SWIFT, creating a double conversion (VND to USD, then USD to CNY) with markups applied at both stages. There is no bilateral currency swap agreement between the State Bank of Vietnam and the People's Bank of China, limiting institutional infrastructure for direct VND/CNY settlement. WorldFirst can deliver CNY directly to Chinese bank accounts, bypassing the USD intermediary step.",
+    "sources": ["State Bank of Vietnam bilateral agreements", "PBOC bilateral currency swap database", "WorldFirst CNY delivery documentation", "Vietcombank SWIFT routing practices"]
+  },
+  {
+    "question": "How long does a transfer from Vietnam to China take?",
+    "answer": "Bank transfers via SWIFT from Vietnam to China typically take 3-5 working days, with the USD intermediary step adding 1-2 days of processing. Vietnamese banks have relatively early cut-off times (typically 14:00 ICT for same-day processing), and any submission after this time rolls to the next business day. WorldFirst delivers CNY within 1-2 working days using direct settlement infrastructure in China.",
+    "sources": ["Vietcombank international transfer processing times", "BIDV SWIFT payment timelines", "WorldFirst delivery estimates for Vietnam corridor"]
+  },
+  {
+    "question": "What regulations govern sending money from Vietnam to China?",
+    "answer": "The State Bank of Vietnam (SBV) requires all outbound foreign currency transfers to be supported by valid underlying documentation: trade invoices, commercial contracts, or customs declarations. Vietnam maintains capital controls under Ordinance No. 28/2005, and individuals are limited to USD 5,000 equivalent per transaction without supporting documents. Businesses must register their foreign exchange needs with an authorized bank and provide customs import declarations for trade-related payments. All outbound transfers are reported to the SBV.",
+    "sources": ["State Bank of Vietnam Ordinance No. 28/2005 on Foreign Exchange", "SBV Circular 32/2013 on international payment services", "Vietnam Ministry of Finance foreign exchange regulations"]
+  },
+  {
+    "question": "Why is the Vietnam-China fintech market so underdeveloped?",
+    "answer": "Vietnam's outbound payment fintech market is limited by three structural factors: SBV licensing requirements that restrict international payment operations to authorized credit institutions, capital account controls that require underlying trade documentation for each transfer, and a regulatory framework that has only recently begun accommodating non-bank payment service providers (Decree 101/2012, amended 2019). While domestic fintechs like MoMo and ZaloPay handle tens of billions in internal payments, none have obtained authorization for outbound cross-border corporate transfers.",
+    "sources": ["SBV Decree 101/2012 on non-cash payments", "SBV Circular on cross-border payment licensing", "MoMo and ZaloPay service scope documentation", "World Bank Vietnam Financial Sector Assessment"]
+  },
+  {
+    "question": "How large is the trade relationship between Vietnam and China?",
+    "answer": "Bilateral trade between Vietnam and China reached approximately USD 254 billion in 2024, making China Vietnam's largest trading partner by a significant margin. Vietnam imports approximately USD 140 billion annually from China, primarily electronics components, machinery, textiles, and raw materials for its manufacturing export sector. The trade deficit with China (approximately USD 50-60 billion annually) means there is a massive structural flow of payments from Vietnam to China, making transfer costs a material business expense for Vietnamese importers.",
+    "sources": ["Vietnam General Department of Customs trade statistics 2024", "World Bank bilateral trade data", "Vietnam Ministry of Industry and Trade annual report"]
+  },
+  {
+    "question": "Are there border trade payment channels between Vietnam and China?",
+    "answer": "Vietnam and China operate a border trade settlement system along their shared 1,400-kilometer border, primarily through authorized banks in Guangxi and Yunnan provinces. This system allows limited VND/CNY settlement for cross-border trade in designated border economic zones (Mong Cai-Dongxing, Lang Son-Pingxiang). However, these channels are restricted to small-scale border trade transactions (typically under USD 50,000 equivalent) and are not available for general import/export payments from Hanoi or Ho Chi Minh City.",
+    "sources": ["PBOC-SBV border trade settlement agreement", "Guangxi regional cross-border settlement pilot documentation", "Vietnam-China border economic zone regulations"]
+  },
+  {
+    "question": "What exchange rate will I get when converting VND to CNY?",
+    "answer": "The VND/CNY rate is not directly quoted in international markets, so Vietnamese banks derive it from two separate rates: VND/USD and USD/CNY. Each leg carries its own markup, typically 0.8-2% per conversion. The State Bank of Vietnam sets a daily reference rate for VND/USD with a +/-5% trading band, and banks quote within this band. WorldFirst quotes a single VND/CNY rate with a transparent markup of approximately 1.9%, eliminating the compounding double-conversion cost.",
+    "sources": ["State Bank of Vietnam daily reference exchange rate", "SBV exchange rate band mechanism", "WorldFirst VND-CNY pricing", "Reuters VND/USD and USD/CNY interbank rate data"]
+  }
+]

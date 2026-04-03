@@ -1,0 +1,47 @@
+[
+  {
+    "question": "How much does it cost to send INR 850,000 from India to China?",
+    "answer": "Indian banks charge an estimated total cost of 2.5-5% on INR-to-CNY transfers, combining FX markups of 2-4.5% with SWIFT fees of INR 750-2,000 and GST of 18% on the service fee. WorldFirst offers an estimated total cost of 4.5-6%, which is notably not cheaper than banks in this corridor. On INR 850,000 (approximately USD 10,000), an additional 5% TCS (Tax Collected at Source) of INR 42,500 is collected upfront on all outward remittances above INR 700,000 per financial year, though this is adjustable against income tax liability.",
+    "sources": ["WorldFirst India corridor pricing", "SBI and HDFC Bank international transfer fees", "RBI Liberalised Remittance Scheme guidelines", "CBDT TCS on outward remittances (Section 206C(1G))"]
+  },
+  {
+    "question": "What is the cheapest way to pay a Chinese supplier from India?",
+    "answer": "Indian banks (2.5-5% total cost) are generally cheaper than WorldFirst (4.5-6%) in this corridor — one of the few corridors where fintechs do not undercut traditional banks. HDFC Bank and ICICI Bank offer competitive rates of approximately 2.5-3.5% for corporate trade payments. Wise does not support outbound INR-to-CNY transfers. The limited fintech competition reflects India's strict RBI licensing requirements and the political complexity of the India-China relationship, which has discouraged Chinese-affiliated fintech expansion.",
+    "sources": ["WorldFirst India pricing", "HDFC Bank and ICICI Bank corporate FX rates", "Wise INR supported routes", "RBI Authorized Dealer Category I license requirements"]
+  },
+  {
+    "question": "What is TCS and how does it affect my China payment?",
+    "answer": "Tax Collected at Source (TCS) at 5% is levied on all outward remittances from India exceeding INR 700,000 per financial year, under Section 206C(1G) of the Income Tax Act. On a USD 10,000 payment (approximately INR 850,000), TCS of approximately INR 42,500 is collected upfront by the authorized dealer bank. TCS is not a cost — it is a tax prepayment adjustable against the sender's income tax liability when filing returns. However, it reduces immediate cash flow by 5% on the remitted amount and applies regardless of whether the payment goes through a bank or a fintech.",
+    "sources": ["CBDT Circular on TCS for outward remittances", "Income Tax Act Section 206C(1G)", "RBI FAQ on TCS applicability under LRS", "HDFC Bank TCS collection guidance"]
+  },
+  {
+    "question": "Can I pay my Chinese supplier directly in CNY from India?",
+    "answer": "No Indian bank offers routine direct CNY delivery for commercial payments. All transfers route through USD via SWIFT. There is no bilateral currency swap agreement between the RBI and the PBOC, reflecting the broader political tensions between the two countries. India-China bilateral trade (approximately USD 155.6 billion in 2024) is settled almost entirely in USD. The RBI's International Trade Settlement in Indian Rupees framework (2022) theoretically allows INR settlement, but no Chinese bank has established the required Special Rupee Vostro Account (SRVA) for bilateral trade.",
+    "sources": ["RBI bilateral currency agreements database", "PBOC bilateral swap agreement list", "RBI Circular on International Trade Settlement in INR", "Indian Ministry of Commerce bilateral trade data"]
+  },
+  {
+    "question": "How long does a transfer from India to China take?",
+    "answer": "Indian bank transfers to China via SWIFT typically take 3-5 working days, including 1-2 days for AD Category I bank processing and documentation verification. The RBI requires authorized dealer banks to verify the purpose code, FEMA compliance, and TCS collection before releasing the payment. WorldFirst delivers within 1-2 working days once funds are received. India's time zone (UTC+5:30) provides a 2.5-hour overlap with Chinese banking hours, meaning payments submitted in the Indian afternoon arrive after Chinese banking close, potentially adding a day.",
+    "sources": ["SBI and HDFC Bank international transfer timelines", "RBI AD Category I processing requirements", "WorldFirst delivery estimates for India", "SWIFT India-China settlement benchmarks"]
+  },
+  {
+    "question": "What is the Liberalised Remittance Scheme (LRS) and how does it affect business payments?",
+    "answer": "The LRS allows Indian residents to remit up to USD 250,000 per financial year for permitted purposes, including business investments and trade payments. Trade payments for goods imports are processed outside the LRS limit under the regular FEMA (Foreign Exchange Management Act) framework, meaning there is no annual cap on legitimate import payments. However, advance payments for imports are restricted to USD 200,000 per transaction (or higher with bank guarantee), and payments must match import documentation. The LRS limit primarily affects capital account transactions, not current account trade payments.",
+    "sources": ["RBI Master Direction on Liberalised Remittance Scheme", "FEMA Current Account Transaction Rules 2000", "RBI FAQ on LRS limits and trade payments", "RBI Master Direction on Import of Goods and Services"]
+  },
+  {
+    "question": "How do India-China political tensions affect the payment corridor?",
+    "answer": "Political tensions between India and China, particularly since the 2020 Galwan Valley border conflict, have had measurable effects on the payment corridor. India has blocked or restricted several Chinese fintech apps (including some payment platforms), tightened FDI scrutiny for Chinese investors under Press Note 3 (2020), and discouraged Chinese-affiliated financial institutions from expanding in India. This has reduced fintech competition in the corridor, contributing to higher costs. However, trade itself continues to grow — bilateral trade reached USD 155.6 billion in 2024, making China India's largest source of imports.",
+    "sources": ["Indian Ministry of Commerce bilateral trade statistics", "DPIIT Press Note 3 (2020) on FDI from land-border countries", "MeitY orders blocking Chinese mobile applications", "RBI guidance on foreign payment platform operations in India"]
+  },
+  {
+    "question": "What documentation do I need to send a business payment from India to China?",
+    "answer": "Indian businesses need: a bill of entry or customs declaration, commercial invoice from the Chinese supplier, import-export code (IEC) from the Directorate General of Foreign Trade, authorization from an AD Category I bank, FEMA purpose code declaration, and PAN (Permanent Account Number) for TCS collection. For advance payments exceeding USD 200,000, a bank guarantee or standby letter of credit is required. All import payments must be completed within six months of shipment date. The documentation burden in this corridor is among the heaviest of the 15 corridors studied.",
+    "sources": ["RBI Master Direction on Import of Goods and Services", "FEMA Current Account Transaction Rules", "DGFT Import-Export Code requirements", "CBDT TCS documentation for outward remittances"]
+  },
+  {
+    "question": "How large is the India-China trade corridor?",
+    "answer": "India-China bilateral trade reached approximately USD 155.6 billion in 2024, making China India's largest trading partner by total trade volume and largest source of imports. Indian imports from China total approximately USD 110 billion, dominated by electronics and components (approximately 35%), machinery (approximately 20%), chemicals and pharmaceuticals (approximately 15%), and consumer goods. The trade deficit (approximately USD 85 billion in China's favor) is India's largest bilateral deficit and creates massive, one-directional payment flows from India to China. Despite political tensions, trade volumes have grown every year since 2020.",
+    "sources": ["Indian Ministry of Commerce bilateral trade statistics 2024", "DGCIS (Directorate General of Commercial Intelligence and Statistics) import data", "China Customs bilateral trade figures", "World Bank WITS bilateral trade database"]
+  }
+]

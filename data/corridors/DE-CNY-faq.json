@@ -1,0 +1,47 @@
+[
+  {
+    "question": "How much does it cost to send €10,000 from Germany to China?",
+    "answer": "German banks charge an estimated total cost of €300-€700 on a €10,000 EUR-to-CNY transfer. Deutsche Bank charges approximately 1.5% of the transfer amount as an FX markup (€150 on €10,000) plus fees, while Sparkassen and Volksbanken charge higher markups of 2.5-4.5%. WorldFirst offers an estimated total cost of approximately €115 at a maximum 1.1% FX ceiling. Wise charges an effective cost of approximately €130-150. The FX markup represents 75-90% of the true cost of a German bank transfer to China.",
+    "sources": ["Deutsche Bank international transfer pricing", "Sparkasse and Volksbank published FX margins", "WorldFirst EUR corridor pricing", "Wise EUR-to-CNY fee calculator"]
+  },
+  {
+    "question": "What is the cheapest way to pay a Chinese supplier from Germany?",
+    "answer": "WorldFirst (approximately €115 on €10,000) offers the lowest total cost, followed by Wise (approximately €130-150) and Airwallex (approximately €120-140 for eligible businesses). Deutsche Bank is the most competitive among German banks at approximately 1.5% of transfer amount, but still costs €150-300 depending on the transfer size and service level. For large corporate payments, Frankfurt's position as Europe's primary RMB clearing hub provides access to institutional rates through the Deutsche Bundesbank-PBOC clearing arrangement.",
+    "sources": ["WorldFirst EUR pricing page", "Wise EUR-CNY calculator", "Airwallex European business pricing", "Deutsche Bank Global Transaction Banking pricing"]
+  },
+  {
+    "question": "Can I pay my Chinese supplier directly in RMB from Germany?",
+    "answer": "Germany has the strongest RMB infrastructure in the eurozone. Frankfurt hosts the official PBOC-authorized RMB clearing bank (Bank of China Frankfurt), and Deutsche Bank maintains direct CNY correspondent relationships. However, most German Mittelstand businesses still pay through EUR-to-USD-to-CNY double conversion via their Hausbank (primary bank). WorldFirst and Airwallex deliver CNY directly via Chinese local payment rails. Approximately 8-10% of Germany-China trade is settled in RMB, higher than the European average but still dominated by USD and EUR.",
+    "sources": ["PBOC Frankfurt RMB clearing bank authorization", "Deutsche Bundesbank RMB internationalization reports", "SWIFT RMB Tracker monthly data", "Bundesverband deutscher Banken cross-border payment data"]
+  },
+  {
+    "question": "How long does a transfer from Germany to China take?",
+    "answer": "SEPA-initiated bank transfers to China via SWIFT typically take 2-4 working days from Germany. Deutsche Bank and Commerzbank, which maintain direct correspondent relationships with Chinese banks, can deliver in 1-2 working days for priority payments (SWIFT gpi). Sparkassen and Volksbanken route through intermediary banks, adding 1-2 days. WorldFirst delivers CNY same-day for payments received before the cut-off. The Frankfurt RMB clearing infrastructure theoretically enables faster settlement, but this primarily benefits institutional flows.",
+    "sources": ["Deutsche Bank SWIFT gpi delivery times", "Commerzbank international transfer timelines", "Sparkassen-Finanzgruppe international payment processing", "WorldFirst same-day CNY delivery documentation"]
+  },
+  {
+    "question": "How does Germany's trade relationship with China affect payment costs?",
+    "answer": "China is Germany's number-one trading partner with bilateral trade valued at approximately €251.8 billion in 2024. German imports from China total approximately €155 billion annually, covering electronics, machinery components, raw materials, and consumer goods. This massive trade volume supports a relatively competitive payment corridor: Germany has more providers and lower average costs than most European countries. Deutsche Bank's 1.5% FX markup is among the lowest of any European bank, reflecting the competitive pressure from high-volume trade flows.",
+    "sources": ["Statistisches Bundesamt (Federal Statistical Office) bilateral trade data 2024", "Deutsche Bundesbank balance of payments statistics", "BDI (Federation of German Industries) China trade reports"]
+  },
+  {
+    "question": "What regulations apply to sending money from Germany to China?",
+    "answer": "Transfers above €12,500 must be reported to the Deutsche Bundesbank under the Aussenwirtschaftsverordnung (Foreign Trade and Payments Regulation) for balance-of-payments statistical purposes. This is a reporting requirement, not a restriction — the payment proceeds normally. EU anti-money laundering regulations (AMLD6) require enhanced due diligence for payments to China above €15,000. German businesses must retain invoices and contracts as supporting documentation. There are no EU sanctions on trade with China, though dual-use goods export controls apply to certain technology categories.",
+    "sources": ["Deutsche Bundesbank AWV reporting requirements", "Aussenwirtschaftsverordnung (AWV) Section 67", "EU AMLD6 implementation in German law (GwG)", "BAFA export control regulations"]
+  },
+  {
+    "question": "Is Deutsche Bank significantly cheaper than other German banks for China payments?",
+    "answer": "Deutsche Bank charges approximately 1.5% of the transfer amount as an FX markup for CNY, which is roughly half the rate charged by Sparkassen (2.5-3.5%) and Volksbanken (3-4.5%). This advantage stems from Deutsche Bank's direct correspondent banking relationships in China and its role as one of Europe's largest FX dealers. However, Deutsche Bank's 1.5% still costs approximately €150 on a €10,000 transfer, compared to €115 via WorldFirst. For the estimated 3.5 million German Mittelstand companies, many of which bank exclusively with their local Sparkasse, the cost disadvantage relative to fintechs is more pronounced.",
+    "sources": ["Deutsche Bank published FX margins", "Sparkassen-Finanzgruppe international payment fees", "Bundesverband der Deutschen Volksbanken und Raiffeisenbanken pricing", "WorldFirst EUR corridor pricing"]
+  },
+  {
+    "question": "Can I lock in a EUR/CNY exchange rate for future supplier payments?",
+    "answer": "Forward contracts for EUR/CNY are available through Deutsche Bank, Commerzbank, and major fintechs including WorldFirst and Airwallex. These are structured as non-deliverable forwards (NDFs) because the CNY is not freely convertible. Frankfurt's position as the European RMB hub means German businesses have access to more competitive NDF pricing than businesses in most other European countries. Minimum contract sizes vary: Deutsche Bank requires €50,000+ for corporate FX forwards, while WorldFirst offers forwards from approximately €5,000.",
+    "sources": ["Deutsche Bank corporate FX forward contract terms", "Commerzbank NDF documentation", "WorldFirst EUR forward contract pricing", "Deutsche Bundesbank NDF market data"]
+  },
+  {
+    "question": "What is the Frankfurt RMB clearing hub and does it lower my costs?",
+    "answer": "Frankfurt hosts the PBOC-authorized RMB clearing bank (Bank of China Frankfurt branch), established in 2014 to facilitate direct EUR/CNY settlement without routing through the USD. For institutional transactions, this can reduce costs by eliminating one conversion leg. However, for most SME transactions, the clearing hub's benefits are indirect: it increases CNY liquidity in the German banking system, which modestly tightens FX spreads. The direct cost benefit for a €10,000 SME transfer is estimated at 0.1-0.3 percentage points compared to a European country without a clearing hub.",
+    "sources": ["PBOC Frankfurt clearing bank authorization (2014)", "Deutsche Bundesbank RMB clearing statistics", "BIS Committee on Payments and Market Infrastructures RMB clearing data", "ECB RMB internationalization monitoring"]
+  }
+]

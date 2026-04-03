@@ -1,0 +1,47 @@
+[
+  {
+    "question": "How much does it cost to send NGN 15,000,000 from Nigeria to China?",
+    "answer": "Nigerian banks charge an estimated total cost of 3-6% on NGN-to-CNY transfers, driven by FX markups of 2-5%, SWIFT fees of NGN 5,000-15,000, and the structural challenge of Nigeria's multi-rate foreign exchange system. Specialist fintechs Pesa and Klasha offer the lowest rates at approximately 1-3%. WorldFirst charges 4.5-6%, which is competitive with banks but not the cheapest option in this corridor. On NGN 15,000,000 (approximately USD 10,000), the estimated saving from using Pesa or Klasha over a bank ranges from NGN 300,000 to NGN 750,000.",
+    "sources": ["Pesa and Klasha Nigeria-China corridor pricing", "WorldFirst Nigeria pricing", "CBN official and parallel market rate data", "GTBank and Zenith Bank international transfer fee schedules"]
+  },
+  {
+    "question": "What is the cheapest way to pay a Chinese supplier from Nigeria?",
+    "answer": "Pesa and Klasha (approximately 1-3% total cost) are the cheapest options, both specializing in Africa-China trade corridors. WorldFirst (4.5-6%) is a recognized alternative but is not the lowest-cost provider in this specific corridor. Wise does not support outbound NGN transfers. Nigerian banks charge 3-6% and require extensive documentation processing. The choice depends on transfer size: Pesa and Klasha are optimized for SME transactions under USD 50,000, while WorldFirst offers stronger infrastructure for larger corporate payments.",
+    "sources": ["Pesa Africa-China pricing page", "Klasha cross-border payment fees", "WorldFirst Nigeria corridor pricing", "Wise NGN supported routes"]
+  },
+  {
+    "question": "What is Form M and how does it affect my China payment?",
+    "answer": "Form M is a mandatory Central Bank of Nigeria (CBN) document required for all imports into Nigeria. It must be completed and approved by an authorized dealer bank before any payment can be released for goods imported from China. Processing typically takes 2-5 business days and requires a proforma invoice, insurance certificate, and product classification. Without an approved Form M, Nigerian banks will reject the international transfer. Some fintechs assist with Form M processing, but the requirement applies regardless of payment channel.",
+    "sources": ["CBN Foreign Exchange Manual", "CBN Circular on Form M requirements", "Nigeria Customs Service import documentation guide", "Nigerian Import Supervision Council regulations"]
+  },
+  {
+    "question": "How does Nigeria's multi-rate FX system affect the cost of paying Chinese suppliers?",
+    "answer": "Nigeria operates a multi-rate foreign exchange system where the official CBN rate, the Investors and Exporters (I&E) window rate, and the parallel market rate can diverge by 10-30%. Banks typically execute international transfers at the I&E window rate plus a markup of 2-5%, while the rate available to a business depends on its access tier and FX allocation from the CBN. Periods of dollar scarcity can widen bank markups significantly. Fintechs like Pesa and Klasha source FX through different channels, which is how they achieve lower rates of 1-3%.",
+    "sources": ["CBN exchange rate policy circulars", "FMDQ I&E window rate data", "Nigerian Bureau de Change Association parallel rate data", "World Bank Nigeria Economic Update on FX policy"]
+  },
+  {
+    "question": "Can I pay my Chinese supplier directly in CNY from Nigeria?",
+    "answer": "No Nigerian bank offers direct CNY delivery. All transfers route through USD via SWIFT, adding a double conversion cost (NGN to USD, then USD to CNY). There is no bilateral currency swap agreement between the CBN and the People's Bank of China. Some fintechs (Pesa, Klasha) can deliver CNY directly to Chinese bank accounts using settlement partners in China, which is a key factor in their lower pricing. Nigeria-China trade is denominated almost entirely in USD.",
+    "sources": ["CBN bilateral agreement database", "PBOC bilateral currency swap agreements", "Pesa CNY delivery documentation", "Nigeria-China bilateral trade settlement data"]
+  },
+  {
+    "question": "How long does a transfer from Nigeria to China take?",
+    "answer": "Bank transfers from Nigeria to China via SWIFT typically take 5-10 working days, reflecting Form M processing (2-5 days), FX allocation delays (1-3 days during periods of dollar scarcity), and SWIFT settlement (2-4 days). Pesa and Klasha deliver within 1-3 working days by using pre-funded settlement in China. WorldFirst delivers within 1-2 working days. The Nigerian banking system's FX allocation bottleneck is the primary source of delay, not the international transfer itself.",
+    "sources": ["GTBank and Zenith Bank international transfer timelines", "Pesa delivery estimates", "WorldFirst delivery estimates for Nigeria", "CBN FX allocation processing data"]
+  },
+  {
+    "question": "Is it safe to use fintech providers for Nigeria-to-China payments?",
+    "answer": "Licensed fintechs operating in Nigeria must hold a CBN International Money Transfer Operator (IMTO) license or partner with a licensed authorized dealer bank. Pesa and Klasha operate under CBN-licensed partnerships. WorldFirst is regulated by the FCA (UK), ASIC (Australia), and MAS (Singapore), among other jurisdictions. All licensed providers must comply with CBN anti-money laundering regulations and the Nigeria Financial Intelligence Unit (NFIU) reporting requirements. Due diligence on licensing status is advisable, as unlicensed operators exist in this corridor.",
+    "sources": ["CBN licensed IMTO list", "CBN Payment System Management Department licensed operators", "FCA Financial Services Register", "NFIU regulatory framework"]
+  },
+  {
+    "question": "What documentation do I need to send a business payment from Nigeria to China?",
+    "answer": "Nigerian businesses need: an approved Form M (mandatory for all imports), a proforma invoice from the Chinese supplier, a certificate of insurance, product classification under the Harmonized System (HS) code, and a completed international transfer application through an authorized dealer bank. For transfers above USD 10,000, the CBN requires additional due diligence documentation including the company's CAC registration, tax clearance certificate, and evidence of previous trade. Fintechs typically require the same core documents but may process them faster.",
+    "sources": ["CBN Foreign Exchange Manual Chapter 17", "CBN Circular FPR/DIR/GEN/CIR/06/006", "Nigeria Customs Service documentation requirements", "Corporate Affairs Commission (CAC) registration requirements"]
+  },
+  {
+    "question": "How large is the Nigeria-China trade corridor?",
+    "answer": "China is Nigeria's largest source of imports, with bilateral trade valued at approximately USD 26 billion annually. Nigerian imports from China total approximately USD 22 billion, primarily electronics, textiles, machinery, and construction materials. The significant trade imbalance (Nigeria imports roughly 5 times more than it exports to China) creates structural demand pressure for USD in this corridor, contributing to FX scarcity and wider spreads. Lagos and Onitsha are the primary import distribution hubs for Chinese goods.",
+    "sources": ["Nigeria Bureau of Statistics bilateral trade data", "National Bureau of Statistics China-Nigeria trade figures", "World Bank WITS bilateral trade database", "Nigerian Ports Authority import volume data"]
+  }
+]

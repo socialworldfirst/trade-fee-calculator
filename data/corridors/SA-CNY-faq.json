@@ -1,0 +1,47 @@
+[
+  {
+    "question": "How much does it cost to send SAR 37,500 from Saudi Arabia to China?",
+    "answer": "Saudi banks charge an estimated total cost of 2.5-4% on SAR-to-CNY transfers, combining FX markups of 2-3.5% with SWIFT fees of SAR 75-200. WorldFirst offers approximately 2.25% total cost. On SAR 37,500 (approximately USD 10,000), bank costs range from SAR 938 to SAR 1,500, while WorldFirst charges approximately SAR 844. The SAR/USD peg (3.75 SAR/USD) means the conversion effectively follows USD/CNY economics with a minimal additional spread for the SAR/USD leg.",
+    "sources": ["WorldFirst Saudi Arabia corridor pricing", "Al Rajhi Bank and SNB international transfer fees", "SAMA exchange rate peg policy", "Riyad Bank international payment fee schedule"]
+  },
+  {
+    "question": "What is the cheapest way to pay a Chinese supplier from Saudi Arabia?",
+    "answer": "WorldFirst (approximately 2.25% total cost) and Wise (approximately 2.5-3%) are the cheapest options for business transfers. Al Rajhi Bank, Saudi Arabia's largest bank by market capitalization, charges approximately 2.5-3.5% and offers competitive rates for clients with corporate banking relationships. Saudi exchange houses (Western Union, Al Rajhi Exchange subsidiary) serve smaller transfers at approximately 2-3%. Unlike the UAE, Saudi Arabia's exchange house market is less competitive for China-specific transfers, with fewer specialized Africa-China or Asia-China operators.",
+    "sources": ["WorldFirst Saudi Arabia pricing", "Wise SAR-CNY fee calculator", "Al Rajhi Bank corporate international payments", "SAMA licensed money exchange businesses"]
+  },
+  {
+    "question": "How does the SAR-USD peg affect the cost of paying Chinese suppliers?",
+    "answer": "The Saudi riyal is pegged to the USD at 3.75 SAR/USD, a fixed rate maintained by SAMA since 1986. This means SAR-to-CNY transfers follow the same economics as USD-to-CNY, with the additional SAR/USD conversion leg costing only 0.01-0.05% in spread. The peg eliminates SAR/USD currency risk, but Saudi importers remain fully exposed to USD/CNY fluctuations. Any provider quoting more than the prevailing USD/CNY rate plus approximately 0.05% for the peg conversion is adding its margin to the SAR/USD leg unnecessarily.",
+    "sources": ["SAMA exchange rate peg policy", "IMF Saudi Arabia Article IV consultation", "SAMA annual statistics on exchange rate stability"]
+  },
+  {
+    "question": "What is the petro-yuan and does it affect Saudi Arabia-China payments?",
+    "answer": "The petro-yuan refers to the nascent practice of pricing oil transactions in CNY rather than USD. Saudi Arabia joined the mBridge cross-border CBDC project in 2024 and has conducted trial oil sales priced in yuan. However, the practical impact on commercial payment costs is minimal as of 2026: Saudi-China non-oil trade (electronics, machinery, consumer goods) continues to be denominated and settled overwhelmingly in USD. The petro-yuan is a geopolitical signal rather than a cost-reduction mechanism for importers. Saudi importers should not expect CNY settlement infrastructure to meaningfully improve in the near term.",
+    "sources": ["BIS mBridge project participation list", "Saudi Aramco reported yuan-denominated transactions", "SAMA foreign reserve composition data", "PBOC bilateral currency discussions with SAMA"]
+  },
+  {
+    "question": "How long does a transfer from Saudi Arabia to China take?",
+    "answer": "Saudi bank transfers to China via SWIFT typically take 2-4 working days. Al Rajhi Bank and Saudi National Bank (SNB), which maintain direct correspondent relationships with Chinese banks, process within 2-3 days. Smaller Saudi banks routing through intermediaries take 3-5 days. WorldFirst delivers within 1-2 working days. The Saudi working week (Sunday-Thursday) overlaps with only three Chinese banking days (Sunday is a non-working day in China, Monday-Thursday overlap), which can delay settlement by 1-2 days for transfers initiated on Thursday or Friday.",
+    "sources": ["Al Rajhi Bank SWIFT processing times", "SNB international transfer timelines", "WorldFirst delivery estimates for Saudi Arabia", "SAMA banking calendar"]
+  },
+  {
+    "question": "How does Vision 2030 affect Saudi Arabia-China trade and payment flows?",
+    "answer": "Saudi Arabia's Vision 2030 economic diversification program has substantially increased imports from China, particularly in construction materials, industrial equipment, renewable energy components, and consumer goods for new entertainment and tourism projects (NEOM, The Line, Qiddiya). Chinese construction firms and suppliers are major participants in Vision 2030 mega-projects. This has expanded the Saudi-China payment corridor beyond its traditional oil-and-consumer-goods base, creating demand for larger, more frequent project-related payments that are better served by corporate payment platforms than traditional bank transfers.",
+    "sources": ["Vision 2030 official project documentation", "Saudi Ministry of Investment bilateral FDI data", "GASTAT (Saudi General Authority for Statistics) import statistics", "China Customs bilateral trade data with Saudi Arabia"]
+  },
+  {
+    "question": "What regulations govern sending money from Saudi Arabia to China?",
+    "answer": "SAMA requires all international transfers above SAR 60,000 (approximately USD 16,000) to include supporting trade documentation. Anti-money laundering regulations under the Anti-Money Laundering Law (Royal Decree M/31) mandate enhanced due diligence for large international transfers. Saudi businesses must maintain a commercial registration (CR) with the Ministry of Commerce to process business payments. There are no capital controls restricting the amount that can be sent to China, and no specific Saudi restrictions on trade with China. The Saudi Arabian Monetary Authority's open-capital-account policy makes outbound payments relatively straightforward compared to most emerging market corridors.",
+    "sources": ["SAMA Anti-Money Laundering regulations", "Royal Decree M/31 on Anti-Money Laundering", "Saudi Ministry of Commerce commercial registration requirements", "SAMA international payment reporting thresholds"]
+  },
+  {
+    "question": "Can I pay my Chinese supplier directly in CNY from Saudi Arabia?",
+    "answer": "Direct SAR/CNY settlement is not routinely available through Saudi banks. All standard transfers route through USD, leveraging the SAR/USD peg. ICBC has a branch in Riyadh and Bank of China maintains a representative office, providing limited institutional RMB settlement capabilities. The mBridge CBDC project (which Saudi Arabia joined in 2024) is exploring direct digital currency settlement between participating central banks, but this is in pilot phase and not available for commercial transactions. WorldFirst delivers CNY directly via Chinese local payment rails.",
+    "sources": ["ICBC Riyadh branch service offerings", "Bank of China Saudi Arabia representative office", "BIS mBridge CBDC pilot documentation", "SAMA bilateral settlement infrastructure"]
+  },
+  {
+    "question": "How large is the Saudi Arabia-China trade relationship?",
+    "answer": "China is Saudi Arabia's largest trading partner with bilateral trade valued at approximately USD 106 billion in 2024. Saudi imports from China total approximately USD 36 billion annually, covering electronics, machinery, construction materials, textiles, and automotive products. Oil exports to China dominate the reverse flow (approximately USD 65 billion), but the non-oil import corridor is the relevant payment flow for Saudi businesses. Vision 2030 mega-projects are accelerating Chinese import growth, with construction materials and industrial equipment imports from China increasing by an estimated 25% annually since 2022.",
+    "sources": ["GASTAT bilateral trade statistics 2024", "China Customs bilateral trade data", "Saudi Ministry of Commerce import statistics", "Vision 2030 project procurement data"]
+  }
+]

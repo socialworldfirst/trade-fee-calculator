@@ -1,0 +1,47 @@
+[
+  {
+    "question": "How much does it cost to send PKR 2,800,000 from Pakistan to China?",
+    "answer": "Pakistani banks charge an estimated total cost of 4-6% on PKR-to-CNY transfers, combining FX markups of 3-5% with SWIFT fees of PKR 3,000-8,000. WorldFirst offers an estimated total cost of 3-4.5%, which is competitive but not dramatically cheaper than banks in this corridor. On PKR 2,800,000 (approximately USD 10,000), the estimated saving from using WorldFirst over a typical bank ranges from PKR 15,000 to PKR 45,000. There is zero World Bank remittance pricing data available for this corridor, making independent cost verification difficult.",
+    "sources": ["WorldFirst Pakistan corridor pricing", "HBL and UBL international transfer fee schedules", "State Bank of Pakistan exchange rate data", "World Bank Remittance Prices Worldwide database (no Pakistan-China data available)"]
+  },
+  {
+    "question": "What is the cheapest way to pay a Chinese supplier from Pakistan?",
+    "answer": "WorldFirst (approximately 3-4.5% total cost) is the primary fintech option, though the margin over Pakistani banks (4-6%) is narrower than in most corridors. Wise does not support outbound PKR transfers. There are no Pakistan-focused fintechs offering CNY delivery. For large CPEC-related project payments, Chinese state banks (ICBC, Bank of China) with Karachi branches may offer preferential rates for RMB settlement, though these are typically restricted to CPEC contractors and state-affiliated entities.",
+    "sources": ["WorldFirst Pakistan pricing", "Wise supported PKR routes", "ICBC Karachi branch services", "State Bank of Pakistan licensed exchange companies list"]
+  },
+  {
+    "question": "Can I pay my Chinese supplier in RMB from Pakistan?",
+    "answer": "Direct RMB settlement from Pakistan has grown significantly under CPEC (China-Pakistan Economic Corridor), with the RMB accounting for approximately 19.1% of Pakistan's trade settlement with China as of 2024. However, this is concentrated among CPEC project contractors and large enterprises. For most Pakistani SME importers, payments still route through USD via SWIFT. The State Bank of Pakistan and PBOC maintain a bilateral currency swap agreement of CNY 30 billion, but utilization for commercial trade settlement remains limited.",
+    "sources": ["State Bank of Pakistan CPEC trade settlement data", "PBOC-SBP bilateral currency swap agreement", "SBP Foreign Exchange Circular on RMB settlement", "Pakistan Bureau of Statistics bilateral trade data"]
+  },
+  {
+    "question": "How long does a transfer from Pakistan to China take?",
+    "answer": "Bank transfers from Pakistan to China via SWIFT typically take 3-7 working days, with State Bank of Pakistan approval processes adding 1-2 days for transfers above USD 25,000. WorldFirst delivers within 1-2 working days. Pakistan has an additional processing layer: banks must verify the payment against the importer's entitlement under the SBP's Foreign Exchange Manual, which can introduce delays particularly during periods of foreign exchange reserve pressure.",
+    "sources": ["HBL and MCB international transfer timelines", "WorldFirst delivery estimates for Pakistan", "SBP Foreign Exchange Manual Chapter 5", "SBP FX reserve management circulars"]
+  },
+  {
+    "question": "What regulations govern sending money from Pakistan to China?",
+    "answer": "The State Bank of Pakistan (SBP) maintains comprehensive foreign exchange controls under the Foreign Exchange Regulation Act 1947 (amended). Business payments require: an import license or registration with the relevant trade body, a letter of credit (LC) or advance payment authorization from the bank, copies of the commercial invoice and bill of lading, and Form E-2 for advance payments. Transfers above USD 25,000 require SBP approval. Exchange companies (money changers) are not authorized to process outbound business payments — only authorized dealer banks may do so.",
+    "sources": ["SBP Foreign Exchange Regulation Act 1947", "SBP Foreign Exchange Manual Chapter 5 (Imports)", "SBP Circular on authorized dealer bank obligations", "Pakistan Customs import documentation requirements"]
+  },
+  {
+    "question": "How does CPEC affect payment options between Pakistan and China?",
+    "answer": "CPEC (China-Pakistan Economic Corridor) has introduced dedicated RMB settlement channels for project-related payments, with Chinese state banks (ICBC, Bank of China, China Construction Bank) operating branches in Karachi and Islamabad. These branches can process RMB payments directly without USD conversion. However, access is effectively restricted to CPEC contractors, government entities, and large corporations. For the average Pakistani importer buying consumer goods or raw materials from China, CPEC infrastructure has not materially reduced payment costs.",
+    "sources": ["CPEC Authority official documentation", "ICBC Pakistan branch service offerings", "Bank of China Karachi operations", "SBP CPEC-related FX settlement circulars"]
+  },
+  {
+    "question": "Why is there no World Bank pricing data for Pakistan-to-China transfers?",
+    "answer": "The World Bank's Remittance Prices Worldwide database, which tracks the cost of sending USD 200 across 365 corridors, does not include Pakistan-to-China as a monitored route. This is a significant data gap given that China is Pakistan's largest source of imports (approximately USD 18 billion annually). The absence of third-party benchmark data means Pakistani importers cannot easily compare costs across providers, and providers face less competitive pressure to publish transparent pricing. WorldFirst's stated 3-4.5% cost cannot be independently verified against a World Bank benchmark.",
+    "sources": ["World Bank Remittance Prices Worldwide database", "Pakistan Bureau of Statistics bilateral import data", "WorldFirst Pakistan pricing disclosures"]
+  },
+  {
+    "question": "What role does hawala play in Pakistan-China payments?",
+    "answer": "Hawala (informal value transfer) remains a significant channel for Pakistan-China payments, particularly among small traders in markets like Karachi's Bolton Market and Lahore's Shah Alam Market. The SBP estimates that informal channels handle 30-40% of remittance flows, though the share for trade payments is not separately quantified. Hawala operators typically charge 1-2%, undercutting both banks and fintechs, but offer no legal recourse in case of disputes, no audit trail for tax purposes, and violate the Foreign Exchange Regulation Act. The SBP has intensified enforcement against unlicensed money transfer operations since 2022.",
+    "sources": ["SBP estimates on informal remittance channels", "SBP Foreign Exchange Regulation Act enforcement actions", "IMF Pakistan Financial Sector Assessment on informal value transfer", "FATF Pakistan Mutual Evaluation Report"]
+  },
+  {
+    "question": "What exchange rate will I get when converting PKR to CNY?",
+    "answer": "The PKR/CNY rate is derived from two separate rates: PKR/USD and USD/CNY. The SBP publishes a daily weighted average interbank rate for PKR/USD, but the rate available to businesses depends on their bank's allocation and the prevailing interbank spread (typically 0.5-1.5% above the SBP reference rate). The total markup on the PKR-to-CNY chain compounds both legs, resulting in an effective rate 3-6% below the theoretical mid-market PKR/CNY cross rate. WorldFirst quotes a single PKR/CNY rate with a transparent markup of 3-4.5%.",
+    "sources": ["SBP daily exchange rate bulletins", "FOREX Association of Pakistan rate data", "WorldFirst PKR-CNY rate transparency", "Reuters PKR/USD interbank data"]
+  }
+]

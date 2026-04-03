@@ -1,0 +1,52 @@
+[
+  {
+    "question": "How much does it cost to send AUD 10,000 from Australia to China?",
+    "answer": "The total cost ranges from approximately AUD 82 via WorldFirst to AUD 1,040 via the most expensive major bank. Australian banks charge FX markups of 2.5-5.5% on AUD/CNY conversions, with additional flat fees of AUD 20-32 per transfer. Banks are 2-4 times more expensive for CNY than for major currencies like USD or EUR, because the AUD/CNY pair is thinly traded and most banks route through a USD intermediary step.",
+    "sources": ["WorldFirst published AUD pricing", "Wise Australian bank comparison data", "CBA, ANZ, Westpac, NAB international transfer fee schedules"]
+  },
+  {
+    "question": "What is the cheapest way to pay a Chinese supplier from Australia?",
+    "answer": "WorldFirst (approximately AUD 82 on AUD 10,000 at a 0.8% FX ceiling) and Wise (approximately AUD 95-110) are the two cheapest options for business payments. OFX competes on larger transfers above AUD 50,000 with negotiable rates. Airwallex is available for Australian businesses but requires an eligibility assessment. All four are substantially cheaper than any of the Big Four banks, where the minimum cost starts at approximately AUD 384.",
+    "sources": ["WorldFirst AUD fee schedule", "Wise AUD-to-CNY fee calculator", "OFX Australian business pricing", "Airwallex Australia eligibility criteria"]
+  },
+  {
+    "question": "Can I send CNY directly from my Australian bank account?",
+    "answer": "Westpac does not support CNY transfers at all — the currency is blocked from its international payments platform. CBA, ANZ, and NAB can initiate payments to China but convert AUD to USD first, then the Chinese receiving bank converts USD to CNY, creating a double conversion with two separate markup layers. WorldFirst and Wise bypass this by delivering CNY directly to Chinese bank accounts via local payment rails, eliminating the USD intermediary step.",
+    "sources": ["Westpac international transfer supported currencies list", "CBA international payments terms", "WorldFirst CNY delivery documentation", "Wise CNY payment routing"]
+  },
+  {
+    "question": "Why are Australian bank fees for China transfers so much higher than for USD transfers?",
+    "answer": "Australian banks are 2-4 times more expensive for CNY than for major currencies because the AUD/CNY exchange rate is not directly quoted in interbank markets. Banks route through USD as an intermediary currency, applying markups on both the AUD/USD and USD/CNY legs. A bank charging 1.5% on a major currency pair may charge 3-5.5% on AUD/CNY because both legs of the conversion carry separate margins, plus the AUD/CNY spread is wider due to lower trading volume.",
+    "sources": ["RBA foreign exchange data on AUD/CNY liquidity", "Wise analysis of Big Four bank FX markups by currency", "ANZ international transfer pricing structure"]
+  },
+  {
+    "question": "How long does a transfer from Australia to China take?",
+    "answer": "Bank transfers via SWIFT typically take 3-5 working days from Australia to China, with intermediary processing in USD adding an extra day compared to direct-currency transfers. WorldFirst delivers CNY same-day for payments submitted before the daily cut-off. Wise typically delivers within 1-2 working days. Time zone differences between Australia and China (2-3 hours depending on state) are relatively favorable compared to European or American corridors.",
+    "sources": ["CBA SWIFT transfer timelines", "NAB international payment processing times", "WorldFirst same-day CNY delivery terms", "Wise estimated delivery for AUD-to-CNY"]
+  },
+  {
+    "question": "What regulations apply to sending money from Australia to China?",
+    "answer": "Transfers above AUD 10,000 (or foreign currency equivalent) must be reported to AUSTRAC under the Financial Transaction Reports Act 1988. There is no cap on the amount that can be sent, but banks may request supporting documentation (invoices, contracts) for business payments above AUD 50,000. China's receiving-side regulations require the beneficiary to provide a purpose-of-payment code to their bank. AUSTRAC-registered fintechs are subject to the same anti-money laundering obligations as banks.",
+    "sources": ["AUSTRAC reporting threshold regulations", "Financial Transaction Reports Act 1988", "SAFE (China) cross-border payment regulations", "ASIC guidance on international money transfers"]
+  },
+  {
+    "question": "Is Westpac blocking CNY the only Australian bank restriction on China payments?",
+    "answer": "Westpac is the only Big Four bank that completely blocks CNY as a destination currency, but all four banks impose restrictions. CBA and NAB require enhanced due diligence for payments to China above AUD 20,000, which can add 1-3 business days of processing time. ANZ requires a signed international payment authority form for first-time China transfers. No Australian bank offers a Chinese yuan account or the ability to hold CNY balances.",
+    "sources": ["Westpac supported currencies list", "CBA enhanced due diligence requirements", "NAB international payment documentation", "ANZ international transfer authority form"]
+  },
+  {
+    "question": "How does the AUD/CNY exchange rate compare across providers?",
+    "answer": "On AUD 10,000, the difference between the best and worst exchange rate offered by Australian providers translates to approximately AUD 960 in value. The mid-market rate (approximately 4.72 AUD/CNY as of April 2026) serves as the benchmark. WorldFirst offers rates within 0.8% of mid-market, Wise within 0.95-1.1%, while Big Four banks deliver rates 2.5-5.5% below mid-market. For a business making monthly supplier payments of AUD 50,000, the annual estimated saving from switching to a fintech ranges from AUD 9,000 to AUD 28,000.",
+    "sources": ["XE.com AUD/CNY mid-market rate", "WorldFirst AUD pricing", "Wise AUD-CNY fee calculator", "Big Four bank rate comparison via Wise and OFX"]
+  },
+  {
+    "question": "Can I use a forward contract to lock in the AUD/CNY rate?",
+    "answer": "WorldFirst, OFX, and Airwallex offer forward contracts on AUD/CNY for Australian business customers, typically structured as non-deliverable forwards (NDFs) with terms of up to 12 months. The Big Four banks offer forwards for corporate customers but generally require minimum contract sizes of AUD 100,000+ and an existing business banking relationship. Forward contracts are particularly relevant for Australian importers because the AUD/CNY rate has fluctuated by more than 15% over the past three years.",
+    "sources": ["WorldFirst forward contract terms for Australian businesses", "OFX AUD forward contract documentation", "RBA AUD/CNY historical exchange rate data"]
+  },
+  {
+    "question": "What is the total size of trade between Australia and China?",
+    "answer": "China is Australia's largest two-way trading partner, with bilateral goods and services trade valued at approximately AUD 327 billion in 2024-25. Imports from China to Australia totalled approximately AUD 97 billion, covering electronics, machinery, textiles, and manufactured goods. This trade volume makes the AUD/CNY corridor one of the most significant in the Asia-Pacific region, yet the available fintech infrastructure remains less developed than the UK-China or EU-China corridors.",
+    "sources": ["Australian Department of Foreign Affairs and Trade bilateral statistics", "ABS international trade data 2024-25", "RBA trade-weighted index composition"]
+  }
+]

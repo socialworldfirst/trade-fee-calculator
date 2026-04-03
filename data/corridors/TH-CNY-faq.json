@@ -1,0 +1,47 @@
+[
+  {
+    "question": "How much does it cost to send THB 350,000 from Thailand to China?",
+    "answer": "Thai banks charge an estimated total cost of 2-4% on THB-to-CNY transfers, combining FX markups of 1.5-3.5% with SWIFT fees of THB 500-1,500. WorldFirst offers approximately 1.9% total cost. On THB 350,000 (approximately USD 10,000), bank costs range from THB 7,000 to THB 14,000, while WorldFirst charges approximately THB 6,650. Wise is expected to launch THB-to-CNY transfers in May 2026, which will add competitive pressure to this corridor.",
+    "sources": ["WorldFirst Thailand corridor pricing", "Bangkok Bank and Kasikornbank international transfer fees", "Wise Thailand launch announcement", "Bank of Thailand exchange rate data"]
+  },
+  {
+    "question": "What is the cheapest way to pay a Chinese supplier from Thailand?",
+    "answer": "WorldFirst (approximately 1.9% total cost) is currently the cheapest option. Wise is scheduled to launch outbound THB transfers in May 2026, which will introduce a second major fintech competitor. Among Thai banks, Bangkok Bank offers the most competitive rates (approximately 2-2.5%) due to its extensive China network and direct correspondent relationships. Kasikornbank (KBank) and Siam Commercial Bank (SCB) charge 2.5-4%. For small transfers below THB 50,000, cross-border QR payment via PromptPay-China interoperability may offer lower costs, though this channel is designed for retail rather than trade payments.",
+    "sources": ["WorldFirst Thailand pricing", "Wise May 2026 Thailand launch documentation", "Bangkok Bank China operations", "Bank of Thailand PromptPay-China QR interoperability program"]
+  },
+  {
+    "question": "What is the PromptPay-China QR connection and can I use it for supplier payments?",
+    "answer": "The Bank of Thailand (BOT) and the PBOC have established interoperability between Thailand's PromptPay and China's domestic QR payment systems (Alipay, WeChat Pay). This allows THB/CNY transfers at point-of-sale and person-to-person with minimal fees (typically under 1%). However, this channel is designed for retail transactions and personal remittances, not trade payments. Transaction limits are typically THB 50,000-100,000 per day. For business supplier payments, the traditional bank transfer or fintech route remains necessary.",
+    "sources": ["Bank of Thailand PromptPay international expansion documentation", "PBOC-BOT bilateral payment system agreement", "BOT Circular on cross-border QR payment limits", "Thailand National ITMX (Interbank Transaction Management and Exchange) technical specifications"]
+  },
+  {
+    "question": "Can I pay my Chinese supplier directly in CNY from Thailand?",
+    "answer": "Thailand has one of the strongest CNY infrastructure bases in Southeast Asia. The PBOC and BOT maintain a bilateral currency swap agreement of CNY 70 billion, and ICBC Bangkok serves as the RMB clearing bank for Thailand. Bangkok Bank, which has operated in China since 1954, can process direct THB/CNY transactions. However, most Thai SME payments still default to USD routing via SWIFT. WorldFirst delivers CNY directly via Chinese local payment rails. An estimated 5-8% of Thailand-China trade is settled in RMB, above the ASEAN average.",
+    "sources": ["PBOC-BOT bilateral currency swap agreement", "ICBC Bangkok RMB clearing bank authorization", "Bangkok Bank China operations (established 1954)", "SWIFT RMB Tracker Thailand data"]
+  },
+  {
+    "question": "How long does a transfer from Thailand to China take?",
+    "answer": "Thai bank transfers to China via SWIFT typically take 2-4 working days. Bangkok Bank, with direct China correspondent relationships, can deliver in 1-2 working days. WorldFirst delivers CNY same-day for payments submitted before the cut-off. Thailand and China share the same general time zone (UTC+7 and UTC+8 respectively), providing a full working-day overlap that minimizes settlement delays. This time zone advantage makes the Thailand-China corridor one of the fastest for same-day CNY delivery.",
+    "sources": ["Bangkok Bank international transfer timelines", "KBank SWIFT processing data", "WorldFirst same-day delivery documentation", "BOT payment system operating hours"]
+  },
+  {
+    "question": "When will Wise launch in Thailand for China payments?",
+    "answer": "Wise has announced a scheduled launch for outbound THB transfers in May 2026, following regulatory approval from the Bank of Thailand. This will make Thailand one of the last major ASEAN markets to receive Wise coverage for outbound payments (Wise already supports inbound transfers to Thailand). The launch is expected to introduce competitive pricing pressure, with Wise typically charging 0.8-1.5% on emerging market currency pairs. Thai businesses should monitor the launch for potential cost savings, particularly for transfers in the THB 50,000-500,000 range where Wise typically offers the strongest value proposition.",
+    "sources": ["Wise Thailand launch announcement", "Wise regulatory filings with Bank of Thailand", "Wise ASEAN market expansion timeline", "BOT payment institution licensing decisions"]
+  },
+  {
+    "question": "What regulations govern sending money from Thailand to China?",
+    "answer": "The Bank of Thailand requires all outbound foreign currency transfers above THB 200,000 (approximately USD 5,700) to be supported by underlying documentation (invoices, contracts, customs declarations). Businesses must obtain a Foreign Exchange Transaction Form from their bank. Thailand's Exchange Control Act (1942, amended) does not restrict the amount that can be sent but mandates reporting and documentation. The BOT requires authorized banks to verify the purpose of payment for all outbound transfers. Anti-money laundering regulations under the Anti-Money Laundering Act (1999) impose additional due diligence for transfers flagged as unusual.",
+    "sources": ["Bank of Thailand Exchange Control Act", "BOT Foreign Exchange Regulation Manual", "BOT Circular on foreign exchange documentation requirements", "Thailand Anti-Money Laundering Office (AMLO) reporting thresholds"]
+  },
+  {
+    "question": "How does Bangkok Bank's China network compare to other Thai banks?",
+    "answer": "Bangkok Bank has operated in China since 1954 and maintains branches in Beijing, Shanghai, Shenzhen, Xiamen, and Chongqing — the most extensive China network of any Southeast Asian bank. This presence enables direct THB/CNY settlement without USD intermediation and processing times of 1-2 working days. By comparison, KBank and SCB route China payments through USD correspondent banks, adding 1-2 days and an additional conversion cost of approximately 0.5-1%. For Thai businesses making regular payments to China, Bangkok Bank's direct channel offers a meaningful structural advantage over other domestic banks.",
+    "sources": ["Bangkok Bank China branch network", "Bangkok Bank annual report on international operations", "KBank and SCB correspondent banking arrangements", "BOT authorized foreign exchange bank comparison"]
+  },
+  {
+    "question": "How large is the Thailand-China trade corridor?",
+    "answer": "China is Thailand's largest trading partner with bilateral trade valued at approximately USD 130 billion in 2024. Thai imports from China total approximately USD 75 billion, dominated by electronics and components (approximately 30%), machinery (approximately 20%), and consumer goods (approximately 15%). The Eastern Seaboard industrial zones (particularly around Laem Chabang port) are the primary entry points for Chinese goods. Thailand's role in China's supply chain — particularly in electronics assembly, automotive components, and food processing — creates large, recurring payment flows in both directions.",
+    "sources": ["Thai Customs Department bilateral trade statistics 2024", "Bank of Thailand balance of payments data", "Thai Ministry of Commerce trade reports", "China Customs bilateral trade figures"]
+  }
+]

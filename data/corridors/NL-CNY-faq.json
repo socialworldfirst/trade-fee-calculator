@@ -1,0 +1,47 @@
+[
+  {
+    "question": "How much does it cost to send €10,000 from the Netherlands to China?",
+    "answer": "Dutch banks charge an estimated total cost of €91-€509 on a €10,000 EUR-to-CNY transfer. ING offers the lowest bank rate at approximately €91 (0.85% FX markup plus minimal fees), while ABN AMRO and Rabobank charge €200-509. WorldFirst charges approximately €115. This is one of the few corridors where a traditional bank (ING) undercuts WorldFirst — ING's 0.85% FX markup on CNY is among the lowest offered by any European bank.",
+    "sources": ["ING international transfer pricing and FX margin disclosure", "ABN AMRO and Rabobank international payment fee schedules", "WorldFirst EUR corridor pricing", "Wise Netherlands bank comparison data"]
+  },
+  {
+    "question": "What is the cheapest way to pay a Chinese supplier from the Netherlands?",
+    "answer": "ING (approximately €91 on €10,000 at 0.85% FX markup) is the cheapest option, followed by Wise (approximately €95-110) and WorldFirst (approximately €115). This is an unusual corridor where the incumbent bank beats the specialist fintechs. ING's competitive pricing reflects its significant Asian operations (ING has maintained a presence in Asia since 1902) and direct EUR/CNY market-making capabilities. For Dutch businesses already banking with ING, there may be limited cost benefit from switching to a fintech for China payments.",
+    "sources": ["ING published FX margins", "Wise EUR-CNY fee calculator", "WorldFirst EUR pricing page", "ING Asia-Pacific operations documentation"]
+  },
+  {
+    "question": "Why is ING so much cheaper than other Dutch banks for China payments?",
+    "answer": "ING charges 0.85% FX markup on CNY, compared to 2-3.5% at ABN AMRO and 2.5-4% at Rabobank. Three factors drive this difference: ING maintains direct EUR/CNY market-making operations through its wholesale banking division, its Asian presence (dating to 1902 via the Nederlandsche Handel-Maatschappij) provides direct correspondent relationships in China, and ING's digital-first business model has lower operating costs than branch-heavy competitors. The 0.85% rate is competitive with most fintechs and represents the lowest bank FX markup in any of the 15 major China corridors studied.",
+    "sources": ["ING Group Wholesale Banking FX operations", "ING historical presence in Asia (NHM heritage)", "ING published FX fee schedule", "ABN AMRO and Rabobank international payment pricing"]
+  },
+  {
+    "question": "Can I pay my Chinese supplier directly in CNY from the Netherlands?",
+    "answer": "ING can process EUR/CNY conversions directly without routing through USD, thanks to its wholesale banking FX desk. ABN AMRO and Rabobank typically route through USD as an intermediary currency, adding a second conversion cost. WorldFirst and Wise both deliver CNY directly via local Chinese payment rails. Rotterdam's role as Europe's largest port means Dutch importers handle high volumes of Chinese goods, yet the banking infrastructure for CNY settlement remains concentrated at ING rather than distributed across the market.",
+    "sources": ["ING Wholesale Banking FX capabilities", "ABN AMRO international payment routing", "WorldFirst CNY delivery documentation", "Port of Rotterdam trade flow statistics"]
+  },
+  {
+    "question": "How long does a transfer from the Netherlands to China take?",
+    "answer": "ING processes EUR-to-CNY transfers in 1-2 working days using direct settlement channels. ABN AMRO and Rabobank take 2-4 working days via SWIFT with USD intermediation. WorldFirst delivers CNY same-day for payments submitted before the cut-off. Wise delivers within 1-2 working days. The Netherlands' time zone (CET/CEST) is 6-7 hours behind China, which means payments submitted in the Dutch afternoon arrive at Chinese banks after business hours, potentially adding a day to settlement.",
+    "sources": ["ING international transfer processing times", "ABN AMRO SWIFT payment timelines", "WorldFirst same-day delivery documentation", "Wise EUR-CNY delivery estimates"]
+  },
+  {
+    "question": "How does Rotterdam port traffic affect the Netherlands-China payment corridor?",
+    "answer": "Rotterdam is Europe's largest port and the primary entry point for Chinese goods into the European Union. Approximately 30% of EU-bound container traffic from China transits through Rotterdam, generating massive payment flows from Dutch trading companies, logistics firms, and importers to Chinese suppliers. This trade concentration (estimated at over €80 billion in goods annually) creates a highly active payment corridor with relatively competitive pricing. Many Dutch businesses operate as re-exporters, importing Chinese goods through Rotterdam and distributing them across the EU.",
+    "sources": ["Port of Rotterdam Authority annual statistics", "CBS (Statistics Netherlands) international trade data", "Eurostat intra-EU trade flows from Netherlands", "Dutch Ministry of Economic Affairs trade reports"]
+  },
+  {
+    "question": "What is the ASML corridor and how does it affect Netherlands-China payments?",
+    "answer": "ASML (headquartered in Veldhoven) is the world's sole manufacturer of extreme ultraviolet lithography machines and the Netherlands' largest company. The ASML supply chain creates a distinctive bilateral payment flow: Chinese semiconductor manufacturers pay ASML for equipment (where permitted under export controls), while ASML's Dutch suppliers import components and materials from China. This high-value corridor (individual machine sales exceed €150 million) operates at institutional FX rates not available to SMEs. Export control restrictions (the US-Netherlands-Japan trilateral agreement) have reduced but not eliminated ASML-related China payment flows.",
+    "sources": ["ASML annual report and supply chain disclosures", "Netherlands export control regulations (CDIU)", "US-Netherlands-Japan semiconductor export control agreement", "CBS Netherlands bilateral trade with China statistics"]
+  },
+  {
+    "question": "What regulations apply to sending money from the Netherlands to China?",
+    "answer": "Transfers above €10,000 must be reported to De Nederlandsche Bank (DNB) for balance-of-payments statistics. EU AMLD6 anti-money laundering regulations require enhanced due diligence for payments to non-EU countries above €15,000. The Netherlands Financial Intelligence Unit (FIU-Nederland) monitors unusual transaction patterns. Dutch businesses must comply with EU dual-use goods export control regulations when paying for technology-related imports. The Dutch Authority for Financial Markets (AFM) and DNB jointly regulate payment service providers, ensuring that fintechs operating in the Netherlands meet the same standards as banks.",
+    "sources": ["DNB balance-of-payments reporting requirements", "EU AMLD6 implementation in Dutch law (Wwft)", "FIU-Nederland reporting obligations", "AFM and DNB payment institution licensing requirements"]
+  },
+  {
+    "question": "What exchange rate will I get when sending EUR to CNY from the Netherlands?",
+    "answer": "On €10,000, ING delivers approximately CNY 78,230 (0.85% below the mid-market rate of approximately 7.89 EUR/CNY as of April 2026). ABN AMRO delivers approximately CNY 75,700-77,300 (2-3.5% below mid-market). WorldFirst delivers approximately CNY 78,000 (1.1% below mid-market). The difference between ING and ABN AMRO amounts to approximately CNY 930-2,530, or €118-€320 equivalent. For a business making monthly payments of €50,000, choosing ING over ABN AMRO saves an estimated €7,000-€19,000 annually.",
+    "sources": ["ECB EUR/CNY reference rate", "ING published FX margins", "ABN AMRO FX markup disclosure", "WorldFirst EUR FX ceiling documentation"]
+  }
+]

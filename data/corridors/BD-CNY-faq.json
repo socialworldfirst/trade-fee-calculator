@@ -1,0 +1,47 @@
+[
+  {
+    "question": "How much does it cost to send BDT 1,100,000 from Bangladesh to China?",
+    "answer": "Bangladeshi banks charge an estimated total cost of 2-4% on BDT-to-CNY transfers, combining FX markups of 1.5-3.5% with SWIFT fees of BDT 1,500-3,000. WorldFirst offers an estimated total cost of 3-4.5%, which is notably not cheaper than banks in this corridor — one of the few corridors where the traditional banking system can match or undercut fintechs. On BDT 1,100,000 (approximately USD 10,000), the cost via a bank ranges from BDT 22,000 to BDT 44,000.",
+    "sources": ["WorldFirst Bangladesh corridor pricing", "Sonali Bank and Janata Bank international transfer fees", "Bangladesh Bank exchange rate circulars", "BRAC Bank international payment fee schedule"]
+  },
+  {
+    "question": "What is the cheapest way to pay a Chinese supplier from Bangladesh?",
+    "answer": "Bangladeshi banks (2-4% total cost) are the cheapest option in this corridor, which is unusual among the 15 major China payment corridors. WorldFirst charges 3-4.5%, positioning it competitively but not as the lowest-cost provider. Wise does not support outbound BDT transfers. There are zero domestic Bangladeshi fintechs offering outbound cross-border payments to China. The mandatory letter of credit (LC) requirement for most imports means the payment process runs through banks regardless of which provider handles the FX conversion.",
+    "sources": ["Bangladesh Bank Import Policy Order", "WorldFirst Bangladesh pricing", "Wise BDT supported routes", "Bangladesh Bank licensed authorized dealer list"]
+  },
+  {
+    "question": "Why are letters of credit mandatory for Bangladesh imports from China?",
+    "answer": "Bangladesh Bank requires letters of credit (LCs) for the majority of import transactions under the Import Policy Order 2021-2024, as a mechanism to control foreign exchange outflows and ensure trade documentation compliance. LCs add approximately 0.5-2% to the cost of a transaction (LC opening charges plus confirmation fees) and require a margin deposit of 10-100% of the LC value depending on the product category and importer's creditworthiness. This structural requirement means that even when using a fintech for FX conversion, the LC process must still be initiated through an authorized dealer bank.",
+    "sources": ["Bangladesh Bank Import Policy Order 2021-2024", "Bangladesh Bank Foreign Exchange Regulation Act 1947", "Bangladesh Bank LC margin requirements circular", "BFIU (Bangladesh Financial Intelligence Unit) trade-based compliance guidance"]
+  },
+  {
+    "question": "Can I pay my Chinese supplier directly in CNY from Bangladesh?",
+    "answer": "No Bangladeshi bank or fintech offers direct CNY delivery. All transfers route through USD via SWIFT, with the Chinese receiving bank performing the final conversion to CNY. There is no bilateral currency swap agreement between Bangladesh Bank and the PBOC. Bangladesh Bank does not authorize holding of CNY balances by authorized dealer banks. WorldFirst can deliver CNY via its Chinese settlement infrastructure, but the payment initiation still requires LC processing through a Bangladeshi authorized dealer bank.",
+    "sources": ["Bangladesh Bank authorized foreign currency list", "PBOC bilateral swap agreement database", "Bangladesh Bank Foreign Exchange Circular on permitted currencies", "WorldFirst CNY delivery documentation"]
+  },
+  {
+    "question": "How long does a transfer from Bangladesh to China take?",
+    "answer": "The total processing time from Bangladesh to China is typically 7-15 working days when including LC processing (3-7 days), document verification (1-3 days), and SWIFT settlement (2-4 days). This is significantly longer than most corridors because of the mandatory LC requirement. Payments on open account terms (where permitted) take 3-5 working days via SWIFT. WorldFirst delivers within 1-2 working days once funds are received, but the upstream LC processing in Bangladesh remains the bottleneck.",
+    "sources": ["Bangladesh Bank LC processing timeline data", "Sonali Bank and BRAC Bank international payment timelines", "WorldFirst delivery estimates", "SWIFT settlement benchmarks for Bangladesh"]
+  },
+  {
+    "question": "How does the garment industry affect Bangladesh-China payment flows?",
+    "answer": "Bangladesh's USD 47 billion garment export industry is the country's largest source of foreign exchange and also its largest driver of Chinese imports. Garment manufacturers import approximately USD 15 billion annually in fabrics, yarns, accessories, and machinery from China. These importers operate on thin margins (typically 5-10% net) and high volumes, making payment costs a material factor in profitability. Many garment exporters maintain back-to-back LC arrangements where the export LC serves as collateral for the import LC, creating a linked payment chain that is difficult to separate from the banking system.",
+    "sources": ["Bangladesh Garment Manufacturers and Exporters Association (BGMEA) trade data", "Bangladesh Bank export-import statistics", "World Bank Bangladesh Development Update", "EPB (Export Promotion Bureau) bilateral trade figures"]
+  },
+  {
+    "question": "What regulations govern sending money from Bangladesh to China?",
+    "answer": "Bangladesh maintains comprehensive foreign exchange controls under the Foreign Exchange Regulation Act 1947. All import payments require: an Import Registration Certificate (IRC) from the Chief Controller of Imports and Exports, an authorized dealer bank relationship, a letter of credit for most product categories, and customs documentation (bill of entry, invoice, packing list). Advance payments are restricted to USD 25,000 per transaction with Bangladesh Bank approval. Transfers above USD 10,000 require reporting to the Bangladesh Financial Intelligence Unit (BFIU).",
+    "sources": ["Bangladesh Bank Foreign Exchange Regulation Act 1947", "Bangladesh Bank Guidelines for Foreign Exchange Transactions (GFET)", "Chief Controller of Imports and Exports IRC requirements", "BFIU reporting thresholds"]
+  },
+  {
+    "question": "Why are there no fintechs serving outbound payments from Bangladesh?",
+    "answer": "Three structural factors prevent fintech competition: Bangladesh Bank restricts international payment operations to authorized dealer banks (currently 62 institutions), the mandatory LC requirement channels all trade payments through the banking system, and capital account controls require each outbound transfer to have regulatory pre-approval with supporting documentation. Mobile financial services (bKash, Nagad) handle significant domestic payment volumes but have no authorization for outbound cross-border corporate transfers. WorldFirst serves the corridor from the receiving side but cannot originate payments within Bangladesh.",
+    "sources": ["Bangladesh Bank authorized dealer bank list", "Bangladesh Bank Mobile Financial Services regulations", "bKash and Nagad service scope documentation", "World Bank Bangladesh Financial Sector Assessment"]
+  },
+  {
+    "question": "How large is the trade relationship between Bangladesh and China?",
+    "answer": "China is Bangladesh's largest source of imports, with bilateral trade valued at approximately USD 22 billion annually. Bangladeshi imports from China total approximately USD 18 billion, dominated by textiles and yarns (approximately 40%), machinery and electronics (approximately 25%), and chemicals (approximately 15%). The garment supply chain creates a distinctive payment pattern: large volumes of relatively small orders (USD 5,000-50,000) requiring individual LC processing, which multiplies the administrative cost per dollar transferred.",
+    "sources": ["Bangladesh Bureau of Statistics bilateral trade data", "Bangladesh Bank import payment statistics", "National Board of Revenue customs import data", "World Bank WITS bilateral trade database"]
+  }
+]

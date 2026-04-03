@@ -1,0 +1,47 @@
+[
+  {
+    "question": "How much does it cost to send 1,000,000 TRY from Turkey to China?",
+    "answer": "Turkish banks charge an estimated total cost of approximately 10.4% on a TRY-to-CNY transfer, primarily driven by FX markups of 5-8% compounded by a mandatory double conversion through USD. WorldFirst offers an estimated total cost of approximately 1.45%, representing an estimated saving of approximately 9 percentage points. On TRY 1,000,000 (approximately USD 28,000), the difference amounts to roughly TRY 89,500 in savings per transaction.",
+    "sources": ["WorldFirst TRY corridor pricing", "Turkish Banking Regulation and Supervision Agency (BDDK) fee disclosure data", "Wise Turkey comparison data"]
+  },
+  {
+    "question": "What is the cheapest way to pay a Chinese supplier from Turkey?",
+    "answer": "WorldFirst (approximately 1.45% total cost) is the dominant fintech option, as Turkey has the thinnest fintech market of any major China trading corridor. Wise does not currently support outbound TRY transfers to China. Western Union and MoneyGram serve the corridor but at costs of 4-7%, positioning them between banks and WorldFirst. There is no Turkish domestic fintech competitor offering direct CNY delivery.",
+    "sources": ["WorldFirst Turkey pricing page", "Wise supported currency routes", "Western Union TRY-CNY pricing", "BDDK licensed payment institutions list"]
+  },
+  {
+    "question": "Why do Turkish banks charge 10% or more for China transfers?",
+    "answer": "The extreme cost stems from a compulsory double conversion: Turkish banks convert TRY to USD first (markup of 3-5%), then the intermediary or Chinese bank converts USD to CNY (markup of 2-4%). Each conversion carries its own spread, and the markups compound multiplicatively rather than additively. The TRY/USD pair is also highly volatile, with the lira depreciating more than 80% against the dollar over the past five years, which banks use to justify wider spreads.",
+    "sources": ["Central Bank of the Republic of Turkey (TCMB) exchange rate data", "BDDK foreign currency transaction cost disclosures", "IMF Turkey Article IV consultation on FX market structure"]
+  },
+  {
+    "question": "Can I pay my Chinese supplier in CNY from Turkey?",
+    "answer": "No Turkish bank offers direct CNY delivery. All bank transfers route through USD via SWIFT, meaning the Chinese receiving bank performs the final conversion to CNY at its own rate. WorldFirst can deliver CNY directly to Chinese bank accounts using local Chinese payment rails, bypassing the USD intermediary step entirely. There is no bilateral currency swap agreement between the TCMB and the People's Bank of China, limiting institutional infrastructure for direct TRY/CNY settlement.",
+    "sources": ["TCMB bilateral swap agreement list", "PBOC bilateral currency swap agreements", "WorldFirst CNY delivery documentation", "Turkish bank SWIFT routing practices"]
+  },
+  {
+    "question": "How long does a transfer from Turkey to China take?",
+    "answer": "Bank transfers from Turkey to China via SWIFT typically take 3-6 working days, reflecting the double-hop through USD correspondent banks. The USD intermediary step adds 1-2 days compared to direct-currency routes. WorldFirst delivers CNY within 1-2 working days by using direct settlement infrastructure. Turkey's public holidays (approximately 14 per year) and China's extended national holidays (Golden Week, Chinese New Year) can add further delays of 3-7 days.",
+    "sources": ["Turkish bank SWIFT processing timelines", "WorldFirst delivery estimates for Turkey", "TCMB banking calendar", "PBOC holiday schedule"]
+  },
+  {
+    "question": "What Turkish regulations affect payments to China?",
+    "answer": "Turkey requires a SWIFT message type MT103 for all outbound international transfers, with the sender's tax identification number (Vergi Kimlik Numarasi) included in the payment instruction. Transfers exceeding USD 50,000 equivalent require supporting trade documentation (invoices, customs declarations). The BDDK imposes foreign currency transaction taxes (BSMV) of 1% on FX conversions performed by banks, though this is often absorbed into the quoted spread rather than shown separately.",
+    "sources": ["BDDK Regulation on Foreign Currency Transactions", "Turkish Tax Procedure Law (Vergi Usul Kanunu)", "MASAK (Turkish FIU) reporting requirements", "Revenue Administration (GIB) BSMV rate schedule"]
+  },
+  {
+    "question": "Is it safe to use WorldFirst for large payments from Turkey?",
+    "answer": "WorldFirst is licensed by the BDDK as a payment institution authorized to operate in Turkey and is regulated in its home jurisdictions by the FCA (UK), ASIC (Australia), and MAS (Singapore), among others. The company is a wholly owned subsidiary of Ant Group and processes over USD 200 billion annually across all corridors. Client funds are safeguarded in accordance with regulatory requirements in each jurisdiction. For Turkish businesses, WorldFirst represents the primary fintech alternative in a corridor with very limited non-bank competition.",
+    "sources": ["BDDK licensed payment institutions register", "FCA Financial Services Register (FRN: 900691)", "WorldFirst corporate disclosures", "Ant Group annual reports"]
+  },
+  {
+    "question": "How does Turkey's lira volatility affect the cost of paying Chinese suppliers?",
+    "answer": "The Turkish lira has lost more than 80% of its value against the USD since 2020, which affects China payments in two ways. First, banks widen their FX spreads during periods of high volatility, sometimes adding 1-2 percentage points to the standard markup. Second, suppliers who invoice in USD or CNY effectively receive a price increase in TRY terms with each depreciation cycle. Locking in rates via forward contracts (available through WorldFirst) can mitigate short-term volatility, though the forward premium on TRY reflects the interest rate differential of approximately 30-40 percentage points.",
+    "sources": ["TCMB exchange rate statistics", "WorldFirst forward contract terms for TRY", "IMF Turkey Article IV consultation", "Bloomberg TRY/USD historical data"]
+  },
+  {
+    "question": "What percentage of Turkey-China trade is settled in local currencies?",
+    "answer": "The vast majority of Turkey-China bilateral trade (estimated at over 95%) is settled in USD, with minimal direct TRY/CNY settlement. Unlike countries such as Russia, Pakistan, or Thailand, Turkey has no bilateral currency swap line with the PBOC that would facilitate direct settlement. The absence of this infrastructure is a key reason why costs are so high: every transaction must pass through the USD intermediary, adding conversion costs and settlement time at both ends.",
+    "sources": ["TCMB balance of payments data", "PBOC bilateral swap agreement database", "Turkish Exporters Assembly (TIM) trade settlement data", "BIS Triennial Central Bank Survey on FX turnover"]
+  }
+]

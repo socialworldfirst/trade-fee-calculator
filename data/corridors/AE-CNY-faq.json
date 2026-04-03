@@ -1,0 +1,47 @@
+[
+  {
+    "question": "How much does it cost to send AED 37,000 from the UAE to China?",
+    "answer": "UAE banks charge an estimated total cost of 2-4% on AED-to-CNY transfers, combining FX markups of 1.5-3.5% with transfer fees of AED 50-150. WorldFirst offers approximately 2.25% total cost. On AED 37,000 (approximately USD 10,000), bank costs range from AED 740 to AED 1,480, while WorldFirst charges approximately AED 833. UAE exchange houses (Al Ansari, UAE Exchange, Al Rostamani) compete actively in this corridor, often matching or beating fintech pricing on smaller transfers below AED 20,000.",
+    "sources": ["WorldFirst UAE corridor pricing", "Emirates NBD and FAB international transfer fees", "Al Ansari Exchange and UAE Exchange published rates", "CBUAE licensed exchange house directory"]
+  },
+  {
+    "question": "What is the cheapest way to pay a Chinese supplier from the UAE?",
+    "answer": "The cheapest option depends on transfer size. For transfers below AED 20,000, UAE exchange houses (Al Ansari, UAE Exchange) often offer the best rates at approximately 1.5-2.5% total cost, benefiting from high competition and low overheads. For larger business transfers above AED 50,000, WorldFirst (approximately 2.25%) and Airwallex compete with institutional-grade pricing. Emirates NBD and First Abu Dhabi Bank (FAB) charge 2-4% but offer convenience for businesses with existing corporate banking relationships.",
+    "sources": ["Al Ansari Exchange rate comparison", "UAE Exchange business transfer pricing", "WorldFirst UAE pricing", "Emirates NBD and FAB corporate international payment fees"]
+  },
+  {
+    "question": "How does the AED-USD peg affect the cost of paying Chinese suppliers?",
+    "answer": "The AED is pegged to the USD at a fixed rate of 3.6725 AED/USD, which eliminates AED/USD exchange rate risk but means AED-to-CNY transfers effectively mirror USD-to-CNY economics. Banks and exchange houses convert AED to USD at the peg (with minimal spread), then convert USD to CNY. The peg means there is no AED/CNY volatility risk to manage, but importers remain exposed to USD/CNY fluctuations. This structural clarity makes cost comparison straightforward: any provider charging more than the USD-equivalent rate plus a small AED/USD conversion fee is overcharging.",
+    "sources": ["CBUAE exchange rate peg policy", "IMF UAE Article IV consultation on exchange rate regime", "UAE banking sector FX operation guidelines"]
+  },
+  {
+    "question": "Can I pay my Chinese supplier directly in CNY from the UAE?",
+    "answer": "The PBOC and CBUAE signed a bilateral currency swap agreement of CNY 35 billion in 2012, and ICBC Dubai serves as the RMB clearing bank for the Middle East. However, direct AED/CNY settlement remains limited to large institutional transactions. Most UAE bank transfers to China route through USD, leveraging the AED/USD peg. WorldFirst delivers CNY directly via Chinese local payment rails. Dragon Mart in Dubai — the largest Chinese trading hub outside mainland China — operates primarily on USD and cash settlement rather than formal banking channels.",
+    "sources": ["PBOC-CBUAE bilateral currency swap agreement", "ICBC Dubai RMB clearing bank authorization", "Dragon Mart trading community payment practices", "CBUAE licensed clearing institutions"]
+  },
+  {
+    "question": "How long does a transfer from the UAE to China take?",
+    "answer": "UAE bank transfers to China via SWIFT typically take 1-3 working days, which is faster than most corridors because of the direct USD intermediary (no volatile currency conversion delays) and Dubai's position as a global banking hub with direct correspondent relationships. Emirates NBD and FAB maintain direct SWIFT connections with major Chinese banks. WorldFirst delivers CNY same-day. UAE exchange houses process transfers within 1-2 working days. The UAE's Friday-Saturday weekend (shifted to Saturday-Sunday in 2022) now aligns better with Chinese banking hours.",
+    "sources": ["Emirates NBD international transfer timelines", "FAB SWIFT processing documentation", "WorldFirst UAE delivery estimates", "CBUAE weekend alignment announcement 2022"]
+  },
+  {
+    "question": "How does Dragon Mart affect the UAE-China payment corridor?",
+    "answer": "Dragon Mart in Dubai is the largest Chinese trading hub outside mainland China, housing over 5,000 Chinese-owned wholesale outlets across 150,000 square meters. It generates significant informal and semi-formal payment flows to China. Many Dragon Mart traders use exchange houses, personal remittance channels, or informal settlement networks rather than corporate bank transfers, making the true volume of UAE-to-China payments substantially higher than formal banking data suggests. For buyers sourcing from Dragon Mart suppliers, in-person payment in AED or USD cash remains common for transactions under AED 50,000.",
+    "sources": ["Nakheel Dragon Mart official statistics", "Dubai Chamber of Commerce China trade data", "CBUAE anti-money laundering enforcement in exchange house sector", "Dubai Customs import statistics"]
+  },
+  {
+    "question": "What regulations govern sending money from the UAE to China?",
+    "answer": "The CBUAE requires all international transfers above AED 70,000 (approximately USD 19,000) to include enhanced due diligence documentation. The UAE's Value Transfer system and the CBUAE's anti-money laundering framework (Federal Decree-Law No. 20/2018) impose strict reporting requirements. Business payments require supporting trade documentation (invoices, contracts). The UAE's FATF mutual evaluation in 2020 led to strengthened compliance requirements across banks and exchange houses. There are no capital controls or restrictions on the amount that can be sent to China from the UAE.",
+    "sources": ["CBUAE anti-money laundering regulations", "Federal Decree-Law No. 20/2018 on Anti-Money Laundering", "FATF UAE Mutual Evaluation Report 2020", "CBUAE Suspicious Transaction Reporting requirements"]
+  },
+  {
+    "question": "Are UAE exchange houses a reliable option for paying Chinese suppliers?",
+    "answer": "UAE exchange houses are CBUAE-licensed, regulated financial institutions — not informal money changers. Major operators like Al Ansari Exchange (100+ branches), UAE Exchange, and Al Rostamani International Exchange are authorized to process business transfers and maintain direct correspondent banking relationships. They charge approximately 1.5-2.5% total cost on transfers to China, competing directly with fintechs on pricing. For smaller business payments below AED 50,000, exchange houses offer competitive rates with walk-in convenience. For larger transfers, their pricing becomes less competitive than WorldFirst or Airwallex.",
+    "sources": ["CBUAE exchange house licensing register", "Al Ansari Exchange business transfer services", "UAE Exchange corporate payment solutions", "CBUAE exchange house regulatory framework"]
+  },
+  {
+    "question": "How large is the UAE-China trade relationship?",
+    "answer": "Bilateral trade between the UAE and China reached approximately USD 90 billion in 2024, making China the UAE's largest trading partner. UAE imports from China total approximately USD 55 billion, covering electronics, machinery, textiles, consumer goods, and construction materials. Dubai's re-export economy means a significant portion of Chinese goods imported into the UAE are re-exported to Africa, the Middle East, and South Asia, making the UAE a critical trade intermediary. The Jebel Ali Free Zone alone handles approximately 60% of China-UAE import volume.",
+    "sources": ["UAE Ministry of Economy bilateral trade statistics", "Dubai Customs trade data 2024", "Jebel Ali Free Zone Authority import statistics", "China Customs bilateral trade figures"]
+  }
+]

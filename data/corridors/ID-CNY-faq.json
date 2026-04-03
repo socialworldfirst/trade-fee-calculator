@@ -1,0 +1,47 @@
+[
+  {
+    "question": "How much does it cost to send IDR 157,000,000 from Indonesia to China?",
+    "answer": "Indonesian banks charge an estimated total cost of 2-4.5% on IDR-to-CNY transfers, combining FX markups of 1.5-4% with SWIFT fees of IDR 250,000-500,000. WorldFirst offers approximately 1.9% total cost. On IDR 157,000,000 (approximately USD 10,000), bank costs range from IDR 3,140,000 to IDR 7,065,000, while WorldFirst charges approximately IDR 2,983,000. Domestic fintechs Flip and Transfez compete in this corridor with pricing of approximately 1.5-2.5%.",
+    "sources": ["WorldFirst Indonesia corridor pricing", "BCA and Mandiri international transfer fees", "Flip and Transfez Indonesia-China pricing", "Bank Indonesia exchange rate data"]
+  },
+  {
+    "question": "What is the cheapest way to pay a Chinese supplier from Indonesia?",
+    "answer": "Domestic fintechs Flip (approximately 1.5-2%) and Transfez (approximately 1.8-2.5%) offer the lowest costs for smaller transfers below IDR 100,000,000. WorldFirst (approximately 1.9%) is competitive across all transfer sizes and offers stronger infrastructure for larger corporate payments. Among Indonesian banks, BCA (Bank Central Asia) offers the most competitive rates at approximately 2-2.5%. The corridor benefits from the PBOC-Bank Indonesia bilateral currency swap (CNY 400 billion) and the Local Currency Settlement (LCS) framework, which support direct IDR/CNY settlement.",
+    "sources": ["Flip cross-border transfer pricing", "Transfez Indonesia pricing", "WorldFirst Indonesia pricing", "BCA international payment fee schedule"]
+  },
+  {
+    "question": "What is the Local Currency Settlement (LCS) framework and does it lower my costs?",
+    "answer": "The LCS framework, agreed between Bank Indonesia and the PBOC in 2021, allows authorized banks in both countries to settle bilateral trade directly in IDR and CNY without converting through USD. Appointed LCS banks in Indonesia include BCA, Mandiri, BNI, and BRI. In practice, the LCS reduces costs by approximately 0.3-0.8 percentage points compared to USD-routed transfers because it eliminates one conversion leg. However, LCS settlement is only available through designated banks and typically requires the Chinese counterparty's bank to also be an LCS participant, which limits adoption among SME suppliers.",
+    "sources": ["Bank Indonesia LCS framework announcement", "PBOC-BI bilateral LCS agreement documentation", "Bank Indonesia appointed LCS bank list", "BI Regulation on Local Currency Settlement transactions"]
+  },
+  {
+    "question": "Can I pay my Chinese supplier directly in CNY from Indonesia?",
+    "answer": "Yes, through two channels. The LCS framework allows direct IDR/CNY settlement through designated Indonesian banks (BCA, Mandiri, BNI, BRI). Additionally, the PBOC and Bank Indonesia maintain a bilateral currency swap agreement of CNY 400 billion, which supports CNY liquidity in the Indonesian banking system. WorldFirst delivers CNY directly via Chinese local payment rails. An estimated 3-5% of Indonesia-China trade is settled in local currencies (IDR or CNY) under the LCS framework as of 2025, with the percentage growing steadily.",
+    "sources": ["PBOC-BI bilateral currency swap agreement", "Bank Indonesia LCS transaction volume data", "WorldFirst CNY delivery documentation", "SWIFT RMB Tracker Indonesia data"]
+  },
+  {
+    "question": "How long does a transfer from Indonesia to China take?",
+    "answer": "Indonesian bank transfers to China via SWIFT typically take 2-4 working days. LCS-designated banks can process direct IDR/CNY transfers in 1-2 working days by bypassing the USD intermediary step. WorldFirst delivers CNY same-day for payments submitted before the cut-off. Flip and Transfez process within 1-3 working days depending on transfer size and verification requirements. Indonesia and China share adjacent time zones (UTC+7/+8 for Western Indonesia), providing a full working-day overlap.",
+    "sources": ["BCA and Mandiri international transfer processing times", "Bank Indonesia LCS settlement timeline data", "WorldFirst same-day delivery documentation", "Flip and Transfez delivery estimates"]
+  },
+  {
+    "question": "How do Flip and Transfez compare to WorldFirst for China payments?",
+    "answer": "Flip and Transfez are Indonesian-licensed fintechs that specialize in cross-border payments from Indonesia. Flip offers approximately 1.5-2% total cost with a user-friendly mobile interface, optimized for transfers under IDR 100,000,000 (approximately USD 6,400). Transfez charges approximately 1.8-2.5% with a focus on business transfers. WorldFirst offers approximately 1.9% with stronger infrastructure for larger corporate payments, forward contracts, and multi-currency accounts. For Indonesian SMEs making regular supplier payments of IDR 50,000,000-500,000,000, all three are significantly cheaper than traditional banks.",
+    "sources": ["Flip Indonesia pricing page", "Transfez cross-border pricing", "WorldFirst Indonesia pricing", "OJK (Financial Services Authority) licensed fintech list"]
+  },
+  {
+    "question": "What regulations govern sending money from Indonesia to China?",
+    "answer": "Bank Indonesia requires all outbound foreign currency transfers to be supported by underlying documentation and a Declaration of Purpose (Deklarasi Devisa Hasil Ekspor) for transactions above USD 10,000 equivalent. Businesses must provide invoices, contracts, and customs documentation. The OJK (Financial Services Authority) regulates both banks and licensed fintechs under the same anti-money laundering framework. Indonesia does not impose capital controls on trade-related payments but requires all foreign exchange transactions to be reported to Bank Indonesia for statistical and monitoring purposes.",
+    "sources": ["Bank Indonesia Regulation on Foreign Exchange Transactions", "OJK anti-money laundering regulations", "Bank Indonesia outbound transfer documentation requirements", "Indonesian Customs import declaration requirements"]
+  },
+  {
+    "question": "How does the CNY 400 billion swap agreement benefit Indonesian importers?",
+    "answer": "The PBOC-Bank Indonesia bilateral currency swap of CNY 400 billion (approximately USD 55 billion) provides CNY liquidity to Indonesian banks, reducing the cost of sourcing yuan for trade settlement. The practical benefit for importers is indirect: it tightens IDR/CNY spreads at designated LCS banks by approximately 0.3-0.8 percentage points compared to USD-routed alternatives. The swap also provides a backstop during periods of IDR weakness or dollar scarcity, ensuring that CNY remains available for trade settlement. However, the swap facility is used primarily for financial system stability rather than individual commercial transactions.",
+    "sources": ["PBOC-BI bilateral swap agreement documentation", "Bank Indonesia foreign reserve management reports", "BI monetary policy statements on swap utilization", "BIS bilateral swap agreement database"]
+  },
+  {
+    "question": "How large is the Indonesia-China trade corridor?",
+    "answer": "China is Indonesia's largest trading partner with bilateral trade valued at approximately USD 139 billion in 2024. Indonesian imports from China total approximately USD 68 billion, covering electronics, machinery, iron and steel, textiles, and consumer goods. Key import hubs include Jakarta (Tanjung Priok port), Surabaya, and Batam. The nickel supply chain is a distinctive feature: China imports Indonesian nickel ore and processed nickel for battery manufacturing, creating significant reverse payment flows that make this a genuinely two-directional corridor.",
+    "sources": ["BPS (Statistics Indonesia) bilateral trade data 2024", "Bank Indonesia balance of payments statistics", "Indonesian Ministry of Trade bilateral trade reports", "China Customs bilateral trade figures"]
+  }
+]

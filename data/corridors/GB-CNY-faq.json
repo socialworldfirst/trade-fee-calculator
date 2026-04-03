@@ -1,0 +1,52 @@
+[
+  {
+    "question": "How much does it cost to send £10,000 from the UK to China?",
+    "answer": "The total cost ranges from approximately £54 via WorldFirst to £410 via NatWest. UK high-street banks charge FX markups of 2.2% to 4.6% plus flat fees of £5-£25, with additional unpredictable SWIFT intermediary deductions of £10-£25. Fintechs reduce costs by 70-85%: WorldFirst charges a maximum 0.5% FX ceiling (£54 on £10,000), Airwallex charges 0.5% (£50), and Wise charges an effective 0.91% (£91).",
+    "sources": ["Wise 2024 UK bank transparency study", "WorldFirst published pricing", "Airwallex business pricing page", "HSBC, Barclays, Lloyds, NatWest international transfer pages"]
+  },
+  {
+    "question": "What is the cheapest way to pay a Chinese supplier from the UK?",
+    "answer": "Airwallex (approximately £50 on £10,000) and WorldFirst (approximately £54) are the cheapest options, both offering direct CNY delivery via local payment rails rather than SWIFT. Wise is the third option at approximately £91, though it routes CNY via Alipay rather than direct bank transfer. All three are significantly cheaper than any UK bank, where the minimum cost is approximately £255 via Nationwide.",
+    "sources": ["Airwallex UK business pricing", "WorldFirst FX ceiling documentation", "Wise GBP-to-CNY fee calculator", "Nationwide international payments page"]
+  },
+  {
+    "question": "Can I pay my Chinese supplier directly in RMB from the UK?",
+    "answer": "No UK high-street bank can send CNY directly to China. Banks route payments in GBP, USD, or EUR via SWIFT, leaving the Chinese receiving bank to convert to CNY at its own rate — creating a second, hidden conversion cost. WorldFirst and Airwallex bypass this entirely by holding CNY locally and delivering to Chinese bank accounts in CNY same-day. Approximately 75% of UK-China trade invoices are denominated in USD, adding a third currency to the chain when paying via a bank.",
+    "sources": ["HSBC international payments terms", "Barclays supported currency list", "WorldFirst CNY payment documentation", "UK trade invoicing data from HMRC"]
+  },
+  {
+    "question": "How long does a transfer from the UK to China take?",
+    "answer": "Bank transfers via SWIFT typically take 2-5 working days, with intermediary bank processing adding unpredictable delays. WorldFirst and Airwallex deliver CNY same-day when payments are submitted before their respective cut-off times, because they use local Chinese payment rails rather than the SWIFT correspondent banking network. Wise delivers within 1-2 working days via its Alipay partnership.",
+    "sources": ["HSBC international transfer timelines", "Barclays payment processing times", "WorldFirst same-day delivery documentation", "Wise estimated delivery times for CNY"]
+  },
+  {
+    "question": "Why do UK banks charge so much more than fintechs for China payments?",
+    "answer": "The FX markup represents 85-95% of the true cost of a UK bank transfer to China. Banks add a margin of 2.2-4.6% to the mid-market exchange rate, which on £10,000 amounts to £220-£460 in hidden costs before any visible fees are applied. Fintechs like WorldFirst and Airwallex hold CNY in China and settle locally, eliminating SWIFT fees, intermediary bank deductions, and the double-conversion problem that occurs when banks cannot send CNY directly.",
+    "sources": ["Wise 2024 study on UK bank FX markups (Finextra)", "WorldFirst settlement infrastructure documentation", "FCA guidance on exchange rate transparency"]
+  },
+  {
+    "question": "Is my money protected when using a fintech to pay Chinese suppliers?",
+    "answer": "UK fintechs authorized by the FCA must safeguard client funds under the Payment Services Regulations 2017, meaning funds are held separately from the company's own money. WorldFirst is authorized by the FCA (FRN: 900691) and owned by Ant Group. Airwallex is authorized by the FCA (FRN: 900876). Unlike bank deposits, fintech balances are not covered by the FSCS £85,000 guarantee, though the safeguarding requirement provides a comparable layer of protection.",
+    "sources": ["FCA Financial Services Register", "Payment Services Regulations 2017", "WorldFirst FCA registration", "Airwallex FCA registration"]
+  },
+  {
+    "question": "How many providers can send money from the UK to China?",
+    "answer": "There are approximately 13 providers serving the UK-to-China corridor: six major banks (HSBC, Barclays, Lloyds, NatWest, Santander, TSB) and seven fintechs (WorldFirst, Airwallex, Wise, OFX, XE, Remitly, WorldRemit). The market splits into two segments: WorldFirst and Airwallex compete for B2B supplier payments with local CNY rails; Wise, Remitly, and WorldRemit primarily serve personal remittances with CNY transaction caps.",
+    "sources": ["FCA Financial Services Register", "Provider websites and pricing pages as of April 2026", "Wise 2024 UK bank comparison study"]
+  },
+  {
+    "question": "What exchange rate will I get when sending GBP to CNY?",
+    "answer": "The mid-market GBP/CNY rate (approximately 9.15 as of April 2026) is the benchmark — the rate you see on Google or XE.com. UK banks typically offer a rate 2.2-4.6% below this benchmark, meaning on £10,000 you receive CNY 83,500-89,500 instead of the mid-market CNY 91,500. WorldFirst guarantees a maximum 0.5% markup (receiving approximately CNY 91,040), while Wise shows you the exact fee before you send.",
+    "sources": ["XE.com GBP/CNY rate", "Bank of England reference rates", "Wise UK bank markup study", "WorldFirst FX ceiling terms"]
+  },
+  {
+    "question": "Do I need to worry about SWIFT intermediary fees when paying China?",
+    "answer": "Yes, if you use a UK bank. SWIFT transfers to China typically pass through one or two intermediary banks, each deducting £10-£25 (or the USD equivalent) from the payment amount. HSBC states these fees 'may not be visible in advance.' Even choosing OUR (sender pays all fees) does not guarantee the full amount arrives, as Chinese receiving banks may still deduct their own charges. WorldFirst and Airwallex avoid this entirely by using local Chinese payment infrastructure.",
+    "sources": ["HSBC international payment terms and conditions", "SWIFT SHA/OUR pricing documentation", "Airwallex correspondent banking comparison", "Wise intermediary fee guidance"]
+  },
+  {
+    "question": "Can I lock in a GBP/CNY exchange rate in advance for future supplier payments?",
+    "answer": "Forward contracts for CNY are available through some UK banks (HSBC, Barclays) and fintechs (WorldFirst, Airwallex, OFX) for business customers, though these are typically structured as non-deliverable forwards (NDFs) because the Chinese yuan is not freely convertible. An NDF locks in an exchange rate for a future date, with the difference settled in GBP or USD rather than physical CNY delivery. Minimum contract sizes vary: banks typically require £25,000+, while WorldFirst offers forwards from approximately £5,000.",
+    "sources": ["HSBC corporate FX products", "WorldFirst forward contract documentation", "Bank of England CNY NDF market data", "Airwallex FX risk management tools"]
+  }
+]
