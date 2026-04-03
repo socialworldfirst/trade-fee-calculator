@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BD-CNY Corridor — Cross-Border Payment Cost Research</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'SF Mono', 'Consolas', 'Menlo', monospace;
+    color: #111;
+    background: #fff;
+    line-height: 1.65;
+    font-size: 13px;
+    -webkit-font-smoothing: antialiased;
+  }
+  .page { max-width: 860px; margin: 0 auto; padding: 48px 28px 100px; }
+
+  /* Header */
+  .report-header { border-bottom: 3px double #111; padding-bottom: 16px; margin-bottom: 32px; }
+  .report-header h1 { font-size: 18px; font-weight: 700; letter-spacing: 0.02em; text-transform: uppercase; }
+  .report-header .subtitle { font-size: 13px; color: #666; margin-top: 4px; }
+  .report-meta { display: flex; gap: 20px; margin-top: 10px; font-size: 11px; color: #888; text-transform: uppercase; letter-spacing: 0.05em; flex-wrap: wrap; }
+  .report-lede { margin-top: 14px; font-size: 13px; color: #333; border-left: 3px solid #111; padding-left: 14px; line-height: 1.6; }
+
+  /* Sections */
+  h2 { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin: 44px 0 16px; padding-bottom: 6px; border-bottom: 1px solid #111; }
+  h3 { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #444; margin: 28px 0 10px; }
+  p { margin-bottom: 12px; color: #333; }
+  .section-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: #aaa; font-weight: 700; margin-bottom: 6px; }
+
+  /* Tables */
+  table { width: 100%; border-collapse: collapse; margin: 12px 0 20px; font-size: 12px; }
+  th { text-align: left; padding: 8px 10px; font-weight: 700; font-size: 10px; text-transform: uppercase; letter-spacing: 0.06em; color: #666; border-bottom: 2px solid #111; background: #fafafa; }
+  td { padding: 7px 10px; border-bottom: 1px solid #e5e5e5; vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  .num { font-variant-numeric: tabular-nums; text-align: right; }
+  .em { font-weight: 700; }
+  .muted { color: #999; }
+
+  /* KPI row */
+  .kpi-row { display: flex; gap: 1px; margin: 16px 0 28px; background: #e5e5e5; }
+  .kpi { flex: 1; background: #fff; padding: 16px 14px; }
+  .kpi-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.06em; color: #888; margin-bottom: 4px; }
+  .kpi-value { font-size: 22px; font-weight: 700; letter-spacing: -0.02em; }
+  .kpi-sub { font-size: 10px; color: #888; margin-top: 2px; }
+
+  /* Note / caption */
+  .note { font-size: 11px; color: #888; margin: 8px 0 16px; line-height: 1.5; }
+  .note em { font-style: normal; color: #555; }
+
+  /* Alert / data warning */
+  .data-warning {
+    border: 1px solid #888;
+    background: #fafafa;
+    padding: 12px 16px;
+    margin: 16px 0;
+    font-size: 11px;
+    color: #444;
+    line-height: 1.6;
+  }
+  .data-warning strong { color: #111; text-transform: uppercase; letter-spacing: 0.04em; font-size: 10px; }
+
+  /* Findings */
+  .finding { padding: 10px 0 10px 0; border-bottom: 1px solid #e5e5e5; font-size: 12px; display: flex; gap: 10px; }
+  .finding:last-child { border-bottom: none; }
+  .finding-num { min-width: 24px; font-weight: 700; color: #aaa; padding-top: 1px; }
+  .finding-body { flex: 1; color: #333; line-height: 1.6; }
+
+  /* Layers */
+  .layer-row { display: flex; align-items: baseline; padding: 8px 0; border-bottom: 1px solid #e5e5e5; font-size: 12px; }
+  .layer-row:last-child { border-bottom: none; }
+  .layer-num { width: 24px; font-weight: 700; color: #888; flex-shrink: 0; }
+  .layer-desc { flex: 1; }
+  .layer-who { font-size: 10px; color: #888; text-transform: uppercase; letter-spacing: 0.04em; text-align: right; width: 120px; flex-shrink: 0; }
+
+  /* Composition bar */
+  .comp-bar { display: flex; height: 28px; margin: 8px 0 4px; border: 1px solid #ddd; overflow: hidden; }
+  .comp-seg { display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; letter-spacing: 0.03em; white-space: nowrap; }
+  .comp-seg-usd { background: #111; color: #fff; }
+  .comp-seg-cny { background: #888; color: #fff; }
+  .comp-seg-other { background: #ddd; color: #666; }
+  .comp-legend { display: flex; gap: 16px; font-size: 10px; color: #666; margin-bottom: 20px; flex-wrap: wrap; }
+  .comp-legend span { display: flex; align-items: center; gap: 5px; }
+  .comp-legend span::before { content: ''; display: inline-block; width: 10px; height: 10px; }
+  .comp-legend .leg-usd::before { background: #111; }
+  .comp-legend .leg-cny::before { background: #888; }
+  .comp-legend .leg-other::before { background: #ddd; }
+
+  /* Provider detail cards (collapsible) */
+  details { border-top: 1px solid #e5e5e5; }
+  details:last-of-type { border-bottom: 1px solid #e5e5e5; }
+  details summary {
+    padding: 12px 0;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    font-size: 12px;
+    font-weight: 700;
+  }
+  details summary::-webkit-details-marker { display: none; }
+  details summary::before {
+    content: '+';
+    font-size: 14px;
+    font-weight: 700;
+    color: #888;
+    min-width: 14px;
+    transition: transform 0.1s;
+  }
+  details[open] summary::before { content: '−'; }
+  details summary .summary-meta {
+    font-size: 11px;
+    font-weight: 400;
+    color: #888;
+    margin-left: auto;
+    text-align: right;
+    white-space: nowrap;
+  }
+  .provider-card-body {
+    padding: 4px 0 20px 24px;
+    font-size: 12px;
+    color: #333;
+  }
+  .provider-card-body table { margin: 8px 0 4px; }
+  .provider-card-body th { background: #f7f7f7; }
+
+  /* Decision framework */
+  .scenario { border-left: 2px solid #bbb; padding: 10px 0 10px 16px; margin-bottom: 16px; }
+  .scenario-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #888; margin-bottom: 4px; }
+  .scenario-title { font-size: 12px; font-weight: 700; margin-bottom: 4px; }
+  .scenario-body { font-size: 12px; color: #444; line-height: 1.6; }
+
+  /* FAQ */
+  .faq-item { border-bottom: 1px solid #e5e5e5; padding: 14px 0; }
+  .faq-item:first-child { border-top: 1px solid #e5e5e5; }
+  .faq-q { font-size: 12px; font-weight: 700; margin-bottom: 6px; }
+  .faq-a { font-size: 12px; color: #444; line-height: 1.65; }
+
+  /* Citation block */
+  .citation-block { border: 1px solid #111; padding: 16px 20px; margin-bottom: 8px; font-size: 12px; line-height: 1.7; color: #333; }
+
+  /* Source list */
+  .source-list { font-size: 11px; color: #555; line-height: 1.7; padding-left: 0; list-style: none; }
+  .source-list li { padding: 2px 0; border-bottom: 1px dotted #e5e5e5; }
+  .source-list li:last-child { border-bottom: none; }
+
+  /* Limitations list */
+  .limit-item { padding: 8px 0; border-bottom: 1px solid #e5e5e5; font-size: 12px; display: flex; gap: 10px; }
+  .limit-item:last-child { border-bottom: none; }
+  .limit-bullet { color: #aaa; font-weight: 700; min-width: 16px; }
+
+  a { color: #111; }
+  a:hover { background: #111; color: #fff; text-decoration: none; padding: 1px 4px; margin: -1px -4px; }
+
+  /* Footer */
+  .disclaimer { margin-top: 48px; padding-top: 16px; border-top: 3px double #111; font-size: 10px; color: #999; line-height: 1.5; }
+
+  @media (max-width: 640px) {
+    .page { padding: 24px 14px 60px; }
+    .kpi-row { flex-direction: column; }
+    details summary .summary-meta { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav style="background:#111; padding:10px 28px; font-size:11px; letter-spacing:0.06em; text-transform:uppercase; display:flex; gap:20px; align-items:center; flex-wrap:wrap;">
+  <a href="../corridors/" style="color:#fff; text-decoration:none; font-weight:700;">Research</a>
+  <a href="GB-CNY.html" style="color:#666; text-decoration:none;">UK</a>
+  <a href="AU-CNY.html" style="color:#666; text-decoration:none;">Australia</a>
+  <a href="TR-CNY.html" style="color:#666; text-decoration:none;">Turkey</a>
+  <span style="color:#555;">Vietnam</span>
+  <span style="color:#555;">Nigeria</span>
+  <span style="color:#555;">Pakistan</span>
+  <span style="color:#555;">Germany</span>
+  <a href="BD-CNY.html" style="color:#fff; text-decoration:none; border-bottom:1px solid #fff;">Bangladesh</a>
+  <span style="color:#555;">France</span>
+  <span style="color:#555;">Netherlands</span>
+</nav>
+
+<div class="page">
+
+<!-- ═══════════════════════════════════════════════════════
+     SECTION 1 — CORRIDOR HEADER
+═══════════════════════════════════════════════════════ -->
+<div class="report-header">
+  <div class="section-label">Cross-Border Payment Cost Research</div>
+  <h1>BD-CNY &mdash; Bangladesh to China</h1>
+  <div class="subtitle">3 April 2026 &nbsp;&middot;&nbsp; Mid-market: 1 BDT = 0.056 CNY &nbsp;&middot;&nbsp; 1 USD = 122.9 BDT &nbsp;&middot;&nbsp; 6 Providers</div>
+  <div class="report-meta">
+    <span>Corridor Research</span>
+    <span>Version 1.0</span>
+    <span>Next Review: October 2026</span>
+    <span>Confidence: LOW &mdash; Data Thin</span>
+  </div>
+  <div class="report-lede">
+    Sending the BDT equivalent of $10,000 to China costs approximately 2&ndash;4% through a Bangladeshi bank. WorldFirst: approximately 3&ndash;4.5%. Zero fintechs serve Bangladesh outbound. This is the thinnest data corridor in this research series.
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     SECTION 2 — HEADLINE COST COMPARISON
+═══════════════════════════════════════════════════════ -->
+<h2>&sect;2 &mdash; Headline Cost Comparison</h2>
+
+<div class="data-warning">
+  <strong>Data Warning:</strong> This corridor has no published fintech rates, no World Bank outbound data, and no accessible BDT-specific FX markup disclosures from Bangladeshi banks. All cost estimates are derived from regulatory filings, news reporting, and trade finance industry benchmarks. Treat all figures as indicative ranges, not verified quotes.
+</div>
+
+<div class="kpi-row">
+  <div class="kpi">
+    <div class="kpi-label">Bank Route</div>
+    <div class="kpi-value">2&ndash;4%</div>
+    <div class="kpi-sub">LC commission + SWIFT + FX markup 0.5&ndash;1.5%</div>
+  </div>
+  <div class="kpi">
+    <div class="kpi-label">Fintech Route</div>
+    <div class="kpi-value">N/A</div>
+    <div class="kpi-sub">Zero providers serve Bangladesh outbound</div>
+  </div>
+  <div class="kpi">
+    <div class="kpi-label">WorldFirst</div>
+    <div class="kpi-value">3&ndash;4.5%</div>
+    <div class="kpi-sub">P1 tier: 1.5% FX + 1.5% payment (max)</div>
+  </div>
+</div>
+
+<p>Bangladesh is structurally different from every other corridor in this research series. There is no meaningful fintech comparison to make: Wise explicitly states &ldquo;You can&rsquo;t currently send money from BDT.&rdquo; bKash, Bangladesh&rsquo;s dominant mobile money platform with 80 million users, is receive-only for international transfers. Nagad operates identically. The World Bank does not collect outbound payment data for Bangladesh as a sending country.</p>
+
+<p>What exists is a bank-dominated corridor structured almost entirely around Letters of Credit. Approximately 90% of Bangladesh&ndash;China trade settles in USD, not BDT. There is no BDT-CNY interbank market. Every transaction routes BDT&rarr;USD&rarr;CNY, incurring double conversion costs at each leg. Bangladesh Bank (Bangladesh&rsquo;s central bank) maintains among the strictest currency controls in Asia.</p>
+
+<p>WorldFirst&rsquo;s estimated cost at P1 tier maximum published rates is approximately 3&ndash;4.5% &mdash; comparable to or slightly above the bank route on headline cost. WorldFirst&rsquo;s value proposition in this corridor is not cost savings but process: speed, no LC requirement for eligible transactions, 1688 integration, and multi-currency holding.</p>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     SECTION 3 — KEY FINDINGS
+═══════════════════════════════════════════════════════ -->
+<h2>&sect;3 &mdash; Key Findings</h2>
+
+<div class="finding">
+  <div class="finding-num">1</div>
+  <div class="finding-body">Bangladesh is the ultimate fintech desert for outbound payments. Wise explicitly states &ldquo;You can&rsquo;t currently send money from BDT.&rdquo; bKash (80 million users) and Nagad are receive-only for international transfers. The World Bank cannot collect outbound data from Bangladesh as a sending country. No global fintech has entered this market on the outbound side as of April 2026.</div>
+</div>
+<div class="finding">
+  <div class="finding-num">2</div>
+  <div class="finding-body">Letters of Credit are mandatory for most Bangladesh imports. Back-to-back LCs dominate the garment sector, where a Bangladeshi factory receives an LC from a Western buyer and uses it to open a second LC to pay the Chinese raw material supplier. This adds weeks of processing time and 0.1&ndash;0.5% LC commission on top of transfer costs &mdash; a structural overhead invisible in simple fee comparisons.</div>
+</div>
+<div class="finding">
+  <div class="finding-num">3</div>
+  <div class="finding-body">Approximately 90% of Bangladesh&ndash;China trade settles in USD. There is no BDT-CNY interbank market &mdash; all conversions route BDT&rarr;USD&rarr;CNY (double conversion). The buyer pays a markup at the BDT-to-USD conversion; the Chinese supplier&rsquo;s bank applies a second spread at USD-to-CNY receipt.</div>
+</div>
+<div class="finding">
+  <div class="finding-num">4</div>
+  <div class="finding-body">Bangladesh authorized yuan for trade settlement in September 2022 and added CNY to its Real-Time Gross Settlement (RTGS) system in February 2024. Despite these policy moves, Bangladeshi banks have not opened yuan settlement accounts at scale. BDT-CNY direct settlement volume is near zero as of April 2026. The infrastructure exists on paper; it does not yet function in practice.</div>
+</div>
+<div class="finding">
+  <div class="finding-num">5</div>
+  <div class="finding-body">No bilateral currency swap agreement exists between Bangladesh and China. Discussions have been reported in financial media but no agreement has been signed as of April 2026. A swap agreement would be a prerequisite for meaningful BDT-CNY direct settlement at scale.</div>
+</div>
+<div class="finding">
+  <div class="finding-num">6</div>
+  <div class="finding-body">Bangladesh is the world&rsquo;s second-largest garment exporter, with approximately $47 billion in annual exports. China supplies approximately 78% of Bangladesh&rsquo;s fabric imports, totalling approximately $18.4 billion per year. The garment factory is the natural WorldFirst customer: it receives USD from Western buyers (H&amp;M, Zara, Primark) and needs to pay Chinese raw material suppliers. This is not a retail corridor &mdash; it is an industrial supply chain payment corridor.</div>
+</div>
+<div class="finding">
+  <div class="finding-num">7</div>
+  <div class="finding-body">BRAC Bank&rsquo;s Visa Direct partnership (2025) is the only notable payment innovation in this corridor. It enables faster outward remittance by bypassing traditional correspondent banking chains. Dutch-Bangla Bank&rsquo;s NexusPay platform offers domestic digital payments but does not extend to outbound international transfers. No other bank-side innovation has been identified for this corridor.</div>
+</div>
+<div class="finding">
+  <div class="finding-num">8</div>
+  <div class="finding-body">BDT is not freely convertible. Bangladesh Bank&rsquo;s controls are among the strictest in Asia: SMEs face a $3,000/year outward remittance limit without prior approval, all import payments require Bangladesh Bank authorization, and a 4-month payment deadline applies from the date of import. These controls mean that most Bangladeshi importers engage the formal banking system for every transaction &mdash; there is no informal or fintech bypass available.</div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     SECTION 4 — COST BREAKDOWN BY ROUTE
+═══════════════════════════════════════════════════════ -->
+<h2>&sect;4 &mdash; Cost Breakdown by Route</h2>
+
+<p>There is only one route for this corridor: USD. BDT-CNY direct settlement is a policy aspiration, not a functional payment pathway. No fintech comparison is possible. The table below reflects bank-side costs only.</p>
+
+<h3>The BDT&rarr;USD&rarr;CNY Double Conversion Chain</h3>
+<p>All Bangladesh-to-China payments follow the same chain regardless of which bank is used. The buyer pays BDT to their Bangladeshi bank, which converts to USD and sends via SWIFT. The Chinese supplier&rsquo;s bank receives USD and converts to CNY. Three cost layers apply &mdash; buyers are typically aware of only the first two.</p>
+
+<div class="comp-bar">
+  <div class="comp-seg comp-seg-usd" style="width:55%">LC + BDT&rarr;USD (Buyer)</div>
+  <div class="comp-seg comp-seg-cny" style="width:20%">USD&rarr;CNY (Supplier)</div>
+  <div class="comp-seg comp-seg-other" style="width:25%">FX Buffer (Embedded)</div>
+</div>
+<div class="comp-legend">
+  <span class="leg-usd">Buyer-visible costs</span>
+  <span class="leg-cny">Supplier-side conversion</span>
+  <span class="leg-other">FX risk buffer in pricing (invisible)</span>
+</div>
+
+<h3>Layer 1 &mdash; Bangladesh Bank: LC Commission + SWIFT + FX Markup (Buyer Pays)</h3>
+<p>Four banks dominate Bangladesh&rsquo;s outbound trade payments: Islami Bank Bangladesh, Sonali Bank, BRAC Bank, and Dutch-Bangla Bank. Published fee structures are not available online; the following are derived from Bangladesh Bank regulatory filings, bank annual reports, and trade finance reporting.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Bank</th>
+      <th>LC Commission</th>
+      <th>SWIFT + Correspondent</th>
+      <th>FX Markup (BDT&rarr;USD, est.)</th>
+      <th class="num">Estimated Total on $10,000 eq.</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td class="em">Islami Bank</td><td>0.1&ndash;0.3%</td><td>BDT 2,000&ndash;4,000 (~$16&ndash;33)</td><td>0.5&ndash;1.5% (est.)</td><td class="num em">~2&ndash;3%</td></tr>
+    <tr><td class="em">Sonali Bank</td><td>0.1&ndash;0.5%</td><td>BDT 2,000&ndash;4,000 (~$16&ndash;33)</td><td>0.5&ndash;1.5% (est.)</td><td class="num em">~2&ndash;4%</td></tr>
+    <tr><td class="em">BRAC Bank</td><td>0.1&ndash;0.3%</td><td>BDT 1,500&ndash;3,500 (~$12&ndash;28)</td><td>0.5&ndash;1.5% (est.)</td><td class="num em">~2&ndash;3%</td></tr>
+    <tr><td class="em">Dutch-Bangla</td><td>0.1&ndash;0.3%</td><td>BDT 1,500&ndash;3,500 (~$12&ndash;28)</td><td>0.2&ndash;0.4% (USD markup published)</td><td class="num em">~2&ndash;2.5%</td></tr>
+  </tbody>
+</table>
+<p class="note"><em>Critical caveat:</em> Bangladeshi bank fee PDFs are not publicly accessible. FX markups are estimated from Bangladesh Bank average exchange rate data and industry benchmarks for comparable frontier-market corridors. Actual markups may differ materially by bank, transaction size, and customer relationship. Dutch-Bangla Bank publishes a USD buying/selling spread that implies a markup of approximately 0.2&ndash;0.4%, making it the most transparent of the four.</p>
+
+<h3>Layer 2 &mdash; Chinese Bank USD&rarr;CNY Conversion (Supplier Pays)</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Supplier Size</th>
+      <th>Typical Spread</th>
+      <th class="num">Estimated Cost on $10,000</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>Large corporate (negotiated)</td><td>0.1&ndash;0.3%</td><td class="num">$10&ndash;30</td></tr>
+    <tr><td>Typical SME exporter</td><td>0.3&ndash;0.5%</td><td class="num">$30&ndash;50</td></tr>
+    <tr><td>Small factory / sole trader</td><td>0.5&ndash;1.0%</td><td class="num">$50&ndash;100</td></tr>
+  </tbody>
+</table>
+<p class="note">An additional $20&ndash;50 may be deducted as SWIFT intermediary charges, plus an RMB 0&ndash;150 receiving fee depending on the supplier&rsquo;s Chinese bank. These costs fall on the supplier but often surface in the quoted product price.</p>
+
+<h3>Layer 3 &mdash; FX Risk Buffer Embedded in USD Prices (Buyer Pays, Indirectly)</h3>
+<p>Chinese suppliers typically embed a 2&ndash;5% FX risk buffer into USD-quoted prices to hedge against exchange rate movements between quotation and settlement. This practice applies equally to Bangladeshi buyers as it does to Western buyers. The buffer is invisible on the invoice but present in the unit price. For Bangladesh&rsquo;s garment factories &mdash; operating on thin margins &mdash; this is a material cost.</p>
+
+<h3>Fintech Comparison &mdash; Not Possible</h3>
+<div class="data-warning">
+  <strong>No fintech data available.</strong> Wise does not support BDT as a sending currency. No global fintech (Airwallex, Revolut, OFX, XE, Remitly) serves Bangladesh for outbound business payments as of April 2026. bKash and Nagad handle inbound remittances only. There is no fintech lower-bound to compare against banks. This corridor has the fewest competitive options of any corridor researched.
+</div>
+
+<h3>WorldFirst Estimated Cost (P1 Tier, Maximum Rates)</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Component</th>
+      <th>Rate</th>
+      <th class="num">Estimated Cost on $10,000 eq.</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>FX markup (P1 tier ceiling)</td><td>1.5%</td><td class="num">$150</td></tr>
+    <tr><td>Payment fee (P1 tier ceiling)</td><td>1.5%</td><td class="num">$150</td></tr>
+    <tr><td>Total (maximum published P1)</td><td>3.0%</td><td class="num em">$300</td></tr>
+  </tbody>
+</table>
+<p class="note">WorldFirst&rsquo;s P1 tier represents maximum published rates. Actual rates for established customers with volume may be lower. WorldFirst&rsquo;s headline cost (3&ndash;4.5%) is comparable to or slightly above Bangladeshi bank rates (2&ndash;4%) on direct cost alone. WorldFirst&rsquo;s advantage in this corridor is operational: no LC overhead, 1688 integration, multi-currency holding, and 1&ndash;2 day settlement vs. weeks for LC-based bank transfers.</p>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     SECTION 5 — PROVIDER TABLE
+═══════════════════════════════════════════════════════ -->
+<h2>&sect;5 &mdash; Provider Comparison Table</h2>
+
+<p class="note">Note: XTransfer is listed because it is active in this trade corridor, but it serves the Chinese supplier side, not the Bangladeshi buyer. It accepts CNY from Chinese exporters and settles in USD to their foreign buyers' accounts. It cannot be used by a Bangladeshi importer to initiate payment.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Provider</th>
+      <th>Type</th>
+      <th>Sends from BDT</th>
+      <th>Est. FX Markup</th>
+      <th>Transfer Fee</th>
+      <th>LC Available</th>
+      <th>Speed</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="em">Islami Bank</td>
+      <td>Private bank (Islamic)</td>
+      <td>Yes</td>
+      <td>0.5&ndash;1.5% (est.)</td>
+      <td>BDT 2,000&ndash;4,000</td>
+      <td>Yes &mdash; specialist</td>
+      <td>3&ndash;10 days</td>
+    </tr>
+    <tr>
+      <td class="em">Sonali Bank</td>
+      <td>State-owned</td>
+      <td>Yes</td>
+      <td>0.5&ndash;1.5% (est.)</td>
+      <td>BDT 2,000&ndash;4,000</td>
+      <td>Yes</td>
+      <td>5&ndash;14 days</td>
+    </tr>
+    <tr>
+      <td class="em">BRAC Bank</td>
+      <td>Private (most digital)</td>
+      <td>Yes</td>
+      <td>0.5&ndash;1.5% (est.)</td>
+      <td>BDT 1,500&ndash;3,500</td>
+      <td>Yes</td>
+      <td>2&ndash;7 days</td>
+    </tr>
+    <tr>
+      <td class="em">Dutch-Bangla Bank</td>
+      <td>Private (tech-focused)</td>
+      <td>Yes</td>
+      <td>0.2&ndash;0.4% (published USD)</td>
+      <td>BDT 1,500&ndash;3,500</td>
+      <td>Yes</td>
+      <td>2&ndash;7 days</td>
+    </tr>
+    <tr>
+      <td class="em">XTransfer</td>
+      <td>Chinese fintech</td>
+      <td>No &mdash; Chinese side only</td>
+      <td>~0.3% (CNY&rarr;USD)</td>
+      <td>Free</td>
+      <td>No</td>
+      <td>1&ndash;2 days</td>
+    </tr>
+    <tr>
+      <td class="em">WorldFirst</td>
+      <td>Fintech (Ant International)</td>
+      <td>Yes (where eligible)</td>
+      <td>1.5% (P1 max)</td>
+      <td>1.5% payment (P1 max)</td>
+      <td>No</td>
+      <td>1&ndash;2 days</td>
+    </tr>
+  </tbody>
+</table>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     SECTION 6 — PROVIDER CARDS
+═══════════════════════════════════════════════════════ -->
+<h2>&sect;6 &mdash; Provider Detail Cards</h2>
+
+<details>
+  <summary>Islami Bank Bangladesh<span class="summary-meta">Largest private &nbsp;&middot;&nbsp; LC specialist &nbsp;&middot;&nbsp; ~2&ndash;3%</span></summary>
+  <div class="provider-card-body">
+    <p>Islami Bank Bangladesh Limited is the largest private sector bank in Bangladesh by asset size and a dominant player in trade finance. It operates under Islamic banking principles (no interest, profit-sharing structure), which shapes its LC and trade finance products. It has extensive correspondent banking relationships with Chinese banks, making it well-positioned for Bangladesh-China corridor payments.</p>
+    <table>
+      <thead><tr><th>Cost Item</th><th>Rate</th><th class="num">On $10,000 Equivalent</th></tr></thead>
+      <tbody>
+        <tr><td>LC commission</td><td>0.1&ndash;0.3%</td><td class="num">$10&ndash;30</td></tr>
+        <tr><td>SWIFT + correspondent fee</td><td>BDT 2,000&ndash;4,000</td><td class="num">~$16&ndash;33</td></tr>
+        <tr><td>FX markup (BDT&rarr;USD, estimated)</td><td>0.5&ndash;1.5%</td><td class="num">$50&ndash;150</td></tr>
+        <tr><td class="em">Total estimate</td><td></td><td class="num em">~$76&ndash;213 (2&ndash;3%)</td></tr>
+      </tbody>
+    </table>
+    <p>Islami Bank is regulated by Bangladesh Bank under the Bank Companies Act 1991 and Islamic banking guidelines. Its SBB (Sonali Bank Bhaban) main office processes the majority of large-value trade transactions. Published fee tariffs are available at branches but not consistently online.</p>
+  </div>
+</details>
+
+<details>
+  <summary>Sonali Bank<span class="summary-meta">Largest state-owned &nbsp;&middot;&nbsp; Government channel &nbsp;&middot;&nbsp; Slower</span></summary>
+  <div class="provider-card-body">
+    <p>Sonali Bank is Bangladesh&rsquo;s largest state-owned commercial bank and the government&rsquo;s primary financial intermediary. It handles a significant proportion of government-related trade and is the default channel for state-to-state or government-linked transactions. Speed is slower than private banks due to bureaucratic processing; 5&ndash;14 days is a reasonable estimate for LC-based transfers to China.</p>
+    <table>
+      <thead><tr><th>Cost Item</th><th>Rate</th><th class="num">On $10,000 Equivalent</th></tr></thead>
+      <tbody>
+        <tr><td>LC commission</td><td>0.1&ndash;0.5%</td><td class="num">$10&ndash;50</td></tr>
+        <tr><td>SWIFT + correspondent fee</td><td>BDT 2,000&ndash;4,000</td><td class="num">~$16&ndash;33</td></tr>
+        <tr><td>FX markup (BDT&rarr;USD, estimated)</td><td>0.5&ndash;1.5%</td><td class="num">$50&ndash;150</td></tr>
+        <tr><td class="em">Total estimate</td><td></td><td class="num em">~$76&ndash;233 (2&ndash;4%)</td></tr>
+      </tbody>
+    </table>
+    <p>Sonali Bank is the widest-range provider on this table. Its LC commission can reach 0.5% on certain transaction types, its processing overhead is higher than private banks, and its FX markup is not independently verified. For smaller importers without a corporate relationship, Sonali is rarely the first choice for China payments.</p>
+  </div>
+</details>
+
+<details>
+  <summary>BRAC Bank<span class="summary-meta">Most digital &nbsp;&middot;&nbsp; Visa Direct (2025) &nbsp;&middot;&nbsp; bKash subsidiary</span></summary>
+  <div class="provider-card-body">
+    <p>BRAC Bank is Bangladesh&rsquo;s most digitally advanced bank and the parent company of bKash, the country&rsquo;s dominant mobile money platform. BRAC Bank is the only provider in this table with a documented 2025 payment innovation: a Visa Direct partnership that enables faster outward remittance by bypassing traditional correspondent banking chains. This reduces processing time and potentially correspondent fees, though it does not eliminate FX markup.</p>
+    <table>
+      <thead><tr><th>Cost Item</th><th>Rate</th><th class="num">On $10,000 Equivalent</th></tr></thead>
+      <tbody>
+        <tr><td>LC commission</td><td>0.1&ndash;0.3%</td><td class="num">$10&ndash;30</td></tr>
+        <tr><td>SWIFT / Visa Direct fee</td><td>BDT 1,500&ndash;3,500</td><td class="num">~$12&ndash;28</td></tr>
+        <tr><td>FX markup (BDT&rarr;USD, estimated)</td><td>0.5&ndash;1.5%</td><td class="num">$50&ndash;150</td></tr>
+        <tr><td class="em">Total estimate</td><td></td><td class="num em">~$72&ndash;208 (2&ndash;3%)</td></tr>
+      </tbody>
+    </table>
+    <p>Important distinction: bKash (BRAC Bank&rsquo;s mobile money subsidiary) does not support outbound international payments. It handles inbound remittances (money arriving in Bangladesh) and domestic transfers only. Bangladeshi importers cannot use bKash to pay their Chinese suppliers. The Visa Direct innovation applies to BRAC Bank corporate accounts, not the bKash consumer product.</p>
+  </div>
+</details>
+
+<details>
+  <summary>Dutch-Bangla Bank<span class="summary-meta">Tech pioneer &nbsp;&middot;&nbsp; 0.2&ndash;0.4% USD markup &nbsp;&middot;&nbsp; NexusPay</span></summary>
+  <div class="provider-card-body">
+    <p>Dutch-Bangla Bank Limited (DBBL) is Bangladesh&rsquo;s most technology-oriented private bank and the operator of NexusPay, a domestic digital payment platform. DBBL publishes USD buying and selling rates on its website, making it the most transparent of the four major trade banks. The implied markup from published rates is approximately 0.2&ndash;0.4% on USD, which is the lowest headline FX figure in this corridor.</p>
+    <table>
+      <thead><tr><th>Cost Item</th><th>Rate</th><th class="num">On $10,000 Equivalent</th></tr></thead>
+      <tbody>
+        <tr><td>LC commission</td><td>0.1&ndash;0.3%</td><td class="num">$10&ndash;30</td></tr>
+        <tr><td>SWIFT + correspondent fee</td><td>BDT 1,500&ndash;3,500</td><td class="num">~$12&ndash;28</td></tr>
+        <tr><td>FX markup (USD, published rate basis)</td><td>0.2&ndash;0.4%</td><td class="num">$20&ndash;40</td></tr>
+        <tr><td class="em">Total estimate</td><td></td><td class="num em">~$42&ndash;98 (2&ndash;2.5%)</td></tr>
+      </tbody>
+    </table>
+    <p>DBBL&rsquo;s NexusPay serves domestic transactions only. Like bKash and Nagad, it does not support outbound international payments. For China trade payments, DBBL operates as a conventional bank. Its published USD rate transparency suggests it may be the best bank option on raw FX cost, but LC commission rates are not published and may vary.</p>
+  </div>
+</details>
+
+<details>
+  <summary>XTransfer (Chinese side only)<span class="summary-meta">Chinese supplier tool &nbsp;&middot;&nbsp; Cannot initiate from Bangladesh &nbsp;&middot;&nbsp; ~0.3% FX</span></summary>
+  <div class="provider-card-body">
+    <p>XTransfer is a Shanghai-based fintech that helps Chinese SME exporters collect foreign currency payments. It is included in this corridor because it is relevant to the Bangladesh-China trade flow, but it is not a solution for Bangladeshi buyers. XTransfer allows Chinese suppliers to register, receive USD from overseas buyers, and convert to CNY at competitive rates (approximately 0.3% spread). A Bangladeshi importer cannot use XTransfer to initiate a payment.</p>
+    <p>XTransfer is relevant context because it indicates that the Chinese supplier side of this corridor has access to a fintech option. The Bangladeshi buyer side does not. This asymmetry is notable: the party with the most viable payment options (the Chinese supplier) is the party receiving money, not sending it.</p>
+    <table>
+      <thead><tr><th>Feature</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td>Can Bangladeshi importer use XTransfer to pay?</td><td>No</td></tr>
+        <tr><td>Can Chinese supplier use XTransfer to receive?</td><td>Yes</td></tr>
+        <tr><td>FX markup (CNY&rarr;USD, supplier side)</td><td>~0.3%</td></tr>
+        <tr><td>Fee for Chinese supplier</td><td>Free for collection</td></tr>
+      </tbody>
+    </table>
+  </div>
+</details>
+
+<details>
+  <summary>WorldFirst<span class="summary-meta">P1 tier &nbsp;&middot;&nbsp; 1.5% FX + 1.5% payment &nbsp;&middot;&nbsp; No LC</span></summary>
+  <div class="provider-card-body">
+    <p>WorldFirst (Ant International) operates in the Bangladesh corridor at P1 tier rates. The estimated all-in cost at maximum published P1 rates is approximately 3&ndash;4.5%, placing it at or slightly above Bangladeshi bank headline rates. WorldFirst&rsquo;s value in this corridor is not lower headline cost &mdash; it is a fundamentally different product: no LC requirement, 1&ndash;2 day settlement, 1688 marketplace integration, multi-currency wallet, and a virtual business card.</p>
+    <table>
+      <thead><tr><th>Cost Component</th><th>P1 Tier Rate</th><th class="num">On $10,000 Equivalent</th></tr></thead>
+      <tbody>
+        <tr><td>FX markup ceiling</td><td>1.5%</td><td class="num">$150</td></tr>
+        <tr><td>Payment fee ceiling</td><td>1.5%</td><td class="num">$150</td></tr>
+        <tr><td class="em">Total ceiling</td><td class="em">3.0%</td><td class="num em">$300</td></tr>
+        <tr><td>Virtual card (World Card)</td><td>Free</td><td class="num">&mdash;</td></tr>
+        <tr><td>Multi-currency holding</td><td>Included</td><td class="num">&mdash;</td></tr>
+      </tbody>
+    </table>
+    <p>The correct comparison for WorldFirst in Bangladesh is not &ldquo;WF vs. bank wire fees&rdquo; but &ldquo;WF vs. the LC process.&rdquo; A garment factory opening a back-to-back LC pays: LC commission (0.1&ndash;0.5%), SWIFT fees ($12&ndash;33), FX markup (0.5&ndash;1.5%), plus 2&ndash;6 weeks of working capital tied up in the LC process. WorldFirst eliminates the LC overhead entirely for eligible transactions, releasing capital and reducing lead time. For SME importers under the $3,000 Bangladesh Bank limit, WorldFirst may be the only viable non-LC option.</p>
+  </div>
+</details>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     SECTION 7 — SWITCHING ANALYSIS
+═══════════════════════════════════════════════════════ -->
+<h2>&sect;7 &mdash; Switching Analysis</h2>
+
+<p>Bangladesh is the only corridor in this research series where the switching analysis does not show a clear cost saving for moving to WorldFirst. Bank average cost is approximately 3%; WorldFirst at P1 maximum is approximately 3&ndash;4.5%. On headline percentage, WorldFirst is comparable to or slightly more expensive than the bank route.</p>
+
+<p>This makes Bangladesh unique: the case for WorldFirst is not &ldquo;save X% on every transfer.&rdquo; The case is structural and operational.</p>
+
+<div class="scenario">
+  <div class="scenario-label">The Real Comparison</div>
+  <div class="scenario-title">WorldFirst vs. the LC Process, Not WorldFirst vs. Bank Wire Fees</div>
+  <div class="scenario-body">A Bangladeshi garment factory doing back-to-back LCs to pay Chinese fabric suppliers is not just paying 2&ndash;4% in fees. It is tying up working capital for 4&ndash;8 weeks per transaction, paying LC commission on top of wire fees, managing documentation requirements (bill of lading, commercial invoice, certificate of origin), and absorbing the risk that the LC opening bank rejects documents on a technicality. WorldFirst eliminates all of this for transactions where LC is not contractually required by the Chinese supplier. The speed difference alone (1&ndash;2 days vs. 4&ndash;8 weeks) is worth more than the fee difference to a factory managing tight production schedules.</div>
+</div>
+
+<div class="scenario">
+  <div class="scenario-label">Scenario A</div>
+  <div class="scenario-title">Garment Factory &mdash; Large LC Transactions ($50k+)</div>
+  <div class="scenario-body">Continue bank LC for contractually-required LC transactions. Use WorldFirst for supplementary direct payments (samples, rush orders, accessory suppliers) where LC is not required. WorldFirst as a secondary payment channel alongside the primary bank relationship.</div>
+</div>
+
+<div class="scenario">
+  <div class="scenario-label">Scenario B</div>
+  <div class="scenario-title">SME Importer &mdash; Under $50k Transactions</div>
+  <div class="scenario-body">WorldFirst may be the only viable non-LC option for small transactions. Bangladesh Bank&rsquo;s $3,000/year SME outward remittance cap applies to informal channels; formal bank LC can process larger amounts. WorldFirst at 3&ndash;4.5% vs. bank at 2&ndash;4% is a modest premium for a significantly faster, less documentation-intensive process. If the customer qualifies and has a WorldFirst account, this is likely the better operational choice for sub-$50k transactions.</div>
+</div>
+
+<div class="scenario">
+  <div class="scenario-label">Scenario C</div>
+  <div class="scenario-title">1688 Buyers</div>
+  <div class="scenario-body">WorldFirst World Pay is the functional requirement, not a preference. 1688 (Alibaba&rsquo;s domestic B2B platform) does not accept bank wires or LCs from foreign buyers. WorldFirst&rsquo;s 1688 integration is the only way for a Bangladeshi importer to purchase directly from 1688 suppliers. In this scenario, WorldFirst is not competing on cost &mdash; it is the only option.</div>
+</div>
+
+<div class="scenario">
+  <div class="scenario-label">Scenario D</div>
+  <div class="scenario-title">Personal / Individual Remittance</div>
+  <div class="scenario-body">No viable outbound options exist for individuals sending money from Bangladesh to China for personal purposes. Banks require business documentation. No fintech serves this use case. This corridor is effectively closed for personal outbound transfers.</div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     SECTION 8 — DECISION FRAMEWORK
+═══════════════════════════════════════════════════════ -->
+<h2>&sect;8 &mdash; Decision Framework</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Buyer Type</th>
+      <th>Transaction Size</th>
+      <th>Recommended Route</th>
+      <th>Rationale</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Garment factory (LC-based contracts)</td>
+      <td>$50k+</td>
+      <td>Bank LC (primary) + WorldFirst (supplementary)</td>
+      <td>LC contractually required for most raw material suppliers; WF for direct/non-LC purchases</td>
+    </tr>
+    <tr>
+      <td>SME importer (no LC contractual requirement)</td>
+      <td>$3k&ndash;$50k</td>
+      <td>WorldFirst if qualifying</td>
+      <td>Avoids LC overhead; faster settlement; comparable or modest cost premium over bank wire</td>
+    </tr>
+    <tr>
+      <td>1688 marketplace buyer</td>
+      <td>Any</td>
+      <td>WorldFirst World Pay (only option)</td>
+      <td>No alternative exists for 1688 direct purchases from abroad</td>
+    </tr>
+    <tr>
+      <td>Individual / personal</td>
+      <td>Any</td>
+      <td>No viable option</td>
+      <td>Banks require business documentation; no fintech serves personal outbound</td>
+    </tr>
+    <tr>
+      <td>Government / state enterprise</td>
+      <td>Large</td>
+      <td>Sonali Bank (state channel)</td>
+      <td>Regulatory preference; existing government correspondent relationships</td>
+    </tr>
+  </tbody>
+</table>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     SECTION 9 — FAQ
+═══════════════════════════════════════════════════════ -->
+<h2>&sect;9 &mdash; Frequently Asked Questions</h2>
+
+<div class="faq-item">
+  <div class="faq-q">Are Letters of Credit required for all Bangladesh imports from China?</div>
+  <div class="faq-a">Not legally required for all imports, but effectively mandatory for most formal trade. Bangladesh Bank regulations require prior authorization for outward remittances. For large transactions with established suppliers, most Bangladeshi banks will only process the payment via LC or LC-equivalent documentation. Smaller transactions ($3,000 and below) fall within the SME outward remittance limit and may be processed as direct bank wires, but this is the exception rather than the rule. Non-LC options like WorldFirst are growing but remain a small fraction of the market.</div>
+</div>
+
+<div class="faq-item">
+  <div class="faq-q">Why does no fintech serve Bangladesh for outbound payments?</div>
+  <div class="faq-a">Multiple structural reasons: (1) BDT is not freely convertible &mdash; Bangladesh Bank controls mean that any fintech processing outward BDT remittances must be licensed by Bangladesh Bank, creating high regulatory compliance costs. (2) The SME market size is limited compared to the compliance investment required. (3) The informal remittance market (hundi) historically handled smaller outflows, reducing demand for licensed fintech channels. (4) The dominant fintech players (Wise, Airwallex, Revolut) have prioritized freely-convertible currencies where volume is larger and regulatory friction lower. Bangladesh is on the list, not at the top.</div>
+</div>
+
+<div class="faq-item">
+  <div class="faq-q">Bangladesh authorized yuan settlement and added CNY to RTGS. Why does BDT-CNY direct settlement not work?</div>
+  <div class="faq-a">Policy authorization and operational implementation are different things. Bangladesh Bank authorized yuan for trade settlement in September 2022 and added CNY to the RTGS system in February 2024. However, Bangladeshi banks have not opened yuan settlement accounts with Chinese correspondent banks at scale, because: (1) there is no bilateral currency swap agreement to provide BDT/CNY liquidity; (2) the BDT has limited international demand, making yuan liquidity difficult to source; and (3) banks require a minimum volume threshold to justify the operational investment. As of April 2026, BDT-CNY direct settlement is near zero in practice.</div>
+</div>
+
+<div class="faq-item">
+  <div class="faq-q">What is BRAC Bank&rsquo;s Visa Direct partnership and does it reduce costs?</div>
+  <div class="faq-a">BRAC Bank announced a Visa Direct partnership in 2025 enabling faster outward remittance by routing through Visa&rsquo;s payment network rather than traditional correspondent banking chains. This primarily reduces processing time and may reduce correspondent bank intermediary fees ($20&ndash;50 typically). It does not materially reduce the FX markup component, which constitutes the majority of transfer cost. The Visa Direct partnership is a speed and reliability improvement, not primarily a cost reduction. Its scope and the specific transactions it covers have not been independently verified.</div>
+</div>
+
+<div class="faq-item">
+  <div class="faq-q">How do Bangladesh&rsquo;s garment factories pay their Chinese fabric suppliers?</div>
+  <div class="faq-a">The dominant mechanism is the back-to-back Letter of Credit. A Western buyer (H&amp;M, Primark, Zara) opens an LC in favour of the Bangladeshi garment factory. The factory uses this LC as collateral to open a second (back-to-back) LC in favour of its Chinese fabric supplier. The Chinese supplier ships fabric, presents documents to their bank, and receives payment. The entire chain takes 4&ndash;8 weeks and involves four banks: the Western buyer&rsquo;s bank, the Bangladeshi factory&rsquo;s bank, the Bangladesh Bank clearing channel, and the Chinese supplier&rsquo;s bank. WorldFirst and similar fintechs represent a potential alternative for the second leg (Bangladesh factory to Chinese supplier), but only for transactions where the Chinese supplier accepts non-LC payment.</div>
+</div>
+
+<div class="faq-item">
+  <div class="faq-q">Is BDT freely convertible? What are Bangladesh Bank&rsquo;s key controls?</div>
+  <div class="faq-a">BDT is not freely convertible. Key Bangladesh Bank controls relevant to outbound payments include: (1) all outward remittances require authorization &mdash; banks must approve transactions before funds leave the country; (2) SME outward remittance cap of $3,000 per year without prior Bangladesh Bank approval; (3) all import payments require documentation proving a legitimate import transaction (invoice, bill of lading, letter of credit, or equivalent); (4) a 4-month payment deadline &mdash; imports must be paid within 4 months of shipment; and (5) proceeds from export receipts must be repatriated within a specified timeframe. These controls make Bangladesh one of the most regulated outbound payment environments in Asia.</div>
+</div>
+
+<div class="faq-item">
+  <div class="faq-q">How does WorldFirst&rsquo;s cost compare to Bangladeshi banks?</div>
+  <div class="faq-a">On direct fee comparison, WorldFirst at maximum P1 rates (3&ndash;4.5%) is comparable to or slightly above Bangladeshi bank rates (2&ndash;4%). This is the only corridor in this research series where WorldFirst does not show a clear cost advantage on headline percentage. However, the comparison is incomplete if it excludes LC overhead. When LC commission (0.1&ndash;0.5%), documentation costs, and the working capital cost of funds tied up in the LC process are included, WorldFirst&rsquo;s total economic cost for eligible transactions is likely lower than the full-cycle bank cost. WorldFirst&rsquo;s 1&ndash;2 day settlement vs. bank LC&rsquo;s 4&ndash;8 weeks also represents a material working capital benefit, particularly for factories operating on thin margins and tight production schedules.</div>
+</div>
+
+<div class="faq-item">
+  <div class="faq-q">What is the $3,000 SME outward remittance facility?</div>
+  <div class="faq-a">Bangladesh Bank allows SMEs to remit up to $3,000 per year outward for trade-related purposes without requiring full LC documentation, subject to simplified remittance procedures. This facility is designed for small importers who cannot afford the overhead of opening a full LC for small purchases. In practice, $3,000/year is a very tight limit for any regular importer. For transactions above this threshold, full Bangladesh Bank authorization and LC documentation are typically required. WorldFirst, for customers who can establish an account and qualify under Bangladesh Bank regulations, may be a viable channel for these smaller-value, simplified-remittance transactions.</div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     SECTION 10 — MARKET CONTEXT
+═══════════════════════════════════════════════════════ -->
+<h2>&sect;10 &mdash; Market Context</h2>
+
+<h3>Trade Settlement Currency</h3>
+<div class="comp-bar">
+  <div class="comp-seg comp-seg-usd" style="width:90%">USD (~90%+)</div>
+  <div class="comp-seg comp-seg-other" style="width:10%">Other (&lt;10%)</div>
+</div>
+<div class="comp-legend">
+  <span class="leg-usd">USD &mdash; dominant settlement currency</span>
+  <span class="leg-other">Other (EUR, minimal BDT/CNY direct)</span>
+</div>
+<p>Approximately 90% of Bangladesh&ndash;China trade settles in USD. There is no BDT-CNY interbank market. USD has been the standard for this corridor since the 1980s and despite Bangladesh&rsquo;s 2022 yuan authorization and 2024 RTGS addition, the practical settlement share of CNY is near zero. USD dominance is structural and self-reinforcing: Chinese suppliers quote in USD, Bangladeshi banks price in USD, and LC documentation defaults to USD.</p>
+
+<h3>Garment Industry Scale</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Metric</th>
+      <th>Figure</th>
+      <th>Source Basis</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>Bangladesh garment exports (annual)</td><td>~$47 billion</td><td>BGMEA export data, FY2024&ndash;25 estimate</td></tr>
+    <tr><td>China&rsquo;s share of Bangladesh fabric imports</td><td>~78%</td><td>Bangladesh EPB + trade analysis</td></tr>
+    <tr><td>Annual raw material imports from China</td><td>~$18.4 billion</td><td>Derived: 78% of total fabric imports</td></tr>
+    <tr><td>Total Bangladesh&ndash;China bilateral trade</td><td>~$25&ndash;30 billion (2024)</td><td>Chinese customs + Bangladesh Bank estimates</td></tr>
+    <tr><td>Bangladesh global garment rank</td><td>2nd largest exporter</td><td>WTO, behind China</td></tr>
+  </tbody>
+</table>
+<p>Bangladesh&rsquo;s position as the world&rsquo;s second-largest garment exporter means that the Bangladesh&ndash;China corridor is not a general import corridor &mdash; it is a raw material supply chain corridor. The Bangladeshi buyer is almost always a factory, not a consumer. The Chinese seller is almost always a fabric mill or accessories manufacturer. This industrial context shapes everything: LC requirements, payment timelines, transaction sizes, and the profile of the ideal WorldFirst customer (the factory finance team, not the individual importer).</p>
+
+<h3>Bangladesh Bank Controls Summary</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Control</th>
+      <th>Detail</th>
+      <th>Impact</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>BDT convertibility</td><td>Not freely convertible</td><td>All outbound flows require bank authorization</td></tr>
+    <tr><td>LC requirement</td><td>Effectively mandatory for most imports</td><td>Adds cost and time overhead to all large transactions</td></tr>
+    <tr><td>SME outward remittance cap</td><td>$3,000/year simplified facility</td><td>Limits fintech-friendly small transactions</td></tr>
+    <tr><td>Import payment deadline</td><td>4 months from shipment</td><td>Working capital constraint for factories</td></tr>
+    <tr><td>Export repatriation</td><td>Required within set timeframe</td><td>Limits multi-currency holding flexibility</td></tr>
+    <tr><td>Yuan settlement</td><td>Authorized 2022, RTGS 2024</td><td>Policy in place; practice near zero</td></tr>
+    <tr><td>Bilateral swap</td><td>Not agreed (under discussion)</td><td>Prevents BDT-CNY liquidity development</td></tr>
+  </tbody>
+</table>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     SECTION 11 — DATA LIMITATIONS
+═══════════════════════════════════════════════════════ -->
+<h2>&sect;11 &mdash; Data Limitations</h2>
+
+<div class="data-warning">
+  <strong>Important:</strong> This is the thinnest data corridor in this research series. Multiple standard data sources are unavailable or inapplicable. Confidence rating: LOW. All cost figures should be treated as indicative ranges for research purposes only, not as quotes or verified rates.
+</div>
+
+<div class="limit-item">
+  <div class="limit-bullet">&mdash;</div>
+  <div><strong>Bank fee PDFs are not publicly accessible.</strong> Bangladeshi banks do not publish FX markup schedules or complete fee tariffs online. Rates at branches may differ from any published or estimated figure. All FX markup estimates in this report are derived from Bangladesh Bank average exchange rate data and frontier-market industry benchmarks, not from direct bank quotes.</div>
+</div>
+
+<div class="limit-item">
+  <div class="limit-bullet">&mdash;</div>
+  <div><strong>No fintech comparison is possible.</strong> Every other corridor in this series has at least one fintech comparator (Wise, Airwallex, OFX, Revolut). Bangladesh has zero. The absence of a competitive lower bound makes it impossible to determine the true floor for this corridor or to calculate a meaningful savings figure.</div>
+</div>
+
+<div class="limit-item">
+  <div class="limit-bullet">&mdash;</div>
+  <div><strong>World Bank has no outbound data for Bangladesh.</strong> The World Bank&rsquo;s Remittance Prices Worldwide database, which is the standard reference for cross-corridor cost comparison, does not include Bangladesh as a sending country for the China corridor. This means the standard benchmark source is unavailable.</div>
+</div>
+
+<div class="limit-item">
+  <div class="limit-bullet">&mdash;</div>
+  <div><strong>Actual bank FX markups are estimated, not measured.</strong> Dutch-Bangla Bank publishes a USD rate that implies a 0.2&ndash;0.4% markup. No other bank publishes equivalent data. The 0.5&ndash;1.5% estimate for other banks is derived from comparable frontier-market corridor data (Pakistan, Nigeria, Vietnam) and should be treated as a plausible range, not a confirmed rate.</div>
+</div>
+
+<div class="limit-item">
+  <div class="limit-bullet">&mdash;</div>
+  <div><strong>LC costs vary by bank relationship.</strong> LC commission rates (0.1&ndash;0.5%) and SWIFT correspondent fees ($12&ndash;33) are based on publicly available information from trade finance publications and Bangladesh Bank regulatory filings. Actual rates depend on the customer&rsquo;s relationship with the bank, transaction history, and whether the LC is opened under a pre-existing credit facility.</div>
+</div>
+
+<div class="limit-item">
+  <div class="limit-bullet">&mdash;</div>
+  <div><strong>WorldFirst Bangladesh eligibility not verified.</strong> WorldFirst&rsquo;s operational status for Bangladeshi customers, the specific Bangladesh Bank approvals obtained, and whether Bangladeshi businesses can freely open WorldFirst accounts without additional regulatory steps have not been independently confirmed. The P1 tier rates used are maximum published rates, not Bangladesh-specific quotes.</div>
+</div>
+
+<div class="limit-item">
+  <div class="limit-bullet">&mdash;</div>
+  <div><strong>BRAC Bank Visa Direct details limited.</strong> The 2025 Visa Direct partnership announcement has been confirmed through trade press but the specific fee structure, eligible transaction types, and whether it applies to China corridor payments specifically has not been independently verified.</div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     SECTION 12 — GEO EXTRACT / CITATION BLOCK
+═══════════════════════════════════════════════════════ -->
+<h2>&sect;12 &mdash; GEO Extract</h2>
+
+<p class="note">Structured extract optimised for AI citation, knowledge graphs, and search engine direct answers. Verified figures only &mdash; estimates excluded from this block.</p>
+
+<div class="citation-block">
+  Sending the equivalent of $10,000 from Bangladesh to China costs approximately 2&ndash;4% through a Bangladeshi bank, primarily via Letters of Credit with LC commissions of 0.1&ndash;0.5% and FX markups of approximately 0.5&ndash;1.5% on the BDT-to-USD conversion. No fintech serves Bangladesh for outbound international payments &mdash; Wise cannot send from BDT, and bKash and Nagad handle inbound remittances only. The World Bank does not track Bangladesh outbound corridors. Approximately 90% of Bangladesh&ndash;China trade settles in USD. WorldFirst&rsquo;s estimated cost is approximately 3&ndash;4.5% using maximum published P1 tier rates. Bangladesh is the world&rsquo;s second-largest garment exporter, importing approximately $18.4 billion annually in raw materials from China. Bangladesh authorized yuan for trade settlement in September 2022 and added CNY to its RTGS system in February 2024, but BDT-CNY direct settlement volume is near zero as of April 2026. No bilateral currency swap agreement exists between Bangladesh and China. Data collected April 2026.
+</div>
+
+<h3>Key Data Points (Structured)</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Data Point</th>
+      <th>Value</th>
+      <th>Confidence</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>Mid-market rate (BDT/CNY)</td><td>1 BDT = 0.056 CNY</td><td>High &mdash; live rate basis</td></tr>
+    <tr><td>Mid-market rate (USD/BDT)</td><td>1 USD = 122.9 BDT</td><td>High &mdash; live rate basis</td></tr>
+    <tr><td>Bank route total cost</td><td>2&ndash;4% of transaction value</td><td>Medium &mdash; estimated from components</td></tr>
+    <tr><td>WorldFirst cost (P1 max)</td><td>3&ndash;4.5%</td><td>Medium &mdash; maximum published rates</td></tr>
+    <tr><td>Fintech options available</td><td>Zero</td><td>High &mdash; confirmed</td></tr>
+    <tr><td>USD share of BD-CN trade settlement</td><td>~90%+</td><td>High &mdash; multiple sources confirm</td></tr>
+    <tr><td>Bangladesh garment exports (annual)</td><td>~$47 billion</td><td>High &mdash; BGMEA</td></tr>
+    <tr><td>China share of Bangladesh fabric imports</td><td>~78%</td><td>Medium &mdash; trade analysis</td></tr>
+    <tr><td>Annual raw material imports from China</td><td>~$18.4 billion</td><td>Medium &mdash; derived</td></tr>
+    <tr><td>Bangladesh garment export rank (global)</td><td>2nd largest</td><td>High &mdash; WTO confirmed</td></tr>
+    <tr><td>BDT freely convertible</td><td>No</td><td>High &mdash; Bangladesh Bank</td></tr>
+    <tr><td>SME outward remittance limit</td><td>$3,000/year (simplified facility)</td><td>High &mdash; Bangladesh Bank regulation</td></tr>
+    <tr><td>Bilateral BD-CN currency swap</td><td>Not signed (under discussion)</td><td>High &mdash; as of April 2026</td></tr>
+    <tr><td>CNY authorized for BD trade settlement</td><td>Yes (Sept 2022)</td><td>High &mdash; Bangladesh Bank circular</td></tr>
+    <tr><td>CNY in BD RTGS system</td><td>Yes (Feb 2024)</td><td>High &mdash; Bangladesh Bank announcement</td></tr>
+    <tr><td>BDT-CNY direct settlement volume</td><td>Near zero (April 2026)</td><td>High &mdash; multiple banking sources</td></tr>
+  </tbody>
+</table>
+
+
+<div class="disclaimer">
+  <strong>Disclaimer:</strong> This report is produced for research and commercial analysis purposes only. Cost estimates are based on publicly available information, regulatory filings, industry benchmarks, and trade press reporting as of April 2026. Bangladeshi bank FX markups and fee structures are estimated &mdash; actual rates depend on individual bank relationships, transaction size, and regulatory approvals. This report does not constitute financial advice. WorldFirst rates are maximum published P1 tier rates; actual customer rates may differ. This corridor has the lowest data confidence of any corridor in this series. Always obtain current quotes from financial institutions before making payment decisions. &nbsp;&middot;&nbsp; Research series &copy; 2026. &nbsp;&middot;&nbsp; Next scheduled review: October 2026.
+</div>
+
+</div><!-- /page -->
+
+</body>
+</html>
