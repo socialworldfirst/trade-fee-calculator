@@ -1,0 +1,1518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IN-CNY — India to China | WorldFirst Corridor Research</title>
+  <meta name="description" content="Cost comparison for sending money from India to China. 8 providers benchmarked. INR-CNY corridor data, April 2026.">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Can Wise send money from India to China?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Wise has paused outward remittance onboarding from India for new users while it reconfigures under its new RBI PA-CB licence (in-principle approval June 2025). Existing users with prior outbound transfer history can still send INR abroad, but Wise does not support direct INR-to-CNY conversion. Indian users would need to send USD and rely on the Chinese recipient's bank for USD-to-CNY conversion. At approximately 1.0-1.5% FX on the INR-USD leg, Wise is competitive for personal transfers where available — but the onboarding freeze and lack of direct CNY support limit its utility for new business users in this corridor." }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the RBI Liberalised Remittance Scheme (LRS) and how does it affect business payments?",
+        "acceptedAnswer": { "@type": "Answer", "text": "The LRS allows Indian residents to remit up to $250,000 per financial year (April-March) for permitted purposes including trade payments. All outbound remittances must route through an Authorized Dealer (AD) bank. From April 2025, Tax Collected at Source (TCS) of 5% applies on remittances exceeding INR 10 lakh per financial year (raised from the previous INR 7 lakh threshold). TCS is refundable against income tax liability but creates a cash flow drag. Business trade payments for imports are generally exempt from TCS when routed through proper AD bank channels with supporting documentation." }
+      },
+      {
+        "@type": "Question",
+        "name": "Is there an India-China bilateral currency swap agreement?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. Despite the PBOC maintaining bilateral currency swap agreements with over 40 central banks globally, there is no active RBI-PBOC currency swap agreement. This absence reflects the broader political tensions between India and China since the 2020 Galwan Valley clash. Without a swap line, Indian banks lack institutional CNY liquidity and must source CNY via the USD market. This makes double conversion (INR to USD to CNY) the structural default for this corridor, adding cost at both conversion points." }
+      },
+      {
+        "@type": "Question",
+        "name": "What are India's restrictions on Chinese investment and business?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Since 2020, India has imposed multiple restrictions: a blanket ban on 300+ Chinese apps (TikTok, WeChat, etc.), mandatory government approval for all FDI from countries sharing a land border with India (Press Note 3, targeting China), and enhanced scrutiny of Chinese entities in telecom and infrastructure. In March 2026, India partially relaxed FDI norms, allowing Chinese investment in electronics, capital goods, and solar cell sectors with 60-day processing and Indian-majority ownership requirements. However, broader restrictions remain, and China's cumulative FDI in India stands at just 0.32% ($2.51 billion since 2000)." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why is the India-China corridor structurally expensive?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Three structural factors converge: (1) No RBI-PBOC currency swap, forcing double conversion through USD; (2) FEMA regulations requiring all FX to route through Authorized Dealer banks, limiting competition; (3) Political tensions suppressing bilateral financial infrastructure development. The INR-CNY pair has minimal direct liquidity — there is no meaningful offshore INR-CNY market. Banks quote INR-USD and USD-CNY separately, each with their own markup. Combined markups of 2-4% are typical through Indian banks." }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the cheapest way to send money from India to China for business?",
+        "acceptedAnswer": { "@type": "Answer", "text": "WorldFirst's estimated total cost is approximately 4.5-6% (up to 3% FX markup on INR-USD plus 3% payment fee under P1 Longtail tier). This is comparable to — not cheaper than — the best Indian bank rates. SBI at best case offers approximately 2.5-3.5% total (lower FX markup of 0.125-2% but with added wire fees and potential intermediary charges). For this corridor, WorldFirst's advantage is not price — it is platform convenience, 1688 World Pay integration, and same-day CNY settlement. Honest assessment: on pure cost, the major Indian banks are competitive or cheaper for large transfers." }
+      },
+      {
+        "@type": "Question",
+        "name": "What is TCS and how does it affect my remittance cost?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Tax Collected at Source (TCS) is a tax collected by the bank or remittance provider at the point of transfer. From April 2025, TCS of 5% applies on outward remittances exceeding INR 10 lakh per financial year (approximately $10,700). For example, on a transfer of INR 15 lakh, TCS of 5% applies on the INR 5 lakh above the threshold = INR 25,000. TCS is not an additional cost — it is refundable as a credit against your income tax liability. However, it creates an upfront cash outflow that affects working capital, particularly for SME importers making frequent China payments." }
+      },
+      {
+        "@type": "Question",
+        "name": "How does WorldFirst's 1688 World Pay work for Indian buyers?",
+        "acceptedAnswer": { "@type": "Answer", "text": "WorldFirst's 1688 World Pay enables direct checkout on 1688.com (Alibaba's domestic wholesale marketplace) from a WorldFirst account. The total cost is approximately 3% FX + 3% platform fee = ~6%. This is expensive relative to other corridors, but 1688 World Pay solves a real problem: no Indian bank offers direct 1688 checkout. Without it, Indian buyers must use sourcing agents (5-10% commission) or arrange manual SWIFT transfers requiring the supplier to manually reconcile payments. The platform integration value is in operational efficiency, not FX savings." }
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    /* Bloomberg Terminal — monospace, black/white/gray only */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #0a0a0a;
+      --bg-panel: #111111;
+      --bg-row:   #161616;
+      --border:   #2a2a2a;
+      --border-hi:#3d3d3d;
+      --text:     #e8e8e8;
+      --text-dim: #999999;
+      --text-mute:#555555;
+      --white:    #ffffff;
+      --hi:       #ffffff;
+      --warn:     #cccccc;
+      --nav-active: #e8e8e8;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Courier New', Courier, 'Lucida Console', monospace;
+      font-size: 13px;
+      line-height: 1.55;
+      min-height: 100vh;
+    }
+
+    /* NAV */
+    .nav-strip {
+      background: #000;
+      border-bottom: 1px solid var(--border-hi);
+      padding: 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .nav-inner::-webkit-scrollbar { display: none; }
+    .nav-label {
+      font-size: 10px;
+      color: var(--text-mute);
+      letter-spacing: 0.12em;
+      padding: 10px 14px 10px 16px;
+      white-space: nowrap;
+      border-right: 1px solid var(--border);
+      text-transform: uppercase;
+    }
+    .nav-inner a {
+      color: var(--text-dim);
+      text-decoration: none;
+      font-size: 11px;
+      padding: 10px 13px;
+      white-space: nowrap;
+      border-right: 1px solid var(--border);
+      letter-spacing: 0.04em;
+      transition: color 0.15s, background 0.15s;
+    }
+    .nav-inner a:hover { color: var(--white); background: #1a1a1a; }
+    .nav-inner a.active {
+      color: var(--white);
+      background: #1e1e1e;
+      border-bottom: 2px solid var(--white);
+    }
+
+    /* LAYOUT */
+    .page { max-width: 1200px; margin: 0 auto; padding: 0 20px 60px; }
+
+    /* SECTION CHROME */
+    .section {
+      border: 1px solid var(--border);
+      margin-top: 24px;
+      background: var(--bg-panel);
+    }
+    .section-head {
+      background: #1a1a1a;
+      border-bottom: 1px solid var(--border);
+      padding: 8px 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .section-head .label {
+      font-size: 10px;
+      color: var(--text-mute);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+    .section-head .tag {
+      font-size: 10px;
+      color: var(--text-mute);
+      letter-spacing: 0.06em;
+    }
+    .section-body { padding: 20px 24px; }
+
+    /* HEADER (S1) */
+    .hdr-pair {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .hdr-left { flex: 1; min-width: 260px; }
+    .hdr-right { text-align: right; min-width: 200px; }
+    .corridor-title {
+      font-size: 26px;
+      font-weight: bold;
+      color: var(--white);
+      letter-spacing: 0.04em;
+      line-height: 1.2;
+    }
+    .corridor-sub {
+      font-size: 11px;
+      color: var(--text-dim);
+      margin-top: 4px;
+      letter-spacing: 0.06em;
+    }
+    .rate-block { margin-top: 14px; }
+    .rate-row {
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+    .rate-label {
+      font-size: 10px;
+      color: var(--text-mute);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    .rate-value {
+      font-size: 18px;
+      color: var(--white);
+      font-weight: bold;
+      letter-spacing: 0.02em;
+    }
+    .rate-sub {
+      font-size: 10px;
+      color: var(--text-dim);
+    }
+    .provider-count {
+      font-size: 10px;
+      color: var(--text-mute);
+      border: 1px solid var(--border);
+      padding: 3px 8px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      display: inline-block;
+      margin-top: 8px;
+    }
+    .headline-finding {
+      margin-top: 18px;
+      border-left: 3px solid var(--border-hi);
+      padding: 10px 16px;
+      font-size: 12px;
+      color: var(--text);
+      background: var(--bg-row);
+      line-height: 1.6;
+    }
+
+    /* COST BANDS (S2) */
+    .cost-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1px;
+      background: var(--border);
+    }
+    .cost-cell {
+      background: var(--bg-row);
+      padding: 18px 16px;
+    }
+    .cost-cell-label {
+      font-size: 10px;
+      color: var(--text-mute);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 6px;
+    }
+    .cost-pct {
+      font-size: 28px;
+      color: var(--white);
+      font-weight: bold;
+      line-height: 1;
+    }
+    .cost-abs {
+      font-size: 12px;
+      color: var(--text-dim);
+      margin-top: 4px;
+    }
+    .cost-note {
+      font-size: 11px;
+      color: var(--text-dim);
+      margin-top: 8px;
+      line-height: 1.5;
+    }
+    .cost-badge {
+      display: inline-block;
+      font-size: 10px;
+      padding: 2px 6px;
+      border: 1px solid var(--border-hi);
+      color: var(--text-dim);
+      margin-top: 6px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .cost-badge.hi { border-color: var(--white); color: var(--white); }
+    .cost-badge.warn { border-color: #666; color: #999; }
+    .stat-strip {
+      display: flex;
+      gap: 1px;
+      background: var(--border);
+      margin-top: 1px;
+    }
+    .stat-cell {
+      background: var(--bg-panel);
+      padding: 10px 16px;
+      flex: 1;
+    }
+    .stat-cell-label { font-size: 10px; color: var(--text-mute); text-transform: uppercase; letter-spacing: 0.1em; }
+    .stat-cell-value { font-size: 15px; color: var(--white); font-weight: bold; margin-top: 2px; }
+
+    /* FINDINGS (S3) */
+    .finding-list { list-style: none; }
+    .finding-list li {
+      display: flex;
+      gap: 14px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+      align-items: flex-start;
+    }
+    .finding-list li:last-child { border-bottom: none; }
+    .finding-num {
+      font-size: 11px;
+      color: var(--text-mute);
+      min-width: 24px;
+      padding-top: 1px;
+      letter-spacing: 0.08em;
+    }
+    .finding-text {
+      font-size: 12px;
+      color: var(--text);
+      line-height: 1.6;
+    }
+    .finding-text strong { color: var(--white); }
+
+    /* COST BREAKDOWN (S4) */
+    .breakdown-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+    }
+    .breakdown-table th {
+      text-align: left;
+      font-size: 10px;
+      color: var(--text-mute);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 6px 10px;
+      border-bottom: 1px solid var(--border-hi);
+      font-weight: normal;
+    }
+    .breakdown-table td {
+      padding: 9px 10px;
+      border-bottom: 1px solid var(--border);
+      color: var(--text);
+      vertical-align: top;
+    }
+    .breakdown-table tr:last-child td { border-bottom: none; }
+    .breakdown-table tr.wf-row td { color: var(--white); background: #181818; }
+    .breakdown-table tr.wf-row td:first-child { border-left: 2px solid var(--white); }
+    .breakdown-table tr.section-header td {
+      font-size: 10px;
+      color: var(--text-mute);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      background: var(--bg);
+      padding: 8px 10px 4px;
+      border-bottom: 1px solid var(--border);
+    }
+    .num { text-align: right; font-variant-numeric: tabular-nums; }
+    .dim { color: var(--text-dim); }
+
+    /* PROVIDER TABLE (S5) */
+    .provider-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+    }
+    .provider-table th {
+      text-align: left;
+      font-size: 10px;
+      color: var(--text-mute);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 7px 12px;
+      border-bottom: 1px solid var(--border-hi);
+      font-weight: normal;
+      background: #131313;
+    }
+    .provider-table td {
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: middle;
+    }
+    .provider-table tr:last-child td { border-bottom: none; }
+    .provider-table tr:hover td { background: #151515; }
+    .provider-table tr.wf td { color: var(--white); }
+    .provider-table tr.wf td:first-child { border-left: 2px solid var(--white); }
+    .provider-table tr.unavail td { color: var(--text-mute); font-style: italic; }
+    .pct-pill {
+      display: inline-block;
+      padding: 1px 6px;
+      border: 1px solid var(--border-hi);
+      font-size: 11px;
+      letter-spacing: 0.04em;
+    }
+    .pct-pill.best { border-color: var(--white); color: var(--white); }
+    .type-tag {
+      font-size: 10px;
+      color: var(--text-mute);
+      border: 1px solid var(--border);
+      padding: 1px 5px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    /* PROVIDER CARDS (S6) */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1px;
+      background: var(--border);
+    }
+    .pcard {
+      background: var(--bg-row);
+      padding: 18px 18px 16px;
+    }
+    .pcard-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 10px;
+    }
+    .pcard-name {
+      font-size: 13px;
+      color: var(--white);
+      font-weight: bold;
+      letter-spacing: 0.04em;
+    }
+    .pcard-type {
+      font-size: 10px;
+      color: var(--text-mute);
+      border: 1px solid var(--border);
+      padding: 2px 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .pcard-cost {
+      font-size: 20px;
+      color: var(--white);
+      font-weight: bold;
+      margin: 6px 0 2px;
+    }
+    .pcard-cost-label { font-size: 10px; color: var(--text-mute); text-transform: uppercase; letter-spacing: 0.1em; }
+    .pcard-facts {
+      margin-top: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .pcard-fact {
+      display: flex;
+      gap: 8px;
+      font-size: 11px;
+    }
+    .pcard-fact-k { color: var(--text-mute); min-width: 80px; flex-shrink: 0; }
+    .pcard-fact-v { color: var(--text); }
+    .pcard-highlight {
+      margin-top: 10px;
+      border-top: 1px solid var(--border);
+      padding-top: 8px;
+      font-size: 11px;
+      color: var(--text-dim);
+      line-height: 1.5;
+    }
+    .pcard.wf { background: #141414; border-left: 2px solid var(--white); }
+    .pcard.wf .pcard-name { color: var(--white); }
+    .pcard.wf .pcard-highlight { color: var(--text); }
+    .pcard.unavail { opacity: 0.55; }
+
+    /* SWITCHING ANALYSIS (S7) */
+    .switch-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+    }
+    .switch-table th {
+      text-align: left;
+      font-size: 10px;
+      color: var(--text-mute);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 6px 12px;
+      border-bottom: 1px solid var(--border-hi);
+      font-weight: normal;
+    }
+    .switch-table td {
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .switch-table tr:last-child td { border-bottom: none; }
+    .saving-bar-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .saving-bar-bg {
+      background: var(--border);
+      height: 6px;
+      flex: 1;
+      max-width: 120px;
+    }
+    .saving-bar-fill {
+      background: var(--white);
+      height: 6px;
+    }
+    .saving-value { color: var(--white); font-weight: bold; }
+    .annual-saving { color: var(--text-dim); }
+    .negative-saving { color: var(--text-mute); font-style: italic; }
+
+    /* DECISION FRAMEWORK (S8) */
+    .decision-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1px;
+      background: var(--border);
+    }
+    .decision-cell {
+      background: var(--bg-row);
+      padding: 16px;
+    }
+    .decision-segment {
+      font-size: 10px;
+      color: var(--text-mute);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 6px;
+    }
+    .decision-rec {
+      font-size: 13px;
+      color: var(--white);
+      font-weight: bold;
+      margin-bottom: 6px;
+    }
+    .decision-rationale {
+      font-size: 11px;
+      color: var(--text-dim);
+      line-height: 1.55;
+    }
+
+    /* FAQ (S9) */
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+      padding: 0;
+    }
+    .faq-item:last-child { border-bottom: none; }
+    .faq-q {
+      padding: 14px 0;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .faq-q-text {
+      font-size: 12px;
+      color: var(--white);
+      line-height: 1.5;
+    }
+    .faq-toggle {
+      font-size: 14px;
+      color: var(--text-mute);
+      flex-shrink: 0;
+      margin-top: 1px;
+      transition: transform 0.2s;
+      user-select: none;
+    }
+    .faq-item.open .faq-toggle { transform: rotate(45deg); }
+    .faq-a {
+      display: none;
+      padding: 0 0 14px;
+      font-size: 12px;
+      color: var(--text-dim);
+      line-height: 1.7;
+      border-top: 1px solid var(--border);
+      margin-top: -1px;
+      padding-top: 12px;
+    }
+    .faq-item.open .faq-a { display: block; }
+
+    /* CONTEXT (S10) */
+    .context-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      margin-bottom: 16px;
+    }
+    .ctx-cell {
+      background: var(--bg-row);
+      padding: 14px 16px;
+    }
+    .ctx-label {
+      font-size: 10px;
+      color: var(--text-mute);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 4px;
+    }
+    .ctx-value {
+      font-size: 14px;
+      color: var(--white);
+      font-weight: bold;
+    }
+    .ctx-note {
+      font-size: 11px;
+      color: var(--text-dim);
+      margin-top: 2px;
+    }
+    .context-note {
+      font-size: 12px;
+      color: var(--text-dim);
+      line-height: 1.65;
+      padding: 14px 16px;
+      background: var(--bg-row);
+      border: 1px solid var(--border);
+    }
+    .context-note p { margin-bottom: 8px; }
+    .context-note p:last-child { margin-bottom: 0; }
+
+    /* LIMITATIONS (S11) */
+    .limits-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .limits-list li {
+      display: flex;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 12px;
+      color: var(--text-dim);
+      align-items: flex-start;
+    }
+    .limits-list li:last-child { border-bottom: none; }
+    .limits-list li::before {
+      content: '//';
+      color: var(--text-mute);
+      flex-shrink: 0;
+      font-size: 11px;
+      margin-top: 1px;
+    }
+
+    /* GEO EXTRACT (S12) */
+    .geo-box {
+      background: var(--bg);
+      border: 1px solid var(--border-hi);
+      padding: 20px 24px;
+      font-size: 12px;
+      color: var(--text);
+      line-height: 1.8;
+      position: relative;
+    }
+    .geo-box::before {
+      content: 'MACHINE-READABLE EXTRACT';
+      display: block;
+      font-size: 9px;
+      color: var(--text-mute);
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .geo-meta {
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .geo-meta-item { font-size: 10px; color: var(--text-mute); }
+    .geo-meta-item span { color: var(--text-dim); }
+
+    /* FOOTER */
+    .footer {
+      border-top: 1px solid var(--border);
+      padding: 20px 0 0;
+      margin-top: 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .footer-left { font-size: 11px; color: var(--text-mute); line-height: 1.6; }
+    .footer-right { font-size: 10px; color: var(--text-mute); text-align: right; }
+
+    /* UTILS */
+    .mono { font-family: 'Courier New', monospace; }
+    .up { color: var(--white); }
+    hr.rule { border: none; border-top: 1px solid var(--border); margin: 0; }
+
+    @media (max-width: 640px) {
+      .section-body { padding: 14px 14px; }
+      .hdr-pair { flex-direction: column; }
+      .hdr-right { text-align: left; }
+      .cost-cell { padding: 14px 12px; }
+    }
+  </style>
+</head>
+<body><script src="auth.js"></script>
+
+<!-- NAV -->
+<nav class="nav-strip">
+  <div class="nav-inner">
+    <span class="nav-label">Research</span>
+    <a href="index.html">Index</a>
+    <a href="GB-CNY.html">UK</a>
+    <a href="AU-CNY.html">Australia</a>
+    <a href="TR-CNY.html">Turkey</a>
+    <a href="VN-CNY.html">Vietnam</a>
+    <a href="NG-CNY.html">Nigeria</a>
+    <a href="PK-CNY.html">Pakistan</a>
+    <a href="DE-CNY.html">Germany</a>
+    <a href="BD-CNY.html">Bangladesh</a>
+    <a href="FR-CNY.html">France</a>
+    <a href="NL-CNY.html">Netherlands</a>
+    <a href="IN-CNY.html" class="active">India</a>
+  </div>
+</nav>
+
+<div class="page">
+
+  <!-- S1 — HEADER -->
+  <div class="section">
+    <div class="section-head">
+      <span class="label">Corridor Report</span>
+      <span class="tag">IN-CNY &bull; 3 April 2026 &bull; v1.0</span>
+    </div>
+    <div class="section-body">
+      <div class="hdr-pair">
+        <div class="hdr-left">
+          <div class="corridor-title">IN&ndash;CNY</div>
+          <div class="corridor-sub">India &rarr; China &nbsp;&bull;&nbsp; Indian Rupee to Chinese Renminbi</div>
+          <div class="rate-block">
+            <div class="rate-row">
+              <div class="rate-item">
+                <div class="rate-label">Mid-Market</div>
+                <div class="rate-value">0.0741</div>
+                <div class="rate-sub">1 INR = 0.0741 CNY</div>
+              </div>
+              <div class="rate-item">
+                <div class="rate-label">USD/INR</div>
+                <div class="rate-value">93.20</div>
+                <div class="rate-sub">1 USD = 93.20 INR</div>
+              </div>
+              <div class="rate-item">
+                <div class="rate-label">USD/CNY</div>
+                <div class="rate-value">7.24</div>
+                <div class="rate-sub">approx. implied cross</div>
+              </div>
+            </div>
+          </div>
+          <div style="margin-top:12px;">
+            <span class="provider-count">8 Providers Benchmarked</span>
+          </div>
+        </div>
+        <div class="hdr-right">
+          <div style="font-size:10px;color:var(--text-mute);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:6px;">Corridor Size</div>
+          <div style="font-size:22px;color:var(--white);font-weight:bold;">$155.6B</div>
+          <div style="font-size:11px;color:var(--text-dim);">Bilateral trade (2025)</div>
+          <div style="font-size:11px;color:var(--text-dim);margin-top:2px;">+12% YoY (record high)</div>
+          <hr class="rule" style="margin:12px 0;">
+          <div style="font-size:10px;color:var(--text-mute);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:4px;">Trade Balance</div>
+          <div style="font-size:14px;color:var(--text);">IN deficit: ~$116B</div>
+          <div style="font-size:11px;color:var(--text-dim);">Net payment flow: IN &rarr; CN</div>
+          <hr class="rule" style="margin:12px 0;">
+          <div style="font-size:10px;color:var(--text-mute);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:4px;">Political Context</div>
+          <div style="font-size:14px;color:var(--text);">High tension / thawing</div>
+          <div style="font-size:11px;color:var(--text-dim);">No currency swap. FDI partially relaxed Mar 2026.</div>
+        </div>
+      </div>
+      <div class="headline-finding">
+        Sending the INR equivalent of $10,000 to China costs approximately <strong>2.5&ndash;5%</strong> through an Indian bank. Through WorldFirst (P1 Longtail tier): approximately <strong>4.5&ndash;6%</strong>. Honest assessment: <strong>WF is not the cheapest option in this corridor on pure cost.</strong> Its advantage is platform convenience, 1688 World Pay, and same-day CNY settlement.
+      </div>
+    </div>
+  </div>
+
+  <!-- S2 — HEADLINE COST -->
+  <div class="section">
+    <div class="section-head">
+      <span class="label">02 &mdash; Headline Cost Comparison</span>
+      <span class="tag">$10,000 equivalent transfer &bull; all-in estimate</span>
+    </div>
+    <div class="section-body" style="padding:0;">
+      <div class="cost-grid">
+        <div class="cost-cell">
+          <div class="cost-cell-label">Bank Route (SWIFT)</div>
+          <div class="cost-pct">2.5&ndash;5%</div>
+          <div class="cost-abs">$250&ndash;$500 on $10k equivalent</div>
+          <div class="cost-note">INR&rarr;USD&rarr;CNY double conversion. FX markup 0.125&ndash;3.5% (SBI best, HDFC worst) plus wire fee &#8377;500&ndash;2,000 plus SWIFT $15&ndash;40 plus possible intermediary. SBI best case ~2.5%. HDFC worst case ~5%.</div>
+          <span class="cost-badge">3 major banks</span>
+        </div>
+        <div class="cost-cell" style="border-left:1px solid var(--border);">
+          <div class="cost-cell-label">Fintech Route</div>
+          <div class="cost-pct">1&ndash;2%</div>
+          <div class="cost-abs">$100&ndash;$200 on $10k (where available)</div>
+          <div class="cost-note">Wise: ~1.0&ndash;1.5% on INR&rarr;USD leg, but no direct CNY. Onboarding paused for new users. Instarem/BookMyForex: limited to personal, not China B2B. Payoneer: China-licensed but B2B payout, not buyer-initiated.</div>
+          <span class="cost-badge warn">Restricted access</span>
+        </div>
+        <div class="cost-cell" style="border-left:1px solid var(--border);">
+          <div class="cost-cell-label">WorldFirst (P1 Longtail)</div>
+          <div class="cost-pct" style="color:var(--white);">4.5&ndash;6%</div>
+          <div class="cost-abs">$450&ndash;$600 on $10k equivalent</div>
+          <div class="cost-note">Up to 3% FX markup (P1 Longtail tier for INR) + 3% standard payment fee. 1688 World Pay: 3% FX + 3% = ~6%. P1 pricing is not competitive on cost alone &mdash; value is in platform, speed, and 1688 integration.</div>
+          <span class="cost-badge hi">Platform + speed advantage</span>
+        </div>
+      </div>
+      <div class="stat-strip">
+        <div class="stat-cell">
+          <div class="stat-cell-label">Settlement Currency</div>
+          <div class="stat-cell-value">USD (~95%)</div>
+        </div>
+        <div class="stat-cell" style="border-left:1px solid var(--border);">
+          <div class="stat-cell-label">CNY Direct</div>
+          <div class="stat-cell-value">&lt;5%</div>
+        </div>
+        <div class="stat-cell" style="border-left:1px solid var(--border);">
+          <div class="stat-cell-label">RBI&ndash;PBOC Swap</div>
+          <div class="stat-cell-value">None</div>
+        </div>
+        <div class="stat-cell" style="border-left:1px solid var(--border);">
+          <div class="stat-cell-label">FX Regime</div>
+          <div class="stat-cell-value">Managed Float</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S3 — KEY FINDINGS -->
+  <div class="section">
+    <div class="section-head">
+      <span class="label">03 &mdash; Key Findings</span>
+      <span class="tag">8 findings &bull; research grade</span>
+    </div>
+    <div class="section-body">
+      <ul class="finding-list">
+        <li>
+          <span class="finding-num">01</span>
+          <span class="finding-text"><strong>WorldFirst's P1 Longtail pricing (up to 3% FX + 3% payment fee) is not cost-competitive with Indian banks.</strong> SBI offers FX markups as low as 0.125&ndash;2% above mid-market, with wire fees of &#8377;500&ndash;2,000. Even HDFC at its worst (3&ndash;3.5% FX) plus fees comes in around 4&ndash;5% total &mdash; comparable to or below WF's P1 rate. This is an honest assessment: in this corridor, the cost argument does not favor WorldFirst. The value proposition rests on platform convenience, speed, and 1688 integration.</span>
+        </li>
+        <li>
+          <span class="finding-num">02</span>
+          <span class="finding-text"><strong>India and China have no bilateral currency swap agreement</strong> despite $155.6 billion in bilateral trade. The PBOC has active swaps with 40+ central banks globally, but political tensions since the 2020 Galwan Valley clash have prevented any RBI&ndash;PBOC arrangement. This absence forces all trade settlement through USD, adding double-conversion cost. Direct INR&ndash;CNY liquidity is essentially nonexistent.</span>
+        </li>
+        <li>
+          <span class="finding-num">03</span>
+          <span class="finding-text"><strong>India&rsquo;s trade deficit with China hit a record $116 billion in 2025.</strong> Total bilateral trade reached $155.6 billion (+12% YoY). India imports electronics ($38B), machinery ($26B), and chemicals from China; exports raw materials like iron ore ($1.9B), mineral fuels ($1.3B), and organic chemicals ($1.3B). The payment demand overwhelmingly flows India &rarr; China, creating massive outbound payment volume.</span>
+        </li>
+        <li>
+          <span class="finding-num">04</span>
+          <span class="finding-text"><strong>Political tensions create a unique overlay on this corridor.</strong> India banned 300+ Chinese apps in 2020 (TikTok, WeChat, etc.). Press Note 3 imposed mandatory government approval for all FDI from neighboring countries (targeting China). March 2026 partial relaxation allows Chinese investment in electronics, capital goods, and solar &mdash; but with Indian majority ownership and 60-day review. China's FDI in India: just 0.32% of cumulative total ($2.51B since 2000).</span>
+        </li>
+        <li>
+          <span class="finding-num">05</span>
+          <span class="finding-text"><strong>FEMA regulations require all FX to route through Authorized Dealer (AD) banks.</strong> The Foreign Exchange Management Act (1999) mandates that all cross-border payments must flow through RBI-licensed AD banks. Private entities cannot hold or transfer foreign currency independently. Import payments require supporting documentation (invoice, Bill of Entry). This regulatory structure limits fintech disruption &mdash; even Wise must partner with AD banks for outbound transfers.</span>
+        </li>
+        <li>
+          <span class="finding-num">06</span>
+          <span class="finding-text"><strong>LRS cap of $250,000 per financial year applies to individual remitters.</strong> The Liberalised Remittance Scheme allows Indian residents to remit up to $250,000 (April&ndash;March). From April 2025, TCS of 5% applies on remittances exceeding &#8377;10 lakh per financial year (raised from &#8377;7 lakh). Business trade payments for documented imports are generally exempt from TCS, but the regime adds compliance overhead and cash flow friction for SMEs.</span>
+        </li>
+        <li>
+          <span class="finding-num">07</span>
+          <span class="finding-text"><strong>Wise has strong India presence but cannot serve this corridor effectively.</strong> Wise received RBI PA-CB in-principle approval in June 2025, but has paused outward remittance onboarding for new users. Existing users can send INR abroad, but Wise does not offer direct INR&rarr;CNY conversion. Indian users must send USD and rely on recipient bank conversion. This makes Wise a non-factor for B2B India&rarr;China trade payments.</span>
+        </li>
+        <li>
+          <span class="finding-num">08</span>
+          <span class="finding-text"><strong>The October 2024 LAC disengagement agreement has not materially changed financial infrastructure.</strong> India and China agreed to patrolling arrangements at Depsang and Demchok, but both countries maintain aggressive military buildups. India relaxed FDI norms in March 2026 but the broader financial relationship &mdash; no currency swap, no direct payment infrastructure, no bilateral fintech cooperation &mdash; remains frozen. The payment corridor infrastructure lags far behind the $155.6B trade reality.</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- S4 — COST BREAKDOWN -->
+  <div class="section">
+    <div class="section-head">
+      <span class="label">04 &mdash; Cost Breakdown</span>
+      <span class="tag">All figures approximate &bull; $10,000 equivalent transfer &bull; April 2026</span>
+    </div>
+    <div class="section-body" style="padding:0;">
+      <table class="breakdown-table">
+        <thead>
+          <tr>
+            <th style="width:18%;">Provider</th>
+            <th class="num" style="width:13%;">FX Markup</th>
+            <th class="num" style="width:12%;">Transfer Fee</th>
+            <th class="num" style="width:14%;">SWIFT / Platform</th>
+            <th class="num" style="width:14%;">Intermediary</th>
+            <th class="num" style="width:13%;">Total (est.)</th>
+            <th style="width:16%;">Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="section-header">
+            <td colspan="7">Indian Banks (AD Category I)</td>
+          </tr>
+          <tr>
+            <td>State Bank of India</td>
+            <td class="num">0.125&ndash;2%</td>
+            <td class="num dim">&#8377;500&ndash;2,000</td>
+            <td class="num dim">$15&ndash;30</td>
+            <td class="num dim">$15&ndash;40</td>
+            <td class="num"><strong>~2.5&ndash;3.5%</strong></td>
+            <td class="dim">Largest bank; best FX for large volumes; LRS compliant</td>
+          </tr>
+          <tr>
+            <td>HDFC Bank</td>
+            <td class="num">3&ndash;3.5%</td>
+            <td class="num dim">&#8377;500&ndash;1,000 + GST</td>
+            <td class="num dim">$15&ndash;30</td>
+            <td class="num dim">$15&ndash;40</td>
+            <td class="num"><strong>~3.5&ndash;5%</strong></td>
+            <td class="dim">Highest FX markup among Big 3; popular but expensive</td>
+          </tr>
+          <tr>
+            <td>ICICI Bank</td>
+            <td class="num">1.5&ndash;3%</td>
+            <td class="num dim">&#8377;500 + GST</td>
+            <td class="num dim">$15&ndash;30</td>
+            <td class="num dim">$15&ndash;40</td>
+            <td class="num"><strong>~2.5&ndash;4%</strong></td>
+            <td class="dim">Variable by corridor; mid-tier FX; digital onboarding</td>
+          </tr>
+          <tr class="section-header">
+            <td colspan="7">Digital / Fintech</td>
+          </tr>
+          <tr class="wf-row">
+            <td><strong>WorldFirst</strong></td>
+            <td class="num">Up to 3%</td>
+            <td class="num">3%</td>
+            <td class="num">Platform incl.</td>
+            <td class="num">&mdash;</td>
+            <td class="num"><strong>~4.5&ndash;6%</strong></td>
+            <td>P1 Longtail; same-day CNY; 1688 World Pay 3%</td>
+          </tr>
+          <tr>
+            <td>Wise</td>
+            <td class="num">~1.0&ndash;1.5%</td>
+            <td class="num dim">Low/variable</td>
+            <td class="num dim">&mdash;</td>
+            <td class="num dim">&mdash;</td>
+            <td class="num"><strong>~1.0&ndash;2%</strong></td>
+            <td class="dim">No direct CNY; onboarding paused; existing users only</td>
+          </tr>
+          <tr>
+            <td>Instarem</td>
+            <td class="num">0.5&ndash;1.5%</td>
+            <td class="num dim">Variable</td>
+            <td class="num dim">&mdash;</td>
+            <td class="num dim">&mdash;</td>
+            <td class="num"><strong>~1&ndash;2%</strong></td>
+            <td class="dim">Serves India outbound; CNY support unconfirmed for B2B</td>
+          </tr>
+          <tr class="section-header">
+            <td colspan="7">Limited / Restricted</td>
+          </tr>
+          <tr style="color:var(--text-mute);font-style:italic;">
+            <td>Payoneer</td>
+            <td class="num">&mdash;</td>
+            <td class="num">&mdash;</td>
+            <td class="num">&mdash;</td>
+            <td class="num">&mdash;</td>
+            <td class="num">N/A (payout only)</td>
+            <td>China-licensed via Easylink; B2B payout not buyer-initiated</td>
+          </tr>
+          <tr style="color:var(--text-mute);font-style:italic;">
+            <td>BookMyForex</td>
+            <td class="num">~0.5&ndash;1%</td>
+            <td class="num dim">Up to &#8377;8,000</td>
+            <td class="num dim">&mdash;</td>
+            <td class="num dim">&mdash;</td>
+            <td class="num">~1&ndash;2%</td>
+            <td>Personal focus; competitive rates; China B2B unclear</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- S5 — PROVIDER TABLE -->
+  <div class="section">
+    <div class="section-head">
+      <span class="label">05 &mdash; Provider Table</span>
+      <span class="tag">8 providers &bull; ranked by estimated all-in cost</span>
+    </div>
+    <div class="section-body" style="padding:0;">
+      <table class="provider-table">
+        <thead>
+          <tr>
+            <th style="width:5%;">Rank</th>
+            <th style="width:16%;">Provider</th>
+            <th style="width:10%;">Type</th>
+            <th style="width:13%;">All-In Cost</th>
+            <th style="width:12%;">FX Markup</th>
+            <th style="width:12%;">Speed</th>
+            <th style="width:12%;">Regulated By</th>
+            <th style="width:20%;">Key Feature</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>Wise</td>
+            <td><span class="type-tag">Fintech</span></td>
+            <td><span class="pct-pill best">~1.0&ndash;2%</span></td>
+            <td>~1.0&ndash;1.5%</td>
+            <td>1&ndash;2 days</td>
+            <td>RBI (PA-CB pending)</td>
+            <td>Cheapest FX; no direct CNY; onboarding paused</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Instarem</td>
+            <td><span class="type-tag">Fintech</span></td>
+            <td><span class="pct-pill">~1&ndash;2%</span></td>
+            <td>0.5&ndash;1.5%</td>
+            <td>1&ndash;3 days</td>
+            <td>MAS / RBI partner</td>
+            <td>India outbound; 60+ countries; B2B CNY unclear</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>State Bank of India</td>
+            <td><span class="type-tag">PSU Bank</span></td>
+            <td><span class="pct-pill">~2.5&ndash;3.5%</span></td>
+            <td>0.125&ndash;2%</td>
+            <td>2&ndash;5 days</td>
+            <td>RBI (AD Cat I)</td>
+            <td>Best bank FX; largest; trade finance capability</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>ICICI Bank</td>
+            <td><span class="type-tag">Pvt. Bank</span></td>
+            <td><span class="pct-pill">~2.5&ndash;4%</span></td>
+            <td>1.5&ndash;3%</td>
+            <td>2&ndash;5 days</td>
+            <td>RBI (AD Cat I)</td>
+            <td>Mid-tier FX; digital platform; variable by corridor</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>HDFC Bank</td>
+            <td><span class="type-tag">Pvt. Bank</span></td>
+            <td><span class="pct-pill">~3.5&ndash;5%</span></td>
+            <td>3&ndash;3.5%</td>
+            <td>2&ndash;5 days</td>
+            <td>RBI (AD Cat I)</td>
+            <td>Widest FX markup; huge branch network; popular default</td>
+          </tr>
+          <tr class="wf">
+            <td>6</td>
+            <td><strong>WorldFirst</strong></td>
+            <td><span class="type-tag">Fintech</span></td>
+            <td><span class="pct-pill">~4.5&ndash;6%</span></td>
+            <td>Up to 3%</td>
+            <td>Same-day CNY</td>
+            <td>FCA / Ant Int'l</td>
+            <td>1688 World Pay; CNAPS rails; platform value</td>
+          </tr>
+          <tr class="unavail">
+            <td>&mdash;</td>
+            <td>Payoneer</td>
+            <td><span class="type-tag">Fintech</span></td>
+            <td><em>Payout only</em></td>
+            <td>&mdash;</td>
+            <td>&mdash;</td>
+            <td>Easylink (China)</td>
+            <td>China-licensed; seller payouts not buyer payments</td>
+          </tr>
+          <tr class="unavail">
+            <td>&mdash;</td>
+            <td>BookMyForex</td>
+            <td><span class="type-tag">Aggregator</span></td>
+            <td><em>~1&ndash;2%</em></td>
+            <td>~0.5&ndash;1%</td>
+            <td>2&ndash;4 days</td>
+            <td>RBI AD partner</td>
+            <td>Personal focus; competitive rates; B2B China unclear</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- S6 — PROVIDER CARDS -->
+  <div class="section">
+    <div class="section-head">
+      <span class="label">06 &mdash; Provider Cards</span>
+      <span class="tag">Detailed profiles</span>
+    </div>
+    <div class="section-body" style="padding:0;">
+      <div class="card-grid">
+
+        <div class="pcard wf">
+          <div class="pcard-head">
+            <div class="pcard-name">WorldFirst</div>
+            <span class="pcard-type">Fintech</span>
+          </div>
+          <div class="pcard-cost-label">Estimated All-In Cost</div>
+          <div class="pcard-cost">4.5&ndash;6%</div>
+          <div class="pcard-facts">
+            <div class="pcard-fact"><span class="pcard-fact-k">FX Markup</span><span class="pcard-fact-v">Up to 3% (P1 Longtail for INR)</span></div>
+            <div class="pcard-fact"><span class="pcard-fact-k">Payment Fee</span><span class="pcard-fact-v">3% standard / 3% 1688 World Pay</span></div>
+            <div class="pcard-fact"><span class="pcard-fact-k">SWIFT / Fees</span><span class="pcard-fact-v">Included in platform</span></div>
+            <div class="pcard-fact"><span class="pcard-fact-k">Settlement</span><span class="pcard-fact-v">Same-day CNY via CNAPS</span></div>
+            <div class="pcard-fact"><span class="pcard-fact-k">World Card</span><span class="pcard-fact-v">1% cashback on card spend</span></div>
+            <div class="pcard-fact"><span class="pcard-fact-k">Regulated</span><span class="pcard-fact-v">FCA (UK); Ant International</span></div>
+          </div>
+          <div class="pcard-highlight">P1 Longtail tier pricing makes WorldFirst the most expensive documented option in this corridor on pure cost. The value proposition is real but different: same-day CNY settlement (vs 2-5 day bank SWIFT), 1688 World Pay integration (no Indian bank offers this), and platform convenience. For importers sourcing on 1688.com, WF solves a genuine problem even at premium pricing. For standard wire transfers, Indian banks are cheaper.</div>
+        </div>
+
+        <div class="pcard">
+          <div class="pcard-head">
+            <div class="pcard-name">State Bank of India</div>
+            <span class="pcard-type">PSU Bank</span>
+          </div>
+          <div class="pcard-cost-label">Estimated All-In Cost</div>
+          <div class="pcard-cost">2.5&ndash;3.5%</div>
+          <div class="pcard-facts">
+            <div class="pcard-fact"><span class="pcard-fact-k">FX Markup</span><span class="pcard-fact-v">0.125&ndash;2% above mid-market</span></div>
+            <div class="pcard-fact"><span class="pcard-fact-k">Transfer Fee</span><span class="pcard-fact-v">&#8377;500&ndash;2,000</span></div>
+            <div class="pcard-fact"><span class="pcard-fact-k">SWIFT</span><span class="pcard-fact-v">$15&ndash;30</span></div>
+            <div class="pcard-fact"><span class="pcard-fact-k">Intermediary</span><span class="pcard-fact-v">$15&ndash;40</span></div>
+            <div class="pcard-fact"><span class="pcard-fact-k">Regulated</span><span class="pcard-fact-v">RBI (AD Category I)</span></div>
+          </div>
+          <div class="pcard-highlight">Largest bank in India by assets. Best FX markups among the Big 3 banks, especially for large-volume clients. Full trade finance capability including L/C, documentary collections, and buyer's credit. The default choice for large Indian importers. FX spread of 0.125% is achievable only for priority corporate clients; retail SME rate is closer to 1.5&ndash;2%.</div>
+        </div>
+
+        <div class="pcard">
+          <div class="pcard-head">
+            <div class="pcard-name">ICICI Bank</div>
+            <span class="pcard-type">Private Bank</span>
+          </div>
+          <div class="pcard-cost-label">Estimated All-In Cost</div>
+          <div class="pcard-cost">2.5&ndash;4%</div>
+          <div class="pcard-facts">
+            <div class="pcard-fact"><span class="pcard-fact-k">FX Markup</span><span class="pcard-fact-v">1.5&ndash;3%</span></div>
+            <div class="pcard-fact"><span class="pcard-fact-k">Transfer Fee</span><span class="pcard-fact-v">&#8377;500 + GST</span></div>
+            <div class="pcard-fact"><span class="pcard-fact-k">SWIFT</span><span class="pcard-fact-v">$15&ndash;30</span></div>
+            <div class="pcard-fact"><span class="pcard-fact-k">Digital</span><span class="pcard-fact-v">Online remittance platform</span></div>
+            <div class="pcard-fact"><span class="pcard-fact-k">Regulated</span><span class="pcard-fact-v">RBI (AD Category I)</span></div>
+          </div>
+          <div class="pcard-highlight">Largest private bank. Variable FX markups depending on corridor and transaction amount. Online remittance platform for LRS transfers. Mid-tier pricing &mdash; more expensive than SBI for large transfers, cheaper than HDFC. Good digital experience for SME importers already banking with ICICI.</div>
+        </div>
+
+        <div class="pcard">
+          <div class="pcard-head">
+            <div class="pcard-name">HDFC Bank</div>
+            <span class="pcard-type">Private Bank</span>
+          </div>
+          <div class="pcard-cost-label">Estimated All-In Cost</div>
+          <div class="pcard-cost">3.5&ndash;5%</div>
+          <div class="pcard-facts">
+            <div class="pcard-fact"><span class="pcard-fact-k">FX Markup</span><span class="pcard-fact-v">3&ndash;3.5%</span></div>
+            <div class="pcard-fact"><span class="pcard-fact-k">Transfer Fee</span><span class="pcard-fact-v">&#8377;500&ndash;1,000 + GST</span></div>
+            <div class="pcard-fact"><span class="pcard-fact-k">SWIFT</span><span class="pcard-fact-v">$15&ndash;30</span></div>
+            <div class="pcard-fact"><span class="pcard-fact-k">Intermediary</span><span class="pcard-fact-v">$15&ndash;40</span></div>
+            <div class="pcard-fact"><span class="pcard-fact-k">Regulated</span><span class="pcard-fact-v">RBI (AD Category I)</span></div>
+          </div>
+          <div class="pcard-highlight">Second largest private bank. Highest FX markup among the Big 3 at 3&ndash;3.5%. HDFC is many Indian importers' default bank, which means they pay the premium without comparing. Huge branch and relationship manager network. For China trade payments, HDFC is the most expensive bank option &mdash; switching to SBI or WF yields measurable savings.</div>
+        </div>
+
+        <div class="pcard">
+          <div class="pcard-head">
+            <div class="pcard-name">Wise</div>
+            <span class="pcard-type">Fintech</span>
+          </div>
+          <div class="pcard-cost-label">Estimated All-In Cost</div>
+          <div class="pcard-cost">~1.0&ndash;2%</div>
+          <div class="pcard-facts">
+            <div class="pcard-fact"><span class="pcard-fact-k">FX Markup</span><span class="pcard-fact-v">~1.0&ndash;1.5% (INR&rarr;USD)</span></div>
+            <div class="pcard-fact"><span class="pcard-fact-k">Transfer Fee</span><span class="pcard-fact-v">Low / variable</span></div>
+            <div class="pcard-fact"><span class="pcard-fact-k">CNY Direct</span><span class="pcard-fact-v">Not available</span></div>
+            <div class="pcard-fact"><span class="pcard-fact-k">Onboarding</span><span class="pcard-fact-v">Paused for new Indian users</span></div>
+            <div class="pcard-fact"><span class="pcard-fact-k">Regulated</span><span class="pcard-fact-v">RBI PA-CB (in-principle, Jun 2025)</span></div>
+          </div>
+          <div class="pcard-highlight">Would be the cheapest option if fully available. Wise offers mid-market rates with transparent low fees &mdash; but does not support direct INR&rarr;CNY. Indian users must send USD, adding a second conversion at the Chinese recipient's bank. Outward remittance onboarding is frozen for new users. For existing personal users sending to China, Wise is competitive but operationally limited. Not suitable for B2B trade at scale.</div>
+        </div>
+
+        <div class="pcard">
+          <div class="pcard-head">
+            <div class="pcard-name">Instarem</div>
+            <span class="pcard-type">Fintech</span>
+          </div>
+          <div class="pcard-cost-label">Estimated All-In Cost</div>
+          <div class="pcard-cost">~1&ndash;2%</div>
+          <div class="pcard-facts">
+            <div class="pcard-fact"><span class="pcard-fact-k">FX Markup</span><span class="pcard-fact-v">0.5&ndash;1.5% (mid-market based)</span></div>
+            <div class="pcard-fact"><span class="pcard-fact-k">Transfer Fee</span><span class="pcard-fact-v">Variable / often zero</span></div>
+            <div class="pcard-fact"><span class="pcard-fact-k">Countries</span><span class="pcard-fact-v">60+ destinations</span></div>
+            <div class="pcard-fact"><span class="pcard-fact-k">Regulated</span><span class="pcard-fact-v">MAS (Singapore); RBI AD partner</span></div>
+          </div>
+          <div class="pcard-highlight">Singapore-based fintech with India outbound coverage. Competitive rates for personal transfers. CNY/China B2B business payment support is unconfirmed &mdash; primary use case is personal remittance. If available for trade payments, would be competitive on cost but lacks the China-specific infrastructure (1688, CNAPS) that WorldFirst offers.</div>
+        </div>
+
+        <div class="pcard unavail">
+          <div class="pcard-head">
+            <div class="pcard-name">Payoneer</div>
+            <span class="pcard-type">Limited</span>
+          </div>
+          <div class="pcard-cost-label">Status</div>
+          <div class="pcard-cost" style="font-size:15px;color:var(--text-mute);">Payout only (not buyer-initiated)</div>
+          <div class="pcard-facts">
+            <div class="pcard-fact"><span class="pcard-fact-k">China License</span><span class="pcard-fact-v">Easylink Payment (acquired Apr 2025)</span></div>
+            <div class="pcard-fact"><span class="pcard-fact-k">India License</span><span class="pcard-fact-v">OPGSP (RBI)</span></div>
+            <div class="pcard-fact"><span class="pcard-fact-k">Restriction</span><span class="pcard-fact-v">B2B payout model; seller receives, buyer cannot initiate</span></div>
+          </div>
+          <div class="pcard-highlight">Payoneer has licenses in both India and China but operates a payout model &mdash; Chinese sellers receive payouts from marketplace earnings. Indian buyers cannot use Payoneer to initiate trade payments to Chinese suppliers. Relevant for e-commerce sellers, not for importers making supplier payments.</div>
+        </div>
+
+        <div class="pcard unavail">
+          <div class="pcard-head">
+            <div class="pcard-name">BookMyForex</div>
+            <span class="pcard-type">Aggregator</span>
+          </div>
+          <div class="pcard-cost-label">Estimated All-In Cost</div>
+          <div class="pcard-cost" style="font-size:15px;color:var(--text-mute);">~1&ndash;2% (personal)</div>
+          <div class="pcard-facts">
+            <div class="pcard-fact"><span class="pcard-fact-k">FX Markup</span><span class="pcard-fact-v">~0.5&ndash;1% (lowest rate guarantee)</span></div>
+            <div class="pcard-fact"><span class="pcard-fact-k">Transfer Fee</span><span class="pcard-fact-v">Up to &#8377;8,000</span></div>
+            <div class="pcard-fact"><span class="pcard-fact-k">Focus</span><span class="pcard-fact-v">Personal remittance; forex cards; travel</span></div>
+          </div>
+          <div class="pcard-highlight">Indian forex aggregator with competitive rates for personal transfers. Aggregates rates across partner AD banks. China B2B trade payment capability is unclear &mdash; primary product is personal remittance, forex cards, and travel money. Not a viable alternative for regular trade payment flows.</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- S7 — SWITCHING ANALYSIS -->
+  <div class="section">
+    <div class="section-head">
+      <span class="label">07 &mdash; Switching Analysis</span>
+      <span class="tag">Current provider &rarr; WorldFirst &bull; based on $10k/month volume</span>
+    </div>
+    <div class="section-body" style="padding:0;">
+      <table class="switch-table">
+        <thead>
+          <tr>
+            <th style="width:18%;">Current Provider</th>
+            <th class="num" style="width:14%;">Current Cost (est.)</th>
+            <th class="num" style="width:14%;">WorldFirst Cost</th>
+            <th style="width:18%;">Difference</th>
+            <th class="num" style="width:16%;">Annual Impact</th>
+            <th style="width:20%;">Qualifier</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>HDFC Bank</td>
+            <td class="num">~4.25%</td>
+            <td class="num">~5.25%</td>
+            <td>
+              <div class="saving-bar-wrap">
+                <span class="negative-saving">+1.00% (WF more expensive)</span>
+              </div>
+            </td>
+            <td class="num negative-saving">-$1,200 / yr</td>
+            <td class="dim">WF costs more; value in speed + platform</td>
+          </tr>
+          <tr>
+            <td>ICICI Bank</td>
+            <td class="num">~3.25%</td>
+            <td class="num">~5.25%</td>
+            <td>
+              <div class="saving-bar-wrap">
+                <span class="negative-saving">+2.00% (WF more expensive)</span>
+              </div>
+            </td>
+            <td class="num negative-saving">-$2,400 / yr</td>
+            <td class="dim">WF significantly more expensive on cost</td>
+          </tr>
+          <tr>
+            <td>SBI</td>
+            <td class="num">~3.00%</td>
+            <td class="num">~5.25%</td>
+            <td>
+              <div class="saving-bar-wrap">
+                <span class="negative-saving">+2.25% (WF more expensive)</span>
+              </div>
+            </td>
+            <td class="num negative-saving">-$2,700 / yr</td>
+            <td class="dim">Largest gap; SBI clearly cheaper for standard transfers</td>
+          </tr>
+          <tr>
+            <td>Wise (existing user)</td>
+            <td class="num">~1.50%</td>
+            <td class="num">~5.25%</td>
+            <td>
+              <div class="saving-bar-wrap">
+                <span class="negative-saving">+3.75% (WF more expensive)</span>
+              </div>
+            </td>
+            <td class="num negative-saving">-$4,500 / yr</td>
+            <td class="dim">Wise far cheaper; but limited access + no B2B CNY</td>
+          </tr>
+        </tbody>
+      </table>
+      <div style="padding:14px 16px;font-size:11px;color:var(--text-dim);border-top:1px solid var(--border);line-height:1.6;">
+        <strong style="color:var(--white);">Note:</strong> This is the only corridor in this research series where WorldFirst is more expensive than all bank alternatives on pure cost. The switching analysis is negative across all providers. WorldFirst's value in this corridor is not cost savings &mdash; it is (1) same-day CNY settlement via CNAPS, (2) 1688 World Pay integration, and (3) platform convenience vs. manual bank SWIFT workflows. These operational advantages may justify the premium for specific use cases, particularly 1688 sourcing and time-sensitive payments.
+      </div>
+    </div>
+  </div>
+
+  <!-- S8 — DECISION FRAMEWORK -->
+  <div class="section">
+    <div class="section-head">
+      <span class="label">08 &mdash; Decision Framework</span>
+      <span class="tag">By buyer segment</span>
+    </div>
+    <div class="section-body" style="padding:0;">
+      <div class="decision-grid">
+        <div class="decision-cell">
+          <div class="decision-segment">SME Importers (&lt;$50k/month)</div>
+          <div class="decision-rec">SBI or ICICI Bank</div>
+          <div class="decision-rationale">For standard trade payments to Chinese suppliers, Indian banks are 1.5&ndash;2.5% cheaper than WorldFirst at P1 pricing. Use your existing bank relationship. The SWIFT delay (2&ndash;5 days) is an acceptable trade-off for the cost saving at this volume.</div>
+        </div>
+        <div class="decision-cell">
+          <div class="decision-segment">1688.com Buyers</div>
+          <div class="decision-rec">WorldFirst 1688 World Pay</div>
+          <div class="decision-rationale">No Indian bank offers direct 1688 checkout. Without WF, you need a sourcing agent (5&ndash;10% commission) or manual SWIFT to the supplier's personal bank account. WF's ~6% total cost is expensive but still cheaper than agent fees, and the integration removes reconciliation friction.</div>
+        </div>
+        <div class="decision-cell">
+          <div class="decision-segment">Large Importers (&gt;$100k/month)</div>
+          <div class="decision-rec">SBI (primary) + WorldFirst (supplement)</div>
+          <div class="decision-rationale">SBI's negotiated FX rates (0.125&ndash;0.5% for large volumes) with full L/C and trade finance capability should be the primary channel. Use WorldFirst as a supplement for urgent same-day payments and 1688 transactions where speed matters more than cost.</div>
+        </div>
+        <div class="decision-cell">
+          <div class="decision-segment">Personal / Small Transfers</div>
+          <div class="decision-rec">Wise (if existing user) or Instarem</div>
+          <div class="decision-rationale">For personal remittances under $10k, Wise or Instarem at ~1&ndash;2% total cost are the cheapest options. Wise's onboarding freeze limits new users. Both lack direct CNY but work for USD-intermediated transfers at significantly lower cost than banks or WorldFirst.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S9 — FAQ -->
+  <div class="section">
+    <div class="section-head">
+      <span class="label">09 &mdash; Frequently Asked Questions</span>
+      <span class="tag">8 questions &bull; India-specific</span>
+    </div>
+    <div class="section-body">
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-text">Can Wise send money from India to China?</span>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-a">Wise has paused outward remittance onboarding from India for new users while reconfiguring under its RBI PA-CB licence (in-principle approval June 2025). Existing users with prior outbound transfer history can still send INR abroad, but Wise does not support direct INR-to-CNY conversion. Indian users must send USD and rely on the Chinese recipient's bank for USD-to-CNY conversion, which adds an uncontrolled markup. At approximately 1.0&ndash;1.5% FX on the INR-to-USD leg, Wise is competitive for personal transfers &mdash; but the onboarding freeze and absence of direct CNY support limit its practical utility for new business users in this corridor.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-text">What is the RBI Liberalised Remittance Scheme (LRS)?</span>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-a">The LRS allows Indian residents to remit up to $250,000 per financial year (April&ndash;March) for permitted purposes including trade payments, education, travel, and investment. All outbound remittances must route through an Authorized Dealer (AD) bank. From April 2025, Tax Collected at Source (TCS) of 5% applies on remittances exceeding &#8377;10 lakh per financial year (raised from the previous &#8377;7 lakh threshold). TCS is refundable against income tax liability but creates a working capital drag. Business trade payments for documented imports are generally exempt from TCS when routed through proper AD bank channels with supporting documentation.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-text">Is there an India-China bilateral currency swap?</span>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-a">No. The PBOC maintains bilateral currency swap agreements with over 40 central banks globally &mdash; including most major emerging market economies &mdash; but there is no active RBI&ndash;PBOC currency swap. This absence reflects the deterioration of India-China relations since the 2020 Galwan Valley military clash. Without a swap line, Indian banks lack institutional CNY liquidity. The practical result: all India-China trade settlement routes through USD, with double conversion (INR&rarr;USD&rarr;CNY) as the structural default.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-text">What are India's restrictions on Chinese business?</span>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-a">Since 2020, India has imposed escalating restrictions: ban on 300+ Chinese apps (TikTok, WeChat, Alibaba UC), mandatory government approval for all FDI from countries sharing a land border with India (Press Note 3 of 2020, targeting China), enhanced security scrutiny of Chinese entities in telecom and critical infrastructure, and restrictions on Chinese companies bidding for government contracts. In March 2026, India partially relaxed FDI norms for Chinese investment in electronics, capital goods, and solar cell sectors &mdash; but with Indian-majority ownership requirements and 60-day processing timelines. The broader framework of suspicion remains. China's cumulative FDI in India is just $2.51 billion since 2000 (0.32% of total).</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-text">Why is double conversion (INR to USD to CNY) the standard?</span>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-a">Three factors converge: (1) No RBI-PBOC currency swap means Indian banks have no institutional CNY liquidity; (2) The INR-CNY pair has negligible direct market depth &mdash; there is no meaningful offshore or onshore INR-CNY trading market; (3) Political tensions prevent the bilateral financial infrastructure development that would be expected between the world's 1st and 5th largest economies. The practical result is that banks quote INR-to-USD and USD-to-CNY as two separate transactions, each with independent FX markups. Combined spreads of 2&ndash;4% are typical through Indian banks.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-text">What does FEMA require for outbound trade payments?</span>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-a">The Foreign Exchange Management Act (FEMA, 1999) requires all cross-border payments to route through RBI-licensed Authorized Dealer (AD) banks. Import payments must be supported by documentation: commercial invoice, Bill of Entry, import contract, and IEC (Import Export Code). Payments must align with contracted terms. AD banks are authorized to permit extensions beyond agreed due dates. Private entities cannot independently hold or transfer foreign currency &mdash; all FX must route through the AD banking system. This framework limits fintech disruption, as even digital platforms like Wise must partner with AD banks for outbound transfers from India.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-text">What is TCS on foreign remittance and does it apply to trade payments?</span>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-a">Tax Collected at Source (TCS) is collected by banks and remittance providers on outward transfers. From April 2025: 5% TCS on remittances exceeding &#8377;10 lakh per financial year for most purposes (investment, travel, etc.); 20% TCS for investments and property purchases above &#8377;10 lakh. TCS is refundable as a credit against income tax. For bona fide business trade payments (imports with supporting documentation routed through AD banks), TCS exemption generally applies. However, the exemption requires proper documentation and varies by AD bank interpretation &mdash; some banks apply TCS on all outbound transfers and require the taxpayer to claim refund at filing. This creates cash flow friction for SME importers.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-text">How does WorldFirst's 1688 World Pay work for Indian buyers?</span>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-a">WorldFirst's 1688 World Pay enables direct checkout on 1688.com (Alibaba's domestic wholesale marketplace) from a WorldFirst account. For India at P1 Longtail pricing, the estimated cost is approximately 3% FX + 3% platform fee = ~6%. This is expensive compared to other corridors. However, no Indian bank offers direct 1688 checkout integration. Without 1688 World Pay, Indian buyers must use a sourcing agent (typically 5&ndash;10% commission), pay via Alipay/WeChat through unofficial channels, or arrange manual SWIFT transfers requiring suppliers to reconcile payments with orders. The platform integration value is operational efficiency and supplier relationship management, not FX savings.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S10 — CONTEXT -->
+  <div class="section">
+    <div class="section-head">
+      <span class="label">10 &mdash; Corridor Context</span>
+      <span class="tag">Structural &amp; regulatory background</span>
+    </div>
+    <div class="section-body">
+      <div class="context-grid">
+        <div class="ctx-cell">
+          <div class="ctx-label">Bilateral Trade (2025)</div>
+          <div class="ctx-value">$155.6B</div>
+          <div class="ctx-note">+12% YoY; record high</div>
+        </div>
+        <div class="ctx-cell">
+          <div class="ctx-label">IN Trade Deficit w/ China</div>
+          <div class="ctx-value">~$116B</div>
+          <div class="ctx-note">Record; net flow: IN &rarr; CN</div>
+        </div>
+        <div class="ctx-cell">
+          <div class="ctx-label">FX Regime (INR)</div>
+          <div class="ctx-value">Managed Float</div>
+          <div class="ctx-note">RBI intervenes to curb volatility</div>
+        </div>
+        <div class="ctx-cell">
+          <div class="ctx-label">RBI&ndash;PBOC Swap</div>
+          <div class="ctx-value">None</div>
+          <div class="ctx-note">Political tensions prevent arrangement</div>
+        </div>
+        <div class="ctx-cell">
+          <div class="ctx-label">LRS Annual Limit</div>
+          <div class="ctx-value">$250,000</div>
+          <div class="ctx-note">Per individual per financial year</div>
+        </div>
+        <div class="ctx-cell">
+          <div class="ctx-label">TCS Threshold</div>
+          <div class="ctx-value">&#8377;10 lakh</div>
+          <div class="ctx-note">5% TCS above threshold (Apr 2025+)</div>
+        </div>
+        <div class="ctx-cell">
+          <div class="ctx-label">Outbound Regulation</div>
+          <div class="ctx-value">FEMA / RBI AD</div>
+          <div class="ctx-note">All FX through Authorized Dealers</div>
+        </div>
+        <div class="ctx-cell">
+          <div class="ctx-label">Chinese Apps Banned</div>
+          <div class="ctx-value">300+</div>
+          <div class="ctx-note">TikTok, WeChat, UC Browser, etc.</div>
+        </div>
+      </div>
+      <div class="context-note">
+        <p>The India-China corridor is defined by a paradox: $155.6 billion in bilateral trade operating through financial infrastructure designed for adversaries. India and China are the world's two most populous countries, the 5th and 2nd largest economies, and share a 3,488 km disputed border &mdash; yet they have no bilateral currency swap, no direct payment rail, and no fintech cooperation. Every rupee sent to China must route through USD, adding structural cost.</p>
+        <p>India's managed float regime means the RBI actively intervenes in FX markets. The rupee has weakened from ~83 to ~93 against USD over the past year, making imports from China progressively more expensive. The RBI uses the USD as its primary intervention instrument &mdash; buying or selling dollars to smooth excessive volatility &mdash; but does not target any specific exchange rate level.</p>
+        <p>The political overlay is inescapable. The 2020 Galwan Valley clash killed 20 Indian soldiers and led to app bans, FDI restrictions, and a freeze on bilateral financial infrastructure. The October 2024 LAC disengagement agreement and March 2026 FDI relaxation signal a thaw &mdash; but the financial infrastructure remains frozen in 2020. For cross-border payments, the practical effect is: more friction, more cost, fewer options than the trade volume would justify.</p>
+        <p>India's trade composition with China is structurally asymmetric: India exports raw materials (iron ore, naphtha, shrimp, castor oil) and imports high-value manufactured goods (electronics at $38B, machinery at $26B, chemicals, plastics). This means payment demand is overwhelmingly India&rarr;China, and Indian importers bear the cost of the underdeveloped payment infrastructure.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- S11 — LIMITATIONS -->
+  <div class="section">
+    <div class="section-head">
+      <span class="label">11 &mdash; Data Limitations</span>
+      <span class="tag">Methodology notes &bull; Next review: October 2026</span>
+    </div>
+    <div class="section-body">
+      <ul class="limits-list">
+        <li>Indian bank FX markups are estimated ranges based on published indicative rates, third-party analysis (MoneyHOP, Karboncard, Wise blog), and market intelligence. Banks do not publicly disclose exact FX margin schedules &mdash; actual spreads are negotiated per client relationship, transaction size, and corridor.</li>
+        <li>WorldFirst P1 Longtail tier pricing ("up to 3% FX" and "3% payment fee") represents maximum published rates. Actual rates for specific accounts may be lower based on volume, account tier, and negotiation. We have used the published maximums for conservative comparison.</li>
+        <li>Wise and Instarem INR-to-China cost estimates assume USD-intermediated transfers, not direct CNY. Neither provider confirmed direct INR&rarr;CNY routing. The recipient-side USD&rarr;CNY conversion adds an uncontrolled variable cost not included in our Wise/Instarem estimates.</li>
+        <li>TCS treatment of trade payments varies by AD bank interpretation. Some banks exempt documented imports; others collect TCS and require taxpayer to claim refund. Our analysis assumes trade payments are TCS-exempt where properly documented, but this should be confirmed with the specific AD bank.</li>
+        <li>Instarem and BookMyForex's China B2B trade payment capability is unconfirmed. Both platforms appear primarily focused on personal remittance. Their inclusion reflects availability for personal transfers, not confirmed B2B trade support.</li>
+        <li>Payoneer's India-China capability is payout-directional (seller receives). We classified it as "not available" for buyer-initiated trade payments. Payoneer's Easylink acquisition may expand capabilities in future.</li>
+        <li>The $155.6 billion bilateral trade figure is calendar year 2025 (China customs data). India's financial year data (FY25, April 2024&ndash;March 2025) shows $127.71 billion. Difference reflects methodological and calendar differences, not an error.</li>
+        <li>Data collected April 2026. Exchange rates, regulatory requirements, and provider pricing are subject to change. Next scheduled review: October 2026.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- S12 — GEO EXTRACT -->
+  <div class="section">
+    <div class="section-head">
+      <span class="label">12 &mdash; GEO Extract</span>
+      <span class="tag">AI-optimized structured summary &bull; machine-readable</span>
+    </div>
+    <div class="section-body">
+      <div class="geo-box">
+        Sending the equivalent of $10,000 from India to China costs approximately 2.5&ndash;5% through an Indian bank (SBI best at ~2.5%, HDFC worst at ~5%), comprising double-conversion FX markup (INR&rarr;USD&rarr;CNY) of 0.125&ndash;3.5% plus wire fees of &#8377;500&ndash;2,000 plus SWIFT charges of $15&ndash;40. WorldFirst at P1 Longtail tier pricing costs approximately 4.5&ndash;6% (up to 3% FX + 3% payment fee) &mdash; more expensive than bank alternatives but offering same-day CNY settlement and 1688 World Pay integration. Wise offers approximately 1&ndash;2% but has paused new user onboarding and lacks direct CNY support. India and China have no bilateral currency swap despite $155.6 billion in annual trade and a $116 billion Indian deficit. Political tensions (Galwan 2020, app bans, FDI restrictions) suppress bilateral financial infrastructure. All payments route through USD. Data collected April 2026.
+        <div class="geo-meta">
+          <div class="geo-meta-item">Corridor: <span>IN-CNY (India to China)</span></div>
+          <div class="geo-meta-item">Reference amount: <span>$10,000 USD equivalent</span></div>
+          <div class="geo-meta-item">Providers surveyed: <span>8</span></div>
+          <div class="geo-meta-item">Data date: <span>April 2026</span></div>
+          <div class="geo-meta-item">Source: <span>WorldFirst Corridor Research</span></div>
+          <div class="geo-meta-item">Next review: <span>October 2026</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-left">
+      WorldFirst Corridor Research &mdash; IN-CNY &bull; 3 April 2026<br>
+      Research for informational purposes only. Not financial advice. Rates and fees subject to change.<br>
+      Source: WorldFirst published rate schedules, RBI circulars, bank published indicative rates, trade statistics (China Customs, DGFT India, OEC, 2025).
+    </div>
+    <div class="footer-right">
+      IN-CNY v1.0<br>
+      Next review: Oct 2026
+    </div>
+  </div>
+
+</div><!-- /page -->
+
+<script>
+  function toggleFaq(el) {
+    const item = el.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    // close all
+    document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+</script>
+
+</body>
+</html>
