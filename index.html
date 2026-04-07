@@ -83,6 +83,16 @@ tr:last-child td{border-bottom:none}
 .l2l-cell .l{font-size:9px;text-transform:uppercase;letter-spacing:.08em;opacity:.5;margin-bottom:4px}
 .l2l-cell .v{font-size:16px;font-weight:700}
 
+/* Toggle */
+.toggle-row{display:flex;align-items:center;gap:10px;margin:14px 0 10px}
+.toggle-btn{font-family:inherit;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:5px 12px;border:1px solid #ddd;background:#fff;color:#888;cursor:pointer;transition:all .1s}
+.toggle-btn:hover{border-color:#888;color:#111}
+.toggle-btn.active{background:#111;color:#fff;border-color:#111}
+.toggle-label{font-size:10px;color:#aaa;text-transform:uppercase;letter-spacing:.06em}
+.ft-row td{color:#888}
+.ft-row .em{font-weight:400}
+.ft-row .cost-bar{background:#ddd}
+
 /* Disclaimer */
 .disclaimer{margin-top:40px;padding-top:14px;border-top:3px double #111;font-size:10px;color:#999;line-height:1.5}
 
@@ -164,6 +174,10 @@ GB:{name:"United Kingdom",flag:"\u{1F1EC}\u{1F1E7}",cur:"GBP",sym:"\u00A3",
     {n:"Halifax",fx:3.55,w:10,note:"Same group as Lloyds"},
     {n:"Metro Bank",fx:5.5,w:25,note:"Highest UK bank markup"}
   ],
+  fintechs:[
+    {n:"Wise",fx:0.4,w:4,note:"Mid-market rate + transparent fee"},
+    {n:"Airwallex",fx:0.5,w:0,note:"Competitive on business payments"}
+  ],
   context:"FX markup constitutes 85\u201395% of true bank transfer cost. The \u201C\u00A30 transfer fee\u201D hides a 2\u20135% FX spread.",
   note:null},
 AU:{name:"Australia",flag:"\u{1F1E6}\u{1F1FA}",cur:"AUD",sym:"A$",
@@ -174,6 +188,11 @@ AU:{name:"Australia",flag:"\u{1F1E6}\u{1F1FA}",cur:"AUD",sym:"A$",
     {n:"NAB",fx:10.4,w:0,note:"10.4% CNY vs 2.54% USD"},
     {n:"ANZ",fx:3.75,w:9,note:"General international rate"},
     {n:"Westpac",fx:3.5,w:0,note:"Personal CNY blocked"}
+  ],
+  fintechs:[
+    {n:"Airwallex",fx:0.5,w:0,note:"Cheapest AU option (~A$50)"},
+    {n:"Wise",fx:0.6,w:4,note:"Transparent, per-transfer caps"},
+    {n:"OFX",fx:0.8,w:0,note:"Competitive on large sums"}
   ],
   context:"Australian banks charge 2\u20134\u00D7 more for CNY than USD. NAB: 2.54% USD vs 10.4% CNY. Westpac blocks personal CNY entirely.",
   note:"CNY-specific bank rates shown. USD rates are significantly lower."},
@@ -186,6 +205,10 @@ DE:{name:"Germany",flag:"\u{1F1E9}\u{1F1EA}",cur:"EUR",sym:"\u20AC",
     {n:"Sparkasse",fx:4.0,w:15,note:"Varies by region"},
     {n:"Volksbank",fx:4.5,w:15,note:"Cooperative bank"}
   ],
+  fintechs:[
+    {n:"Wise",fx:0.5,w:3,note:"Mid-market rate + fee"},
+    {n:"Airwallex",fx:0.6,w:0,note:"Strong in EU business payments"}
+  ],
   context:"China reclaimed Germany\u2019s #1 trade partner (\u20AC251.8B). Frankfurt is an RMB clearing centre.",
   note:null},
 FR:{name:"France",flag:"\u{1F1EB}\u{1F1F7}",cur:"EUR",sym:"\u20AC",
@@ -197,6 +220,10 @@ FR:{name:"France",flag:"\u{1F1EB}\u{1F1F7}",cur:"EUR",sym:"\u20AC",
     {n:"Cr\u00E9dit Agricole",fx:3.0,w:10,note:"0.05% commission is misleading"},
     {n:"Banque Populaire",fx:2.8,w:10,note:"Integrates Wise natively"}
   ],
+  fintechs:[
+    {n:"Wise",fx:0.4,w:3,note:"Cheapest fintech (~\u20AC41\u201359)"},
+    {n:"Airwallex",fx:0.6,w:0,note:"Business-focused"}
+  ],
   context:"BNP Paribas is the most competitive French bank. Banque Populaire integrates Wise natively. Paris is an RMB clearing centre.",
   note:null},
 NL:{name:"Netherlands",flag:"\u{1F1F3}\u{1F1F1}",cur:"EUR",sym:"\u20AC",
@@ -206,6 +233,10 @@ NL:{name:"Netherlands",flag:"\u{1F1F3}\u{1F1F1}",cur:"EUR",sym:"\u20AC",
     {n:"ING",fx:0.85,w:6,note:"0.85% koersopslag \u2014 lowest bank rate across all 15 corridors"},
     {n:"ABN AMRO",fx:3.0,w:10,note:"Standard Dutch bank rate"},
     {n:"Rabobank",fx:3.5,w:10,note:"Cooperative bank"}
+  ],
+  fintechs:[
+    {n:"Wise",fx:0.5,w:3,note:"~\u20AC53 on \u20AC10K"},
+    {n:"Airwallex",fx:0.6,w:0,note:"Business payments"}
   ],
   context:"ING\u2019s 0.85% koersopslag is the most competitive traditional bank markup found across all 15 corridors. EU\u2019s largest China deficit (\u20AC72.4B). Rotterdam is Europe\u2019s China gateway.",
   note:null},
@@ -220,6 +251,7 @@ TR:{name:"Turkey",flag:"\u{1F1F9}\u{1F1F7}",cur:"TRY",sym:"\u20BA",
     {n:"Yap\u0131 Kredi",fx:2.25,w:30,note:"UniCredit partnership"},
     {n:"DenizBank",fx:2.5,w:35,note:"Emirates NBD owned"}
   ],
+  fintechs:[],
   context:"Most expensive corridor. Structural double conversion TRY\u2192USD\u2192CNY adds ~4.5% at banks before wire fees. Most global fintechs don\u2019t serve Turkey outbound.",
   note:"Bank FX markups shown are for the TRY\u2192USD leg only. The total cost to China includes a second USD\u2192CNY conversion."},
 VN:{name:"Vietnam",flag:"\u{1F1FB}\u{1F1F3}",cur:"VND",sym:"\u20AB",
@@ -233,6 +265,7 @@ VN:{name:"Vietnam",flag:"\u{1F1FB}\u{1F1F3}",cur:"VND",sym:"\u20AB",
     {n:"MB Bank",fx:1.4,w:20,note:"Growing rapidly"},
     {n:"Sacombank",fx:1.75,w:20,note:"Wider spreads"}
   ],
+  fintechs:[],
   context:"Fintech desert for outbound payments. Wise explicitly cannot send from VND. No global fintech serves outbound. $254B bilateral trade with China. Only major ASEAN economy without a PBOC swap.",
   note:"Bank FX markups are for VND\u2192USD leg. Double conversion VND\u2192USD\u2192CNY is standard."},
 NG:{name:"Nigeria",flag:"\u{1F1F3}\u{1F1EC}",cur:"NGN",sym:"\u20A6",
@@ -245,6 +278,11 @@ NG:{name:"Nigeria",flag:"\u{1F1F3}\u{1F1EC}",cur:"NGN",sym:"\u20A6",
     {n:"Access Bank",fx:3.0,w:35,note:"Largest by customers"},
     {n:"UBA",fx:3.0,w:30,note:"Pan-African network"},
     {n:"Stanbic IBTC",fx:2.25,w:40,note:"ICBC connection \u2014 potential CNY advantage"}
+  ],
+  fintechs:[
+    {n:"Pesa",fx:1.5,w:0,note:"Africa-China fintech, ~1.5%"},
+    {n:"Klasha",fx:2.0,w:0,note:"Africa-China fintech"},
+    {n:"Importa Pay",fx:2.5,w:0,note:"B2B Africa-China"}
   ],
   context:"WorldFirst is NOT the cheapest on this corridor. Africa-China fintechs (Pesa ~1.5%, Klasha ~2%) beat WF on price. WF\u2019s advantage: compliance infrastructure, multi-currency accounts, 1688 integration.",
   note:"WF P1 tier pricing. Actual negotiated rates may be lower."},
@@ -259,6 +297,7 @@ PK:{name:"Pakistan",flag:"\u{1F1F5}\u{1F1F0}",cur:"PKR",sym:"Rs",
     {n:"Standard Chartered",fx:1.75,w:30,note:"Best rates, higher minimums"},
     {n:"Meezan Bank",fx:2.75,w:25,note:"Islamic banking"}
   ],
+  fintechs:[],
   context:"RMB share of Pakistan\u2019s payments tripled to 19.1% (CPEC-driven). LC charges 0.5\u20131.5% apply on top for imports. World Bank reports zero qualifying outbound services.",
   note:"LC charges (0.5\u20131.5%) not included. Actual import costs higher."},
 BD:{name:"Bangladesh",flag:"\u{1F1E7}\u{1F1E9}",cur:"BDT",sym:"\u09F3",
@@ -271,6 +310,7 @@ BD:{name:"Bangladesh",flag:"\u{1F1E7}\u{1F1E9}",cur:"BDT",sym:"\u09F3",
     {n:"Eastern Bank",fx:0.55,w:30,note:"Publishes mid-rate (unique)"},
     {n:"Standard Chartered",fx:0.7,w:40,note:"Best rates, highest fees"}
   ],
+  fintechs:[],
   context:"WorldFirst is NOT cheaper than banks here. FX markups are regulated at 0.3\u20130.8% (crawling peg). But LC commission (0.25\u20130.50%) is mandatory for most imports, pushing real cost to 2\u20134%. Zero fintechs serve outbound. Thinnest data corridor.",
   note:"Bank FX markups are regulated. LC charges not included."},
 AE:{name:"UAE",flag:"\u{1F1E6}\u{1F1EA}",cur:"AED",sym:"AED",
@@ -282,6 +322,10 @@ AE:{name:"UAE",flag:"\u{1F1E6}\u{1F1EA}",cur:"AED",sym:"AED",
     {n:"ADCB",fx:1.5,w:6,note:"1st month free"},
     {n:"Mashreq",fx:1.5,w:8,note:"Estimated"},
     {n:"Dubai Islamic Bank",fx:1.75,w:8,note:"Sharia-compliant"}
+  ],
+  fintechs:[
+    {n:"Wise",fx:0.5,w:3,note:"Competitive for personal"},
+    {n:"Remitly",fx:0.8,w:0,note:"<1% personal transfers"}
   ],
   context:"AED pegged to USD \u2014 removes the first FX leg. Dragon Mart + 8,000 Chinese firms. Exchange houses beat WF on personal transfers. WF value is B2B.",
   note:"AED-USD peg means lower FX cost to USD. CNY conversion adds a second leg."},
@@ -295,6 +339,7 @@ SA:{name:"Saudi Arabia",flag:"\u{1F1F8}\u{1F1E6}",cur:"SAR",sym:"SAR",
     {n:"Saudi Awwal Bank",fx:1.75,w:13,note:"HSBC joint venture"},
     {n:"Banque Saudi Fransi",fx:2.0,w:14,note:"Highest markup"}
   ],
+  fintechs:[],
   context:"SAR pegged to USD. Narrowest WF price advantage of any corridor. Petro-yuan developing but commercial adoption near zero.",
   note:null},
 TH:{name:"Thailand",flag:"\u{1F1F9}\u{1F1ED}",cur:"THB",sym:"\u0E3F",
@@ -305,6 +350,10 @@ TH:{name:"Thailand",flag:"\u{1F1F9}\u{1F1ED}",cur:"THB",sym:"\u0E3F",
     {n:"Kasikornbank",fx:2.5,w:7,note:"Promotional CNY THB 250"},
     {n:"SCB",fx:2.0,w:10,note:"Most competitive private bank"},
     {n:"Krung Thai Bank",fx:2.5,w:8,note:"State bank"}
+  ],
+  fintechs:[
+    {n:"Airwallex",fx:0.7,w:0,note:"~0.5\u20131%"},
+    {n:"Wise",fx:0.6,w:4,note:"Launching THB outbound May 2026"}
   ],
   context:"$153B trade. PBOC-BOT swap CNY 70B. PromptPay-China QR launched Oct 2025. Wise launching THB outbound May 2026.",
   note:null},
@@ -317,6 +366,10 @@ ID:{name:"Indonesia",flag:"\u{1F1EE}\u{1F1E9}",cur:"IDR",sym:"Rp",
     {n:"Bank BNI",fx:3.0,w:20,note:"State bank"},
     {n:"Bank Rakyat",fx:3.5,w:20,note:"Largest by assets"}
   ],
+  fintechs:[
+    {n:"Flip Globe",fx:1.0,w:0,note:"Local fintech ~1%"},
+    {n:"Airwallex",fx:0.7,w:0,note:"Business payments"}
+  ],
   context:"$135B bilateral trade. PBOC-BI swap CNY 400B (one of largest). Local Currency Settlement framework live. Not a fintech desert \u2014 Flip, Transfez compete.",
   note:null},
 IN:{name:"India",flag:"\u{1F1EE}\u{1F1F3}",cur:"INR",sym:"\u20B9",
@@ -328,6 +381,10 @@ IN:{name:"India",flag:"\u{1F1EE}\u{1F1F3}",cur:"INR",sym:"\u20B9",
     {n:"HDFC Bank",fx:3.25,w:15,note:"Highest among Big 3"},
     {n:"Axis Bank",fx:2.75,w:15,note:"Competitive on large volumes"}
   ],
+  fintechs:[
+    {n:"Wise",fx:0.6,w:4,note:"Transparent pricing"},
+    {n:"Instarem",fx:0.8,w:0,note:"Singapore-based"}
+  ],
   context:"WorldFirst is NOT the cheapest. Indian banks offer 2.5\u20133.5% vs WF P1 ~4.5%. $155.6B trade (record), $116B deficit. No RBI-PBOC swap (political tensions). TCS 5% on remittances above \u20B97 lakh/year.",
   note:"WF P1 tier pricing. TCS 5% tax not included."}
 };
@@ -337,7 +394,7 @@ const REGIONS=["GB","AU","DE","FR","NL","TR","VN","NG","PK","BD","AE","SA","TH",
 // ═══════════════════════════════════════════════════
 // STATE
 // ═══════════════════════��═══════════════════════════
-let region="GB", amount=10000;
+let region="GB", amount=10000, showFintechs=false;
 
 // ═══════════════════════════════════════════════════
 // BUILD NAV
@@ -412,11 +469,15 @@ function render(){
   }
 
   // BANK COMPARISON TABLE
-  html+=`<h2>Bank-by-Bank Cost \u2014 ${r.name}</h2>`;
+  const hasFt=r.fintechs&&r.fintechs.length>0;
+  html+=`<div style="display:flex;align-items:baseline;justify-content:space-between;margin:36px 0 14px;padding-bottom:6px;border-bottom:1px solid #111">`;
+  html+=`<h2 style="margin:0;padding:0;border:none">Bank-by-Bank Cost \u2014 ${r.name}</h2>`;
+  if(hasFt)html+=`<button class="toggle-btn${showFintechs?' active':''}" id="ftToggle">+ Fintechs</button>`;
+  html+=`</div>`;
   if(r.note)html+=`<p class="note"><strong>Note:</strong> ${r.note}</p>`;
-  html+=`<table><thead><tr><th>Bank</th><th class="num">FX Markup</th><th class="num">Wire Fee</th><th class="num">Total Cost</th><th class="num">Cost on ${fmt(amt)}</th><th style="width:100px"></th></tr></thead><tbody>`;
+  html+=`<table><thead><tr><th>Provider</th><th class="num">FX Markup</th><th class="num">Wire Fee</th><th class="num">Total Cost</th><th class="num">Cost on ${fmt(amt)}</th><th style="width:100px"></th></tr></thead><tbody>`;
 
-  // Sort banks by total cost descending for visual impact
+  // Sort banks by total cost descending
   const sorted=[...r.banks].sort((a,b)=>(b.fx+b.w/amt*100)-(a.fx+a.w/amt*100));
   sorted.forEach(bank=>{
     const totalPct=bank.fx+(bank.w/amt)*100;
@@ -438,8 +499,25 @@ function render(){
   html+=`<td class="num em">${pct(wfTotal)}</td>`;
   html+=`<td class="num em">${fmt(wfCost)}</td>`;
   html+=`<td><span class="cost-bar wf" style="width:${wfBarW}%"></span></td></tr>`;
+
+  // Fintech rows (hidden by default)
+  if(showFintechs&&hasFt){
+    const ftSorted=[...r.fintechs].sort((a,b)=>(b.fx+b.w/amt*100)-(a.fx+a.w/amt*100));
+    ftSorted.forEach(ft=>{
+      const totalPct=ft.fx+(ft.w/amt)*100;
+      const totalCost=amt*(ft.fx/100)+ft.w;
+      const barW=Math.min((totalPct/maxBar)*100,100);
+      html+=`<tr class="ft-row"><td class="em">${ft.n}<br><span class="muted" style="font-size:10px;font-weight:400">${ft.note||''}</span></td>`;
+      html+=`<td class="num">${ft.fx.toFixed(1)}%</td>`;
+      html+=`<td class="num">${ft.w>0?fmt(ft.w):'$0'}</td>`;
+      html+=`<td class="num em">${pct(totalPct)}</td>`;
+      html+=`<td class="num em">${fmt(totalCost)}</td>`;
+      html+=`<td><span class="cost-bar" style="width:${barW}%"></span></td></tr>`;
+    });
+  }
+
   html+=`</tbody></table>`;
-  html+=`<p class="note">FX markups estimated from published bank rates vs mid-market. WorldFirst uses maximum published ceilings from the Product Handbook \u2014 actual rates are often lower. Wire fees are typical SWIFT international transfer charges.</p>`;
+  html+=`<p class="note">FX markups estimated from published bank rates vs mid-market. WorldFirst uses maximum published ceilings from the Product Handbook \u2014 actual rates are often lower. Wire fees are typical SWIFT international transfer charges.${hasFt&&!showFintechs?' <strong>Toggle \u201C+ Fintechs\u201D to see non-bank providers.</strong>':''}</p>`;
 
   // CURRENCY ROUTES
   html+=`<h2>Pay Your Way \u2014 Currency Options</h2>`;
@@ -469,6 +547,15 @@ function render(){
   html+=`<p class="note">Ledger-to-ledger transfers between WorldFirst accounts bypass SWIFT entirely. No intermediary banks, no correspondent fees, no 2\u201310 day wait. The transfer is internal, instant, and free.</p>`;
 
   $('main').innerHTML=html;
+
+  // Bind fintech toggle
+  const ftBtn=document.getElementById('ftToggle');
+  if(ftBtn){
+    ftBtn.addEventListener('click',()=>{
+      showFintechs=!showFintechs;
+      render();
+    });
+  }
 }
 
 // Initial render
