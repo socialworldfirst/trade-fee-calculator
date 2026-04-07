@@ -2,596 +2,477 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-<title>Trade Fee Calculator — WorldFirst</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trade Fee Research — Sending Money to China | WorldFirst</title>
 <style>
-:root {
-  --wf-red:#E31937; --wf-dark:#1A1A2E; --white:#FFF; --g50:#F8F9FA; --g100:#F0F1F3;
-  --g200:#E2E4E8; --g400:#9CA3AF; --g600:#6B7280; --g800:#374151;
-  --green:#059669; --green-lt:#ECFDF5; --red-lt:#FEF2F2; --blue:#2563EB; --blue-lt:#EFF6FF;
-  --r:12px; --sh:0 1px 3px rgba(0,0,0,.08),0 4px 12px rgba(0,0,0,.04);
-}
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--g50);color:var(--g800);min-height:100vh;-webkit-font-smoothing:antialiased}
-.container{max-width:540px;margin:0 auto;padding:24px 16px 48px}
-.header{text-align:center;margin-bottom:28px}
-.header .logo{font-size:13px;font-weight:700;color:var(--wf-red);letter-spacing:.5px;text-transform:uppercase;margin-bottom:10px}
-.header h1{font-size:26px;font-weight:800;color:var(--wf-dark);line-height:1.2;margin-bottom:6px}
-.header p{font-size:14px;color:var(--g600);line-height:1.5}
-.card{background:var(--white);border-radius:var(--r);box-shadow:var(--sh);padding:20px;margin-bottom:14px}
-.form-label{display:block;font-size:12px;font-weight:600;color:var(--g600);margin-bottom:6px;text-transform:uppercase;letter-spacing:.3px}
-.form-group{margin-bottom:16px}
-.form-group:last-child{margin-bottom:0}
+body{font-family:'SF Mono','Consolas','Menlo',monospace;color:#111;background:#fff;line-height:1.65;font-size:13px;-webkit-font-smoothing:antialiased}
+.page{max-width:880px;margin:0 auto;padding:48px 28px 80px}
 
-/* Region grid */
-.region-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
-.region-pill{padding:10px 4px;text-align:center;border:2px solid var(--g200);border-radius:10px;cursor:pointer;transition:all .2s;background:var(--white);user-select:none;-webkit-user-select:none}
-.region-pill:hover{border-color:var(--g400)}
-.region-pill.active{border-color:var(--wf-red);background:var(--red-lt)}
-.region-pill .flag{font-size:20px;display:block;margin-bottom:2px}
-.region-pill .name{font-size:10px;font-weight:600;color:var(--g600);text-transform:uppercase;letter-spacing:.2px}
-.region-pill.active .name{color:var(--wf-red)}
+/* Header */
+.report-header{border-bottom:3px double #111;padding-bottom:16px;margin-bottom:0}
+.report-header h1{font-size:17px;font-weight:700;letter-spacing:.02em;text-transform:uppercase}
+.report-header .subtitle{font-size:12px;color:#666;margin-top:4px}
+.report-meta{display:flex;gap:20px;margin-top:8px;font-size:10px;color:#888;text-transform:uppercase;letter-spacing:.05em;flex-wrap:wrap}
 
-/* Select */
-.custom-select{position:relative}
-.custom-select select{width:100%;padding:12px 36px 12px 14px;font-size:15px;font-weight:500;border:2px solid var(--g200);border-radius:var(--r);outline:none;appearance:none;-webkit-appearance:none;background:var(--white);color:var(--wf-dark);cursor:pointer;transition:border-color .2s}
-.custom-select select:focus{border-color:var(--wf-red)}
-.custom-select::after{content:'';position:absolute;right:14px;top:50%;transform:translateY(-50%);width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-top:5px solid var(--g400);pointer-events:none}
+/* Country nav */
+.country-nav{display:flex;gap:0;margin:0;border-bottom:1px solid #e5e5e5;overflow-x:auto;-webkit-overflow-scrolling:touch;white-space:nowrap}
+.country-nav button{padding:10px 14px;font-family:inherit;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;border:none;background:#fff;color:#888;cursor:pointer;border-bottom:2px solid transparent;transition:all .1s;flex-shrink:0}
+.country-nav button:hover{color:#111}
+.country-nav button.active{color:#111;border-bottom-color:#111}
 
-/* Amount */
-.amount-wrapper{position:relative}
-.amount-wrapper .cur{position:absolute;left:14px;top:50%;transform:translateY(-50%);font-size:22px;font-weight:700;color:var(--g400);pointer-events:none}
-.amount-wrapper input{width:100%;padding:14px 14px 14px 34px;font-size:26px;font-weight:700;border:2px solid var(--g200);border-radius:var(--r);outline:none;transition:border-color .2s;color:var(--wf-dark);background:var(--white)}
-.amount-wrapper input:focus{border-color:var(--wf-red)}
-.amount-wrapper input::placeholder{color:var(--g400);font-weight:400}
+/* KPI row */
+.kpi-row{display:flex;gap:1px;margin:24px 0;background:#e5e5e5}
+.kpi{flex:1;background:#fff;padding:14px 12px}
+.kpi-label{font-size:9px;text-transform:uppercase;letter-spacing:.08em;color:#888;margin-bottom:3px}
+.kpi-value{font-size:20px;font-weight:700;letter-spacing:-.02em}
+.kpi-sub{font-size:10px;color:#888;margin-top:2px}
 
-/* Volume */
-.volume-row{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}
-.vol-pill{padding:7px 12px;font-size:12px;font-weight:600;border:2px solid var(--g200);border-radius:8px;cursor:pointer;background:var(--white);color:var(--g600);transition:all .2s;user-select:none}
-.vol-pill:hover{border-color:var(--g400)}
-.vol-pill.active{border-color:var(--wf-dark);background:var(--wf-dark);color:var(--white)}
+/* Sections */
+h2{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin:36px 0 14px;padding-bottom:6px;border-bottom:1px solid #111}
+h3{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#444;margin:24px 0 8px}
+.section-label{font-size:9px;text-transform:uppercase;letter-spacing:.1em;color:#aaa;font-weight:700;margin-bottom:4px}
+p{margin-bottom:10px;color:#333;font-size:12px}
 
-/* Button */
-.btn{width:100%;padding:14px;font-size:16px;font-weight:700;color:var(--white);background:var(--wf-red);border:none;border-radius:var(--r);cursor:pointer;transition:all .2s;margin-top:20px;letter-spacing:.3px}
-.btn:hover{background:#C7152F;transform:translateY(-1px);box-shadow:0 4px 12px rgba(227,25,55,.3)}
-.btn:active{transform:translateY(0)}
-.btn:disabled{background:var(--g200);color:var(--g400);cursor:not-allowed;transform:none;box-shadow:none}
+/* Amount bar */
+.amount-bar{display:flex;align-items:center;gap:12px;padding:12px 16px;background:#fafafa;border:1px solid #e5e5e5;margin-bottom:24px}
+.amount-bar label{font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:#888;font-weight:700;flex-shrink:0}
+.amount-bar input{font-family:inherit;font-size:18px;font-weight:700;border:none;background:transparent;outline:none;width:140px;color:#111}
+.amount-bar .hint{font-size:10px;color:#aaa;margin-left:auto;flex-shrink:0}
+.amount-presets{display:flex;gap:0;border:1px solid #ddd;width:fit-content;margin-left:auto;flex-shrink:0}
+.amount-presets button{font-family:inherit;font-size:10px;padding:4px 10px;border:none;background:#fff;color:#888;cursor:pointer;border-right:1px solid #ddd;font-weight:700}
+.amount-presets button:last-child{border-right:none}
+.amount-presets button.active{background:#111;color:#fff}
 
-/* Results */
-.results{display:none;animation:slideUp .4s ease}
-.results.visible{display:block}
-@keyframes slideUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+/* Tables */
+table{width:100%;border-collapse:collapse;margin:10px 0 16px;font-size:12px}
+th{text-align:left;padding:7px 10px;font-weight:700;font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:#666;border-bottom:2px solid #111;background:#fafafa}
+td{padding:7px 10px;border-bottom:1px solid #e5e5e5;vertical-align:top}
+tr:last-child td{border-bottom:none}
+.num{font-variant-numeric:tabular-nums;text-align:right}
+.em{font-weight:700}
+.muted{color:#999}
+.good{color:#111;font-weight:700}
+.highlight-row td{background:#f5f5f0}
+.wf-row td{background:#f0f7f0;font-weight:700}
 
-/* Section headers */
-.section-head{display:flex;align-items:center;gap:8px;margin-bottom:14px}
-.section-num{width:28px;height:28px;border-radius:50%;background:var(--wf-dark);color:var(--white);font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.section-title{font-size:15px;font-weight:700;color:var(--wf-dark)}
-
-/* Receipt */
-.receipt{background:var(--white);border-radius:var(--r);box-shadow:var(--sh);overflow:hidden}
-.receipt-head{background:var(--wf-dark);color:var(--white);padding:16px 20px;display:flex;justify-content:space-between;align-items:center}
-.receipt-head h3{font-size:14px;font-weight:600;opacity:.7}
-.receipt-head .bank{font-size:18px;font-weight:800}
-.receipt-body{padding:20px}
-.row{display:flex;justify-content:space-between;align-items:baseline;padding:8px 0;border-bottom:1px solid var(--g100)}
-.row:last-child{border-bottom:none}
-.row .l{font-size:13px;color:var(--g600)}
-.row .l small{font-size:11px;color:var(--g400)}
-.row .v{font-size:15px;font-weight:700;color:var(--wf-dark);text-align:right}
-.row.hl{background:var(--red-lt);margin:10px -20px;padding:12px 20px;border-bottom:none}
-.row.hl .l{color:var(--wf-red);font-weight:700}
-.row.hl .v{color:var(--wf-red);font-size:18px}
-
-/* Bars */
-.bars{margin:16px 0}
-.bar-item{margin-bottom:10px}
-.bar-top{display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px}
-.bar-top .n{font-weight:600;color:var(--g800)}
-.bar-top .a{font-weight:700;color:var(--g800)}
-.bar-track{height:28px;background:var(--g100);border-radius:5px;overflow:hidden;position:relative}
-.bar-fill{height:100%;border-radius:5px;transition:width .8s cubic-bezier(.4,0,.2,1);display:flex;align-items:center;padding-left:10px}
-.bar-fill.bank{background:var(--g400)}
-.bar-fill.wf{background:var(--green)}
-.bar-pct{font-size:11px;font-weight:700;color:var(--white)}
-
-/* Savings */
-.savings{text-align:center;padding:20px;margin:0 -20px;background:var(--green-lt);border-top:2px solid var(--green)}
-.savings .amount{font-size:34px;font-weight:800;color:var(--green);line-height:1}
-.savings .label{font-size:13px;font-weight:600;color:var(--green);margin:4px 0 12px}
-.savings .annual{font-size:14px;color:var(--g800);line-height:1.5}
-.savings .annual strong{color:var(--wf-dark)}
-.savings.neutral{background:var(--g50);border-top-color:var(--g400)}
-.savings.neutral .amount,.savings.neutral .label{color:var(--g600)}
-
-/* Currency section */
-.currency-card{background:var(--white);border-radius:var(--r);box-shadow:var(--sh);overflow:hidden}
-.cur-option{padding:16px 20px;border-bottom:1px solid var(--g100);display:flex;justify-content:space-between;align-items:center;gap:12px}
-.cur-option:last-child{border-bottom:none}
-.cur-option .info{flex:1}
-.cur-option .route{font-size:14px;font-weight:700;color:var(--wf-dark)}
-.cur-option .desc{font-size:12px;color:var(--g600);margin-top:2px}
-.cur-option .cost{text-align:right}
-.cur-option .cost-val{font-size:18px;font-weight:800;color:var(--wf-dark)}
-.cur-option .cost-pct{font-size:11px;color:var(--g600)}
-.cur-option.best{background:var(--green-lt);border-left:3px solid var(--green)}
-.cur-option.best .cost-val{color:var(--green)}
-
-/* L2L section */
-.l2l-card{background:linear-gradient(135deg,var(--wf-dark) 0%,#2D2D4E 100%);border-radius:var(--r);padding:24px;color:var(--white)}
-.l2l-card h3{font-size:16px;font-weight:700;margin-bottom:12px}
-.l2l-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.1)}
-.l2l-row:last-child{border-bottom:none}
-.l2l-row .l{font-size:13px;opacity:.7}
-.l2l-row .v{font-size:14px;font-weight:700}
-.l2l-extra{margin-top:14px;padding-top:14px;border-top:1px solid rgba(255,255,255,.15);font-size:13px;opacity:.8;line-height:1.5}
+/* Cost bars (inline in table) */
+.cost-bar{display:inline-block;height:8px;background:#ccc;vertical-align:middle;margin-right:6px;min-width:2px}
+.cost-bar.wf{background:#111}
 
 /* Note */
-.note{font-size:12px;color:var(--g600);line-height:1.5;padding:10px 14px;background:var(--g50);border-radius:8px;border-left:3px solid var(--g400);margin-top:12px}
+.note{font-size:11px;color:#888;margin:6px 0 14px;line-height:1.5}
+.note strong{color:#555}
 
-/* High value */
-.high-val{text-align:center;padding:18px;background:linear-gradient(135deg,var(--wf-dark),#2D2D4E);border-radius:var(--r);color:var(--white);margin-top:14px}
-.high-val p{font-size:14px;line-height:1.5;margin-bottom:6px}
-.high-val .cta{font-size:13px;font-weight:700;color:var(--wf-red)}
+/* Corridor callout */
+.callout{border:1px solid #111;padding:14px 16px;margin:16px 0;font-size:12px;line-height:1.7;color:#333}
+.callout strong{color:#111}
 
-/* Methodology */
-.meth-btn{display:block;width:100%;padding:12px;font-size:12px;font-weight:600;color:var(--g600);background:none;border:1px solid var(--g200);border-radius:var(--r);cursor:pointer;text-align:center;margin-top:14px;transition:all .2s}
-.meth-btn:hover{border-color:var(--g400);color:var(--g800)}
-.meth-content{display:none;padding:16px;background:var(--white);border-radius:var(--r);box-shadow:var(--sh);margin-top:10px;font-size:12px;color:var(--g600);line-height:1.7}
-.meth-content.visible{display:block}
-.meth-content h4{font-size:13px;font-weight:700;color:var(--wf-dark);margin:12px 0 6px}
-.meth-content h4:first-child{margin-top:0}
+/* Currency routes */
+.route-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#e5e5e5;margin:10px 0 16px}
+.route-cell{background:#fff;padding:14px 12px}
+.route-cell.best{background:#f0f7f0;border-top:2px solid #111}
+.route-label{font-size:9px;text-transform:uppercase;letter-spacing:.08em;color:#888;margin-bottom:6px}
+.route-value{font-size:18px;font-weight:700}
+.route-pct{font-size:10px;color:#888;margin-top:2px}
+.route-desc{font-size:10px;color:#888;margin-top:6px;line-height:1.4}
 
-.footer{text-align:center;padding:20px 0;font-size:11px;color:var(--g400);line-height:1.6}
+/* L2L strip */
+.l2l-strip{display:flex;gap:1px;background:#e5e5e5;margin:10px 0 16px}
+.l2l-cell{flex:1;background:#111;color:#fff;padding:14px 12px;text-align:center}
+.l2l-cell .l{font-size:9px;text-transform:uppercase;letter-spacing:.08em;opacity:.5;margin-bottom:4px}
+.l2l-cell .v{font-size:16px;font-weight:700}
 
-@media(min-width:768px){.container{padding:36px 24px 60px}.header h1{font-size:32px}.region-grid{grid-template-columns:repeat(5,1fr)}}
-@media(min-width:1024px){.container{max-width:600px}}
+/* Disclaimer */
+.disclaimer{margin-top:40px;padding-top:14px;border-top:3px double #111;font-size:10px;color:#999;line-height:1.5}
+
+@media(max-width:640px){
+  .page{padding:24px 14px 60px}
+  .kpi-row{flex-direction:column}
+  .route-grid{grid-template-columns:1fr}
+  .l2l-strip{flex-direction:column}
+  .amount-bar{flex-wrap:wrap}
+  .amount-presets{margin-left:0;margin-top:6px}
+}
 </style>
 </head>
 <body>
-<div class="container">
 
-<div class="header">
-  <div class="logo">WorldFirst</div>
-  <h1>Save money on every trade.</h1>
-  <p>See what your bank really charges — and what you could pay instead.</p>
-</div>
+<!-- Country nav -->
+<nav class="country-nav" id="countryNav"></nav>
 
-<!-- INPUT -->
-<div class="card">
-  <div class="form-group">
-    <label class="form-label">Where are you based?</label>
-    <div class="region-grid" id="regionGrid"></div>
-  </div>
-  <div class="form-group" id="bankGroup" style="display:none">
-    <label class="form-label">Your bank</label>
-    <div class="custom-select">
-      <select id="bankSelect"><option value="">Select your bank</option></select>
-    </div>
-  </div>
-  <div class="form-group">
-    <label class="form-label">Typical order size (USD equivalent)</label>
-    <div class="amount-wrapper">
-      <span class="cur" id="curSym">$</span>
-      <input type="text" inputmode="numeric" id="amountInput" placeholder="10,000" autocomplete="off">
-    </div>
-    <div class="volume-row" id="volPills">
-      <div class="vol-pill" data-m="5">~5/yr</div>
-      <div class="vol-pill active" data-m="10">~10/yr</div>
-      <div class="vol-pill" data-m="20">~20/yr</div>
-      <div class="vol-pill" data-m="50">~50/yr</div>
-      <div class="vol-pill" data-m="100">100+</div>
-    </div>
-  </div>
-  <button class="btn" id="calcBtn" disabled>Compare fees</button>
-</div>
+<div class="page">
 
-<!-- RESULTS -->
-<div class="results" id="results">
-
-  <!-- SECTION 1: Bank vs WF -->
-  <div class="section-head"><div class="section-num">1</div><div class="section-title">Your bank vs WorldFirst</div></div>
-  <div class="receipt">
-    <div class="receipt-head">
-      <div><h3>Sending via</h3><div class="bank" id="rBankName">—</div></div>
-    </div>
-    <div class="receipt-body">
-      <div class="row"><span class="l">You send</span><span class="v" id="rSend">—</span></div>
-      <div class="row"><span class="l">FX markup <small id="rBankPct"></small></span><span class="v" id="rBankFx">—</span></div>
-      <div class="row"><span class="l">Wire / SWIFT fee</span><span class="v" id="rBankWire">—</span></div>
-      <div class="row hl"><span class="l">Total bank cost</span><span class="v" id="rBankTotal">—</span></div>
-      <div class="bars">
-        <div class="bar-item"><div class="bar-top"><span class="n" id="bBankN">Bank</span><span class="a" id="bBankA">—</span></div><div class="bar-track"><div class="bar-fill bank" id="bBank" style="width:0%"><span class="bar-pct" id="bBankP"></span></div></div></div>
-        <div class="bar-item"><div class="bar-top"><span class="n">WorldFirst</span><span class="a" id="bWfA">—</span></div><div class="bar-track"><div class="bar-fill wf" id="bWf" style="width:0%"><span class="bar-pct" id="bWfP"></span></div></div></div>
-      </div>
-      <div class="savings" id="savingsBox">
-        <div class="amount" id="rSave">—</div>
-        <div class="label" id="rSaveLabel">saved on this order</div>
-        <div class="annual" id="rAnnual"></div>
-      </div>
-    </div>
-  </div>
-  <div class="note" id="regionNote" style="display:none"></div>
-
-  <!-- SECTION 2: Pay your way -->
-  <div style="margin-top:20px">
-    <div class="section-head"><div class="section-num">2</div><div class="section-title">Pay in your currency</div></div>
-    <div class="currency-card" id="curCard">
-      <div class="cur-option best" id="curLocal">
-        <div class="info"><div class="route" id="curLocalRoute">Pay in GBP</div><div class="desc">WF converts to CNY. Supplier receives CNY same-day via CNAPS.</div></div>
-        <div class="cost"><div class="cost-val" id="curLocalCost">—</div><div class="cost-pct" id="curLocalPct"></div></div>
-      </div>
-      <div class="cur-option" id="curUsd">
-        <div class="info"><div class="route">Pay in USD</div><div class="desc">Skip your bank's FX. Hold USD in WF, send to supplier.</div></div>
-        <div class="cost"><div class="cost-val" id="curUsdCost">—</div><div class="cost-pct" id="curUsdPct"></div></div>
-      </div>
-      <div class="cur-option" id="curCny">
-        <div class="info"><div class="route">Pay in CNY</div><div class="desc">Already hold CNY from collections? Send direct — no FX conversion.</div></div>
-        <div class="cost"><div class="cost-val" id="curCnyCost">—</div><div class="cost-pct" id="curCnyPct"></div></div>
-      </div>
-    </div>
-    <div class="note" style="margin-top:8px">No need to buy USD from your bank first. Deposit your local currency, WorldFirst handles the conversion at published rates.</div>
-  </div>
-
-  <!-- SECTION 3: L2L -->
-  <div style="margin-top:20px">
-    <div class="section-head"><div class="section-num">3</div><div class="section-title">Save more with Ledger to Ledger</div></div>
-    <div class="l2l-card">
-      <h3>If your supplier also uses WorldFirst</h3>
-      <div class="l2l-row"><span class="l">Transfer fee</span><span class="v">$0</span></div>
-      <div class="l2l-row"><span class="l">Speed</span><span class="v">Instant</span></div>
-      <div class="l2l-row"><span class="l">Payment rail</span><span class="v">Internal (not SWIFT)</span></div>
-      <div class="l2l-row"><span class="l">Wire fee savings</span><span class="v" id="l2lSave">—</span></div>
-      <div class="l2l-extra" id="l2lNote">Your bank charges $25–50 per SWIFT wire. With L2L, that's $0 — and the money arrives instantly, not in 2–10 business days.</div>
-    </div>
-  </div>
-
-  <!-- High value -->
-  <div class="high-val" id="highVal" style="display:none">
-    <p id="highValMsg">At your volume, WorldFirst offers custom rates below published ceilings.</p>
-    <span class="cta">Talk to our team for a custom quote.</span>
-  </div>
-
-  <!-- Methodology -->
-  <button class="meth-btn" id="methBtn">How we calculated this</button>
-  <div class="meth-content" id="methContent">
-    <h4>Bank FX markup</h4>
-    <p>Estimated by comparing published bank exchange rates against mid-market rates. Ranges shown are typical retail/SME rates. Corporate accounts with negotiated pricing may get tighter spreads.</p>
-    <h4>WorldFirst pricing</h4>
-    <p>Uses maximum published FX ceilings from the WorldFirst Product Handbook — not typical or negotiated rates. Actual rates are often lower. China payment fees and standard payment fees are included where applicable.</p>
-    <h4>Wire fees</h4>
-    <p>Bank wire fees are typical SWIFT international transfer charges. WorldFirst L2L transfers have zero wire fee. Standard WorldFirst transfers use payment fees as published per market.</p>
-    <h4>Source date</h4>
-    <p>Corridor research conducted March–April 2026. Bank rates change daily. This calculator uses typical markup ranges, not live rates.</p>
-    <h4>Important</h4>
-    <p>This tool shows estimated costs for comparison. Your actual fees depend on your account type, relationship, transaction size, and market conditions. Always confirm exact rates with your provider.</p>
+<!-- Report header -->
+<div class="report-header">
+  <h1>What Your Bank Really Charges to Pay Chinese Suppliers</h1>
+  <div class="subtitle">Cost comparison by origin country. Banks, WorldFirst, and alternative payment routes.</div>
+  <div class="report-meta">
+    <span>Research: April 2026</span>
+    <span>15 corridors</span>
+    <span>~65 banks</span>
+    <span>Source: Published rates + handbook</span>
   </div>
 </div>
 
-<div class="footer">
-  <p>Estimates for comparison. Not financial advice.</p>
-  <p>&copy; WorldFirst 2026</p>
+<!-- Amount bar -->
+<div class="amount-bar">
+  <label>Transfer size</label>
+  <span style="font-size:18px;font-weight:700;color:#888">$</span>
+  <input type="text" inputmode="numeric" id="amtInput" value="10,000" autocomplete="off">
+  <div class="amount-presets" id="presets">
+    <button data-v="5000">$5K</button>
+    <button data-v="10000" class="active">$10K</button>
+    <button data-v="25000">$25K</button>
+    <button data-v="50000">$50K</button>
+    <button data-v="100000">$100K</button>
+  </div>
 </div>
+
+<!-- KPI row (dynamic) -->
+<div class="kpi-row" id="kpis">
+  <div class="kpi"><div class="kpi-label">Your bank (typical)</div><div class="kpi-value" id="kBank">—</div><div class="kpi-sub" id="kBankSub"></div></div>
+  <div class="kpi"><div class="kpi-label">WorldFirst</div><div class="kpi-value" id="kWf">—</div><div class="kpi-sub" id="kWfSub"></div></div>
+  <div class="kpi"><div class="kpi-label">You save</div><div class="kpi-value" id="kSave">—</div><div class="kpi-sub" id="kSaveSub"></div></div>
+  <div class="kpi"><div class="kpi-label">Corridor</div><div class="kpi-value" id="kCorridor">—</div><div class="kpi-sub" id="kCorridorSub"></div></div>
+</div>
+
+<!-- Main content (dynamic) -->
+<div id="main"></div>
+
+<!-- Disclaimer -->
+<div class="disclaimer">
+  Cost estimates based on published bank rates, third-party comparison data, and WorldFirst Product Handbook maximum published FX ceilings (not typical or negotiated rates). Actual costs vary by provider, account type, relationship, transfer amount, and market conditions. Bank FX markups estimated by comparing published exchange rates against mid-market rates. This tool is for illustrative comparison — not financial advice. Research conducted March–April 2026.
+</div>
+
 </div>
 
 <script>
-// ═══════════════════════════════════════════════
-// DATA — 15 corridors, actual handbook + research
-// ═══════════════════════════════════════════════
-const D = {
+// ═══════════════════════════════════════════════════
+// DATA
+// ═══════════════════════════════════════════════════
+const D={
 GB:{name:"United Kingdom",flag:"\u{1F1EC}\u{1F1E7}",cur:"GBP",sym:"\u00A3",
-  wf:{fx:0.5,pay:0.40,payType:"china",total:0.90},
+  wf:{fx:0.5,pay:0.40,label:"0.50% FX + 0.40% China payment"},
   bankAvg:3.1,
   banks:[
-    {n:"HSBC",fx:2.3,w:5},{n:"Barclays",fx:3.25,w:0},{n:"NatWest",fx:4.0,w:0},
-    {n:"Lloyds",fx:3.55,w:0},{n:"Santander UK",fx:3.0,w:25},{n:"Metro Bank",fx:5.5,w:25},
-    {n:"Halifax",fx:3.55,w:10}
+    {n:"HSBC",fx:2.3,w:5,note:"Premier/Global Money tighter"},
+    {n:"Barclays",fx:3.25,w:0,note:"\u00A30 online"},
+    {n:"NatWest",fx:4.0,w:0,note:"\u00A30 online, \u00A315 urgent"},
+    {n:"Lloyds",fx:3.55,w:0,note:"Fixed 3.55% (Lloyds Banking Group)"},
+    {n:"Santander UK",fx:3.0,w:25,note:"\u00A325 online/branch"},
+    {n:"Halifax",fx:3.55,w:10,note:"Same group as Lloyds"},
+    {n:"Metro Bank",fx:5.5,w:25,note:"Highest UK bank markup"}
   ],
+  context:"FX markup constitutes 85\u201395% of true bank transfer cost. The \u201C\u00A30 transfer fee\u201D hides a 2\u20135% FX spread.",
   note:null},
 AU:{name:"Australia",flag:"\u{1F1E6}\u{1F1FA}",cur:"AUD",sym:"A$",
-  wf:{fx:0.67,pay:0.40,payType:"china",total:1.07},
+  wf:{fx:0.67,pay:0.40,label:"0.67% FX + 0.40% China payment"},
   bankAvg:7.5,
   banks:[
-    {n:"Commonwealth Bank",fx:8.8,w:0},{n:"ANZ",fx:3.75,w:9},{n:"Westpac",fx:3.5,w:0},
-    {n:"NAB",fx:10.4,w:0}
+    {n:"CBA",fx:8.8,w:0,note:"8.8% on CNY specifically"},
+    {n:"NAB",fx:10.4,w:0,note:"10.4% CNY vs 2.54% USD"},
+    {n:"ANZ",fx:3.75,w:9,note:"General international rate"},
+    {n:"Westpac",fx:3.5,w:0,note:"Personal CNY blocked"}
   ],
-  note:"Australian banks charge 2\u20134x more for CNY than USD transfers. NAB charges 10.4% for CNY vs 2.54% for USD."},
+  context:"Australian banks charge 2\u20134\u00D7 more for CNY than USD. NAB: 2.54% USD vs 10.4% CNY. Westpac blocks personal CNY entirely.",
+  note:"CNY-specific bank rates shown. USD rates are significantly lower."},
 DE:{name:"Germany",flag:"\u{1F1E9}\u{1F1EA}",cur:"EUR",sym:"\u20AC",
-  wf:{fx:0.75,pay:0.40,payType:"china",total:1.15},
+  wf:{fx:0.75,pay:0.40,label:"0.75% FX + 0.40% China payment"},
   bankAvg:5.0,
   banks:[
-    {n:"Deutsche Bank",fx:3.5,w:15},{n:"Commerzbank",fx:3.0,w:12},
-    {n:"Sparkasse",fx:4.0,w:15},{n:"Volksbank",fx:4.5,w:15}
+    {n:"Deutsche Bank",fx:3.5,w:15,note:"1.5% of amount as fee"},
+    {n:"Commerzbank",fx:3.0,w:12,note:"Online banking rate"},
+    {n:"Sparkasse",fx:4.0,w:15,note:"Varies by region"},
+    {n:"Volksbank",fx:4.5,w:15,note:"Cooperative bank"}
   ],
+  context:"China reclaimed Germany\u2019s #1 trade partner (\u20AC251.8B). Frankfurt is an RMB clearing centre.",
   note:null},
 FR:{name:"France",flag:"\u{1F1EB}\u{1F1F7}",cur:"EUR",sym:"\u20AC",
-  wf:{fx:0.75,pay:0.40,payType:"china",total:1.15},
+  wf:{fx:0.75,pay:0.40,label:"0.75% FX + 0.40% China payment"},
   bankAvg:2.8,
   banks:[
-    {n:"BNP Paribas",fx:1.5,w:10},{n:"Soci\u00E9t\u00E9 G\u00E9n\u00E9rale",fx:2.5,w:12},
-    {n:"Cr\u00E9dit Agricole",fx:3.0,w:10},{n:"Banque Populaire",fx:2.8,w:10}
+    {n:"BNP Paribas",fx:1.5,w:10,note:"Most competitive French bank"},
+    {n:"Soci\u00E9t\u00E9 G\u00E9n\u00E9rale",fx:2.5,w:12,note:"1.2\u20134% range"},
+    {n:"Cr\u00E9dit Agricole",fx:3.0,w:10,note:"0.05% commission is misleading"},
+    {n:"Banque Populaire",fx:2.8,w:10,note:"Integrates Wise natively"}
   ],
+  context:"BNP Paribas is the most competitive French bank. Banque Populaire integrates Wise natively. Paris is an RMB clearing centre.",
   note:null},
 NL:{name:"Netherlands",flag:"\u{1F1F3}\u{1F1F1}",cur:"EUR",sym:"\u20AC",
-  wf:{fx:0.75,pay:0.40,payType:"china",total:1.15},
+  wf:{fx:0.75,pay:0.40,label:"0.75% FX + 0.40% China payment"},
   bankAvg:3.0,
   banks:[
-    {n:"ING",fx:0.85,w:6},{n:"ABN AMRO",fx:3.0,w:10},{n:"Rabobank",fx:3.5,w:10}
+    {n:"ING",fx:0.85,w:6,note:"0.85% koersopslag \u2014 lowest bank rate across all 15 corridors"},
+    {n:"ABN AMRO",fx:3.0,w:10,note:"Standard Dutch bank rate"},
+    {n:"Rabobank",fx:3.5,w:10,note:"Cooperative bank"}
   ],
-  note:"ING\u2019s 0.85% koersopslag is the most competitive traditional bank rate found across all 15 corridors."},
+  context:"ING\u2019s 0.85% koersopslag is the most competitive traditional bank markup found across all 15 corridors. EU\u2019s largest China deficit (\u20AC72.4B). Rotterdam is Europe\u2019s China gateway.",
+  note:null},
 TR:{name:"Turkey",flag:"\u{1F1F9}\u{1F1F7}",cur:"TRY",sym:"\u20BA",
-  wf:{fx:0.75,pay:0.70,payType:"std",total:1.45},
+  wf:{fx:0.75,pay:0.70,label:"0.75% FX (majors) + 0.70% payment"},
   bankAvg:10.4,
   banks:[
-    {n:"Garanti BBVA",fx:2.25,w:30},{n:"\u0130\u015F Bankas\u0131",fx:2.5,w:30},
-    {n:"Ziraat Bankas\u0131",fx:1.75,w:25},{n:"Akbank",fx:2.25,w:30},
-    {n:"Yap\u0131 Kredi",fx:2.25,w:30},{n:"Halkbank",fx:1.75,w:25},
-    {n:"Vak\u0131fbank",fx:1.75,w:25},{n:"DenizBank",fx:2.5,w:35}
+    {n:"Garanti BBVA",fx:2.25,w:30,note:"BBVA parent"},
+    {n:"\u0130\u015F Bankas\u0131",fx:2.5,w:30,note:"Largest private bank"},
+    {n:"Ziraat Bankas\u0131",fx:1.75,w:25,note:"State bank, tighter spreads"},
+    {n:"Akbank",fx:2.25,w:30,note:"Sabanc\u0131 Group"},
+    {n:"Yap\u0131 Kredi",fx:2.25,w:30,note:"UniCredit partnership"},
+    {n:"DenizBank",fx:2.5,w:35,note:"Emirates NBD owned"}
   ],
-  note:"Most expensive corridor. Double conversion (TRY\u2192USD\u2192CNY) is structural \u2014 most global fintechs don\u2019t serve Turkey outbound."},
+  context:"Most expensive corridor. Structural double conversion TRY\u2192USD\u2192CNY adds ~4.5% at banks before wire fees. Most global fintechs don\u2019t serve Turkey outbound.",
+  note:"Bank FX markups shown are for the TRY\u2192USD leg only. The total cost to China includes a second USD\u2192CNY conversion."},
 VN:{name:"Vietnam",flag:"\u{1F1FB}\u{1F1F3}",cur:"VND",sym:"\u20AB",
-  wf:{fx:1.5,pay:0.40,payType:"china",total:1.90},
+  wf:{fx:1.5,pay:0.40,label:"1.50% FX + 0.40% China payment"},
   bankAvg:3.5,
   banks:[
-    {n:"Vietcombank",fx:1.0,w:20},{n:"BIDV",fx:1.0,w:18},{n:"VietinBank",fx:1.0,w:20},
-    {n:"Techcombank",fx:1.4,w:25},{n:"MB Bank",fx:1.4,w:20},{n:"Sacombank",fx:1.75,w:20}
+    {n:"Vietcombank",fx:1.0,w:20,note:"Largest FX bank, published API rates"},
+    {n:"BIDV",fx:1.0,w:18,note:"2nd largest, competitive"},
+    {n:"VietinBank",fx:1.0,w:20,note:"3rd state bank"},
+    {n:"Techcombank",fx:1.4,w:25,note:"Largest private bank"},
+    {n:"MB Bank",fx:1.4,w:20,note:"Growing rapidly"},
+    {n:"Sacombank",fx:1.75,w:20,note:"Wider spreads"}
   ],
-  note:"No global fintech (Wise, Airwallex, Revolut) serves outbound from Vietnam. Double conversion VND\u2192USD\u2192CNY is standard."},
+  context:"Fintech desert for outbound payments. Wise explicitly cannot send from VND. No global fintech serves outbound. $254B bilateral trade with China. Only major ASEAN economy without a PBOC swap.",
+  note:"Bank FX markups are for VND\u2192USD leg. Double conversion VND\u2192USD\u2192CNY is standard."},
 NG:{name:"Nigeria",flag:"\u{1F1F3}\u{1F1EC}",cur:"NGN",sym:"\u20A6",
-  wf:{fx:1.5,pay:3.0,payType:"std",total:4.50},
+  wf:{fx:1.5,pay:3.0,label:"1.50% FX (majors) + 3.00% payment"},
   bankAvg:4.5,
   banks:[
-    {n:"First Bank",fx:3.0,w:35},{n:"Zenith Bank",fx:2.5,w:35},{n:"GTBank",fx:2.25,w:25},
-    {n:"Access Bank",fx:3.0,w:35},{n:"UBA",fx:3.0,w:30},{n:"Stanbic IBTC",fx:2.25,w:40}
+    {n:"Zenith Bank",fx:2.5,w:35,note:"Best FX access among Tier-1"},
+    {n:"GTBank",fx:2.25,w:25,note:"Most digitally transparent"},
+    {n:"First Bank",fx:3.0,w:35,note:"Largest branch network"},
+    {n:"Access Bank",fx:3.0,w:35,note:"Largest by customers"},
+    {n:"UBA",fx:3.0,w:30,note:"Pan-African network"},
+    {n:"Stanbic IBTC",fx:2.25,w:40,note:"ICBC connection \u2014 potential CNY advantage"}
   ],
-  note:"WorldFirst is not the cheapest on this corridor. Africa-China fintechs (Pesa, Klasha) offer lower rates. WF\u2019s advantage is compliance infrastructure, multi-currency accounts, and 1688 integration."},
+  context:"WorldFirst is NOT the cheapest on this corridor. Africa-China fintechs (Pesa ~1.5%, Klasha ~2%) beat WF on price. WF\u2019s advantage: compliance infrastructure, multi-currency accounts, 1688 integration.",
+  note:"WF P1 tier pricing. Actual negotiated rates may be lower."},
 PK:{name:"Pakistan",flag:"\u{1F1F5}\u{1F1F0}",cur:"PKR",sym:"Rs",
-  wf:{fx:1.5,pay:1.5,payType:"std",total:3.00},
+  wf:{fx:1.5,pay:1.5,label:"1.50% FX (majors) + 1.50% payment"},
   bankAvg:5.0,
   banks:[
-    {n:"HBL",fx:2.25,w:25},{n:"MCB Bank",fx:2.0,w:25},{n:"UBL",fx:2.25,w:25},
-    {n:"Allied Bank",fx:2.75,w:25},{n:"Bank Alfalah",fx:2.0,w:25},
-    {n:"Meezan Bank",fx:2.75,w:25},{n:"National Bank",fx:2.25,w:20},
-    {n:"Standard Chartered",fx:1.75,w:30}
+    {n:"HBL",fx:2.25,w:25,note:"Largest bank"},
+    {n:"MCB Bank",fx:2.0,w:25,note:"Competitive for business"},
+    {n:"UBL",fx:2.25,w:25,note:"Strong remittance network"},
+    {n:"Bank Alfalah",fx:2.0,w:25,note:"Abu Dhabi Group owned"},
+    {n:"Standard Chartered",fx:1.75,w:30,note:"Best rates, higher minimums"},
+    {n:"Meezan Bank",fx:2.75,w:25,note:"Islamic banking"}
   ],
-  note:"LC charges of 0.5\u20131.5% may apply on top for import payments. RMB share tripled to 19.1% (CPEC-driven)."},
+  context:"RMB share of Pakistan\u2019s payments tripled to 19.1% (CPEC-driven). LC charges 0.5\u20131.5% apply on top for imports. World Bank reports zero qualifying outbound services.",
+  note:"LC charges (0.5\u20131.5%) not included. Actual import costs higher."},
 BD:{name:"Bangladesh",flag:"\u{1F1E7}\u{1F1E9}",cur:"BDT",sym:"\u09F3",
-  wf:{fx:1.5,pay:1.5,payType:"std",total:3.00},
+  wf:{fx:1.5,pay:1.5,label:"1.50% FX (majors) + 1.50% payment"},
   bankAvg:3.0,
   banks:[
-    {n:"Sonali Bank",fx:0.4,w:25},{n:"BRAC Bank",fx:0.6,w:30},
-    {n:"Dutch-Bangla Bank",fx:0.6,w:25},{n:"Eastern Bank",fx:0.55,w:30},
-    {n:"City Bank",fx:0.6,w:30},{n:"Standard Chartered",fx:0.7,w:40}
+    {n:"Sonali Bank",fx:0.4,w:25,note:"State bank, regulated rate"},
+    {n:"BRAC Bank",fx:0.6,w:30,note:"Leading SME bank"},
+    {n:"Dutch-Bangla Bank",fx:0.6,w:25,note:"Digital pioneer"},
+    {n:"Eastern Bank",fx:0.55,w:30,note:"Publishes mid-rate (unique)"},
+    {n:"Standard Chartered",fx:0.7,w:40,note:"Best rates, highest fees"}
   ],
-  note:"FX markups are regulated (crawling peg) at 0.3\u20130.8%. But LC commission (0.25\u20130.50%) is mandatory for most imports, pushing real cost to 2\u20134%. WorldFirst is not cheaper than banks here on price alone."},
+  context:"WorldFirst is NOT cheaper than banks here. FX markups are regulated at 0.3\u20130.8% (crawling peg). But LC commission (0.25\u20130.50%) is mandatory for most imports, pushing real cost to 2\u20134%. Zero fintechs serve outbound. Thinnest data corridor.",
+  note:"Bank FX markups are regulated. LC charges not included."},
 AE:{name:"UAE",flag:"\u{1F1E6}\u{1F1EA}",cur:"AED",sym:"AED",
-  wf:{fx:0.75,pay:1.5,payType:"std",total:2.25},
+  wf:{fx:0.75,pay:1.5,label:"0.75% FX (majors) + 1.50% payment"},
   bankAvg:3.0,
   banks:[
-    {n:"Emirates NBD",fx:2.0,w:7},{n:"First Abu Dhabi Bank",fx:1.5,w:10},
-    {n:"ADCB",fx:1.5,w:6},{n:"Mashreq",fx:1.5,w:8},{n:"Dubai Islamic Bank",fx:1.75,w:8}
+    {n:"Emirates NBD",fx:2.0,w:7,note:"Largest by assets"},
+    {n:"First Abu Dhabi Bank",fx:1.5,w:10,note:"CIPS direct participant"},
+    {n:"ADCB",fx:1.5,w:6,note:"1st month free"},
+    {n:"Mashreq",fx:1.5,w:8,note:"Estimated"},
+    {n:"Dubai Islamic Bank",fx:1.75,w:8,note:"Sharia-compliant"}
   ],
-  note:"AED is pegged to USD, removing the first FX leg. WF advantage is B2B \u2014 exchange houses beat WF on personal transfers."},
+  context:"AED pegged to USD \u2014 removes the first FX leg. Dragon Mart + 8,000 Chinese firms. Exchange houses beat WF on personal transfers. WF value is B2B.",
+  note:"AED-USD peg means lower FX cost to USD. CNY conversion adds a second leg."},
 SA:{name:"Saudi Arabia",flag:"\u{1F1F8}\u{1F1E6}",cur:"SAR",sym:"SAR",
-  wf:{fx:0.75,pay:1.5,payType:"std",total:2.25},
+  wf:{fx:0.75,pay:1.5,label:"0.75% FX (majors) + 1.50% payment"},
   bankAvg:3.25,
   banks:[
-    {n:"Saudi National Bank",fx:1.75,w:15},{n:"Al Rajhi Bank",fx:1.7,w:11},
-    {n:"Riyad Bank",fx:1.75,w:12},{n:"Saudi Awwal Bank",fx:1.75,w:13},
-    {n:"Banque Saudi Fransi",fx:2.0,w:14}
+    {n:"Saudi National Bank",fx:1.75,w:15,note:"Largest Saudi bank"},
+    {n:"Al Rajhi Bank",fx:1.7,w:11,note:"Cheapest bank option"},
+    {n:"Riyad Bank",fx:1.75,w:12,note:"Standard"},
+    {n:"Saudi Awwal Bank",fx:1.75,w:13,note:"HSBC joint venture"},
+    {n:"Banque Saudi Fransi",fx:2.0,w:14,note:"Highest markup"}
   ],
-  note:"SAR pegged to USD. Narrowest WF price advantage of any corridor."},
+  context:"SAR pegged to USD. Narrowest WF price advantage of any corridor. Petro-yuan developing but commercial adoption near zero.",
+  note:null},
 TH:{name:"Thailand",flag:"\u{1F1F9}\u{1F1ED}",cur:"THB",sym:"\u0E3F",
-  wf:{fx:1.5,pay:0.40,payType:"china",total:1.90},
+  wf:{fx:1.5,pay:0.40,label:"1.50% FX + 0.40% China payment"},
   bankAvg:3.0,
   banks:[
-    {n:"Bangkok Bank",fx:2.5,w:10},{n:"Kasikornbank",fx:2.5,w:7},
-    {n:"SCB",fx:2.0,w:10},{n:"Krung Thai Bank",fx:2.5,w:8}
+    {n:"Bangkok Bank",fx:2.5,w:10,note:"Largest commercial bank"},
+    {n:"Kasikornbank",fx:2.5,w:7,note:"Promotional CNY THB 250"},
+    {n:"SCB",fx:2.0,w:10,note:"Most competitive private bank"},
+    {n:"Krung Thai Bank",fx:2.5,w:8,note:"State bank"}
   ],
-  note:"PBOC-BOT swap CNY 70B. Direct THB\u2192CNY growing but most trade still routes through USD."},
+  context:"$153B trade. PBOC-BOT swap CNY 70B. PromptPay-China QR launched Oct 2025. Wise launching THB outbound May 2026.",
+  note:null},
 ID:{name:"Indonesia",flag:"\u{1F1EE}\u{1F1E9}",cur:"IDR",sym:"Rp",
-  wf:{fx:1.5,pay:0.40,payType:"china",total:1.90},
+  wf:{fx:1.5,pay:0.40,label:"1.50% FX + 0.40% China payment"},
   bankAvg:3.25,
   banks:[
-    {n:"BCA",fx:3.0,w:20},{n:"Bank Mandiri",fx:3.0,w:25},
-    {n:"Bank BNI",fx:3.0,w:20},{n:"Bank Rakyat",fx:3.5,w:20}
+    {n:"BCA",fx:3.0,w:20,note:"Largest private bank"},
+    {n:"Bank Mandiri",fx:3.0,w:25,note:"State bank"},
+    {n:"Bank BNI",fx:3.0,w:20,note:"State bank"},
+    {n:"Bank Rakyat",fx:3.5,w:20,note:"Largest by assets"}
   ],
-  note:"$135B bilateral trade. PBOC-BI swap CNY 400B (one of largest). Local Currency Settlement framework live."},
+  context:"$135B bilateral trade. PBOC-BI swap CNY 400B (one of largest). Local Currency Settlement framework live. Not a fintech desert \u2014 Flip, Transfez compete.",
+  note:null},
 IN:{name:"India",flag:"\u{1F1EE}\u{1F1F3}",cur:"INR",sym:"\u20B9",
-  wf:{fx:1.5,pay:3.0,payType:"std",total:4.50},
+  wf:{fx:1.5,pay:3.0,label:"1.50% FX (majors) + 3.00% payment"},
   bankAvg:3.5,
   banks:[
-    {n:"State Bank of India",fx:2.0,w:15},{n:"ICICI Bank",fx:2.5,w:15},
-    {n:"HDFC Bank",fx:3.25,w:15},{n:"Axis Bank",fx:2.75,w:15}
+    {n:"State Bank of India",fx:2.0,w:15,note:"Best among Big 3"},
+    {n:"ICICI Bank",fx:2.5,w:15,note:"Mid-range"},
+    {n:"HDFC Bank",fx:3.25,w:15,note:"Highest among Big 3"},
+    {n:"Axis Bank",fx:2.75,w:15,note:"Competitive on large volumes"}
   ],
-  note:"WorldFirst is not the cheapest on this corridor. Indian banks offer lower rates for China payments. TCS 5% applies on remittances above \u20B97 lakh/year."}
+  context:"WorldFirst is NOT the cheapest. Indian banks offer 2.5\u20133.5% vs WF P1 ~4.5%. $155.6B trade (record), $116B deficit. No RBI-PBOC swap (political tensions). TCS 5% on remittances above \u20B97 lakh/year.",
+  note:"WF P1 tier pricing. TCS 5% tax not included."}
 };
 
-// Region display order
-const REGIONS = ["GB","AU","DE","FR","NL","TR","VN","NG","PK","BD","AE","SA","TH","ID","IN"];
+const REGIONS=["GB","AU","DE","FR","NL","TR","VN","NG","PK","BD","AE","SA","TH","ID","IN"];
 
-// State
-let S = {region:null,bank:null,amount:null,mult:10};
+// ═══════════════════════════════════════════════════
+// STATE
+// ═══════════════════════��═══════════════════════════
+let region="GB", amount=10000;
 
-// DOM
-const $=id=>document.getElementById(id);
-const regionGrid=$('regionGrid'),bankGroup=$('bankGroup'),bankSelect=$('bankSelect'),
-  amountInput=$('amountInput'),calcBtn=$('calcBtn'),results=$('results');
-
-// Build region pills
+// ═══════════════════════════════════════════════════
+// BUILD NAV
+// ════════════���══════════════════════════════════════
+const nav=document.getElementById('countryNav');
 REGIONS.forEach(code=>{
-  const r=D[code];
-  const pill=document.createElement('div');
-  pill.className='region-pill';
-  pill.dataset.region=code;
-  pill.tabIndex=0;
-  pill.innerHTML=`<span class="flag">${r.flag}</span><span class="name">${code}</span>`;
-  regionGrid.appendChild(pill);
+  const btn=document.createElement('button');
+  btn.textContent=D[code].flag+' '+code;
+  btn.dataset.r=code;
+  if(code===region)btn.classList.add('active');
+  nav.appendChild(btn);
+});
+nav.addEventListener('click',e=>{
+  const btn=e.target.closest('button');if(!btn)return;
+  nav.querySelectorAll('button').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  region=btn.dataset.r;
+  render();
 });
 
-// Region selection
-regionGrid.addEventListener('click',e=>{
-  const pill=e.target.closest('.region-pill');
-  if(!pill)return;
-  document.querySelectorAll('.region-pill').forEach(p=>p.classList.remove('active'));
-  pill.classList.add('active');
-  S.region=pill.dataset.region;
-  const r=D[S.region];
-  $('curSym').textContent=r.sym;
-  bankSelect.innerHTML='<option value="">Select your bank</option>';
-  r.banks.forEach((b,i)=>{
-    const o=document.createElement('option');o.value=i;o.textContent=b.n;bankSelect.appendChild(o);
-  });
-  bankGroup.style.display='block';
-  S.bank=null;bankSelect.value='';
-  updateBtn();
+// ═══════════════════════════════════════════════════
+// AMOUNT INPUT
+// ═══��═══════════════════════════════════════════════
+const amtInput=document.getElementById('amtInput');
+amtInput.addEventListener('input',()=>{
+  let raw=amtInput.value.replace(/[^0-9]/g,'');
+  if(raw===''){amount=0;amtInput.value='';}
+  else{amount=parseInt(raw,10);amtInput.value=amount.toLocaleString('en-US');}
+  render();
+});
+document.getElementById('presets').addEventListener('click',e=>{
+  const btn=e.target.closest('button');if(!btn)return;
+  document.querySelectorAll('.amount-presets button').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  amount=parseInt(btn.dataset.v);
+  amtInput.value=amount.toLocaleString('en-US');
+  render();
 });
 
-// Bank selection
-bankSelect.addEventListener('change',()=>{
-  S.bank=bankSelect.value===''?null:D[S.region].banks[parseInt(bankSelect.value)];
-  updateBtn();
-});
+// ═══════════════════════════════════════════════════
+// RENDER
+// ═══════════════════════════════════════════════════
+const $=id=>document.getElementById(id);
+const fmt=n=>'$'+Math.round(n).toLocaleString('en-US');
+const pct=n=>n.toFixed(2)+'%';
+const maxBar=12; // max % for bar width scaling
 
-// Amount input
-amountInput.addEventListener('input',()=>{
-  let raw=amountInput.value.replace(/[^0-9]/g,'');
-  if(raw===''){amountInput.value='';S.amount=null;}
-  else{let num=parseInt(raw,10);S.amount=num;amountInput.value=num.toLocaleString('en-US');}
-  updateBtn();
-});
+function render(){
+  const r=D[region], wf=r.wf, amt=amount||10000;
+  const wfTotal=wf.fx+wf.pay;
+  const wfCost=amt*(wfTotal/100);
+  const bankCost=amt*(r.bankAvg/100);
+  const saving=bankCost-wfCost;
 
-// Volume pills
-$('volPills').addEventListener('click',e=>{
-  const pill=e.target.closest('.vol-pill');if(!pill)return;
-  document.querySelectorAll('.vol-pill').forEach(p=>p.classList.remove('active'));
-  pill.classList.add('active');S.mult=parseInt(pill.dataset.m);
-});
+  // KPIs
+  $('kBank').textContent=fmt(bankCost);
+  $('kBankSub').textContent=pct(r.bankAvg)+' average';
+  $('kWf').textContent=fmt(wfCost);
+  $('kWfSub').textContent=pct(wfTotal)+' total';
+  $('kSave').textContent=saving>0?fmt(saving):'—';
+  $('kSave').style.color=saving>0?'#111':'#999';
+  $('kSaveSub').textContent=saving>0?'per '+fmt(amt)+' order':'WF not cheaper here';
+  $('kCorridor').textContent=region+'\u2192CNY';
+  $('kCorridorSub').textContent=r.cur+' to Chinese supplier';
 
-function updateBtn(){calcBtn.disabled=!(S.region&&S.bank&&S.amount&&S.amount>0);}
+  // Main content
+  let html='';
 
-// Calculate
-calcBtn.addEventListener('click',calc);
-document.addEventListener('keydown',e=>{if(e.key==='Enter'&&!calcBtn.disabled)calc();});
-
-function calc(){
-  if(!S.region||!S.bank||!S.amount)return;
-  const amt=S.amount, bank=S.bank, r=D[S.region], wf=r.wf;
-  const fmt=n=>'$'+Math.round(n).toLocaleString('en-US');
-
-  // Bank cost
-  const bankFxCost=amt*(bank.fx/100);
-  const bankWire=bank.w;
-  const bankTotal=bankFxCost+bankWire;
-  const bankDelivered=amt-bankTotal;
-
-  // WF cost (FX + payment fee)
-  const wfFxCost=amt*(wf.fx/100);
-  const wfPayCost=amt*(wf.pay/100);
-  const wfTotal=wfFxCost+wfPayCost;
-  const wfDelivered=amt-wfTotal;
-
-  // Savings
-  const saving=bankTotal-wfTotal;
-  const annualSaving=saving*S.mult;
-  const annualVol=amt*S.mult;
-
-  // --- SECTION 1: Receipt ---
-  $('rBankName').textContent=bank.n;
-  $('rSend').textContent=fmt(amt);
-  $('rBankPct').textContent=`(~${bank.fx.toFixed(1)}%)`;
-  $('rBankFx').textContent='-'+fmt(bankFxCost);
-  $('rBankWire').textContent=bankWire>0?'-'+fmt(bankWire):'$0';
-  $('rBankTotal').textContent='-'+fmt(bankTotal);
-
-  // Bars
-  const maxD=amt;
-  const bPct=(bankDelivered/maxD)*100;
-  const wPct=(wfDelivered/maxD)*100;
-  $('bBankN').textContent=bank.n;
-  $('bBankA').textContent='Delivers '+fmt(bankDelivered);
-  $('bWfA').textContent='Delivers '+fmt(wfDelivered);
-  $('bBank').style.width='0%';$('bWf').style.width='0%';
-  setTimeout(()=>{
-    $('bBank').style.width=bPct+'%';$('bWf').style.width=wPct+'%';
-    $('bBankP').textContent=(100-bPct).toFixed(1)+'% lost';
-    $('bWfP').textContent=(100-wPct).toFixed(1)+'% lost';
-  },50);
-
-  // Savings box
-  const sBox=$('savingsBox');
-  if(saving>0){
-    $('rSave').textContent=fmt(saving);
-    $('rSaveLabel').textContent='saved on this order';
-    sBox.className='savings';
-    $('rAnnual').innerHTML=S.mult>1?`Over ${S.mult} orders, that\u2019s <strong>${fmt(annualSaving)}</strong> saved per year.`:`That\u2019s ${fmt(saving)} your supplier didn\u2019t receive.`;
-  } else {
-    $('rSave').textContent='Similar cost';
-    $('rSaveLabel').textContent='Your bank is competitive here';
-    sBox.className='savings neutral';
-    $('rAnnual').innerHTML='WorldFirst may still offer advantages in speed (same-day vs 2\u201310 days), currency flexibility, and 1688 integration.';
+  // Context callout
+  if(r.context){
+    html+=`<div class="callout">${r.context}</div>`;
   }
 
-  // Region note
-  const rn=$('regionNote');
-  if(r.note){rn.textContent=r.note;rn.style.display='block';}else{rn.style.display='none';}
+  // BANK COMPARISON TABLE
+  html+=`<h2>Bank-by-Bank Cost \u2014 ${r.name}</h2>`;
+  if(r.note)html+=`<p class="note"><strong>Note:</strong> ${r.note}</p>`;
+  html+=`<table><thead><tr><th>Bank</th><th class="num">FX Markup</th><th class="num">Wire Fee</th><th class="num">Total Cost</th><th class="num">Cost on ${fmt(amt)}</th><th style="width:100px"></th></tr></thead><tbody>`;
 
-  // --- SECTION 2: Currency options ---
-  // Local currency route: WF total (FX + payment)
-  const localTotal=wfTotal;
-  const localPct=wf.total;
-  $('curLocalRoute').textContent='Pay in '+r.cur;
-  $('curLocalCost').textContent=fmt(localTotal);
-  $('curLocalPct').textContent=localPct.toFixed(2)+'% total';
+  // Sort banks by total cost descending for visual impact
+  const sorted=[...r.banks].sort((a,b)=>(b.fx+b.w/amt*100)-(a.fx+a.w/amt*100));
+  sorted.forEach(bank=>{
+    const totalPct=bank.fx+(bank.w/amt)*100;
+    const totalCost=amt*(bank.fx/100)+bank.w;
+    const barW=Math.min((totalPct/maxBar)*100,100);
+    html+=`<tr><td class="em">${bank.n}<br><span class="muted" style="font-size:10px;font-weight:400">${bank.note||''}</span></td>`;
+    html+=`<td class="num">${bank.fx.toFixed(1)}%</td>`;
+    html+=`<td class="num">${bank.w>0?fmt(bank.w):'$0'}</td>`;
+    html+=`<td class="num em">${pct(totalPct)}</td>`;
+    html+=`<td class="num em">${fmt(totalCost)}</td>`;
+    html+=`<td><span class="cost-bar" style="width:${barW}%"></span></td></tr>`;
+  });
 
-  // USD route: if already holding USD, just payment fee (no FX on WF side for USD corridors where FX is to CNY)
-  // Actually: if you hold USD and send USD to China, WF converts USD→CNY. FX on that is typically lower (core market FX rate).
-  // For simplicity: USD route = WF core FX (0.5% for most) + payment fee
-  const usdFx=Math.min(wf.fx,0.75); // USD→CNY is a major pair
-  const usdPayCost=amt*(wf.pay/100);
-  const usdFxCost=amt*(usdFx/100);
-  const usdTotal=usdFxCost+usdPayCost;
-  $('curUsdCost').textContent=fmt(usdTotal);
-  $('curUsdPct').textContent=((usdFx+wf.pay)).toFixed(2)+'% total';
+  // WF row
+  const wfBarW=Math.min((wfTotal/maxBar)*100,100);
+  html+=`<tr class="wf-row"><td class="em">WorldFirst<br><span class="muted" style="font-size:10px;font-weight:400">${wf.label}</span></td>`;
+  html+=`<td class="num">${pct(wf.fx)}</td>`;
+  html+=`<td class="num">incl.</td>`;
+  html+=`<td class="num em">${pct(wfTotal)}</td>`;
+  html+=`<td class="num em">${fmt(wfCost)}</td>`;
+  html+=`<td><span class="cost-bar wf" style="width:${wfBarW}%"></span></td></tr>`;
+  html+=`</tbody></table>`;
+  html+=`<p class="note">FX markups estimated from published bank rates vs mid-market. WorldFirst uses maximum published ceilings from the Product Handbook \u2014 actual rates are often lower. Wire fees are typical SWIFT international transfer charges.</p>`;
 
-  // CNY route: if already holding CNY/CNH, no FX, just payment fee
-  const cnyTotal=amt*(wf.pay/100);
-  $('curCnyCost').textContent=fmt(cnyTotal);
-  $('curCnyPct').textContent=wf.pay.toFixed(2)+'% (no FX)';
+  // CURRENCY ROUTES
+  html+=`<h2>Pay Your Way \u2014 Currency Options</h2>`;
+  html+=`<p>You don\u2019t need to buy USD from your bank first. WorldFirst accepts your local currency and handles the conversion.</p>`;
 
-  // Mark cheapest
-  document.querySelectorAll('.cur-option').forEach(el=>el.classList.remove('best'));
-  if(cnyTotal<=usdTotal&&cnyTotal<=localTotal){$('curCny').classList.add('best');}
-  else if(usdTotal<=localTotal){$('curUsd').classList.add('best');}
-  else{$('curLocal').classList.add('best');}
+  const localCost=amt*(wfTotal/100);
+  const usdFx=Math.min(wf.fx,0.75);
+  const usdCost=amt*((usdFx+wf.pay)/100);
+  const cnyCost=amt*(wf.pay/100);
+  const costs=[{id:'local',v:localCost},{id:'usd',v:usdCost},{id:'cny',v:cnyCost}];
+  const cheapest=costs.reduce((a,b)=>a.v<b.v?a:b).id;
 
-  // --- SECTION 3: L2L ---
-  const l2lWireSave=bankWire>0?bankWire:35; // estimate SWIFT cost if bank showed $0
-  $('l2lSave').textContent=fmt(l2lWireSave)+' per order';
+  html+=`<div class="route-grid">`;
+  html+=`<div class="route-cell${cheapest==='local'?' best':''}"><div class="route-label">Pay in ${r.cur}</div><div class="route-value">${fmt(localCost)}</div><div class="route-pct">${pct(wfTotal)} total</div><div class="route-desc">Deposit ${r.cur}. WF converts to CNY. Supplier receives same-day via CNAPS.</div></div>`;
+  html+=`<div class="route-cell${cheapest==='usd'?' best':''}"><div class="route-label">Pay in USD</div><div class="route-value">${fmt(usdCost)}</div><div class="route-pct">${pct(usdFx+wf.pay)} total</div><div class="route-desc">Already hold USD? Skip your bank\u2019s FX entirely. WF converts USD\u2192CNY.</div></div>`;
+  html+=`<div class="route-cell${cheapest==='cny'?' best':''}"><div class="route-label">Pay in CNY</div><div class="route-value">${fmt(cnyCost)}</div><div class="route-pct">${pct(wf.pay)} (no FX)</div><div class="route-desc">Hold CNY/CNH from marketplace collections? Send direct. Zero conversion.</div></div>`;
+  html+=`</div>`;
 
-  // High value
-  const hv=$('highVal');
-  if(annualVol>500000){
-    hv.style.display='block';
-    $('highValMsg').textContent=annualVol>2000000
-      ?'At your volume, WorldFirst offers custom rates well below published ceilings. Let\u2019s talk.'
-      :'At your volume, WorldFirst offers custom rates below published ceilings.';
-  } else {hv.style.display='none';}
+  // L2L
+  html+=`<h2>Ledger to Ledger \u2014 If Your Supplier Also Uses WorldFirst</h2>`;
+  html+=`<div class="l2l-strip">`;
+  html+=`<div class="l2l-cell"><div class="l">Wire fee</div><div class="v">$0</div></div>`;
+  html+=`<div class="l2l-cell"><div class="l">Speed</div><div class="v">Instant</div></div>`;
+  html+=`<div class="l2l-cell"><div class="l">Rail</div><div class="v">Internal</div></div>`;
+  html+=`<div class="l2l-cell"><div class="l">SWIFT fees saved</div><div class="v">${fmt(35)}/order</div></div>`;
+  html+=`</div>`;
+  html+=`<p class="note">Ledger-to-ledger transfers between WorldFirst accounts bypass SWIFT entirely. No intermediary banks, no correspondent fees, no 2\u201310 day wait. The transfer is internal, instant, and free.</p>`;
 
-  // Show + scroll
-  results.classList.add('visible');
-  setTimeout(()=>results.scrollIntoView({behavior:'smooth',block:'start'}),100);
+  $('main').innerHTML=html;
 }
 
-// Methodology toggle
-$('methBtn').addEventListener('click',()=>{
-  const c=$('methContent');c.classList.toggle('visible');
-  $('methBtn').textContent=c.classList.contains('visible')?'Hide methodology':'How we calculated this';
-});
-
-// Keyboard for pills
-document.querySelectorAll('.region-pill,.vol-pill').forEach(p=>{
-  p.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();p.click();}});
-});
+// Initial render
+render();
 </script>
 </body>
 </html>
