@@ -107,6 +107,20 @@ tr:last-child td{border-bottom:none}
 </style>
 </head>
 <body>
+<script>
+(function(){
+  var k='corridor_auth',p='nerds';
+  if(localStorage.getItem(k)===p)return;
+  var a=0;
+  while(a<3){
+    var i=prompt('Password required:');
+    if(i===null){document.body.innerHTML='';return;}
+    if(i===p){localStorage.setItem(k,p);return;}
+    a++;
+  }
+  document.body.innerHTML='<div style="font-family:monospace;padding:48px;color:#888;">Access denied.</div>';
+})();
+</script>
 
 <!-- Country nav -->
 <nav class="country-nav" id="countryNav"></nav>
